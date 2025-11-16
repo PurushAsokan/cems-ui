@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hall Ticket Verification - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Hall Ticket
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Regular Exams</div>
+        <a href="generation.html" class="dropdown-item">Generation</a>
+        <a href="verification.html" class="dropdown-item active">Verification & Approval</a>
+        <a href="printing.html" class="dropdown-item">Printing/Bulk Download</a>
+        <a href="distribution.html" class="dropdown-item">Distribution Tracking</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Exams</div>
+        <a href="supplementary-generation.html" class="dropdown-item">Supplementary Generation</a>
+      </div>
+    </div>
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">DC</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Deputy Controller</div>
+            <div style="font-size: 11px; color: #6B7280;">Verifier</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Hall Ticket</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Verification & Approval</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+        Reject with Remarks
+      </button>
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="arrow-left" style="width: 16px; height: 16px;"></i>
+        Request Correction
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="check-circle" style="width: 16px; height: 16px;"></i>
+        Batch Approve
+      </button>
+    </div>
+  </div>
+
+  <main class="main-container">
+    <div class="page-container">
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Pending Verification Queue</h2>
+          <span class="status status-pending">
+            <span class="status-dot"></span>
+            245 Hall Tickets
+          </span>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;">
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Generated</div>
+              <div style="font-size: 24px; font-weight: 600;">245</div>
+            </div>
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Level 1 Approved</div>
+              <div style="font-size: 24px; font-weight: 600; color: #22C55E;">180</div>
+            </div>
+            <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Pending Level 2</div>
+              <div style="font-size: 24px; font-weight: 600; color: #F59E0B;">65</div>
+            </div>
+            <div style="background: #FEE2E2; border: 1px solid #FCA5A5; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Corrections Needed</div>
+              <div style="font-size: 24px; font-weight: 600; color: #EF4444;">5</div>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 40px;"><input type="checkbox" /></th>
+                  <th style="width: 60px;">Photo</th>
+                  <th>Reg. Number</th>
+                  <th>Student Name</th>
+                  <th>Program</th>
+                  <th style="text-align: center;">Subjects</th>
+                  <th>Level 1 Status</th>
+                  <th>Level 2 Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input type="checkbox" checked /></td>
+                  <td>
+                    <div style="width: 40px; height: 50px; border-radius: 4px; background: #E5E7EB;"></div>
+                  </td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024001</td>
+                  <td>Rajesh Kumar</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td style="text-align: center;">8</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Approved
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Pending
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Approve">
+                      <i data-feather="check" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>feather.replace();</script>
+</body>
+</html>

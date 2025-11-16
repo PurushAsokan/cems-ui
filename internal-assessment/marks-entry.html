@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internal Marks Entry - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Internal Assessment
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <a href="marks-entry.html" class="dropdown-item active">Marks Entry</a>
+        <a href="marks-verification.html" class="dropdown-item">Marks Verification</a>
+        <a href="freeze-reports.html" class="dropdown-item">Freeze & Reports</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">FT</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Dr. Faculty</div>
+            <div style="font-size: 11px; color: #6B7280;">Professor</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Internal Assessment</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Marks Entry</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="upload" style="width: 16px; height: 16px;"></i>
+        Bulk Upload Excel
+      </button>
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="calculator" style="width: 16px; height: 16px;"></i>
+        Calculate Totals
+      </button>
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="save" style="width: 16px; height: 16px;"></i>
+        Save Draft
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="send" style="width: 16px; height: 16px;"></i>
+        Submit for Verification
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Section 1: Subject & Student Group Selection -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Select Subject & Student Group</h2>
+        </div>
+        <div class="section-body">
+          <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; padding: 12px; margin-bottom: 16px;">
+            <div style="display: flex; gap: 16px; align-items: center;">
+              <i data-feather="info" style="width: 20px; height: 20px; color: #F59E0B; flex-shrink: 0;"></i>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; font-size: 13px; color: #92400E; margin-bottom: 4px;">Assessment Pattern Selection</div>
+                <div class="text-xs" style="color: #6B7280;">Select the appropriate pattern as UG and PG programs may have different internal assessment configurations</div>
+              </div>
+              <div class="form-group" style="margin: 0; min-width: 200px;">
+                <label class="form-label required" style="margin-bottom: 4px;">Assessment Pattern</label>
+                <select class="form-select">
+                  <option value="">Select Pattern</option>
+                  <option value="UG" selected>UG Pattern (Standard)</option>
+                  <option value="PG">PG Pattern (Research Focus)</option>
+                  <option value="CUSTOM">Custom Pattern</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <div class="form-group">
+              <label class="form-label required">Academic Year</label>
+              <select class="form-select">
+                <option value="2024-2025" selected>2024-2025</option>
+                <option value="2023-2024">2023-2024</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Subject</label>
+              <select class="form-select">
+                <option value="">-- Select Subject --</option>
+                <option value="CS501" selected>CS501 - Data Structures & Algorithms</option>
+                <option value="CS502">CS502 - DBMS</option>
+                <option value="CS503">CS503 - Operating Systems</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Program</label>
+              <select class="form-select">
+                <option value="">-- Select Program --</option>
+                <option value="BTECH-CSE" selected>B.Tech - CSE</option>
+                <option value="BTECH-ECE">B.Tech - ECE</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Year / Semester</label>
+              <select class="form-select">
+                <option value="">-- Select --</option>
+                <option value="3-5" selected>III Year / V Semester</option>
+                <option value="3-6">III Year / VI Semester</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="alert alert-info" style="margin-top: 16px;">
+            <i data-feather="info" style="width: 20px; height: 20px;"></i>
+            <div>Entering marks for <strong>CS501 - Data Structures & Algorithms</strong> | <strong>B.Tech CSE - III Year / V Sem</strong> | <strong>45 Students</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Component Configuration -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Internal Assessment Components</h2>
+          <div class="text-xs" style="color: #6B7280;">Total: 40 Marks</div>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px;">
+            <div style="padding: 12px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Tests (Best 2/3)</div>
+              <div style="font-weight: 600;">15 Marks</div>
+            </div>
+            <div style="padding: 12px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Model Exam</div>
+              <div style="font-weight: 600;">10 Marks</div>
+            </div>
+            <div style="padding: 12px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Attendance</div>
+              <div style="font-weight: 600;">5 Marks</div>
+            </div>
+            <div style="padding: 12px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Seminar</div>
+              <div style="font-weight: 600;">5 Marks</div>
+            </div>
+            <div style="padding: 12px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Assignment</div>
+              <div style="font-weight: 600;">5 Marks</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Bulk Marks Entry Grid -->
+      <div class="section">
+        <div class="section-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Marks Entry Grid</h2>
+            <span class="status status-approved">
+              <span class="status-dot"></span>
+              45 Students
+            </span>
+          </div>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="copy" style="width: 16px; height: 16px;"></i>
+            Copy from Previous Assessment
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="table-container" style="overflow-x: auto;">
+            <table class="data-table" style="min-width: 1400px;">
+              <thead>
+                <tr>
+                  <th rowspan="2" style="width: 50px;">S.No</th>
+                  <th rowspan="2" style="width: 120px;">Reg. Number</th>
+                  <th rowspan="2">Student Name</th>
+                  <th colspan="4" style="text-align: center; background: #EFF6FF;">Tests (out of 25 each)</th>
+                  <th rowspan="2" style="text-align: center; background: #F0FDF4;">Model<br/>(100)</th>
+                  <th rowspan="2" style="text-align: center; background: #FEF3C7;">Attend<br/>(%)</th>
+                  <th rowspan="2" style="text-align: center;">Seminar<br/>(5)</th>
+                  <th rowspan="2" style="text-align: center;">Assign<br/>(5)</th>
+                  <th rowspan="2" style="text-align: center; background: #F8F9FA; font-weight: 600;">Total<br/>(40)</th>
+                </tr>
+                <tr style="background: #EFF6FF;">
+                  <th style="text-align: center;">Test 1</th>
+                  <th style="text-align: center;">Test 2</th>
+                  <th style="text-align: center;">Test 3</th>
+                  <th style="text-align: center; font-weight: 600;">Best 2</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="text-align: center;">1</td>
+                  <td style="font-family: monospace;">REG2024001</td>
+                  <td style="font-weight: 500;">Rajesh Kumar</td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="22" min="0" max="25" /></td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="20" min="0" max="25" /></td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="24" min="0" max="25" /></td>
+                  <td style="text-align: center; background: #EFF6FF; font-weight: 600;">15.0</td>
+                  <td style="text-align: center; background: #F0FDF4;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="85" min="0" max="100" /></td>
+                  <td style="text-align: center; background: #FEF3C7; font-weight: 600;">4.3</td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="5" min="0" max="5" /></td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="5" min="0" max="5" /></td>
+                  <td style="text-align: center; background: #F8F9FA; font-weight: 600; font-size: 14px;">38.8</td>
+                </tr>
+                <tr>
+                  <td style="text-align: center;">2</td>
+                  <td style="font-family: monospace;">REG2024002</td>
+                  <td style="font-weight: 500;">Priya Sharma</td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="23" min="0" max="25" /></td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="24" min="0" max="25" /></td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="25" min="0" max="25" /></td>
+                  <td style="text-align: center; background: #EFF6FF; font-weight: 600;">15.0</td>
+                  <td style="text-align: center; background: #F0FDF4;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="92" min="0" max="100" /></td>
+                  <td style="text-align: center; background: #FEF3C7; font-weight: 600;">4.6</td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="5" min="0" max="5" /></td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="5" min="0" max="5" /></td>
+                  <td style="text-align: center; background: #F8F9FA; font-weight: 600; font-size: 14px;">39.8</td>
+                </tr>
+                <tr>
+                  <td style="text-align: center;">3</td>
+                  <td style="font-family: monospace;">REG2024003</td>
+                  <td style="font-weight: 500;">Amit Patel</td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="18" min="0" max="25" /></td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="19" min="0" max="25" /></td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="20" min="0" max="25" /></td>
+                  <td style="text-align: center; background: #EFF6FF; font-weight: 600;">12.7</td>
+                  <td style="text-align: center; background: #F0FDF4;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="75" min="0" max="100" /></td>
+                  <td style="text-align: center; background: #FEF3C7; font-weight: 600;">3.8</td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="4" min="0" max="5" /></td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="4" min="0" max="5" /></td>
+                  <td style="text-align: center; background: #F8F9FA; font-weight: 600; font-size: 14px;">32.0</td>
+                </tr>
+                <tr>
+                  <td style="text-align: center;">4</td>
+                  <td style="font-family: monospace;">REG2024004</td>
+                  <td style="font-weight: 500;">Sneha Reddy</td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="21" min="0" max="25" /></td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="22" min="0" max="25" /></td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="23" min="0" max="25" /></td>
+                  <td style="text-align: center; background: #EFF6FF; font-weight: 600;">14.6</td>
+                  <td style="text-align: center; background: #F0FDF4;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="88" min="0" max="100" /></td>
+                  <td style="text-align: center; background: #FEF3C7; font-weight: 600;">4.4</td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="5" min="0" max="5" /></td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="4" min="0" max="5" /></td>
+                  <td style="text-align: center; background: #F8F9FA; font-weight: 600; font-size: 14px;">37.4</td>
+                </tr>
+                <tr>
+                  <td style="text-align: center;">5</td>
+                  <td style="font-family: monospace;">REG2024005</td>
+                  <td style="font-weight: 500;">Vikram Singh</td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="25" min="0" max="25" /></td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="24" min="0" max="25" /></td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="25" min="0" max="25" /></td>
+                  <td style="text-align: center; background: #EFF6FF; font-weight: 600;">15.0</td>
+                  <td style="text-align: center; background: #F0FDF4;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="95" min="0" max="100" /></td>
+                  <td style="text-align: center; background: #FEF3C7; font-weight: 600;">4.8</td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="5" min="0" max="5" /></td>
+                  <td style="text-align: center;"><input type="number" class="form-input" style="width: 60px; text-align: center;" value="5" min="0" max="5" /></td>
+                  <td style="text-align: center; background: #F8F9FA; font-weight: 600; font-size: 14px;">40.0</td>
+                </tr>
+                <tr>
+                  <td colspan="13" style="text-align: center; color: #6B7280; font-style: italic; padding: 24px;">
+                    ... 40 more students ...
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr style="background: #F8F9FA; font-weight: 600;">
+                  <td colspan="3">Class Statistics</td>
+                  <td style="text-align: center;">Avg: 21.2</td>
+                  <td style="text-align: center;">Avg: 21.8</td>
+                  <td style="text-align: center;">Avg: 22.4</td>
+                  <td style="text-align: center;">Avg: 14.2</td>
+                  <td style="text-align: center;">Avg: 86</td>
+                  <td style="text-align: center;">Avg: 4.3</td>
+                  <td style="text-align: center;">Avg: 4.6</td>
+                  <td style="text-align: center;">Avg: 4.4</td>
+                  <td style="text-align: center; font-size: 14px;">Avg: 36.8/40</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <div class="alert alert-warning" style="margin-top: 16px;">
+            <i data-feather="alert-circle" style="width: 20px; height: 20px;"></i>
+            <div>Auto-calculations: <strong>Best 2 Tests</strong> converted to 15 marks, <strong>Model Exam</strong> converted to 10 marks, <strong>Attendance %</strong> converted to 5 marks</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

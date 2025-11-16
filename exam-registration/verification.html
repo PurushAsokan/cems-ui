@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verification Queue - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <!-- Module Dropdown -->
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Exam Registration
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px; max-height: 500px; overflow-y: auto;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Regular Registration</div>
+        <a href="data-entry.html" class="dropdown-item">Data Entry</a>
+        <a href="verification.html" class="dropdown-item active">Verification Queue</a>
+        <a href="fee-calculation.html" class="dropdown-item">Fee Calculation</a>
+        <a href="ern-batch.html" class="dropdown-item">ERN Generation</a>
+        <a href="registration-list.html" class="dropdown-item">Registration List</a>
+        <a href="reports.html" class="dropdown-item">Reports</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Registration</div>
+        <a href="supplementary-registration.html" class="dropdown-item">Supplementary Registration</a>
+        <a href="supplementary-verification.html" class="dropdown-item">Supplementary Verification</a>
+        <a href="supplementary-list.html" class="dropdown-item">Supplementary List & Analytics</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <!-- Search -->
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search applications..." />
+      </div>
+
+      <!-- Notifications -->
+      <button class="btn btn-icon btn-ghost">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <!-- User Menu -->
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">VR</div>
+          <span style="font-size: 13px;">VR-102</span>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Exam Registration</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Verification Queue</span>
+    </div>
+    <div class="context-actions">
+      <div class="dropdown">
+        <button class="btn btn-sm btn-secondary dropdown-toggle">
+          <i data-feather="download" style="width: 16px; height: 16px;"></i>
+          Export
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Export to Excel</a>
+          <a href="#" class="dropdown-item">Export to PDF</a>
+          <a href="#" class="dropdown-item">Export to CSV</a>
+        </div>
+      </div>
+      <button class="btn btn-sm btn-primary">Batch Approve</button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Filters Bar -->
+      <div class="section">
+        <div class="section-body" style="padding: 12px 16px;">
+          <div class="form-inline">
+            <div class="form-group" style="flex: 0 0 200px;">
+              <label class="form-label">Status</label>
+              <select class="form-select">
+                <option>All</option>
+                <option selected>Pending</option>
+                <option>Approved</option>
+                <option>Rejected</option>
+              </select>
+            </div>
+            <div class="form-group" style="flex: 0 0 200px;">
+              <label class="form-label">Program</label>
+              <select class="form-select">
+                <option>All Programs</option>
+                <option>B.Tech - CSE</option>
+                <option>B.Tech - ECE</option>
+                <option>B.Tech - MECH</option>
+              </select>
+            </div>
+            <div class="form-group" style="flex: 0 0 150px;">
+              <label class="form-label">Year</label>
+              <select class="form-select">
+                <option>All</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+            </div>
+            <div class="form-group" style="flex: 1;">
+              <label class="form-label">Search</label>
+              <input type="search" class="form-input" placeholder="App Ref, Name, Reg No..." />
+            </div>
+            <button class="btn btn-secondary" style="margin-top: auto;">
+              <i data-feather="search" style="width: 16px; height: 16px;"></i>
+              Filter
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Verification Table -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Pending Applications (25)</h2>
+          <div class="btn-group">
+            <button class="btn btn-sm btn-ghost">Refresh</button>
+          </div>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width: 40px;"><input type="checkbox" class="checkbox" /></th>
+                <th>App Ref</th>
+                <th>Name</th>
+                <th>Program</th>
+                <th>Year</th>
+                <th>Subjects</th>
+                <th>Attendance %</th>
+                <th>Fee Status</th>
+                <th>Submitted</th>
+                <th>Status</th>
+                <th style="width: 100px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox" class="checkbox" /></td>
+                <td><strong>APP-2025-00123</strong></td>
+                <td>John Doe</td>
+                <td>B.Tech CSE</td>
+                <td>3</td>
+                <td>6</td>
+                <td><span class="status status-verified"><span class="status-dot"></span>78%</span></td>
+                <td><span class="status status-approved"><span class="status-dot"></span>Paid</span></td>
+                <td class="text-muted">2h ago</td>
+                <td><span class="status status-pending"><span class="status-dot"></span>Pending</span></td>
+                <td class="table-actions">
+                  <button class="btn btn-sm btn-primary" onclick="openModal('verifyModal')">Verify</button>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="checkbox" /></td>
+                <td><strong>APP-2025-00124</strong></td>
+                <td>Jane Smith</td>
+                <td>B.Tech CSE</td>
+                <td>3</td>
+                <td>5</td>
+                <td><span class="status status-verified"><span class="status-dot"></span>82%</span></td>
+                <td><span class="status status-approved"><span class="status-dot"></span>Paid</span></td>
+                <td class="text-muted">3h ago</td>
+                <td><span class="status status-pending"><span class="status-dot"></span>Pending</span></td>
+                <td class="table-actions">
+                  <button class="btn btn-sm btn-primary" onclick="openModal('verifyModal')">Verify</button>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="checkbox" /></td>
+                <td><strong>APP-2025-00125</strong></td>
+                <td>Mike Johnson</td>
+                <td>B.Tech ECE</td>
+                <td>2</td>
+                <td>6</td>
+                <td><span class="status status-error"><span class="status-dot"></span>68%</span></td>
+                <td><span class="status status-pending"><span class="status-dot"></span>Pending</span></td>
+                <td class="text-muted">5h ago</td>
+                <td><span class="status status-pending"><span class="status-dot"></span>Pending</span></td>
+                <td class="table-actions">
+                  <button class="btn btn-sm btn-primary" onclick="openModal('verifyModal')">Verify</button>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="checkbox" /></td>
+                <td><strong>APP-2025-00126</strong></td>
+                <td>Sarah Williams</td>
+                <td>B.Tech CSE</td>
+                <td>3</td>
+                <td>7</td>
+                <td class="text-muted">6h ago</td>
+                <td><span class="status status-pending"><span class="status-dot"></span>Pending</span></td>
+                <td class="table-actions">
+                  <button class="btn btn-sm btn-primary" onclick="openModal('verifyModal')">Verify</button>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="checkbox" /></td>
+                <td><strong>APP-2025-00127</strong></td>
+                <td>Robert Brown</td>
+                <td>B.Tech MECH</td>
+                <td>4</td>
+                <td>5</td>
+                <td class="text-muted">8h ago</td>
+                <td><span class="status status-pending"><span class="status-dot"></span>Pending</span></td>
+                <td class="table-actions">
+                  <button class="btn btn-sm btn-primary" onclick="openModal('verifyModal')">Verify</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination">
+          <div class="pagination-info">Showing 1-5 of 25</div>
+          <div class="pagination-pages">
+            <button class="pagination-page active">1</button>
+            <button class="pagination-page">2</button>
+            <button class="pagination-page">3</button>
+            <button class="pagination-page">4</button>
+            <button class="pagination-page">5</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Verification Modal -->
+  <div id="verifyModal" class="modal-overlay" style="display: none;">
+    <div class="modal" style="max-width: 800px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Verify Application - APP-2025-00123</h3>
+        <button class="btn btn-icon btn-ghost" onclick="closeModal('verifyModal')">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Application Info (Compact) -->
+        <div style="background: #F8F9FA; padding: 16px; border-radius: 4px; margin-bottom: 20px;">
+          <div class="field-grid">
+            <div class="field">
+              <div class="field-label">App Ref</div>
+              <div class="field-value"><strong>APP-2025-00123</strong></div>
+            </div>
+            <div class="field">
+              <div class="field-label">Submitted By</div>
+              <div class="field-value">OP-001</div>
+            </div>
+            <div class="field">
+              <div class="field-label">Submitted On</div>
+              <div class="field-value">12 Jan 2025, 10:34 AM</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Student Details with Photo -->
+        <div style="margin-bottom: 20px;">
+          <h4 style="font-size: 13px; font-weight: 600; margin-bottom: 12px; color: #6B7280; text-transform: uppercase;">Student Details & Photo</h4>
+          <div style="display: grid; grid-template-columns: 1fr auto; gap: 24px;">
+            <div class="field-grid">
+              <div class="field">
+                <div class="field-label">Name</div>
+                <div class="field-value">John Michael Joseph</div>
+              </div>
+              <div class="field">
+                <div class="field-label">DOB</div>
+                <div class="field-value">22 Apr 2004</div>
+              </div>
+            </div>
+            <div style="width: 100px; height: 120px; border: 2px solid #E5E7EB; border-radius: 4px; background: #F8F9FA; display: flex; align-items: center; justify-content: center;">
+              <i data-feather="user" style="width: 48px; height: 48px; color: #9CA3AF;"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Eligibility Criteria Checks -->
+        <div style="margin-bottom: 20px;">
+          <h4 style="font-size: 13px; font-weight: 600; margin-bottom: 12px; color: #6B7280; text-transform: uppercase;">Eligibility Verification</h4>
+          <div style="display: grid; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 4px;">
+              <i data-feather="check-circle" style="width: 18px; height: 18px; color: #22C55E;"></i>
+              <div style="font-size: 13px;"><strong>Attendance:</strong> 78% (Required: 75%)</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 4px;">
+              <i data-feather="check-circle" style="width: 18px; height: 18px; color: #22C55E;"></i>
+              <div style="font-size: 13px;"><strong>Previous Semester Fees:</strong> Cleared</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 4px;">
+              <i data-feather="check-circle" style="width: 18px; height: 18px; color: #22C55E;"></i>
+              <div style="font-size: 13px;"><strong>Subject Eligibility:</strong> All subjects are valid for registration</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 4px;">
+              <i data-feather="check-circle" style="width: 18px; height: 18px; color: #22C55E;"></i>
+              <div style="font-size: 13px;"><strong>Maximum Subject Limit:</strong> 6 of 8 allowed</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Academic Details (Compact) -->
+        <div style="margin-bottom: 20px;">
+          <h4 style="font-size: 13px; font-weight: 600; margin-bottom: 12px; color: #6B7280; text-transform: uppercase;">Academic Info</h4>
+          <div class="field-grid">
+            <div class="field">
+              <div class="field-label">DOB</div>
+              <div class="field-value">22 Apr 2004</div>
+            </div>
+            <div class="field">
+              <div class="field-label">Gender</div>
+              <div class="field-value">Male</div>
+            </div>
+            <div class="field">
+              <div class="field-label">Contact</div>
+              <div class="field-value">9876543210</div>
+            </div>
+            <div class="field">
+              <div class="field-label">Email</div>
+              <div class="field-value">john@example.com</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Academic Details (Compact) -->
+        <div style="margin-bottom: 20px;">
+          <h4 style="font-size: 13px; font-weight: 600; margin-bottom: 12px; color: #6B7280; text-transform: uppercase;">Academic</h4>
+          <div class="field-grid">
+            <div class="field">
+              <div class="field-label">Program</div>
+              <div class="field-value">B.Tech CSE</div>
+            </div>
+            <div class="field">
+              <div class="field-label">Department</div>
+              <div class="field-value">Computer Science</div>
+            </div>
+            <div class="field">
+              <div class="field-label">Year</div>
+              <div class="field-value">3rd Year</div>
+            </div>
+            <div class="field">
+              <div class="field-label">Semester</div>
+              <div class="field-value">Semester VI</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subjects (Compact) -->
+        <div style="margin-bottom: 20px;">
+          <h4 style="font-size: 13px; font-weight: 600; margin-bottom: 12px; color: #6B7280; text-transform: uppercase;">Subjects (6)</h4>
+          <div style="display: grid; gap: 8px; font-size: 13px;">
+            <div style="padding: 8px 12px; background: #F8F9FA; border-radius: 4px; display: flex; justify-content: space-between;">
+              <span><strong>CS601</strong> - Data Structures & Algorithms</span>
+              <span class="status status-approved"><span class="status-dot"></span>Regular</span>
+            </div>
+            <div style="padding: 8px 12px; background: #F8F9FA; border-radius: 4px; display: flex; justify-content: space-between;">
+              <span><strong>CS602</strong> - Database Management Systems</span>
+              <span class="status status-approved"><span class="status-dot"></span>Regular</span>
+            </div>
+            <div style="padding: 8px 12px; background: #FEF3C7; border-radius: 4px; display: flex; justify-content: space-between;">
+              <span><strong>CS501</strong> - Design & Analysis of Algorithms</span>
+              <span class="status status-warning"><span class="status-dot"></span>Arrear</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Remarks -->
+        <div class="form-group">
+          <label class="form-label">Remarks (Optional)</label>
+          <textarea class="form-textarea" placeholder="Enter remarks or rejection reason..."></textarea>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('verifyModal')">Cancel</button>
+        <button class="btn btn-secondary text-error">Reject</button>
+        <button class="btn btn-primary">Approve</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

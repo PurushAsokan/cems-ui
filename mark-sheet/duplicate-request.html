@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Duplicate Mark Sheet Request - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Mark Sheet Management
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 260px;">
+        <a href="mark-sheet-serial.html" class="dropdown-item">Serial Number Assignment</a>
+        <a href="cia-ese-integration.html" class="dropdown-item">CIA + ESE Integration</a>
+        <a href="duplicate-request.html" class="dropdown-item active">Duplicate Request & Reissue</a>
+        <a href="mark-sheet-verification.html" class="dropdown-item">Verification & Approval</a>
+        <a href="consolidated-statement.html" class="dropdown-item">Consolidated Statement</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">FD</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Front Desk Staff</div>
+            <div style="font-size: 11px; color: #6B7280;">Duplicate Request Entry</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Mark Sheet Management</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Duplicate Request & Reissue</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export Requests
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="plus" style="width: 16px; height: 16px;"></i>
+        New Request
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Section 1: Request Statistics -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Duplicate Mark Sheet Request Dashboard</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Requests</div>
+              <div style="font-size: 24px; font-weight: 600;">142</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Current academic year</div>
+            </div>
+            <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Pending Approval</div>
+              <div style="font-size: 24px; font-weight: 600; color: #F59E0B;">28</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Awaiting verification</div>
+            </div>
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Approved & Issued</div>
+              <div style="font-size: 24px; font-weight: 600; color: #22C55E;">105</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">74% completion rate</div>
+            </div>
+            <div style="background: #FEE2E2; border: 1px solid #FCA5A5; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Rejected</div>
+              <div style="font-size: 24px; font-weight: 600; color: #DC2626;">9</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">6% rejection rate</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: New Duplicate Request Entry -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">New Duplicate Mark Sheet Request</h2>
+        </div>
+        <div class="section-body">
+          <div style="background: #EFF6FF; border: 2px solid #2563EB; border-radius: 8px; padding: 24px;">
+
+            <!-- Student Verification -->
+            <div style="font-weight: 600; margin-bottom: 16px; font-size: 15px;">Student Verification</div>
+
+            <div style="display: grid; grid-template-columns: 2fr 1fr auto; gap: 16px; margin-bottom: 24px;">
+              <div class="form-group">
+                <label class="form-label required">Registration Number or Name</label>
+                <input type="text" class="form-input" placeholder="Enter registration number or student name" value="REG2022045" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Mark Sheet Serial Number (Optional)</label>
+                <input type="text" class="form-input" placeholder="MS-2024-XXXX" value="MS-2024-1180" />
+              </div>
+              <div style="display: flex; align-items: end;">
+                <button class="btn btn-primary">
+                  <i data-feather="search" style="width: 16px; height: 16px;"></i>
+                  Verify Student
+                </button>
+              </div>
+            </div>
+
+            <!-- Student Details Card -->
+            <div style="background: white; border: 1px solid #E5E7EB; border-radius: 6px; padding: 20px; margin-bottom: 24px;">
+              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 16px;">
+                <div>
+                  <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Registration Number</div>
+                  <div style="font-weight: 600;">REG2022045</div>
+                </div>
+                <div>
+                  <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Student Name</div>
+                  <div style="font-weight: 600;">Priya Verma</div>
+                </div>
+                <div>
+                  <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Program</div>
+                  <div style="font-weight: 600;">BCA III Year</div>
+                </div>
+                <div>
+                  <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Original Mark Sheet Serial</div>
+                  <div style="font-weight: 600; font-family: monospace;">MS-2024-1180</div>
+                </div>
+              </div>
+
+              <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 12px; display: flex; align-items: center; gap: 12px;">
+                <i data-feather="check-circle" style="width: 20px; height: 20px; color: #22C55E;"></i>
+                <div style="flex: 1;">
+                  <div style="font-weight: 600; font-size: 13px;">Student Verified Successfully</div>
+                  <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Original mark sheet found: MS-2024-1180 issued on 14-Nov-2024 for V Semester (December 2024)</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Request Details -->
+            <div style="font-weight: 600; margin-bottom: 16px; font-size: 15px;">Request Details</div>
+
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 16px;">
+              <div class="form-group">
+                <label class="form-label required">Reason for Duplicate Request</label>
+                <select class="form-select">
+                  <option value="">-- Select Reason --</option>
+                  <option value="lost" selected>Mark Sheet Lost</option>
+                  <option value="damaged">Mark Sheet Damaged</option>
+                  <option value="name_correction">Name Correction Required</option>
+                  <option value="other">Other (Specify in remarks)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label required">Semester/Year for Duplicate</label>
+                <select class="form-select">
+                  <option value="">-- Select Semester --</option>
+                  <option value="SEM5" selected>V Semester (December 2024)</option>
+                  <option value="SEM4">IV Semester (May 2024)</option>
+                  <option value="SEM3">III Semester (December 2023)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label required">Detailed Remarks</label>
+              <textarea class="form-input" rows="3" placeholder="Enter detailed remarks explaining the reason for duplicate request...">Mark sheet was lost during relocation. Police complaint filed (FIR No: 2024/11/0428 dated 10-Nov-2024). Affidavit submitted.</textarea>
+            </div>
+
+            <!-- Supporting Documents -->
+            <div style="font-weight: 600; margin-bottom: 12px; font-size: 15px;">Supporting Documents</div>
+
+            <div style="display: grid; gap: 12px; margin-bottom: 24px;">
+              <div style="display: flex; align-items: center; gap: 12px; background: white; border: 1px solid #E5E7EB; border-radius: 6px; padding: 12px;">
+                <input type="checkbox" id="doc1" checked />
+                <div style="flex: 1;">
+                  <label for="doc1" style="font-weight: 600; cursor: pointer;">Police FIR / Complaint Copy</label>
+                  <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Required for lost mark sheets</div>
+                </div>
+                <button class="btn btn-sm btn-ghost">
+                  <i data-feather="upload" style="width: 16px; height: 16px;"></i>
+                  Upload
+                </button>
+                <span class="status status-approved">
+                  <span class="status-dot"></span>
+                  Uploaded
+                </span>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 12px; background: white; border: 1px solid #E5E7EB; border-radius: 6px; padding: 12px;">
+                <input type="checkbox" id="doc2" checked />
+                <div style="flex: 1;">
+                  <label for="doc2" style="font-weight: 600; cursor: pointer;">Notarized Affidavit</label>
+                  <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Sworn statement regarding lost/damaged mark sheet</div>
+                </div>
+                <button class="btn btn-sm btn-ghost">
+                  <i data-feather="upload" style="width: 16px; height: 16px;"></i>
+                  Upload
+                </button>
+                <span class="status status-approved">
+                  <span class="status-dot"></span>
+                  Uploaded
+                </span>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 12px; background: white; border: 1px solid #E5E7EB; border-radius: 6px; padding: 12px;">
+                <input type="checkbox" id="doc3" />
+                <div style="flex: 1;">
+                  <label for="doc3" style="font-weight: 600; cursor: pointer;">Damaged Mark Sheet (if applicable)</label>
+                  <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Submit original damaged mark sheet for verification</div>
+                </div>
+                <button class="btn btn-sm btn-ghost">
+                  <i data-feather="upload" style="width: 16px; height: 16px;"></i>
+                  Upload
+                </button>
+              </div>
+            </div>
+
+            <!-- Fee Payment -->
+            <div style="font-weight: 600; margin-bottom: 12px; font-size: 15px;">Fee Payment</div>
+
+            <div style="background: white; border: 1px solid #E5E7EB; border-radius: 6px; padding: 20px; margin-bottom: 24px;">
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px;">
+                <div class="form-group">
+                  <label class="form-label required">Payment Mode</label>
+                  <select class="form-select">
+                    <option value="">-- Select --</option>
+                    <option value="online" selected>Online Payment</option>
+                    <option value="cash">Cash</option>
+                    <option value="dd">Demand Draft</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label required">Transaction ID / Receipt No</label>
+                  <input type="text" class="form-input" placeholder="Enter transaction ID" value="TXN20241115002" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label required">Payment Date</label>
+                  <input type="date" class="form-input" value="2024-11-15" />
+                </div>
+              </div>
+
+              <div style="background: #EFF6FF; border: 1px solid #93C5FD; border-radius: 6px; padding: 16px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <div>
+                    <div style="font-weight: 600; margin-bottom: 4px;">Duplicate Mark Sheet Fee</div>
+                    <div class="text-xs" style="color: #6B7280;">Per semester duplicate mark sheet fee as per university regulations</div>
+                  </div>
+                  <div style="font-size: 24px; font-weight: 600; color: #2563EB;">₹300</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit Actions -->
+            <div style="display: flex; gap: 12px;">
+              <button class="btn btn-secondary">
+                <i data-feather="x" style="width: 16px; height: 16px;"></i>
+                Cancel
+              </button>
+              <button class="btn btn-primary" style="flex: 1;">
+                <i data-feather="send" style="width: 16px; height: 16px;"></i>
+                Submit Duplicate Request
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Pending Approval Queue -->
+      <div class="section">
+        <div class="section-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Pending Approval Queue</h2>
+            <span class="status status-warning">
+              <span class="status-dot"></span>
+              28 Requests
+            </span>
+          </div>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="filter" style="width: 16px; height: 16px;"></i>
+            Filter Requests
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Request ID</th>
+                  <th>Request Date</th>
+                  <th>Student Details</th>
+                  <th>Original Serial No</th>
+                  <th>Semester/Year</th>
+                  <th>Reason</th>
+                  <th>Fee Status</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">DUP-2024-042</td>
+                  <td style="font-size: 12px;">14-Nov-2024</td>
+                  <td style="font-weight: 500;">Amit Patel<br/><span style="font-size: 11px; color: #6B7280;">REG2022032</span></td>
+                  <td style="font-family: monospace; font-size: 12px;">MS-2024-1098</td>
+                  <td style="font-size: 12px;">V Semester<br/><span style="color: #6B7280;">December 2024</span></td>
+                  <td>
+                    <span class="status status-warning">
+                      <span class="status-dot"></span>
+                      Lost
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Paid ₹300
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Pending
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Approve">
+                      <i data-feather="check" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">DUP-2024-041</td>
+                  <td style="font-size: 12px;">13-Nov-2024</td>
+                  <td style="font-weight: 500;">Sneha Reddy<br/><span style="font-size: 11px; color: #6B7280;">REG2022028</span></td>
+                  <td style="font-family: monospace; font-size: 12px;">MS-2024-1085</td>
+                  <td style="font-size: 12px;">IV Semester<br/><span style="color: #6B7280;">May 2024</span></td>
+                  <td>
+                    <span class="status status-warning">
+                      <span class="status-dot"></span>
+                      Damaged
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Paid ₹300
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Pending
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Approve">
+                      <i data-feather="check" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Recently Issued Duplicates -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Recently Issued Duplicate Mark Sheets</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="download" style="width: 16px; height: 16px;"></i>
+            Export List
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Request ID</th>
+                  <th>Student Details</th>
+                  <th>Original Serial No</th>
+                  <th>Duplicate Serial No</th>
+                  <th>Semester/Year</th>
+                  <th>Issue Date</th>
+                  <th>Watermark</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-family: monospace; font-weight: 600;">DUP-2024-040</td>
+                  <td style="font-weight: 500;">Karthik Rao<br/><span style="font-size: 11px; color: #6B7280;">REG2022024</span></td>
+                  <td style="font-family: monospace; font-size: 12px;">MS-2024-1072</td>
+                  <td style="font-family: monospace; font-size: 12px; font-weight: 600; color: #2563EB;">MS-2024-1072-D1</td>
+                  <td style="font-size: 12px;">V Semester<br/><span style="color: #6B7280;">December 2024</span></td>
+                  <td style="font-size: 12px;">12-Nov-2024<br/><span style="color: #6B7280;">04:30 PM</span></td>
+                  <td>
+                    <span class="status status-warning">
+                      <span class="status-dot"></span>
+                      DUPLICATE
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Issued
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Print Duplicate">
+                      <i data-feather="printer" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-family: monospace; font-weight: 600;">DUP-2024-039</td>
+                  <td style="font-weight: 500;">Meera Sharma<br/><span style="font-size: 11px; color: #6B7280;">REG2022018</span></td>
+                  <td style="font-family: monospace; font-size: 12px;">MS-2024-1055</td>
+                  <td style="font-family: monospace; font-size: 12px; font-weight: 600; color: #2563EB;">MS-2024-1055-D1</td>
+                  <td style="font-size: 12px;">IV Semester<br/><span style="color: #6B7280;">May 2024</span></td>
+                  <td style="font-size: 12px;">11-Nov-2024<br/><span style="color: #6B7280;">02:15 PM</span></td>
+                  <td>
+                    <span class="status status-warning">
+                      <span class="status-dot"></span>
+                      DUPLICATE
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Issued
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Print Duplicate">
+                      <i data-feather="printer" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>feather.replace();</script>
+</body>
+</html>

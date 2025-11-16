@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Degree & Subject Setup - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <!-- Module Dropdown -->
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Exam Scheduling
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Regular Exams</div>
+        <a href="degree-subject-setup.html" class="dropdown-item active">Degree & Subject Setup</a>
+        <a href="program-subject-mapping.html" class="dropdown-item">Program-Subject Mapping</a>
+        <a href="timetable-entry.html" class="dropdown-item">Timetable Entry</a>
+        <a href="timetable-verification.html" class="dropdown-item">Timetable Verification</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Exams</div>
+        <a href="supplementary-timetable.html" class="dropdown-item">Supplementary Timetable</a>
+        <a href="supplementary-timetable-verification.html" class="dropdown-item">Supplementary Verification</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">AD</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Admin</div>
+            <div style="font-size: 11px; color: #6B7280;">System Admin</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Exam Scheduling</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Degree & Subject Setup</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export Master Data
+      </button>
+      <button class="btn btn-sm btn-primary" onclick="document.getElementById('addDegreeModal').style.display='block'">
+        <i data-feather="plus" style="width: 16px; height: 16px;"></i>
+        Add Degree Program
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Tab Navigation -->
+      <div style="border-bottom: 1px solid #E5E7EB; margin-bottom: 24px;">
+        <div style="display: flex; gap: 24px;">
+          <button class="btn btn-ghost" style="border-bottom: 2px solid #2563EB; border-radius: 0; padding: 12px 0; color: #2563EB; font-weight: 600;">
+            Degree Programs
+          </button>
+          <button class="btn btn-ghost" style="border-bottom: 2px solid transparent; border-radius: 0; padding: 12px 0; color: #6B7280;">
+            Subject Master
+          </button>
+        </div>
+      </div>
+
+      <!-- Section 1: Degree Programs List -->
+      <div class="section">
+        <div class="section-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Degree Programs</h2>
+            <span class="status status-approved">
+              <span class="status-dot"></span>
+              12 Programs
+            </span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <input type="search" class="form-input" placeholder="Search programs..." style="width: 250px;" />
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Program Code</th>
+                  <th>Program Name</th>
+                  <th>Level</th>
+                  <th>Department</th>
+                  <th style="text-align: center;">Duration (Years)</th>
+                  <th style="text-align: center;">Total Semesters</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">BTECH-CSE</td>
+                  <td>Bachelor of Technology - Computer Science</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      UG
+                    </span>
+                  </td>
+                  <td>Computer Science & Engineering</td>
+                  <td style="text-align: center;">4</td>
+                  <td style="text-align: center;">8</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">BTECH-ECE</td>
+                  <td>Bachelor of Technology - Electronics</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      UG
+                    </span>
+                  </td>
+                  <td>Electronics & Communication</td>
+                  <td style="text-align: center;">4</td>
+                  <td style="text-align: center;">8</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">BTECH-MECH</td>
+                  <td>Bachelor of Technology - Mechanical</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      UG
+                    </span>
+                  </td>
+                  <td>Mechanical Engineering</td>
+                  <td style="text-align: center;">4</td>
+                  <td style="text-align: center;">8</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">BTECH-CIVIL</td>
+                  <td>Bachelor of Technology - Civil</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      UG
+                    </span>
+                  </td>
+                  <td>Civil Engineering</td>
+                  <td style="text-align: center;">4</td>
+                  <td style="text-align: center;">8</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">MTECH-CSE</td>
+                  <td>Master of Technology - Computer Science</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      PG
+                    </span>
+                  </td>
+                  <td>Computer Science & Engineering</td>
+                  <td style="text-align: center;">2</td>
+                  <td style="text-align: center;">4</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">MCA</td>
+                  <td>Master of Computer Applications</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      PG
+                    </span>
+                  </td>
+                  <td>Computer Applications</td>
+                  <td style="text-align: center;">2</td>
+                  <td style="text-align: center;">4</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Subject Master -->
+      <div class="section">
+        <div class="section-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Subject Master Catalog</h2>
+            <span class="status status-approved">
+              <span class="status-dot"></span>
+              245 Subjects
+            </span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <select class="form-select" style="width: 150px;">
+              <option value="">All Types</option>
+              <option value="theory">Theory</option>
+              <option value="practical">Practical</option>
+              <option value="both">Both</option>
+            </select>
+            <input type="search" class="form-input" placeholder="Search subjects..." style="width: 250px;" />
+            <button class="btn btn-primary">
+              <i data-feather="plus" style="width: 16px; height: 16px;"></i>
+              Add Subject
+            </button>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Subject Code</th>
+                  <th>Subject Name</th>
+                  <th>Type</th>
+                  <th>Subject Category</th>
+                  <th style="text-align: center;">Credits</th>
+                  <th style="text-align: center;">Exam Duration (Hrs)</th>
+                  <th style="text-align: center;">Max Marks</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">CS501</td>
+                  <td>Data Structures & Algorithms</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Theory
+                    </span>
+                  </td>
+                  <td>Core</td>
+                  <td style="text-align: center;">4</td>
+                  <td style="text-align: center;">3</td>
+                  <td style="text-align: center;">100</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">CS502</td>
+                  <td>Database Management Systems</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Theory
+                    </span>
+                  </td>
+                  <td>Core</td>
+                  <td style="text-align: center;">4</td>
+                  <td style="text-align: center;">3</td>
+                  <td style="text-align: center;">100</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">CS503L</td>
+                  <td>DBMS Lab</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Practical
+                    </span>
+                  </td>
+                  <td>Core</td>
+                  <td style="text-align: center;">2</td>
+                  <td style="text-align: center;">3</td>
+                  <td style="text-align: center;">50</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">CS504</td>
+                  <td>Operating Systems</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Theory
+                    </span>
+                  </td>
+                  <td>Core</td>
+                  <td style="text-align: center;">4</td>
+                  <td style="text-align: center;">3</td>
+                  <td style="text-align: center;">100</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">CS505</td>
+                  <td>Computer Networks</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Theory
+                    </span>
+                  </td>
+                  <td>Core</td>
+                  <td style="text-align: center;">4</td>
+                  <td style="text-align: center;">3</td>
+                  <td style="text-align: center;">100</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">HS501</td>
+                  <td>Professional Ethics</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Theory
+                    </span>
+                  </td>
+                  <td>Open Elective</td>
+                  <td style="text-align: center;">3</td>
+                  <td style="text-align: center;">3</td>
+                  <td style="text-align: center;">100</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Add Degree Program Modal (Hidden by default) -->
+  <div id="addDegreeModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: white; border-radius: 8px; padding: 24px; width: 600px; max-height: 90vh; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h3 style="font-size: 18px; font-weight: 600; color: #111827;">Add New Degree Program</h3>
+        <button class="btn btn-icon btn-ghost" onclick="document.getElementById('addDegreeModal').style.display='none'">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+
+      <div style="display: grid; gap: 16px;">
+        <div class="form-group">
+          <label class="form-label required">Program Code</label>
+          <input type="text" class="form-input" placeholder="e.g., BTECH-CSE" />
+        </div>
+        <div class="form-group">
+          <label class="form-label required">Program Name</label>
+          <input type="text" class="form-input" placeholder="e.g., Bachelor of Technology - Computer Science" />
+        </div>
+        <div class="form-group">
+          <label class="form-label required">Program Level</label>
+          <select class="form-select">
+            <option value="">-- Select Level --</option>
+            <option value="ug">Undergraduate (UG)</option>
+            <option value="pg">Postgraduate (PG)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label required">Department</label>
+          <select class="form-select">
+            <option value="">-- Select Department --</option>
+            <option value="cse">Computer Science & Engineering</option>
+            <option value="ece">Electronics & Communication</option>
+            <option value="mech">Mechanical Engineering</option>
+            <option value="civil">Civil Engineering</option>
+          </select>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label class="form-label required">Duration (Years)</label>
+            <input type="number" class="form-input" placeholder="4" min="1" max="6" />
+          </div>
+          <div class="form-group">
+            <label class="form-label required">Total Semesters</label>
+            <input type="number" class="form-input" placeholder="8" min="2" max="12" />
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: end; gap: 12px; margin-top: 24px; padding-top: 24px; border-top: 1px solid #E5E7EB;">
+        <button class="btn btn-secondary" onclick="document.getElementById('addDegreeModal').style.display='none'">Cancel</button>
+        <button class="btn btn-primary">Save Program</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

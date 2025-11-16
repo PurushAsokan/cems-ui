@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificate Generation - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Certificates & Completion
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 260px;">
+        <a href="certificate-generation.html" class="dropdown-item active">Certificate Generation</a>
+        <a href="certificate-verification.html" class="dropdown-item">Verification & Approval</a>
+        <a href="university-submission.html" class="dropdown-item">University Submission</a>
+        <a href="certificate-tracking.html" class="dropdown-item">Certificate Tracking</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">DE</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Data Entry Operator</div>
+            <div style="font-size: 11px; color: #6B7280;">Certificate Generation</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Certificates & Completion</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Certificate Generation</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Download Templates
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+        Generate Certificates
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Section 1: Certificate Statistics -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Certificate Generation Dashboard - 2024-25</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Course Completions</div>
+              <div style="font-size: 24px; font-weight: 600;">245</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">2024-25 Academic Year</div>
+            </div>
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Certificates Generated</div>
+              <div style="font-size: 24px; font-weight: 600; color: #22C55E;">180</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">73% completion</div>
+            </div>
+            <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Pending Generation</div>
+              <div style="font-size: 24px; font-weight: 600; color: #F59E0B;">65</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Awaiting data verification</div>
+            </div>
+            <div style="background: #EFF6FF; border: 1px solid #93C5FD; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Next Certificate Number</div>
+              <div style="font-size: 20px; font-weight: 600; color: #3B82F6;">CERT-2025-0181</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Auto-generated</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Certificate Type Selection -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Select Certificate Type</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <button class="btn" style="height: auto; padding: 16px; text-align: left; background: #EFF6FF; border: 2px solid #2563EB;">
+              <div style="display: flex; align-items: start; gap: 12px;">
+                <i data-feather="award" style="width: 24px; height: 24px; color: #2563EB; margin-top: 2px; flex-shrink: 0;"></i>
+                <div>
+                  <div style="font-weight: 600; font-size: 14px; color: #111827; margin-bottom: 4px;">Degree Certificate</div>
+                  <div class="text-xs" style="color: #6B7280;">For students who completed full course (3-4 years)</div>
+                </div>
+              </div>
+            </button>
+            <button class="btn" style="height: auto; padding: 16px; text-align: left; background: white; border: 1px solid #E5E7EB;">
+              <div style="display: flex; align-items: start; gap: 12px;">
+                <i data-feather="file-text" style="width: 24px; height: 24px; color: #6B7280; margin-top: 2px; flex-shrink: 0;"></i>
+                <div>
+                  <div style="font-weight: 600; font-size: 14px; color: #111827; margin-bottom: 4px;">Diploma Certificate</div>
+                  <div class="text-xs" style="color: #6B7280;">For students who completed 2 years</div>
+                </div>
+              </div>
+            </button>
+            <button class="btn" style="height: auto; padding: 16px; text-align: left; background: white; border: 1px solid #E5E7EB;">
+              <div style="display: flex; align-items: start; gap: 12px;">
+                <i data-feather="bookmark" style="width: 24px; height: 24px; color: #6B7280; margin-top: 2px; flex-shrink: 0;"></i>
+                <div>
+                  <div style="font-weight: 600; font-size: 14px; color: #111827; margin-bottom: 4px;">Course Certificate</div>
+                  <div class="text-xs" style="color: #6B7280;">For discontinued students (1 year)</div>
+                </div>
+              </div>
+            </button>
+            <button class="btn" style="height: auto; padding: 16px; text-align: left; background: white; border: 1px solid #E5E7EB;">
+              <div style="display: flex; align-items: start; gap: 12px;">
+                <i data-feather="star" style="width: 24px; height: 24px; color: #6B7280; margin-top: 2px; flex-shrink: 0;"></i>
+                <div>
+                  <div style="font-weight: 600; font-size: 14px; color: #111827; margin-bottom: 4px;">Honors Certificate</div>
+                  <div class="text-xs" style="color: #6B7280;">For students with honors designation</div>
+                </div>
+              </div>
+            </button>
+          </div>
+          <div class="alert" style="margin-top: 16px; background: #EFF6FF; border: 1px solid #93C5FD;">
+            <i data-feather="info" style="width: 20px; height: 20px; color: #2563EB;"></i>
+            <div style="color: #1E40AF;">
+              <strong>Selected:</strong> Degree Certificate (Full Course Completion) - For graduates who completed all requirements
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Eligible Students for Certificate Generation -->
+      <div class="section">
+        <div class="section-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Eligible Students - BCA 2022-2025 Batch</h2>
+            <span class="status status-approved">
+              <span class="status-dot"></span>
+              65 Students
+            </span>
+          </div>
+          <button class="btn btn-sm btn-primary">
+            <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+            Generate All Certificates
+          </button>
+        </div>
+        <div class="section-body">
+
+          <!-- Eligibility Filters -->
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 16px;">
+            <div class="form-group">
+              <label class="form-label">Program</label>
+              <select class="form-select">
+                <option value="">All Programs</option>
+                <option value="BCA" selected>BCA</option>
+                <option value="MCA">MCA</option>
+                <option value="BSC">B.Sc Computer Science</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Batch Year</label>
+              <select class="form-select">
+                <option value="">All Batches</option>
+                <option value="2022" selected>2022-2025</option>
+                <option value="2021">2021-2024</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Eligibility Status</label>
+              <select class="form-select">
+                <option value="eligible" selected>Eligible Only</option>
+                <option value="all">All Students</option>
+                <option value="pending">Pending Clearance</option>
+              </select>
+            </div>
+            <div style="display: flex; align-items: end;">
+              <button class="btn btn-primary" style="width: 100%;">
+                <i data-feather="filter" style="width: 16px; height: 16px;"></i>
+                Apply Filter
+              </button>
+            </div>
+          </div>
+
+          <div class="alert alert-info" style="margin-bottom: 16px;">
+            <i data-feather="info" style="width: 20px; height: 20px;"></i>
+            <div>
+              <strong>Eligibility Criteria:</strong> Students must have completed all 6 semesters, passed all subjects, cleared all dues, and submitted required documents.
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 40px;"><input type="checkbox" /></th>
+                  <th>Registration No</th>
+                  <th>Student Name</th>
+                  <th style="text-align: center;">CGPA</th>
+                  <th style="text-align: center;">Percentage</th>
+                  <th>Class/Division</th>
+                  <th>Eligibility</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input type="checkbox" checked /></td>
+                  <td style="font-family: monospace; font-weight: 600;">REG2022001</td>
+                  <td style="font-weight: 500;">Rajesh Kumar</td>
+                  <td style="text-align: center; font-weight: 600;">8.49</td>
+                  <td style="text-align: center; font-weight: 600;">84.9%</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      First Class with Distinction
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Eligible
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Generate">
+                      <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" checked /></td>
+                  <td style="font-family: monospace; font-weight: 600;">REG2022002</td>
+                  <td style="font-weight: 500;">Meera Sharma</td>
+                  <td style="text-align: center; font-weight: 600;">8.92</td>
+                  <td style="text-align: center; font-weight: 600;">89.2%</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      First Class with Distinction
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Eligible
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Generate">
+                      <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" checked /></td>
+                  <td style="font-family: monospace; font-weight: 600;">REG2022003</td>
+                  <td style="font-weight: 500;">Anand Patel</td>
+                  <td style="text-align: center; font-weight: 600;">7.52</td>
+                  <td style="text-align: center; font-weight: 600;">75.2%</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      First Class
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Eligible
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Generate">
+                      <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Certificate Preview -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Certificate Preview - REG2022001 (Rajesh Kumar)</h2>
+          <button class="btn btn-sm btn-primary">
+            <i data-feather="printer" style="width: 16px; height: 16px;"></i>
+            Print Certificate
+          </button>
+        </div>
+        <div class="section-body">
+          <div style="background: white; border: 3px solid #2563EB; border-radius: 12px; padding: 48px; max-width: 800px; margin: 0 auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+
+            <!-- Decorative Border -->
+            <div style="border: 3px double #F59E0B; border-radius: 8px; padding: 32px;">
+
+              <!-- University Header -->
+              <div style="text-align: center; margin-bottom: 32px;">
+                <div style="font-weight: 600; font-size: 24px; margin-bottom: 8px; color: #2563EB;">SGC Educational Institute</div>
+                <div style="font-size: 14px; color: #6B7280; margin-bottom: 4px;">Affiliated to SGC University, Bangalore</div>
+                <div style="font-size: 13px; color: #6B7280; margin-bottom: 16px;">Recognized by UGC under Section 2(f) of the UGC Act, 1956</div>
+                <div style="font-weight: 600; font-size: 20px; margin-top: 16px; color: #F59E0B;">CERTIFICATE OF COMPLETION</div>
+              </div>
+
+              <!-- Certificate Content -->
+              <div style="text-align: center; margin-bottom: 32px; padding: 0 24px;">
+                <p style="font-size: 15px; line-height: 1.8; margin-bottom: 24px;">
+                  This is to certify that <strong style="font-size: 18px; color: #2563EB;">RAJESH KUMAR</strong>,
+                  bearing Registration Number <strong style="font-family: monospace;">REG2022001</strong>,
+                  has successfully completed the <strong>Bachelor of Computer Applications (BCA)</strong>
+                  degree program during the academic years <strong>2022-2025</strong>.
+                </p>
+
+                <p style="font-size: 15px; line-height: 1.8; margin-bottom: 24px;">
+                  The candidate has fulfilled all the academic requirements prescribed by the university
+                  and has been awarded the degree with a Cumulative Grade Point Average (CGPA) of
+                  <strong style="font-size: 17px; color: #22C55E;">8.49/10.00</strong>,
+                  equivalent to <strong style="font-size: 17px; color: #22C55E;">84.9%</strong>.
+                </p>
+
+                <p style="font-size: 15px; line-height: 1.8; margin-bottom: 32px;">
+                  The candidate is hereby classified under
+                  <strong style="font-size: 17px; color: #F59E0B;">FIRST CLASS WITH DISTINCTION</strong>.
+                </p>
+              </div>
+
+              <!-- Certificate Details -->
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 32px; background: #F8F9FA; padding: 16px; border-radius: 6px;">
+                <div>
+                  <span style="font-size: 12px; color: #6B7280;">Certificate Number:</span>
+                  <span style="font-weight: 600; margin-left: 8px; font-family: monospace;">CERT-2025-0181</span>
+                </div>
+                <div>
+                  <span style="font-size: 12px; color: #6B7280;">Date of Issue:</span>
+                  <span style="font-weight: 600; margin-left: 8px;">16-November-2024</span>
+                </div>
+                <div>
+                  <span style="font-size: 12px; color: #6B7280;">Date of Birth:</span>
+                  <span style="font-weight: 600; margin-left: 8px;">15-March-2003</span>
+                </div>
+                <div>
+                  <span style="font-size: 12px; color: #6B7280;">Course Duration:</span>
+                  <span style="font-weight: 600; margin-left: 8px;">3 Years (6 Semesters)</span>
+                </div>
+              </div>
+
+              <!-- Signature Section -->
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px;">
+                <div style="text-align: center;">
+                  <div style="border-top: 2px solid #6B7280; padding-top: 8px; margin-top: 48px; font-size: 12px; font-weight: 600;">Principal</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="border-top: 2px solid #6B7280; padding-top: 8px; margin-top: 48px; font-size: 12px; font-weight: 600;">Controller of Examinations</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="border-top: 2px solid #6B7280; padding-top: 8px; margin-top: 48px; font-size: 12px; font-weight: 600;">Registrar</div>
+                </div>
+              </div>
+
+              <!-- University Seal Placeholder -->
+              <div style="text-align: center; margin-top: 24px;">
+                <div style="display: inline-flex; align-items: center; justify-content: center; width: 80px; height: 80px; border: 2px solid #F59E0B; border-radius: 50%; background: #FEF3C7;">
+                  <div style="font-size: 10px; font-weight: 600; color: #F59E0B; text-align: center; line-height: 1.2;">UNIVERSITY<br/>SEAL</div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Recently Generated Certificates -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Recently Generated Certificates</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="download" style="width: 16px; height: 16px;"></i>
+            Export List
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Certificate Number</th>
+                  <th>Student Details</th>
+                  <th>Program</th>
+                  <th style="text-align: center;">CGPA</th>
+                  <th>Class/Division</th>
+                  <th>Generated Date</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-family: monospace; font-weight: 600;">CERT-2025-0180</td>
+                  <td style="font-weight: 500;">Priya Verma<br/><span style="font-size: 11px; color: #6B7280;">REG2022045</span></td>
+                  <td style="font-size: 12px;">BCA<br/><span style="color: #6B7280;">2022-2025</span></td>
+                  <td style="text-align: center; font-weight: 600;">8.65</td>
+                  <td style="font-size: 12px;">First Class with Distinction</td>
+                  <td style="font-size: 12px;">14-Nov-2024<br/><span style="color: #6B7280;">04:30 PM</span></td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Generated
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Certificate">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Print">
+                      <i data-feather="printer" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-family: monospace; font-weight: 600;">CERT-2025-0179</td>
+                  <td style="font-weight: 500;">Karthik Rao<br/><span style="font-size: 11px; color: #6B7280;">REG2022044</span></td>
+                  <td style="font-size: 12px;">BCA<br/><span style="color: #6B7280;">2022-2025</span></td>
+                  <td style="text-align: center; font-weight: 600;">7.68</td>
+                  <td style="font-size: 12px;">First Class</td>
+                  <td style="font-size: 12px;">14-Nov-2024<br/><span style="color: #6B7280;">04:25 PM</span></td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Generated
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Certificate">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Print">
+                      <i data-feather="printer" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>feather.replace();</script>
+</body>
+</html>

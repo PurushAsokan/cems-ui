@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Portal - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .portal-container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      max-width: 900px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .portal-header {
+      background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+      color: white;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .portal-logo {
+      width: 80px;
+      height: 80px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .portal-title {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .portal-subtitle {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .portal-body {
+      padding: 40px;
+    }
+
+    .info-banner {
+      background: #EFF6FF;
+      border: 1px solid #93C5FD;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 32px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .captcha-box {
+      background: #F8F9FA;
+      border: 2px solid #E5E7EB;
+      border-radius: 6px;
+      padding: 16px;
+      text-align: center;
+      font-family: monospace;
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: 8px;
+      color: #111827;
+      user-select: none;
+      position: relative;
+    }
+
+    .captcha-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(0, 0, 0, 0.03) 10px,
+        rgba(0, 0, 0, 0.03) 20px
+      );
+      pointer-events: none;
+    }
+
+    .help-links {
+      text-align: center;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid #E5E7EB;
+    }
+
+    .footer-text {
+      text-align: center;
+      font-size: 12px;
+      color: #9CA3AF;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .portal-body {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="portal-container">
+
+    <!-- Portal Header -->
+    <div class="portal-header">
+      <div class="portal-logo">
+        <i data-feather="book-open" style="width: 40px; height: 40px; color: white;"></i>
+      </div>
+      <div class="portal-title">Student Result Portal</div>
+      <div class="portal-subtitle">SGC Educational Institute - Exam Management System</div>
+    </div>
+
+    <!-- Portal Body -->
+    <div class="portal-body">
+
+      <!-- Info Banner -->
+      <div class="info-banner">
+        <i data-feather="info" style="width: 20px; height: 20px; color: #2563EB; flex-shrink: 0; margin-top: 2px;"></i>
+        <div style="font-size: 13px; color: #1E40AF;">
+          <strong>Welcome Students!</strong> Access your exam timetables and results using your registration number and date of birth. For assistance, contact the exam department.
+        </div>
+      </div>
+
+      <!-- Login Form -->
+      <form onsubmit="handleLogin(event)">
+
+        <!-- Registration Number -->
+        <div class="form-group">
+          <label class="form-label required">Exam Registration Number</label>
+          <input
+            type="text"
+            class="form-input"
+            id="regNumber"
+            placeholder="e.g., 25ENG1001"
+            style="text-transform: uppercase; font-family: monospace; font-weight: 600;"
+            required
+          />
+          <div style="font-size: 12px; color: #6B7280; margin-top: 4px;">
+            Format: YYPRG[1=UG/2=PG]NNN (e.g., 25ENG1001 for UG, 25ENG2001 for PG)
+          </div>
+        </div>
+
+        <!-- Date of Birth -->
+        <div class="form-group">
+          <label class="form-label required">Date of Birth</label>
+          <input
+            type="date"
+            class="form-input"
+            id="dob"
+            required
+          />
+          <div style="font-size: 12px; color: #6B7280; margin-top: 4px;">
+            Enter your date of birth as registered in the system
+          </div>
+        </div>
+
+        <!-- CAPTCHA -->
+        <div class="form-group">
+          <label class="form-label required">Enter CAPTCHA Code</label>
+          <div style="display: grid; grid-template-columns: 1fr auto; gap: 12px; margin-bottom: 8px;">
+            <div class="captcha-box" id="captchaDisplay">AB7K9M</div>
+            <button type="button" class="btn btn-ghost btn-icon" onclick="generateCaptcha()" title="Refresh CAPTCHA">
+              <i data-feather="refresh-cw" style="width: 20px; height: 20px;"></i>
+            </button>
+          </div>
+          <input
+            type="text"
+            class="form-input"
+            id="captchaInput"
+            placeholder="Enter the code shown above"
+            maxlength="6"
+            style="text-transform: uppercase; font-family: monospace;"
+            required
+          />
+        </div>
+
+        <!-- Two-Factor Auth (Optional) -->
+        <div class="form-group">
+          <label style="display: flex; align-items: center; font-size: 13px; cursor: pointer;">
+            <input type="checkbox" id="enableOtp" style="margin-right: 8px;" onchange="toggleOtpField()" />
+            Enable Two-Factor Authentication (OTP via Mobile)
+          </label>
+        </div>
+
+        <!-- OTP Field (Hidden by default) -->
+        <div class="form-group" id="otpField" style="display: none;">
+          <label class="form-label required">Enter OTP</label>
+          <div style="display: grid; grid-template-columns: 1fr auto; gap: 12px;">
+            <input
+              type="text"
+              class="form-input"
+              id="otpInput"
+              placeholder="Enter 6-digit OTP"
+              maxlength="6"
+            />
+            <button type="button" class="btn btn-secondary" onclick="requestOtp()">
+              Request OTP
+            </button>
+          </div>
+          <div style="font-size: 12px; color: #6B7280; margin-top: 4px;">
+            OTP will be sent to your registered mobile number
+          </div>
+        </div>
+
+        <!-- Login Button -->
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 24px;">
+          <i data-feather="log-in" style="width: 16px; height: 16px;"></i>
+          Login to Portal
+        </button>
+
+      </form>
+
+      <!-- Help Links -->
+      <div class="help-links">
+        <div style="font-size: 13px; color: #6B7280; margin-bottom: 12px;">Need Help?</div>
+        <div style="display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;">
+          <a href="#" style="font-size: 13px; color: #2563EB; text-decoration: none;" onclick="showForgotRegModal()">
+            <i data-feather="help-circle" style="width: 14px; height: 14px;"></i>
+            Forgot Registration Number?
+          </a>
+          <a href="#" style="font-size: 13px; color: #2563EB; text-decoration: none;">
+            <i data-feather="phone" style="width: 14px; height: 14px;"></i>
+            Contact Exam Department
+          </a>
+          <a href="#" style="font-size: 13px; color: #2563EB; text-decoration: none;">
+            <i data-feather="file-text" style="width: 14px; height: 14px;"></i>
+            FAQs
+          </a>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer-text">
+        <p style="margin-bottom: 4px;">Exam Department Contact: exam@sgcei.edu.in | +91 80 1234 5678</p>
+        <p style="margin-bottom: 8px;">Office Hours: Monday-Saturday, 9:00 AM - 5:00 PM</p>
+        <p style="font-size: 11px;">SGC Educational Institute © 2024-25 | Powered by CEMS</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Forgot Registration Modal -->
+  <div id="forgotRegModal" class="modal">
+    <div class="modal-content" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Recover Registration Number</h3>
+        <button class="modal-close" onclick="document.getElementById('forgotRegModal').style.display='none'">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 13px; color: #6B7280; margin-bottom: 16px;">
+          Enter your registered mobile number or email address. We'll send your registration number to you.
+        </p>
+        <div class="form-group">
+          <label class="form-label">Mobile Number or Email</label>
+          <input type="text" class="form-input" placeholder="Enter mobile number or email" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Date of Birth</label>
+          <input type="date" class="form-input" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="document.getElementById('forgotRegModal').style.display='none'">Cancel</button>
+        <button class="btn btn-primary">
+          <i data-feather="send" style="width: 16px; height: 16px;"></i>
+          Send Registration Number
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+
+    let currentCaptcha = 'AB7K9M';
+    let failedAttempts = 0;
+    const maxAttempts = 5;
+
+    function generateCaptcha() {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let captcha = '';
+      for (let i = 0; i < 6; i++) {
+        captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      currentCaptcha = captcha;
+      document.getElementById('captchaDisplay').textContent = captcha;
+      document.getElementById('captchaInput').value = '';
+      feather.replace();
+    }
+
+    function toggleOtpField() {
+      const otpField = document.getElementById('otpField');
+      const enableOtp = document.getElementById('enableOtp').checked;
+      otpField.style.display = enableOtp ? 'block' : 'none';
+    }
+
+    function requestOtp() {
+      const regNumber = document.getElementById('regNumber').value;
+      if (!regNumber) {
+        alert('Please enter your registration number first');
+        return;
+      }
+      alert('OTP has been sent to your registered mobile number ending with ****5678');
+      // In real system, this would call backend API
+    }
+
+    function handleLogin(event) {
+      event.preventDefault();
+
+      const regNumber = document.getElementById('regNumber').value.toUpperCase();
+      const dob = document.getElementById('dob').value;
+      const captchaInput = document.getElementById('captchaInput').value.toUpperCase();
+      const enableOtp = document.getElementById('enableOtp').checked;
+      const otpInput = document.getElementById('otpInput').value;
+
+      // Validate CAPTCHA
+      if (captchaInput !== currentCaptcha) {
+        alert('Invalid CAPTCHA code. Please try again.');
+        generateCaptcha();
+        failedAttempts++;
+        checkLockout();
+        return;
+      }
+
+      // Validate OTP if enabled
+      if (enableOtp && !otpInput) {
+        alert('Please enter the OTP sent to your mobile');
+        return;
+      }
+
+      // Basic format validation
+      const regPattern = /^\d{2}[A-Z]{3}[12]\d{3}$/;
+      if (!regPattern.test(regNumber)) {
+        alert('Invalid registration number format. Please check and try again.');
+        failedAttempts++;
+        checkLockout();
+        return;
+      }
+
+      // In real system, this would authenticate against backend
+      // For demo, redirect to dashboard
+      localStorage.setItem('studentRegNumber', regNumber);
+      localStorage.setItem('studentDOB', dob);
+      window.location.href = 'view-timetable.html';
+    }
+
+    function checkLockout() {
+      if (failedAttempts >= maxAttempts) {
+        alert('Too many failed login attempts. Your account has been temporarily locked. Please contact the exam department.');
+        document.querySelector('form').style.display = 'none';
+      }
+    }
+
+    function showForgotRegModal() {
+      document.getElementById('forgotRegModal').style.display = 'block';
+      feather.replace();
+    }
+
+    // Generate initial CAPTCHA on page load
+    window.onload = function() {
+      generateCaptcha();
+    };
+
+    // Session timeout warning
+    console.log('Session will auto-logout after 15 minutes of inactivity');
+  </script>
+
+</body>
+</html>

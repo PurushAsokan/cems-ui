@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timetable Verification & Publish - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Exam Scheduling
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Regular Exams</div>
+        <a href="degree-subject-setup.html" class="dropdown-item">Degree & Subject Setup</a>
+        <a href="program-subject-mapping.html" class="dropdown-item">Program-Subject Mapping</a>
+        <a href="timetable-entry.html" class="dropdown-item">Timetable Entry</a>
+        <a href="timetable-verification.html" class="dropdown-item active">Timetable Verification</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Exams</div>
+        <a href="supplementary-timetable.html" class="dropdown-item">Supplementary Timetable</a>
+        <a href="supplementary-timetable-verification.html" class="dropdown-item">Supplementary Verification</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">DK</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Dr. Kumar</div>
+            <div style="font-size: 11px; color: #6B7280;">Controller</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Exam Scheduling</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Verification & Publish</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+        Send Back for Revision
+      </button>
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="mail" style="width: 16px; height: 16px;"></i>
+        Email to Departments
+      </button>
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Generate PDF
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="upload-cloud" style="width: 16px; height: 16px;"></i>
+        Publish to Student Portal
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Section 1: Timetable Summary -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Timetable Summary - December 2024 (Regular)</h2>
+          <span class="status status-pending">
+            <span class="status-dot"></span>
+            Pending Approval
+          </span>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Exams Scheduled</div>
+              <div style="font-size: 24px; font-weight: 600;">78</div>
+            </div>
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Programs Covered</div>
+              <div style="font-size: 24px; font-weight: 600;">12</div>
+            </div>
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Exam Duration</div>
+              <div style="font-size: 24px; font-weight: 600;">19 Days</div>
+            </div>
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Students</div>
+              <div style="font-size: 24px; font-weight: 600;">2,845</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Validation Checks -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Validation & Conflict Report</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px;">
+              <i data-feather="check-circle" style="width: 20px; height: 20px; color: #22C55E;"></i>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; font-size: 13px; color: #166534;">All Subjects Covered</div>
+                <div class="text-xs" style="color: #6B7280;">All mapped subjects have exam slots assigned</div>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px;">
+              <i data-feather="check-circle" style="width: 20px; height: 20px; color: #22C55E;"></i>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; font-size: 13px; color: #166534;">No Overlapping Exams</div>
+                <div class="text-xs" style="color: #6B7280;">No student has multiple exams at the same time</div>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px;">
+              <i data-feather="check-circle" style="width: 20px; height: 20px; color: #22C55E;"></i>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; font-size: 13px; color: #166534;">Adequate Preparation Time</div>
+                <div class="text-xs" style="color: #6B7280;">Minimum 1 day gap between consecutive exams for all programs</div>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px;">
+              <i data-feather="alert-circle" style="width: 20px; height: 20px; color: #F59E0B;"></i>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; font-size: 13px; color: #92400E;">Hall A: High Capacity Usage (3 exams)</div>
+                <div class="text-xs" style="color: #6B7280;">Hall A scheduled for 3 exams on Dec 10 - Verify availability</div>
+              </div>
+              <button class="btn btn-sm btn-ghost">Review</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: View Toggle (Calendar/List/Program-wise) -->
+      <div style="border-bottom: 1px solid #E5E7EB; margin-bottom: 24px;">
+        <div style="display: flex; gap: 24px;">
+          <button class="btn btn-ghost" style="border-bottom: 2px solid #2563EB; border-radius: 0; padding: 12px 0; color: #2563EB; font-weight: 600;">
+            Calendar View
+          </button>
+          <button class="btn btn-ghost" style="border-bottom: 2px solid transparent; border-radius: 0; padding: 12px 0; color: #6B7280;">
+            List View
+          </button>
+          <button class="btn btn-ghost" style="border-bottom: 2px solid transparent; border-radius: 0; padding: 12px 0; color: #6B7280;">
+            Program-wise View
+          </button>
+        </div>
+      </div>
+
+      <!-- Section 4: Calendar View Preview -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Exam Timetable - December 2024</h2>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-sm btn-ghost">
+              <i data-feather="chevron-left" style="width: 16px; height: 16px;"></i>
+            </button>
+            <button class="btn btn-sm btn-ghost">Today</button>
+            <button class="btn btn-sm btn-ghost">
+              <i data-feather="chevron-right" style="width: 16px; height: 16px;"></i>
+            </button>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 100px;">Date</th>
+                  <th>Forenoon Session (10:00 AM - 1:00 PM)</th>
+                  <th>Afternoon Session (2:00 PM - 5:00 PM)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight: 600;">02-Dec-2024<br/><span class="text-xs" style="color: #6B7280;">Monday</span></td>
+                  <td>
+                    <div style="background: #EFF6FF; border-left: 3px solid #2563EB; padding: 8px; margin-bottom: 6px;">
+                      <div style="font-weight: 500; font-size: 13px;">CS501 - Data Structures & Algorithms</div>
+                      <div class="text-xs" style="color: #6B7280;">B.Tech CSE - III Year / V Sem • Hall A • 245 students</div>
+                    </div>
+                    <div style="background: #EFF6FF; border-left: 3px solid #2563EB; padding: 8px;">
+                      <div style="font-weight: 500; font-size: 13px;">EC501 - Digital Signal Processing</div>
+                      <div class="text-xs" style="color: #6B7280;">B.Tech ECE - III Year / V Sem • Hall B • 180 students</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div style="background: #EFF6FF; border-left: 3px solid #2563EB; padding: 8px;">
+                      <div style="font-weight: 500; font-size: 13px;">CS502 - Database Management Systems</div>
+                      <div class="text-xs" style="color: #6B7280;">B.Tech CSE - III Year / V Sem • Hall A • 242 students</div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 600;">03-Dec-2024<br/><span class="text-xs" style="color: #6B7280;">Tuesday</span></td>
+                  <td style="color: #9CA3AF; font-style: italic;">No exams scheduled</td>
+                  <td style="color: #9CA3AF; font-style: italic;">No exams scheduled</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 600;">04-Dec-2024<br/><span class="text-xs" style="color: #6B7280;">Wednesday</span></td>
+                  <td>
+                    <div style="background: #EFF6FF; border-left: 3px solid #2563EB; padding: 8px; margin-bottom: 6px;">
+                      <div style="font-weight: 500; font-size: 13px;">CS503 - Operating Systems</div>
+                      <div class="text-xs" style="color: #6B7280;">B.Tech CSE - III Year / V Sem • Hall B • 238 students</div>
+                    </div>
+                    <div style="background: #EFF6FF; border-left: 3px solid #2563EB; padding: 8px;">
+                      <div style="font-weight: 500; font-size: 13px;">ME501 - Thermodynamics</div>
+                      <div class="text-xs" style="color: #6B7280;">B.Tech Mech - III Year / V Sem • Hall C • 165 students</div>
+                    </div>
+                  </td>
+                  <td style="color: #9CA3AF; font-style: italic;">No exams scheduled</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 600;">05-Dec-2024<br/><span class="text-xs" style="color: #6B7280;">Thursday</span></td>
+                  <td style="color: #9CA3AF; font-style: italic;">No exams scheduled</td>
+                  <td style="color: #9CA3AF; font-style: italic;">No exams scheduled</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 600;">06-Dec-2024<br/><span class="text-xs" style="color: #6B7280;">Friday</span></td>
+                  <td>
+                    <div style="background: #EFF6FF; border-left: 3px solid #2563EB; padding: 8px;">
+                      <div style="font-weight: 500; font-size: 13px;">CS504 - Computer Networks</div>
+                      <div class="text-xs" style="color: #6B7280;">B.Tech CSE - III Year / V Sem • Hall A • 240 students</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div style="background: #EFF6FF; border-left: 3px solid #2563EB; padding: 8px;">
+                      <div style="font-weight: 500; font-size: 13px;">EC502 - Microprocessors</div>
+                      <div class="text-xs" style="color: #6B7280;">B.Tech ECE - III Year / V Sem • Hall B • 175 students</div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: Comparison with Previous Semester -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Comparison with Previous Semester (June 2024)</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+            <div style="padding: 12px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Duration</div>
+              <div style="display: flex; align-items: baseline; gap: 8px;">
+                <div style="font-size: 18px; font-weight: 600;">19 days</div>
+                <div class="text-xs" style="color: #6B7280;">vs 21 days (June '24)</div>
+              </div>
+            </div>
+            <div style="padding: 12px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Avg Gap Between Exams</div>
+              <div style="display: flex; align-items: baseline; gap: 8px;">
+                <div style="font-size: 18px; font-weight: 600;">1.2 days</div>
+                <div class="text-xs" style="color: #6B7280;">vs 1.1 days (June '24)</div>
+              </div>
+            </div>
+            <div style="padding: 12px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Students Affected</div>
+              <div style="display: flex; align-items: baseline; gap: 8px;">
+                <div style="font-size: 18px; font-weight: 600;">2,845</div>
+                <div class="text-xs" style="color: #22C55E;">+125 (June '24)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 6: Approval Actions -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Approval & Publishing</h2>
+        </div>
+        <div class="section-body">
+          <div class="form-group">
+            <label class="form-label">Verification Remarks</label>
+            <textarea class="form-input" rows="3" placeholder="Add remarks about timetable verification..."></textarea>
+          </div>
+
+          <div class="alert alert-info" style="margin-top: 16px;">
+            <i data-feather="info" style="width: 20px; height: 20px;"></i>
+            <div>
+              <div style="font-weight: 600; margin-bottom: 4px;">Publishing will trigger the following actions:</div>
+              <ul style="margin: 8px 0 0 20px; font-size: 13px;">
+                <li>Timetable will be published to Student Result Portal</li>
+                <li>SMS notifications sent to all registered students</li>
+                <li>Email notifications sent to faculty and departments</li>
+                <li>Printable PDF generated for notice boards</li>
+              </ul>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 12px; margin-top: 24px; padding-top: 24px; border-top: 1px solid #E5E7EB;">
+            <button class="btn btn-secondary">
+              <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+              Send Back for Revision
+            </button>
+            <button class="btn btn-secondary">
+              <i data-feather="save" style="width: 16px; height: 16px;"></i>
+              Save as Draft
+            </button>
+            <button class="btn btn-primary">
+              <i data-feather="check-circle" style="width: 16px; height: 16px;"></i>
+              Approve Timetable
+            </button>
+            <button class="btn btn-primary">
+              <i data-feather="upload-cloud" style="width: 16px; height: 16px;"></i>
+              Approve & Publish to Portal
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

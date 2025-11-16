@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exam Attendance Entry - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Conduct of Examination
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <a href="attendance.html" class="dropdown-item active">Attendance Entry</a>
+        <a href="marks-entry.html" class="dropdown-item">Marks Entry</a>
+        <a href="batch-preparation.html" class="dropdown-item">Batch Preparation</a>
+        <a href="freeze-results.html" class="dropdown-item">Freeze & Reports</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">IV</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Invigilator</div>
+            <div style="font-size: 11px; color: #6B7280;">Exam Staff</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Conduct of Examination</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Attendance Entry</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Download Attendance Sheet
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="save" style="width: 16px; height: 16px;"></i>
+        Submit Final Attendance
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Section 1: Exam Session Details -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Exam Session Details</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+            Change Session
+          </button>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px;">
+            <div class="form-group">
+              <label class="form-label required">Exam Session</label>
+              <select class="form-select">
+                <option value="DEC2024" selected>December 2024 - Regular</option>
+                <option value="JUN2024">June 2024 - Regular</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Subject</label>
+              <select class="form-select">
+                <option value="">-- Select Subject --</option>
+                <option value="CS501" selected>CS501 - Data Structures & Algorithms</option>
+                <option value="CS502">CS502 - Database Management Systems</option>
+                <option value="CS503">CS503 - Operating Systems</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Exam Date & Time</label>
+              <input type="text" class="form-input" value="02-Dec-2024, 10:00 AM - 1:00 PM" readonly />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+            <div class="form-group">
+              <label class="form-label">Venue</label>
+              <input type="text" class="form-input" value="Examination Hall A" readonly />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Invigilator</label>
+              <input type="text" class="form-input" value="Dr. Ramesh Kumar" readonly />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Total Registered Students</label>
+              <input type="text" class="form-input" value="245" readonly />
+            </div>
+          </div>
+
+          <div class="alert alert-info" style="margin-top: 16px;">
+            <i data-feather="info" style="width: 20px; height: 20px;"></i>
+            <div>Live Attendance Session | Current Time: <strong>10:15 AM</strong> | Exam Duration: 3 hours</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Dummy Number / Barcode Allotment -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Dummy Number / Barcode Allotment</h2>
+          <button class="btn btn-sm btn-primary">
+            <i data-feather="hash" style="width: 16px; height: 16px;"></i>
+            Auto-Generate Dummy Numbers
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="alert alert-info" style="margin-bottom: 16px;">
+            <i data-feather="info" style="width: 20px; height: 20px;"></i>
+            <div>
+              <strong>Anonymized Evaluation:</strong> Each student is assigned a unique Dummy Number/Barcode for answer sheet identification. This ensures unbiased evaluation by hiding the student's identity from evaluators.
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 16px;">
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Present Students</div>
+              <div style="font-size: 24px; font-weight: 600;">238</div>
+            </div>
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Dummy Numbers Assigned</div>
+              <div style="font-size: 24px; font-weight: 600; color: #22C55E;">238</div>
+            </div>
+            <div style="background: #EFF6FF; border: 1px solid #93C5FD; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Number Range</div>
+              <div style="font-size: 18px; font-weight: 600; color: #2563EB; font-family: monospace;">DN001 - DN238</div>
+            </div>
+            <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Answer Sheets Available</div>
+              <div style="font-size: 24px; font-weight: 600; color: #F59E0B;">250</div>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label">Dummy Number Format</label>
+              <select class="form-select">
+                <option value="DN" selected>DN001, DN002, DN003... (Sequential)</option>
+                <option value="BARCODE">Barcode: BC2024CS501001</option>
+                <option value="RANDOM">Random 6-digit: 482901, 576234...</option>
+              </select>
+            </div>
+            <div style="display: flex; align-items: end; gap: 8px;">
+              <button class="btn btn-secondary">
+                <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                Download Mapping Sheet
+              </button>
+              <button class="btn btn-secondary">
+                <i data-feather="printer" style="width: 16px; height: 16px;"></i>
+                Print Answer Sheet Labels
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Attendance Statistics -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Attendance Summary</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Registered</div>
+              <div style="font-size: 24px; font-weight: 600;">245</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Students</div>
+            </div>
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Present</div>
+              <div style="font-size: 24px; font-weight: 600; color: #22C55E;">238</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">97.1% Attendance</div>
+            </div>
+            <div style="background: #FEE2E2; border: 1px solid #FCA5A5; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Absent</div>
+              <div style="font-size: 24px; font-weight: 600; color: #EF4444;">5</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">2.0%</div>
+            </div>
+            <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Late Entry</div>
+              <div style="font-size: 24px; font-weight: 600; color: #F59E0B;">2</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">After 10:00 AM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Quick Actions & QR Scanner -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Quick Actions</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 16px;">
+            <!-- QR Scanner -->
+            <div style="background: #F8F9FA; border: 2px dashed #E5E7EB; border-radius: 8px; padding: 24px; text-align: center;">
+              <i data-feather="camera" style="width: 48px; height: 48px; color: #9CA3AF; margin-bottom: 12px;"></i>
+              <div style="font-weight: 600; font-size: 14px; color: #111827; margin-bottom: 8px;">Hall Ticket QR Scanner</div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 16px;">Scan student hall ticket QR code for instant attendance marking</div>
+              <button class="btn btn-primary">
+                <i data-feather="camera" style="width: 16px; height: 16px;"></i>
+                Start QR Scanner
+              </button>
+            </div>
+
+            <!-- Bulk Actions -->
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 24px;">
+              <div style="font-weight: 600; font-size: 14px; color: #111827; margin-bottom: 16px;">Bulk Actions</div>
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <button class="btn btn-secondary" style="justify-content: flex-start;">
+                  <i data-feather="check-circle" style="width: 16px; height: 16px;"></i>
+                  Mark All as Present
+                </button>
+                <button class="btn btn-secondary" style="justify-content: flex-start;">
+                  <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                  Mark All as Absent
+                </button>
+                <button class="btn btn-secondary" style="justify-content: flex-start;">
+                  <i data-feather="upload" style="width: 16px; height: 16px;"></i>
+                  Upload Attendance (Excel)
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Student Attendance List -->
+      <div class="section">
+        <div class="section-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Student Attendance List</h2>
+            <span class="status status-pending">
+              <span class="status-dot"></span>
+              245 Students
+            </span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-sm btn-secondary">
+              <i data-feather="filter" style="width: 16px; height: 16px;"></i>
+              Show: All Students
+            </button>
+            <button class="btn btn-sm btn-secondary">
+              <i data-feather="search" style="width: 16px; height: 16px;"></i>
+              Search Student
+            </button>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 50px;">S.No</th>
+                  <th style="width: 60px;">Photo</th>
+                  <th>Reg. Number</th>
+                  <th>Student Name</th>
+                  <th>Program</th>
+                  <th style="text-align: center;">Hall Ticket</th>
+                  <th style="text-align: center;">Attendance</th>
+                  <th>Entry Time</th>
+                  <th>Remarks</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #F0FDF4;">
+                  <td style="text-align: center;">1</td>
+                  <td>
+                    <div style="width: 40px; height: 50px; border-radius: 4px; background: #E5E7EB; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #6B7280;">Photo</div>
+                  </td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024001</td>
+                  <td style="font-weight: 500;">Rajesh Kumar</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td style="text-align: center;">
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Valid
+                    </span>
+                  </td>
+                  <td style="text-align: center;">
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Present
+                    </span>
+                  </td>
+                  <td style="font-size: 12px; color: #6B7280;">10:02 AM</td>
+                  <td style="font-size: 12px; color: #6B7280;">—</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Hall Ticket">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-secondary" title="Mark Absent">
+                      <i data-feather="x" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="text-align: center;">2</td>
+                  <td>
+                    <div style="width: 40px; height: 50px; border-radius: 4px; background: #E5E7EB; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #6B7280;">Photo</div>
+                  </td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024002</td>
+                  <td style="font-weight: 500;">Priya Sharma</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td style="text-align: center;">
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Valid
+                    </span>
+                  </td>
+                  <td style="text-align: center;">
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Present
+                    </span>
+                  </td>
+                  <td style="font-size: 12px; color: #6B7280;">10:05 AM</td>
+                  <td style="font-size: 12px; color: #6B7280;">—</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Hall Ticket">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-secondary" title="Mark Absent">
+                      <i data-feather="x" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #FEF3C7;">
+                  <td style="text-align: center;">3</td>
+                  <td>
+                    <div style="width: 40px; height: 50px; border-radius: 4px; background: #E5E7EB; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #6B7280;">Photo</div>
+                  </td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024003</td>
+                  <td style="font-weight: 500;">Amit Patel</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td style="text-align: center;">
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Valid
+                    </span>
+                  </td>
+                  <td style="text-align: center;">
+                    <span class="status status-warning">
+                      <span class="status-dot"></span>
+                      Late Entry
+                    </span>
+                  </td>
+                  <td style="font-size: 12px; color: #F59E0B; font-weight: 500;">10:35 AM</td>
+                  <td style="font-size: 12px; color: #6B7280;">Permission granted by HOD</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Hall Ticket">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Edit Entry Time">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #FEE2E2;">
+                  <td style="text-align: center;">4</td>
+                  <td>
+                    <div style="width: 40px; height: 50px; border-radius: 4px; background: #E5E7EB; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #6B7280;">Photo</div>
+                  </td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024004</td>
+                  <td style="font-weight: 500;">Sneha Reddy</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td style="text-align: center;">
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Valid
+                    </span>
+                  </td>
+                  <td style="text-align: center;">
+                    <span class="status status-rejected">
+                      <span class="status-dot"></span>
+                      Absent
+                    </span>
+                  </td>
+                  <td style="font-size: 12px; color: #9CA3AF;">—</td>
+                  <td style="font-size: 12px; color: #DC2626;">Medical emergency</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Hall Ticket">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Mark Present">
+                      <i data-feather="check" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="text-align: center;">5</td>
+                  <td>
+                    <div style="width: 40px; height: 50px; border-radius: 4px; background: #E5E7EB; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #6B7280;">Photo</div>
+                  </td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024005</td>
+                  <td style="font-weight: 500;">Vikram Singh</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td style="text-align: center;">
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Valid
+                    </span>
+                  </td>
+                  <td style="text-align: center;">
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Not Marked
+                    </span>
+                  </td>
+                  <td style="font-size: 12px; color: #9CA3AF;">—</td>
+                  <td style="font-size: 12px; color: #9CA3AF;">—</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Hall Ticket">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Mark Present">
+                      <i data-feather="check" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-secondary" title="Mark Absent">
+                      <i data-feather="x" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="text-align: center;">6</td>
+                  <td>
+                    <div style="width: 40px; height: 50px; border-radius: 4px; background: #E5E7EB; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #6B7280;">Photo</div>
+                  </td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024006</td>
+                  <td style="font-weight: 500;">Anjali Verma</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td style="text-align: center;">
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Valid
+                    </span>
+                  </td>
+                  <td style="text-align: center;">
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Present
+                    </span>
+                  </td>
+                  <td style="font-size: 12px; color: #6B7280;">10:08 AM</td>
+                  <td style="font-size: 12px; color: #6B7280;">—</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Hall Ticket">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-secondary" title="Mark Absent">
+                      <i data-feather="x" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: Absent Students Alert -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Absent Students - Alert List</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="download" style="width: 16px; height: 16px;"></i>
+            Export Absent List
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="alert alert-warning" style="margin-bottom: 16px;">
+            <i data-feather="alert-circle" style="width: 20px; height: 20px;"></i>
+            <div><strong>5 students</strong> are marked as absent. Automated SMS notifications will be sent to parents/guardians.</div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Reg. Number</th>
+                  <th>Student Name</th>
+                  <th>Program</th>
+                  <th>Contact Number</th>
+                  <th>Parent Contact</th>
+                  <th>Reason</th>
+                  <th>Notification Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024004</td>
+                  <td style="font-weight: 500;">Sneha Reddy</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td>+91 98765 43210</td>
+                  <td>+91 98765 43211</td>
+                  <td>Medical emergency</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      SMS Pending
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024032</td>
+                  <td style="font-weight: 500;">Karthik Rao</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td>+91 98765 43220</td>
+                  <td>+91 98765 43221</td>
+                  <td>Not specified</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      SMS Pending
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

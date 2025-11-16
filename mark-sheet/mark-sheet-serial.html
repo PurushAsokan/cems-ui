@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mark Sheet Serial Number - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Mark Sheet Management
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 260px;">
+        <a href="mark-sheet-serial.html" class="dropdown-item active">Serial Number Assignment</a>
+        <a href="cia-ese-integration.html" class="dropdown-item">CIA + ESE Integration</a>
+        <a href="duplicate-request.html" class="dropdown-item">Duplicate Request & Reissue</a>
+        <a href="mark-sheet-verification.html" class="dropdown-item">Verification & Approval</a>
+        <a href="consolidated-statement.html" class="dropdown-item">Consolidated Statement</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">DE</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Data Entry Operator</div>
+            <div style="font-size: 11px; color: #6B7280;">Mark Sheet Management</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Mark Sheet Management</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Serial Number Assignment</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export Serial Log
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+        Generate Serial Numbers
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Section 1: Serial Number Statistics -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Serial Number Tracking - December 2024</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Mark Sheets</div>
+              <div style="font-size: 24px; font-weight: 600;">1,245</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Current academic year</div>
+            </div>
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Serial Numbers Assigned</div>
+              <div style="font-size: 24px; font-weight: 600; color: #22C55E;">1,180</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">95% completed</div>
+            </div>
+            <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Pending Assignment</div>
+              <div style="font-size: 24px; font-weight: 600; color: #F59E0B;">65</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Awaiting approval</div>
+            </div>
+            <div style="background: #EFF6FF; border: 1px solid #93C5FD; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Next Serial Number</div>
+              <div style="font-size: 24px; font-weight: 600; color: #3B82F6;">MS-2024-1181</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Auto-generated</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Serial Number Configuration -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Serial Number Configuration</h2>
+        </div>
+        <div class="section-body">
+          <div style="background: #EFF6FF; border: 2px solid #2563EB; border-radius: 8px; padding: 24px;">
+
+            <div style="font-weight: 600; margin-bottom: 16px; font-size: 15px;">Serial Number Format</div>
+
+            <div style="background: white; border: 1px solid #E5E7EB; border-radius: 6px; padding: 20px; margin-bottom: 24px;">
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px;">
+                <div class="form-group">
+                  <label class="form-label">Prefix</label>
+                  <input type="text" class="form-input" value="MS" readonly style="background: #F8F9FA;" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Academic Year</label>
+                  <select class="form-select">
+                    <option value="2024" selected>2024-25</option>
+                    <option value="2023">2023-24</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Starting Serial Number</label>
+                  <input type="number" class="form-input" value="1181" min="1" />
+                </div>
+              </div>
+
+              <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+                <div style="font-weight: 600; margin-bottom: 8px; font-size: 14px;">Preview Format</div>
+                <div style="font-size: 20px; font-weight: 600; color: #2563EB; font-family: monospace;">MS-2024-1181</div>
+                <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Pattern: PREFIX-YEAR-SEQUENTIAL</div>
+              </div>
+            </div>
+
+            <div style="font-weight: 600; margin-bottom: 12px; font-size: 15px;">Batch Assignment Settings</div>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px;">
+              <div class="form-group">
+                <label class="form-label">Program</label>
+                <select class="form-select">
+                  <option value="">All Programs</option>
+                  <option value="BCA" selected>BCA</option>
+                  <option value="MCA">MCA</option>
+                  <option value="BSc">B.Sc Computer Science</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Year/Semester</label>
+                <select class="form-select">
+                  <option value="">All Semesters</option>
+                  <option value="I" selected>III Year / V Semester</option>
+                  <option value="II">III Year / VI Semester</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Exam Session</label>
+                <select class="form-select">
+                  <option value="DEC2024" selected>December 2024</option>
+                  <option value="MAY2024">May 2024</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="alert alert-info">
+              <i data-feather="info" style="width: 20px; height: 20px;"></i>
+              <div>
+                <strong>Batch Assignment:</strong> Serial numbers will be assigned to all students in BCA III Year V Semester who have passed the December 2024 examination and have no pending dues.
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Eligible Students for Serial Assignment -->
+      <div class="section">
+        <div class="section-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Eligible Students - BCA III Year V Sem</h2>
+            <span class="status status-approved">
+              <span class="status-dot"></span>
+              65 Students
+            </span>
+          </div>
+          <button class="btn btn-sm btn-primary">
+            <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+            Assign Serial Numbers to All
+          </button>
+        </div>
+        <div class="section-body">
+
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px;">
+            <div class="form-group">
+              <label class="form-label">Filter by Result Status</label>
+              <select class="form-select">
+                <option value="passed" selected>Passed Only</option>
+                <option value="all">All Results</option>
+                <option value="failed">Failed Only</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Fee Clearance</label>
+              <select class="form-select">
+                <option value="cleared" selected>Fee Cleared</option>
+                <option value="all">All Students</option>
+                <option value="pending">Fee Pending</option>
+              </select>
+            </div>
+            <div style="display: flex; align-items: end;">
+              <button class="btn btn-primary" style="width: 100%;">
+                <i data-feather="filter" style="width: 16px; height: 16px;"></i>
+                Apply Filter
+              </button>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 40px;"><input type="checkbox" /></th>
+                  <th>Registration No</th>
+                  <th>Student Name</th>
+                  <th style="text-align: center;">SGPA</th>
+                  <th style="text-align: center;">CGPA</th>
+                  <th>Result Status</th>
+                  <th>Fee Status</th>
+                  <th>Assigned Serial No</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input type="checkbox" checked /></td>
+                  <td style="font-family: monospace; font-weight: 600;">REG2022001</td>
+                  <td style="font-weight: 500;">Rajesh Kumar</td>
+                  <td style="text-align: center; font-weight: 600;">8.5</td>
+                  <td style="text-align: center; font-weight: 600;">8.2</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Passed
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Cleared
+                    </span>
+                  </td>
+                  <td style="font-family: monospace; color: #6B7280;">Not assigned</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-primary" title="Assign Serial">
+                      <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" checked /></td>
+                  <td style="font-family: monospace; font-weight: 600;">REG2022002</td>
+                  <td style="font-weight: 500;">Meera Sharma</td>
+                  <td style="text-align: center; font-weight: 600;">9.2</td>
+                  <td style="text-align: center; font-weight: 600;">8.9</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Passed
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Cleared
+                    </span>
+                  </td>
+                  <td style="font-family: monospace; color: #6B7280;">Not assigned</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-primary" title="Assign Serial">
+                      <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" checked /></td>
+                  <td style="font-family: monospace; font-weight: 600;">REG2022003</td>
+                  <td style="font-weight: 500;">Anand Patel</td>
+                  <td style="text-align: center; font-weight: 600;">7.8</td>
+                  <td style="text-align: center; font-weight: 600;">7.5</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Passed
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Cleared
+                    </span>
+                  </td>
+                  <td style="font-family: monospace; color: #6B7280;">Not assigned</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-primary" title="Assign Serial">
+                      <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top: 16px; background: #FEF3C7; border: 2px solid #F59E0B; border-radius: 8px; padding: 16px; display: flex; align-items: center; gap: 12px;">
+            <i data-feather="alert-circle" style="width: 24px; height: 24px; color: #F59E0B;"></i>
+            <div style="flex: 1;">
+              <div style="font-weight: 600;">Bulk Assignment Confirmation</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">You are about to assign serial numbers MS-2024-1181 through MS-2024-1245 to 65 selected students. This action cannot be undone.</div>
+            </div>
+            <button class="btn btn-primary">
+              <i data-feather="check-circle" style="width: 16px; height: 16px;"></i>
+              Confirm & Assign
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Section 4: Recently Assigned Serial Numbers -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Recently Assigned Serial Numbers</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="download" style="width: 16px; height: 16px;"></i>
+            Export List
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Serial Number</th>
+                  <th>Registration No</th>
+                  <th>Student Name</th>
+                  <th>Program/Year</th>
+                  <th>Exam Session</th>
+                  <th>Assigned Date</th>
+                  <th>Assigned By</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-family: monospace; font-weight: 600;">MS-2024-1180</td>
+                  <td style="font-family: monospace;">REG2022045</td>
+                  <td style="font-weight: 500;">Priya Verma</td>
+                  <td style="font-size: 12px;">BCA III Year V Sem</td>
+                  <td style="font-size: 12px;">December 2024</td>
+                  <td style="font-size: 12px;">14-Nov-2024<br/><span style="color: #6B7280;">03:45 PM</span></td>
+                  <td style="font-size: 12px;">Data Entry Operator</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Assigned
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Generate Mark Sheet">
+                      <i data-feather="printer" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-family: monospace; font-weight: 600;">MS-2024-1179</td>
+                  <td style="font-family: monospace;">REG2022044</td>
+                  <td style="font-weight: 500;">Karthik Rao</td>
+                  <td style="font-size: 12px;">BCA III Year V Sem</td>
+                  <td style="font-size: 12px;">December 2024</td>
+                  <td style="font-size: 12px;">14-Nov-2024<br/><span style="color: #6B7280;">03:42 PM</span></td>
+                  <td style="font-size: 12px;">Data Entry Operator</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Assigned
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Generate Mark Sheet">
+                      <i data-feather="printer" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-family: monospace; font-weight: 600;">MS-2024-1178</td>
+                  <td style="font-family: monospace;">REG2022043</td>
+                  <td style="font-weight: 500;">Sneha Reddy</td>
+                  <td style="font-size: 12px;">BCA III Year V Sem</td>
+                  <td style="font-size: 12px;">December 2024</td>
+                  <td style="font-size: 12px;">14-Nov-2024<br/><span style="color: #6B7280;">03:38 PM</span></td>
+                  <td style="font-size: 12px;">Data Entry Operator</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Assigned
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Generate Mark Sheet">
+                      <i data-feather="printer" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: Serial Number Audit Log -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Serial Number Audit Log</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; gap: 12px;">
+            <div style="display: flex; align-items: start; gap: 12px; padding: 12px; background: #F8F9FA; border-radius: 6px;">
+              <i data-feather="file-text" style="width: 20px; height: 20px; color: #3B82F6;"></i>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; font-size: 13px;">Batch Assignment - 120 Serial Numbers</div>
+                <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Assigned MS-2024-1061 to MS-2024-1180 for BCA III Year V Sem students | December 2024 Exam</div>
+              </div>
+              <div style="text-align: right; font-size: 11px; color: #6B7280;">
+                <div>14-Nov-2024</div>
+                <div>03:30 PM</div>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: start; gap: 12px; padding: 12px; background: #F8F9FA; border-radius: 6px;">
+              <i data-feather="edit" style="width: 20px; height: 20px; color: #F59E0B;"></i>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; font-size: 13px;">Serial Number Correction</div>
+                <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Updated serial MS-2024-1042 (REG2022028 - Arun Kumar) due to duplicate entry</div>
+              </div>
+              <div style="text-align: right; font-size: 11px; color: #6B7280;">
+                <div>13-Nov-2024</div>
+                <div>11:15 AM</div>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: start; gap: 12px; padding: 12px; background: #F8F9FA; border-radius: 6px;">
+              <i data-feather="file-text" style="width: 20px; height: 20px; color: #3B82F6;"></i>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; font-size: 13px;">Batch Assignment - 95 Serial Numbers</div>
+                <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Assigned MS-2024-0966 to MS-2024-1060 for MCA II Year III Sem students | December 2024 Exam</div>
+              </div>
+              <div style="text-align: right; font-size: 11px; color: #6B7280;">
+                <div>12-Nov-2024</div>
+                <div>02:45 PM</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>feather.replace();</script>
+</body>
+</html>

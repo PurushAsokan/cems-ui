@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificate Verification & Approval - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Certificates & Completion
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 260px;">
+        <a href="certificate-generation.html" class="dropdown-item">Certificate Generation</a>
+        <a href="certificate-verification.html" class="dropdown-item active">Verification & Approval</a>
+        <a href="university-submission.html" class="dropdown-item">University Submission</a>
+        <a href="certificate-tracking.html" class="dropdown-item">Certificate Tracking</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #10B981; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">DC</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Deputy Controller</div>
+            <div style="font-size: 11px; color: #6B7280;">Certificate Verification</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Certificates & Completion</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Verification & Approval</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export Report
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="check-circle" style="width: 16px; height: 16px;"></i>
+        Batch Approve
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Workflow Status Summary -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Verification & Approval Dashboard - 2024-25</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;">
+            <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Pending Level 1</div>
+              <div style="font-size: 24px; font-weight: 600; color: #F59E0B;">24</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Deputy Controller</div>
+            </div>
+            <div style="background: #DBEAFE; border: 1px solid #93C5FD; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Pending Level 2</div>
+              <div style="font-size: 24px; font-weight: 600; color: #3B82F6;">12</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Exam Controller</div>
+            </div>
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Approved</div>
+              <div style="font-size: 24px; font-weight: 600; color: #22C55E;">180</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Ready for Printing</div>
+            </div>
+            <div style="background: #FEE2E2; border: 1px solid #FCA5A5; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Rejected</div>
+              <div style="font-size: 24px; font-weight: 600; color: #DC2626;">5</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Needs Correction</div>
+            </div>
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Generated</div>
+              <div style="font-size: 24px; font-weight: 600;">221</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">This Academic Year</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Certificates Pending Verification</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 16px;">
+            <div class="form-group">
+              <label class="form-label">Verification Level</label>
+              <select class="form-select">
+                <option value="">All Levels</option>
+                <option value="level1" selected>Level 1 - Deputy Controller</option>
+                <option value="level2">Level 2 - Exam Controller</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Status</label>
+              <select class="form-select">
+                <option value="pending" selected>Pending Verification</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+                <option value="all">All</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Program</label>
+              <select class="form-select">
+                <option value="">All Programs</option>
+                <option value="BCA">BCA</option>
+                <option value="MCA">MCA</option>
+                <option value="BSC">B.Sc CS</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Certificate Type</label>
+              <select class="form-select">
+                <option value="">All Types</option>
+                <option value="completion">Completion</option>
+                <option value="provisional">Provisional</option>
+              </select>
+            </div>
+            <div style="display: flex; align-items: end;">
+              <button class="btn btn-primary" style="width: 100%;">
+                <i data-feather="filter" style="width: 16px; height: 16px;"></i>
+                Apply Filter
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pending Certificates List -->
+      <div class="section">
+        <div class="section-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Level 1 Verification Queue</h2>
+            <span class="status status-warning">
+              <span class="status-dot"></span>
+              24 Pending
+            </span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-sm btn-ghost">Select All</button>
+            <button class="btn btn-sm btn-primary">
+              <i data-feather="check-circle" style="width: 16px; height: 16px;"></i>
+              Batch Approve (0)
+            </button>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 40px;"><input type="checkbox" /></th>
+                  <th>Certificate No</th>
+                  <th>Student Details</th>
+                  <th>Program & Year</th>
+                  <th style="text-align: center;">Years Completed</th>
+                  <th>Certificate Type</th>
+                  <th>Generated Date</th>
+                  <th>Current Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td style="font-family: monospace; font-weight: 600;">CERT-2025-0181</td>
+                  <td>
+                    <div style="font-weight: 500;">Rajesh Kumar</div>
+                    <div style="font-size: 11px; color: #6B7280; font-family: monospace;">REG2022001</div>
+                  </td>
+                  <td>
+                    <div style="font-size: 13px;">BCA</div>
+                    <div style="font-size: 11px; color: #6B7280;">2022-2025</div>
+                  </td>
+                  <td style="text-align: center; font-weight: 600;">3 Years</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Course Completion
+                    </span>
+                  </td>
+                  <td style="font-size: 12px;">
+                    15-Nov-2024<br/>
+                    <span style="color: #6B7280;">02:30 PM</span>
+                  </td>
+                  <td>
+                    <span class="status status-warning">
+                      <span class="status-dot"></span>
+                      Pending L1
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details" onclick="document.getElementById('verificationModal').style.display='block'">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Verify Now">
+                      <i data-feather="check-square" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td style="font-family: monospace; font-weight: 600;">CERT-2025-0182</td>
+                  <td>
+                    <div style="font-weight: 500;">Priya Nair</div>
+                    <div style="font-size: 11px; color: #6B7280; font-family: monospace;">REG2021034</div>
+                  </td>
+                  <td>
+                    <div style="font-size: 13px;">MCA</div>
+                    <div style="font-size: 11px; color: #6B7280;">2021-2023</div>
+                  </td>
+                  <td style="text-align: center; font-weight: 600;">2 Years</td>
+                  <td>
+                    <span class="status status-info">
+                      <span class="status-dot"></span>
+                      Diploma Certificate
+                    </span>
+                  </td>
+                  <td style="font-size: 12px;">
+                    15-Nov-2024<br/>
+                    <span style="color: #6B7280;">11:15 AM</span>
+                  </td>
+                  <td>
+                    <span class="status status-warning">
+                      <span class="status-dot"></span>
+                      Pending L1
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Verify Now">
+                      <i data-feather="check-square" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td style="font-family: monospace; font-weight: 600;">CERT-2025-0183</td>
+                  <td>
+                    <div style="font-weight: 500;">Arun Patel</div>
+                    <div style="font-size: 11px; color: #6B7280; font-family: monospace;">REG2023012</div>
+                  </td>
+                  <td>
+                    <div style="font-size: 13px;">BCA</div>
+                    <div style="font-size: 11px; color: #6B7280;">2023-2024</div>
+                  </td>
+                  <td style="text-align: center; font-weight: 600;">1 Year</td>
+                  <td>
+                    <span class="status status-info">
+                      <span class="status-dot"></span>
+                      Completion Certificate
+                    </span>
+                  </td>
+                  <td style="font-size: 12px;">
+                    14-Nov-2024<br/>
+                    <span style="color: #6B7280;">04:45 PM</span>
+                  </td>
+                  <td>
+                    <span class="status status-warning">
+                      <span class="status-dot"></span>
+                      Pending L1
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Verify Now">
+                      <i data-feather="check-square" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recently Verified Certificates -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Recently Verified Certificates</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="download" style="width: 16px; height: 16px;"></i>
+            Export List
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Certificate No</th>
+                  <th>Student Details</th>
+                  <th>Program</th>
+                  <th>Verified By</th>
+                  <th>Verification Date</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-family: monospace; font-weight: 600;">CERT-2025-0180</td>
+                  <td>
+                    <div style="font-weight: 500;">Karthik Rao</div>
+                    <div style="font-size: 11px; color: #6B7280; font-family: monospace;">REG2022044</div>
+                  </td>
+                  <td style="font-size: 12px;">BCA<br/><span style="color: #6B7280;">2022-2025</span></td>
+                  <td>
+                    <div style="font-size: 12px; font-weight: 500;">Dr. Ramesh Kumar</div>
+                    <div style="font-size: 11px; color: #6B7280;">Deputy Controller</div>
+                  </td>
+                  <td style="font-size: 12px;">
+                    14-Nov-2024<br/>
+                    <span style="color: #6B7280;">05:15 PM</span>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Approved L1
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Certificate">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View Audit Trail">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-family: monospace; font-weight: 600;">CERT-2025-0179</td>
+                  <td>
+                    <div style="font-weight: 500;">Meera Sharma</div>
+                    <div style="font-size: 11px; color: #6B7280; font-family: monospace;">REG2022002</div>
+                  </td>
+                  <td style="font-size: 12px;">BCA<br/><span style="color: #6B7280;">2022-2025</span></td>
+                  <td>
+                    <div style="font-size: 12px; font-weight: 500;">Dr. Ramesh Kumar</div>
+                    <div style="font-size: 11px; color: #6B7280;">Deputy Controller</div>
+                  </td>
+                  <td style="font-size: 12px;">
+                    14-Nov-2024<br/>
+                    <span style="color: #6B7280;">05:10 PM</span>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Approved L1
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Certificate">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View Audit Trail">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #FEE2E2;">
+                  <td style="font-family: monospace; font-weight: 600;">CERT-2025-0178</td>
+                  <td>
+                    <div style="font-weight: 500;">Suresh Reddy</div>
+                    <div style="font-size: 11px; color: #6B7280; font-family: monospace;">REG2022067</div>
+                  </td>
+                  <td style="font-size: 12px;">BCA<br/><span style="color: #6B7280;">2022-2025</span></td>
+                  <td>
+                    <div style="font-size: 12px; font-weight: 500;">Dr. Ramesh Kumar</div>
+                    <div style="font-size: 11px; color: #6B7280;">Deputy Controller</div>
+                  </td>
+                  <td style="font-size: 12px;">
+                    14-Nov-2024<br/>
+                    <span style="color: #6B7280;">04:55 PM</span>
+                  </td>
+                  <td>
+                    <span class="status status-rejected">
+                      <span class="status-dot"></span>
+                      Rejected
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Certificate">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View Rejection Reason">
+                      <i data-feather="message-square" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Verification Modal -->
+  <div id="verificationModal" class="modal">
+    <div class="modal-content" style="max-width: 1000px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Certificate Verification - CERT-2025-0181</h3>
+        <button class="modal-close" onclick="document.getElementById('verificationModal').style.display='none'">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Student Information Section -->
+        <div style="margin-bottom: 24px;">
+          <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 12px; color: #111827;">Student Information</h4>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; background: #F8F9FA; padding: 16px; border-radius: 6px;">
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Registration Number</div>
+              <div style="font-family: monospace; font-weight: 600;">REG2022001</div>
+            </div>
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Student Name</div>
+              <div style="font-weight: 500;">Rajesh Kumar</div>
+            </div>
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Date of Birth</div>
+              <div style="font-weight: 500;">15-Mar-2003</div>
+            </div>
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Program</div>
+              <div style="font-weight: 500;">BCA (2022-2025)</div>
+            </div>
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Years Completed</div>
+              <div style="font-weight: 600;">3 Years (6 Semesters)</div>
+            </div>
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">CGPA / Percentage</div>
+              <div style="font-weight: 600; color: #22C55E;">8.49 / 84.9%</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Verification Checklist -->
+        <div style="margin-bottom: 24px;">
+          <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 12px; color: #111827;">Verification Checklist</h4>
+          <div style="background: #F8F9FA; padding: 16px; border-radius: 6px;">
+            <div style="display: flex; align-items: center; padding: 8px 0; border-bottom: 1px solid #E5E7EB;">
+              <input type="checkbox" checked style="margin-right: 12px;" />
+              <label style="font-size: 13px;">All semester results verified and complete</label>
+            </div>
+            <div style="display: flex; align-items: center; padding: 8px 0; border-bottom: 1px solid #E5E7EB;">
+              <input type="checkbox" checked style="margin-right: 12px;" />
+              <label style="font-size: 13px;">Minimum completion criteria met (3 years for Course Completion)</label>
+            </div>
+            <div style="display: flex; align-items: center; padding: 8px 0; border-bottom: 1px solid #E5E7EB;">
+              <input type="checkbox" checked style="margin-right: 12px;" />
+              <label style="font-size: 13px;">No outstanding library/hostel/fee dues</label>
+            </div>
+            <div style="display: flex; align-items: center; padding: 8px 0; border-bottom: 1px solid #E5E7EB;">
+              <input type="checkbox" checked style="margin-right: 12px;" />
+              <label style="font-size: 13px;">Student master database details match</label>
+            </div>
+            <div style="display: flex; align-items: center; padding: 8px 0; border-bottom: 1px solid #E5E7EB;">
+              <input type="checkbox" checked style="margin-right: 12px;" />
+              <label style="font-size: 13px;">Certificate format compliance verified</label>
+            </div>
+            <div style="display: flex; align-items: center; padding: 8px 0;">
+              <input type="checkbox" checked style="margin-right: 12px;" />
+              <label style="font-size: 13px;">No disciplinary issues or pending cases</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certificate Preview -->
+        <div style="margin-bottom: 24px;">
+          <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 12px; color: #111827;">Certificate Preview</h4>
+          <div style="background: white; border: 2px solid #E5E7EB; border-radius: 8px; padding: 32px; max-height: 400px; overflow-y: auto;">
+            <div style="text-align: center; margin-bottom: 24px;">
+              <div style="font-weight: 600; font-size: 20px; color: #2563EB;">SGC Educational Institute</div>
+              <div style="font-size: 13px; color: #6B7280; margin-top: 4px;">Affiliated to SGC University, Bangalore</div>
+              <div style="font-weight: 600; font-size: 16px; margin-top: 12px; color: #F59E0B;">CERTIFICATE OF COMPLETION</div>
+            </div>
+            <div style="text-align: center; padding: 0 16px;">
+              <p style="font-size: 13px; line-height: 1.6; margin-bottom: 16px;">
+                This is to certify that <strong style="font-size: 15px; color: #2563EB;">RAJESH KUMAR</strong>,
+                bearing Registration Number <strong style="font-family: monospace;">REG2022001</strong>,
+                has successfully completed the <strong>Bachelor of Computer Applications (BCA)</strong>
+                degree program during the academic years <strong>2022-2025</strong>.
+              </p>
+              <p style="font-size: 13px; line-height: 1.6;">
+                The candidate has been awarded with a CGPA of <strong style="color: #22C55E;">8.49/10.00 (84.9%)</strong>
+                and is classified under <strong style="color: #F59E0B;">FIRST CLASS WITH DISTINCTION</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Verification Decision -->
+        <div style="margin-bottom: 16px;">
+          <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 12px; color: #111827;">Verification Decision</h4>
+          <div class="form-group">
+            <label class="form-label required">Decision</label>
+            <select class="form-select">
+              <option value="">-- Select Decision --</option>
+              <option value="approve">Approve and Send to Level 2</option>
+              <option value="approve-final">Approve (Final - if L2 authority)</option>
+              <option value="reject">Reject and Send Back</option>
+              <option value="modify">Request Modification</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Remarks / Comments</label>
+            <textarea class="form-input" rows="3" placeholder="Enter verification remarks or reasons for rejection..."></textarea>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="document.getElementById('verificationModal').style.display='none'">Cancel</button>
+        <button class="btn btn-danger">
+          <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+          Reject
+        </button>
+        <button class="btn btn-primary">
+          <i data-feather="check-circle" style="width: 16px; height: 16px;"></i>
+          Approve & Send to Level 2
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/cems.js"></script>
+  <script>feather.replace();</script>
+</body>
+</html>

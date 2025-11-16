@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retotaling Request Entry - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <!-- Module Dropdown -->
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Evaluation & Results
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px; max-height: 500px; overflow-y: auto;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Result Processing</div>
+        <a href="result-compilation.html" class="dropdown-item">Result Compilation</a>
+        <a href="result-verification.html" class="dropdown-item">Result Verification</a>
+        <a href="result-freeze.html" class="dropdown-item">Freeze Results</a>
+        <a href="result-publish.html" class="dropdown-item">Publish Results</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Revaluation</div>
+        <a href="revaluation-request.html" class="dropdown-item">Revaluation Request Entry</a>
+        <a href="revaluation-verification.html" class="dropdown-item">Eligibility Verification</a>
+        <a href="revaluation-processing.html" class="dropdown-item">Processing & Marks Entry</a>
+        <a href="revaluation-results.html" class="dropdown-item">Revaluation Results</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Retotaling</div>
+        <a href="retotaling-request.html" class="dropdown-item active">Retotaling Request Entry</a>
+        <a href="retotaling-verification.html" class="dropdown-item">Retotaling Verification</a>
+        <a href="retotaling-results.html" class="dropdown-item">Retotaling Results</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Results</div>
+        <a href="supplementary-marks-entry.html" class="dropdown-item">Supplementary Marks Entry</a>
+        <a href="supplementary-result-integration.html" class="dropdown-item">Result Integration</a>
+        <a href="supplementary-result-publish.html" class="dropdown-item">Publish Results</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">AT</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Asst. Controller</div>
+            <div style="font-size: 11px; color: #6B7280;">AST-102</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <a href="result-compilation.html" class="breadcrumb-item">Evaluation & Results</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Retotaling Request Entry</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="list" style="width: 16px; height: 16px;"></i>
+        View All Requests
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Info Banner -->
+      <div class="alert alert-info" style="margin-bottom: 24px;">
+        <i data-feather="info" style="width: 20px; height: 20px;"></i>
+        <div style="flex: 1;">
+          <div style="font-weight: 500; margin-bottom: 4px;">Retotaling vs Revaluation</div>
+          <div><strong>Retotaling:</strong> Arithmetic verification only (₹200/subject, 3-5 days) | <strong>Revaluation:</strong> Answer sheet re-evaluation (₹500/subject, 15 days)</div>
+        </div>
+      </div>
+
+      <!-- Section 1: Student Search -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Student Lookup</h2>
+        </div>
+        <div class="section-body">
+          <div class="form-inline">
+            <div class="form-group" style="flex: 1;">
+              <label class="form-label">Exam Registration Number</label>
+              <input
+                type="text"
+                class="form-input"
+                id="regNumber"
+                placeholder="Enter registration number (e.g., 25ENG1045)"
+                style="text-transform: uppercase; font-family: monospace;"
+              />
+            </div>
+            <button class="btn btn-primary" onclick="searchStudent()" style="align-self: flex-end;">
+              <i data-feather="search" style="width: 16px; height: 16px;"></i>
+              Search Student
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Student Details (Hidden until search) -->
+      <div class="section" id="studentDetails" style="display: none;">
+        <div class="section-header">
+          <h2 class="section-title">Student Information</h2>
+          <span class="status status-approved">
+            <span class="status-dot"></span>
+            Eligible for Retotaling
+          </span>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: auto 1fr; gap: 24px;">
+            <!-- Student Photo -->
+            <div style="width: 120px; height: 140px; background: #F8F9FA; border: 2px solid #E5E7EB; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+              <i data-feather="user" style="width: 64px; height: 64px; color: #9CA3AF;"></i>
+            </div>
+
+            <!-- Student Info Grid -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Registration Number</div>
+                <div style="font-size: 14px; font-weight: 600; font-family: monospace;">25ENG1045</div>
+              </div>
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Student Name</div>
+                <div style="font-size: 14px; font-weight: 500;">Rajesh Kumar M</div>
+              </div>
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Program</div>
+                <div style="font-size: 14px;">B.Eng - Computer Science</div>
+              </div>
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Current Semester</div>
+                <div style="font-size: 14px;">Semester 6</div>
+              </div>
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Exam Session</div>
+                <div style="font-size: 14px;">December 2024</div>
+              </div>
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Result Published</div>
+                <div style="font-size: 14px;">15-Dec-2024</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Eligibility Status -->
+          <div style="margin-top: 16px; padding: 12px; background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <i data-feather="check-circle" style="width: 16px; height: 16px; color: #059669;"></i>
+              <div style="font-size: 13px; color: #065F46;">
+                <strong>Eligible for Retotaling:</strong> Result published within 30 days | No pending revaluation requests
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Subject Selection -->
+      <div class="section" id="subjectSelection" style="display: none;">
+        <div class="section-header">
+          <h2 class="section-title">Subject Selection for Retotaling</h2>
+          <div class="text-sm" style="color: #6B7280;">Select subjects to verify arithmetic total</div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 50px;">
+                    <input type="checkbox" id="selectAll" onchange="toggleAllSubjects()" />
+                  </th>
+                  <th>Subject Code</th>
+                  <th>Subject Name</th>
+                  <th>CIA (40)</th>
+                  <th>ESE (60)</th>
+                  <th>Total (100)</th>
+                  <th>Grade</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="text-align: center;">
+                    <input type="checkbox" class="subject-checkbox" data-fee="200" onchange="calculateFee()" />
+                  </td>
+                  <td style="font-family: monospace; font-weight: 600;">CS601</td>
+                  <td>Software Engineering</td>
+                  <td>32</td>
+                  <td>48</td>
+                  <td style="font-weight: 600;">80</td>
+                  <td><span class="badge badge-success">A+</span></td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Pass</span></td>
+                </tr>
+                <tr style="background: #FEF3C7;">
+                  <td style="text-align: center;">
+                    <input type="checkbox" class="subject-checkbox" data-fee="200" onchange="calculateFee()" />
+                  </td>
+                  <td style="font-family: monospace; font-weight: 600;">CS602</td>
+                  <td>Web Technologies</td>
+                  <td>28</td>
+                  <td>30</td>
+                  <td style="font-weight: 600;">58</td>
+                  <td><span class="badge badge-warning">B</span></td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Pass</span></td>
+                </tr>
+                <tr>
+                  <td style="text-align: center;">
+                    <input type="checkbox" class="subject-checkbox" data-fee="200" onchange="calculateFee()" />
+                  </td>
+                  <td style="font-family: monospace; font-weight: 600;">CS603</td>
+                  <td>Computer Networks</td>
+                  <td>35</td>
+                  <td>52</td>
+                  <td style="font-weight: 600;">87</td>
+                  <td><span class="badge badge-success">O</span></td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Pass</span></td>
+                </tr>
+                <tr style="background: #FEF3C7;">
+                  <td style="text-align: center;">
+                    <input type="checkbox" class="subject-checkbox" data-fee="200" onchange="calculateFee()" />
+                  </td>
+                  <td style="font-family: monospace; font-weight: 600;">CS604</td>
+                  <td>Operating Systems</td>
+                  <td>30</td>
+                  <td>34</td>
+                  <td style="font-weight: 600;">64</td>
+                  <td><span class="badge badge-info">B+</span></td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Pass</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top: 16px; padding: 12px; background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 6px;">
+            <div style="font-size: 13px; color: #1E40AF;">
+              <i data-feather="info" style="width: 14px; height: 14px; display: inline; vertical-align: middle;"></i>
+              <strong>Note:</strong> Retotaling only verifies arithmetic total (CIA + ESE = Total). No answer sheet re-evaluation is performed. Highlighted rows show subjects with marks near grade boundaries.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Fee Calculation -->
+      <div class="section" id="feeSection" style="display: none;">
+        <div class="section-header">
+          <h2 class="section-title">Fee Calculation & Payment Details</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+            <!-- Payment Details Form -->
+            <div>
+              <div class="form-group">
+                <label class="form-label required">Payment Mode</label>
+                <select class="form-select">
+                  <option>-- Select Payment Mode --</option>
+                  <option>Cash</option>
+                  <option>Demand Draft</option>
+                  <option>Online Payment (NEFT/RTGS)</option>
+                  <option>UPI</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label required">Receipt/Transaction Number</label>
+                <input type="text" class="form-input" placeholder="Enter receipt or transaction number" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label required">Payment Date</label>
+                <input type="date" class="form-input" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Remarks</label>
+                <textarea class="form-input" rows="2" placeholder="Additional remarks (optional)"></textarea>
+              </div>
+            </div>
+
+            <!-- Fee Breakdown -->
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div style="font-size: 13px; font-weight: 600; color: #111827; margin-bottom: 12px;">Fee Breakdown</div>
+
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <div style="font-size: 13px; color: #6B7280;">Selected Subjects</div>
+                <div style="font-size: 13px; font-weight: 600;" id="subjectCount">0</div>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <div style="font-size: 13px; color: #6B7280;">Fee per Subject</div>
+                <div style="font-size: 13px; font-weight: 600;">₹200</div>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #E5E7EB;">
+                <div style="font-size: 13px; color: #6B7280;">Retotaling Fee</div>
+                <div style="font-size: 13px; font-weight: 600;" id="retotalingFee">₹0</div>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <div style="font-size: 13px; color: #6B7280;">Processing Fee</div>
+                <div style="font-size: 13px; font-weight: 600;">₹100</div>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; padding-top: 8px; border-top: 2px solid #E5E7EB;">
+                <div style="font-size: 15px; font-weight: 600; color: #111827;">Total Amount</div>
+                <div style="font-size: 18px; font-weight: 600; color: #2563EB;" id="totalFee">₹100</div>
+              </div>
+
+              <div style="margin-top: 12px; padding: 8px; background: #FEF3C7; border-radius: 4px;">
+                <div style="font-size: 11px; color: #92400E; text-align: center;">
+                  <strong>Processing Time:</strong> 3-5 days<br/>
+                  (Faster than Revaluation: 15 days)
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: Request Summary & Confirmation -->
+      <div class="section" id="summarySection" style="display: none;">
+        <div class="section-header">
+          <h2 class="section-title">Request Summary & Confirmation</h2>
+        </div>
+        <div class="section-body">
+          <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 16px;">
+              <div>
+                <div style="font-size: 11px; color: #6B7280; margin-bottom: 4px;">Request Type</div>
+                <div style="font-size: 14px; font-weight: 600;">
+                  <span class="badge badge-info">Retotaling - Arithmetic Verification</span>
+                </div>
+              </div>
+              <div>
+                <div style="font-size: 11px; color: #6B7280; margin-bottom: 4px;">Expected Completion</div>
+                <div style="font-size: 14px; font-weight: 600;">20-Dec-2024 (3-5 days)</div>
+              </div>
+            </div>
+
+            <div style="background: white; border: 1px solid #E5E7EB; border-radius: 4px; padding: 12px; margin-bottom: 12px;">
+              <div style="font-size: 12px; font-weight: 600; margin-bottom: 8px;">Selected Subjects:</div>
+              <div style="font-size: 13px; color: #6B7280;" id="selectedSubjectsSummary">
+                No subjects selected
+              </div>
+            </div>
+
+            <div style="background: white; border: 1px solid #E5E7EB; border-radius: 4px; padding: 12px;">
+              <div style="font-size: 12px; font-weight: 600; margin-bottom: 8px;">Payment Summary:</div>
+              <div style="font-size: 13px; color: #6B7280;">
+                <strong id="summarySubjectCount">0 subjects</strong> × ₹200 + Processing Fee ₹100 = <strong id="summaryTotalFee">₹100</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Confirmation Checkbox -->
+          <div style="margin-top: 16px; padding: 16px; background: #FFFBEB; border: 1px solid #FCD34D; border-radius: 6px;">
+            <label style="display: flex; align-items: start; gap: 12px; cursor: pointer;">
+              <input type="checkbox" id="confirmCheckbox" style="margin-top: 3px;" />
+              <div style="font-size: 13px; color: #92400E;">
+                I confirm that the information provided is accurate and I understand that:
+                <ul style="margin: 8px 0 0 20px; padding: 0;">
+                  <li>Retotaling fee is <strong>non-refundable</strong></li>
+                  <li>This request is for <strong>arithmetic verification only</strong> (no answer sheet review)</li>
+                  <li>Processing time is 3-5 working days</li>
+                  <li>If a calculation error is found, marks will be updated automatically</li>
+                </ul>
+              </div>
+            </label>
+          </div>
+
+          <!-- Action Buttons -->
+          <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
+            <button class="btn btn-secondary" onclick="window.location.href='result-compilation.html'">Cancel</button>
+            <button class="btn btn-primary" onclick="submitRetotalingRequest()">
+              <i data-feather="check" style="width: 16px; height: 16px;"></i>
+              Submit Retotaling Request
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 6: Recent Retotaling Requests -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Recent Retotaling Requests</h2>
+          <button class="btn btn-sm btn-ghost">View All</button>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Request ID</th>
+                  <th>Registration No</th>
+                  <th>Student Name</th>
+                  <th>Subjects</th>
+                  <th>Request Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">RT-2024-0123</td>
+                  <td style="font-family: monospace;">25ENG1023</td>
+                  <td>Priya Sharma R</td>
+                  <td>
+                    <div class="text-xs" style="color: #6B7280; margin-top: 2px;">CS501, CS502 (2 subjects)</div>
+                  </td>
+                  <td>12-Dec-2024</td>
+                  <td><span class="status status-pending"><span class="status-dot"></span>Pending Verification</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-ghost">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">RT-2024-0122</td>
+                  <td style="font-family: monospace;">25ENG1067</td>
+                  <td>Arun Kumar M</td>
+                  <td>
+                    <div class="text-xs" style="color: #6B7280; margin-top: 2px;">CS503 (1 subject)</div>
+                  </td>
+                  <td>11-Dec-2024</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Processing</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-ghost">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">RT-2024-0121</td>
+                  <td style="font-family: monospace;">25ENG1089</td>
+                  <td>Deepa Menon S</td>
+                  <td>
+                    <div class="text-xs" style="color: #6B7280; margin-top: 2px;">CS504, CS505, CS506 (3 subjects)</div>
+                  </td>
+                  <td>10-Dec-2024</td>
+                  <td><span class="status status-verified"><span class="status-dot"></span>Completed</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-ghost">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+
+    function searchStudent() {
+      const regNumber = document.getElementById('regNumber').value;
+      if (!regNumber) {
+        alert('Please enter a registration number');
+        return;
+      }
+
+      // Show all sections
+      document.getElementById('studentDetails').style.display = 'block';
+      document.getElementById('subjectSelection').style.display = 'block';
+      document.getElementById('feeSection').style.display = 'block';
+      document.getElementById('summarySection').style.display = 'block';
+
+      feather.replace();
+    }
+
+    function toggleAllSubjects() {
+      const selectAll = document.getElementById('selectAll');
+      const checkboxes = document.querySelectorAll('.subject-checkbox');
+      checkboxes.forEach(cb => {
+        cb.checked = selectAll.checked;
+      });
+      calculateFee();
+    }
+
+    function calculateFee() {
+      const checkboxes = document.querySelectorAll('.subject-checkbox:checked');
+      const count = checkboxes.length;
+      const fee = count * 200;
+      const total = fee + 100; // Processing fee
+
+      document.getElementById('subjectCount').textContent = count;
+      document.getElementById('retotalingFee').textContent = '₹' + fee;
+      document.getElementById('totalFee').textContent = '₹' + total;
+      document.getElementById('summarySubjectCount').textContent = count + ' subjects';
+      document.getElementById('summaryTotalFee').textContent = '₹' + total;
+
+      // Update selected subjects summary
+      const selectedSubjects = [];
+      checkboxes.forEach(cb => {
+        const row = cb.closest('tr');
+        const subjectCode = row.cells[1].textContent;
+        selectedSubjects.push(subjectCode);
+      });
+
+      if (selectedSubjects.length > 0) {
+        document.getElementById('selectedSubjectsSummary').textContent = selectedSubjects.join(', ');
+      } else {
+        document.getElementById('selectedSubjectsSummary').textContent = 'No subjects selected';
+      }
+    }
+
+    function submitRetotalingRequest() {
+      const confirmed = document.getElementById('confirmCheckbox').checked;
+      if (!confirmed) {
+        alert('Please confirm the declaration before submitting');
+        return;
+      }
+
+      const count = document.querySelectorAll('.subject-checkbox:checked').length;
+      if (count === 0) {
+        alert('Please select at least one subject for retotaling');
+        return;
+      }
+
+      alert('Retotaling request submitted successfully!\n\nRequest ID: RT-2024-0124\nProcessing Time: 3-5 days\n\nYou will be notified once the verification is complete.');
+      window.location.href = 'retotaling-verification.html';
+    }
+  </script>
+
+</body>
+</html>

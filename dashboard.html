@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - CEMS</title>
+  <link rel="stylesheet" href="css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <!-- Module Dropdown -->
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Modules
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px; max-height: 500px; overflow-y: auto;">
+        <div style="padding: 8px 16px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Pre-Examination</div>
+        <a href="exam-registration/data-entry.html" class="dropdown-item">Registration - Data Entry</a>
+        <a href="exam-registration/verification.html" class="dropdown-item">Registration - Verification</a>
+        <a href="exam-registration/fee-calculation.html" class="dropdown-item">Registration - Fee Calculation</a>
+        <a href="exam-registration/ern-batch.html" class="dropdown-item">Registration - ERN Generation</a>
+        <a href="exam-registration/registration-list.html" class="dropdown-item">Registration - Search</a>
+        <div class="dropdown-divider"></div>
+        <a href="exam-scheduling/timetable-entry.html" class="dropdown-item">Exam Scheduling</a>
+        <a href="internal-assessment/marks-entry.html" class="dropdown-item">Internal Assessment</a>
+        <a href="hall-ticket/generation.html" class="dropdown-item">Hall Ticket Generation</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 16px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Examination</div>
+        <a href="conduct-exam/attendance.html" class="dropdown-item">Conduct of Exam</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 16px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Post-Examination</div>
+        <a href="evaluation-results/result-compilation.html" class="dropdown-item">Evaluation & Results</a>
+        <a href="mark-sheet/cia-ese-integration.html" class="dropdown-item">Mark Sheet</a>
+        <a href="certificates/certificate-generation.html" class="dropdown-item">Certificates</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 16px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Administration</div>
+        <a href="student-portal/student-login.html" class="dropdown-item">Student Portal</a>
+        <a href="access-auth/access-control.html" class="dropdown-item">Access Control</a>
+        <a href="access-auth/audit-logs.html" class="dropdown-item">Audit Logs</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <!-- Search -->
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <!-- Notifications -->
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <!-- Settings -->
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <!-- User Menu -->
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">
+            DK
+          </div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Dr. Kumar</div>
+            <div style="font-size: 11px; color: #6B7280;">Controller</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <span class="breadcrumb-item active">Dashboard</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-ghost">
+        <i data-feather="plus" style="width: 16px; height: 16px;"></i>
+        Quick Action
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Alert Banner -->
+      <div class="alert alert-warning" style="margin-bottom: 24px;">
+        <i data-feather="alert-circle" style="width: 20px; height: 20px;"></i>
+        <div style="flex: 1;">
+          <div style="font-weight: 500; margin-bottom: 4px;">Pending Verifications</div>
+          <div class="text-sm" style="color: #6B7280;">127 applications require verification before ERN generation</div>
+        </div>
+        <a href="exam-registration/verification.html" class="btn btn-sm btn-primary">Review Now</a>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <a href="#" class="stat-card">
+          <div class="stat-label">Registered Students</div>
+          <div class="stat-value">1,245</div>
+          <div class="text-xs text-success" style="margin-top: 4px;">↑ 5% from last semester</div>
+        </a>
+        <a href="#" class="stat-card">
+          <div class="stat-label">Active Exams</div>
+          <div class="stat-value">8</div>
+          <div class="text-xs text-secondary" style="margin-top: 4px;">Same as last month</div>
+        </a>
+        <a href="#" class="stat-card">
+          <div class="stat-label">Hall Tickets Issued</div>
+          <div class="stat-value">1,180</div>
+          <div class="text-xs text-success" style="margin-top: 4px;">↑ 95% completion</div>
+        </a>
+        <a href="#" class="stat-card">
+          <div class="stat-label">Results Published</div>
+          <div class="stat-value">12</div>
+          <div class="text-xs text-success" style="margin-top: 4px;">↑ 3 this week</div>
+        </a>
+      </div>
+
+      <!-- My Tasks -->
+      <div class="section" style="margin-top: 24px;">
+        <div class="section-header">
+          <h2 class="section-title">My Tasks</h2>
+          <button class="btn btn-sm btn-ghost">View All</button>
+        </div>
+        <div style="display: grid; gap: 12px;">
+          <a href="exam-registration/verification.html" style="display: flex; align-items: center; gap: 16px; padding: 16px; background: white; border: 1px solid #E5E7EB; border-radius: 6px; text-decoration: none; border-left: 3px solid #F97316;">
+            <div style="flex: 1;">
+              <div style="font-size: 14px; font-weight: 500; color: #111827; margin-bottom: 4px;">Complete pending verifications</div>
+              <div class="text-sm text-secondary">127 applications waiting for approval</div>
+            </div>
+            <div>
+              <span class="badge badge-warning">Urgent</span>
+            </div>
+          </a>
+          <a href="#" style="display: flex; align-items: center; gap: 16px; padding: 16px; background: white; border: 1px solid #E5E7EB; border-radius: 6px; text-decoration: none; border-left: 3px solid #2563EB;">
+            <div style="flex: 1;">
+              <div style="font-size: 14px; font-weight: 500; color: #111827; margin-bottom: 4px;">Review marks entry for Computer Science</div>
+              <div class="text-sm text-secondary">Due: Tomorrow, 5:00 PM</div>
+            </div>
+            <div>
+              <span class="badge badge-info">Medium</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Recent Activity</h2>
+          <button class="btn btn-sm btn-ghost">View All</button>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Module</th>
+                <th>Activity</th>
+                <th>User</th>
+                <th>Time</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Exam Registration</td>
+                <td>25 applications submitted</td>
+                <td>OP-001</td>
+                <td>2 min ago</td>
+                <td><span class="status status-approved"><span class="status-dot"></span>Completed</span></td>
+              </tr>
+              <tr>
+                <td>Verification</td>
+                <td>15 applications approved</td>
+                <td>AST-102</td>
+                <td>15 min ago</td>
+                <td><span class="status status-approved"><span class="status-dot"></span>Completed</span></td>
+              </tr>
+              <tr>
+                <td>Hall Ticket</td>
+                <td>120 hall tickets generated</td>
+                <td>DEP-203</td>
+                <td>1 hour ago</td>
+                <td><span class="status status-pending"><span class="status-dot"></span>In Progress</span></td>
+              </tr>
+              <tr>
+                <td>Internal Assessment</td>
+                <td>Marks entry for CS601</td>
+                <td>FAC-042</td>
+                <td>2 hours ago</td>
+                <td><span class="status status-pending"><span class="status-dot"></span>In Progress</span></td>
+              </tr>
+              <tr>
+                <td>Exam Scheduling</td>
+                <td>Timetable published</td>
+                <td>CTRL-001</td>
+                <td>3 hours ago</td>
+                <td><span class="status status-approved"><span class="status-dot"></span>Completed</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Quick Actions Grid -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+
+        <!-- PRE-EXAMINATION -->
+        <div class="section">
+          <div class="section-header">
+            <h3 class="section-title">Pre-Examination <span style="font-size: 11px; padding: 2px 8px; background: #FEF3C7; color: #D97706; border-radius: 12px; font-weight: 500; margin-left: 8px;">127 pending</span></h3>
+          </div>
+          <div style="padding: 12px;">
+            <div style="margin-bottom: 8px;">
+              <div style="font-size: 11px; font-weight: 600; color: #6B7280; padding: 8px 12px; text-transform: uppercase;">Exam Registration</div>
+              <a href="exam-registration/data-entry.html" style="display: flex; align-items: center; gap: 12px; padding: 8px 12px 8px 24px; text-decoration: none; color: #111827; border-radius: 4px; transition: background 150ms;" onmouseover="this.style.background='#F8F9FA'" onmouseout="this.style.background='transparent'">
+                <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                <div style="font-size: 13px;">Data Entry</div>
+              </a>
+              <a href="exam-registration/verification.html" style="display: flex; align-items: center; gap: 12px; padding: 8px 12px 8px 24px; text-decoration: none; color: #111827; border-radius: 4px; transition: background 150ms;" onmouseover="this.style.background='#F8F9FA'" onmouseout="this.style.background='transparent'">
+                <i data-feather="check-circle" style="width: 16px; height: 16px;"></i>
+                <div style="font-size: 13px;">Verification Queue</div>
+              </a>
+              <a href="exam-registration/fee-calculation.html" style="display: flex; align-items: center; gap: 12px; padding: 8px 12px 8px 24px; text-decoration: none; color: #111827; border-radius: 4px; transition: background 150ms;" onmouseover="this.style.background='#F8F9FA'" onmouseout="this.style.background='transparent'">
+                <i data-feather="dollar-sign" style="width: 16px; height: 16px;"></i>
+                <div style="font-size: 13px;">Fee Calculation</div>
+              </a>
+              <a href="exam-registration/ern-batch.html" style="display: flex; align-items: center; gap: 12px; padding: 8px 12px 8px 24px; text-decoration: none; color: #111827; border-radius: 4px; transition: background 150ms;" onmouseover="this.style.background='#F8F9FA'" onmouseout="this.style.background='transparent'">
+                <i data-feather="hash" style="width: 16px; height: 16px;"></i>
+                <div style="font-size: 13px;">ERN Generation</div>
+              </a>
+              <a href="exam-registration/registration-list.html" style="display: flex; align-items: center; gap: 12px; padding: 8px 12px 8px 24px; text-decoration: none; color: #111827; border-radius: 4px; transition: background 150ms;" onmouseover="this.style.background='#F8F9FA'" onmouseout="this.style.background='transparent'">
+                <i data-feather="search" style="width: 16px; height: 16px;"></i>
+                <div style="font-size: 13px;">Search Applications</div>
+              </a>
+            </div>
+            <a href="exam-scheduling/timetable-entry.html" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; text-decoration: none; color: #111827; border-radius: 4px; transition: background 150ms;" onmouseover="this.style.background='#F8F9FA'" onmouseout="this.style.background='transparent'">
+              <i data-feather="calendar" style="width: 20px; height: 20px;"></i>
+              <div>
+                <div style="font-size: 13px; font-weight: 500;">Exam Scheduling</div>
+                <div style="font-size: 11px; color: #6B7280;">48 exams scheduled</div>
+              </div>
+            </a>
+            <a href="internal-assessment/marks-entry.html" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; text-decoration: none; color: #111827; border-radius: 4px; transition: background 150ms;" onmouseover="this.style.background='#F8F9FA'" onmouseout="this.style.background='transparent'">
+              <i data-feather="clipboard" style="width: 20px; height: 20px;"></i>
+              <div>
+                <div style="font-size: 13px; font-weight: 500;">Internal Assessment</div>
+                <div style="font-size: 11px; color: #6B7280;">12 subjects</div>
+              </div>
+            </a>
+            <a href="hall-ticket/generation.html" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; text-decoration: none; color: #111827; border-radius: 4px; transition: background 150ms;" onmouseover="this.style.background='#F8F9FA'" onmouseout="this.style.background='transparent'">
+              <i data-feather="credit-card" style="width: 20px; height: 20px;"></i>
+              <div>
+                <div style="font-size: 13px; font-weight: 500;">Hall Ticket</div>
+                <div style="font-size: 11px; color: #6B7280;">1,180 issued</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- EXAMINATION -->
+        <div class="section">
+          <div class="section-header">
+            <h3 class="section-title">Examination</h3>
+          </div>
+          <div style="padding: 12px;">
+            <a href="conduct-exam/attendance.html" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; text-decoration: none; color: #111827; border-radius: 4px; transition: background 150ms;" onmouseover="this.style.background='#F8F9FA'" onmouseout="this.style.background='transparent'">
+              <i data-feather="book" style="width: 20px; height: 20px;"></i>
+              <div>
+                <div style="font-size: 13px; font-weight: 500;">Conduct of Exam</div>
+                <div style="font-size: 11px; color: #6B7280;">Today: 3 exams</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- POST-EXAMINATION -->
+        <div class="section">
+          <div class="section-header">
+            <h3 class="section-title">Post-Examination</h3>
+          </div>
+          <div style="padding: 12px;">
+            <a href="evaluation-results/result-compilation.html" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; text-decoration: none; color: #111827; border-radius: 4px; transition: background 150ms;" onmouseover="this.style.background='#F8F9FA'" onmouseout="this.style.background='transparent'">
+              <i data-feather="bar-chart-2" style="width: 20px; height: 20px;"></i>
+              <div>
+                <div style="font-size: 13px; font-weight: 500;">Evaluation & Results</div>
+                <div style="font-size: 11px; color: #6B7280;">45 pending</div>
+              </div>
+            </a>
+            <div style="margin-top: 8px;">
+              <div style="font-size: 11px; font-weight: 600; color: #6B7280; padding: 8px 12px; text-transform: uppercase;">Result Correction</div>
+              <a href="evaluation-results/retotaling-request.html" style="display: flex; align-items: center; gap: 12px; padding: 8px 12px 8px 24px; text-decoration: none; color: #111827; border-radius: 4px; transition: background 150ms;" onmouseover="this.style.background='#F8F9FA'" onmouseout="this.style.background='transparent'">
+                <i data-feather="refresh-cw" style="width: 16px; height: 16px;"></i>
+                <div style="font-size: 13px;">Retotaling</div>
+              </a>
+              <a href="exam-registration/supplementary-registration.html" style="display: flex; align-items: center; gap: 12px; padding: 8px 12px 8px 24px; text-decoration: none; color: #111827; border-radius: 4px; transition: background 150ms;" onmouseover="this.style.background='#F8F9FA'" onmouseout="this.style.background='transparent'">
+                <i data-feather="repeat" style="width: 16px; height: 16px;"></i>
+                <div style="font-size: 13px;">Supplementary Exams</div>
+              </a>
+            </div>
+            <a href="mark-sheet/mark-sheet-serial.html" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; text-decoration: none; color: #111827; border-radius: 4px; transition: background 150ms; margin-top: 8px;" onmouseover="this.style.background='#F8F9FA'" onmouseout="this.style.background='transparent'">
+              <i data-feather="file" style="width: 20px; height: 20px;"></i>
+              <div>
+                <div style="font-size: 13px; font-weight: 500;">Mark Sheet</div>
+                <div style="font-size: 11px; color: #6B7280;">120 ready</div>
+              </div>
+            </a>
+            <a href="certificates/certificate-generation.html" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; text-decoration: none; color: #111827; border-radius: 4px; transition: background 150ms;" onmouseover="this.style.background='#F8F9FA'" onmouseout="this.style.background='transparent'">
+              <i data-feather="award" style="width: 20px; height: 20px;"></i>
+              <div>
+                <div style="font-size: 13px; font-weight: 500;">Certificates</div>
+                <div style="font-size: 11px; color: #6B7280;">85 issued</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/cems.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freeze Results & Reports - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Conduct of Examination
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <a href="attendance.html" class="dropdown-item">Attendance Entry</a>
+        <a href="marks-entry.html" class="dropdown-item">Marks Entry</a>
+        <a href="batch-preparation.html" class="dropdown-item">Batch Preparation</a>
+        <a href="freeze-results.html" class="dropdown-item active">Freeze & Reports</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">EC</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Exam Controller</div>
+            <div style="font-size: 11px; color: #6B7280;">Freeze Authority</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Conduct of Examination</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Freeze & Reports</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export All Reports
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="lock" style="width: 16px; height: 16px;"></i>
+        Freeze Results
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Section 1: Subject Selection & Freeze Status -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Subject Selection & Status</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px;">
+            <div class="form-group">
+              <label class="form-label required">Exam Session</label>
+              <select class="form-select">
+                <option value="DEC2024" selected>December 2024 - Regular</option>
+                <option value="JUN2024">June 2024 - Regular</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Subject</label>
+              <select class="form-select">
+                <option value="">-- Select Subject --</option>
+                <option value="CS501" selected>CS501 - Data Structures & Algorithms</option>
+                <option value="CS502">CS502 - Database Management Systems</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Freeze Status</label>
+              <input type="text" class="form-input" value="Not Frozen" readonly style="font-weight: 600; color: #F59E0B;" />
+            </div>
+          </div>
+
+          <div class="alert alert-warning">
+            <i data-feather="alert-circle" style="width: 20px; height: 20px;"></i>
+            <div><strong>Pre-Freeze Verification Required:</strong> Please review all validation checks and discrepancy reports before freezing results. Once frozen, marks cannot be modified without formal authorization.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Pre-Freeze Validation Checklist -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Pre-Freeze Validation Checklist</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="refresh-cw" style="width: 16px; height: 16px;"></i>
+            Re-run Validation
+          </button>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; gap: 12px;">
+            <!-- Check 1 -->
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px; display: flex; align-items: center; gap: 12px;">
+              <i data-feather="check-circle" style="width: 24px; height: 24px; color: #22C55E;"></i>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; font-size: 14px; color: #111827;">All Batches Completed</div>
+                <div class="text-xs" style="color: #6B7280; margin-top: 2px;">5/5 batches have completed evaluation and marks submission</div>
+              </div>
+              <span class="status status-approved">
+                <span class="status-dot"></span>
+                Passed
+              </span>
+            </div>
+
+            <!-- Check 2 -->
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px; display: flex; align-items: center; gap: 12px;">
+              <i data-feather="check-circle" style="width: 24px; height: 24px; color: #22C55E;"></i>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; font-size: 14px; color: #111827;">Internal + External Marks Reconciliation</div>
+                <div class="text-xs" style="color: #6B7280; margin-top: 2px;">All 245 answer sheets have both internal and external marks entered</div>
+              </div>
+              <span class="status status-approved">
+                <span class="status-dot"></span>
+                Passed
+              </span>
+            </div>
+
+            <!-- Check 3 -->
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px; display: flex; align-items: center; gap: 12px;">
+              <i data-feather="check-circle" style="width: 24px; height: 24px; color: #22C55E;"></i>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; font-size: 14px; color: #111827;">No Pending Evaluations</div>
+                <div class="text-xs" style="color: #6B7280; margin-top: 2px;">All assigned evaluations are completed and verified</div>
+              </div>
+              <span class="status status-approved">
+                <span class="status-dot"></span>
+                Passed
+              </span>
+            </div>
+
+            <!-- Check 4 -->
+            <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; padding: 16px; display: flex; align-items: center; gap: 12px;">
+              <i data-feather="alert-circle" style="width: 24px; height: 24px; color: #F59E0B;"></i>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; font-size: 14px; color: #111827;">Discrepancy Detection</div>
+                <div class="text-xs" style="color: #F59E0B; margin-top: 2px; font-weight: 500;">3 cases found with marks difference > 20% between internal and external evaluators</div>
+              </div>
+              <span class="status status-warning">
+                <span class="status-dot"></span>
+                Requires Review
+              </span>
+            </div>
+
+            <!-- Check 5 -->
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px; display: flex; align-items: center; gap: 12px;">
+              <i data-feather="check-circle" style="width: 24px; height: 24px; color: #22C55E;"></i>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; font-size: 14px; color: #111827;">Attendance Verification</div>
+                <div class="text-xs" style="color: #6B7280; margin-top: 2px;">All students with marks have verified attendance records</div>
+              </div>
+              <span class="status status-approved">
+                <span class="status-dot"></span>
+                Passed
+              </span>
+            </div>
+
+            <!-- Check 6 -->
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px; display: flex; align-items: center; gap: 12px;">
+              <i data-feather="check-circle" style="width: 24px; height: 24px; color: #22C55E;"></i>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; font-size: 14px; color: #111827;">Dummy Number to Registration Mapping</div>
+                <div class="text-xs" style="color: #6B7280; margin-top: 2px;">245/245 dummy numbers successfully linked to registration numbers</div>
+              </div>
+              <span class="status status-approved">
+                <span class="status-dot"></span>
+                Passed
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Discrepancy Report -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Discrepancy Report - Requires Review</h2>
+          <button class="btn btn-sm btn-secondary">
+            <i data-feather="download" style="width: 16px; height: 16px;"></i>
+            Export Report
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="alert alert-warning" style="margin-bottom: 16px;">
+            <i data-feather="alert-circle" style="width: 20px; height: 20px;"></i>
+            <div><strong>3 cases</strong> have significant marks difference between evaluators. Third evaluator review recommended before freezing.</div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Dummy No.</th>
+                  <th>Reg. Number</th>
+                  <th>Student Name</th>
+                  <th style="text-align: center;">Internal Marks</th>
+                  <th style="text-align: center;">External Marks</th>
+                  <th style="text-align: center;">Difference</th>
+                  <th>Issue Type</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #FEF3C7;">
+                  <td style="font-family: monospace; font-weight: 600;">DN-1045</td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024045</td>
+                  <td style="font-weight: 500;">Arun Kumar</td>
+                  <td style="text-align: center; font-weight: 600;">38/40</td>
+                  <td style="text-align: center; font-weight: 600;">25/60</td>
+                  <td style="text-align: center; font-weight: 600; color: #F59E0B;">32%</td>
+                  <td>
+                    <span class="status status-warning">
+                      <span class="status-dot"></span>
+                      Large Variance
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Answer Sheet">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Assign Third Evaluator">
+                      <i data-feather="user-plus" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #FEF3C7;">
+                  <td style="font-family: monospace; font-weight: 600;">DN-1132</td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024132</td>
+                  <td style="font-weight: 500;">Meera Patel</td>
+                  <td style="text-align: center; font-weight: 600;">15/40</td>
+                  <td style="text-align: center; font-weight: 600;">48/60</td>
+                  <td style="text-align: center; font-weight: 600; color: #F59E0B;">41%</td>
+                  <td>
+                    <span class="status status-warning">
+                      <span class="status-dot"></span>
+                      Large Variance
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Answer Sheet">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Assign Third Evaluator">
+                      <i data-feather="user-plus" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #FEF3C7;">
+                  <td style="font-family: monospace; font-weight: 600;">DN-1198</td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024198</td>
+                  <td style="font-weight: 500;">Sanjay Reddy</td>
+                  <td style="text-align: center; font-weight: 600;">32/40</td>
+                  <td style="text-align: center; font-weight: 600;">18/60</td>
+                  <td style="text-align: center; font-weight: 600; color: #F59E0B;">35%</td>
+                  <td>
+                    <span class="status status-warning">
+                      <span class="status-dot"></span>
+                      Large Variance
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Answer Sheet">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Assign Third Evaluator">
+                      <i data-feather="user-plus" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Statistical Analysis -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Statistical Analysis - CS501</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;">
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Students</div>
+              <div style="font-size: 24px; font-weight: 600;">245</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Appeared for exam</div>
+            </div>
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Passed</div>
+              <div style="font-size: 24px; font-weight: 600; color: #22C55E;">218</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">89% Pass Rate</div>
+            </div>
+            <div style="background: #FEE2E2; border: 1px solid #FCA5A5; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Failed</div>
+              <div style="font-size: 24px; font-weight: 600; color: #EF4444;">27</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">11% Fail Rate</div>
+            </div>
+            <div style="background: #EFF6FF; border: 1px solid #93C5FD; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Average Marks</div>
+              <div style="font-size: 24px; font-weight: 600; color: #3B82F6;">72.5</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Out of 100</div>
+            </div>
+          </div>
+
+          <!-- Grade Distribution -->
+          <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 24px;">
+            <div style="font-weight: 600; margin-bottom: 16px; font-size: 14px;">Grade Distribution</div>
+            <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px;">
+              <div style="text-align: center;">
+                <div style="font-size: 24px; font-weight: 600; color: #22C55E;">38</div>
+                <div class="text-xs" style="color: #6B7280; margin-top: 4px;">O (90-100)</div>
+                <div class="text-xs" style="font-weight: 500; margin-top: 2px;">15.5%</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 24px; font-weight: 600; color: #22C55E;">52</div>
+                <div class="text-xs" style="color: #6B7280; margin-top: 4px;">A+ (80-89)</div>
+                <div class="text-xs" style="font-weight: 500; margin-top: 2px;">21.2%</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 24px; font-weight: 600; color: #3B82F6;">68</div>
+                <div class="text-xs" style="color: #6B7280; margin-top: 4px;">A (70-79)</div>
+                <div class="text-xs" style="font-weight: 500; margin-top: 2px;">27.8%</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 24px; font-weight: 600; color: #3B82F6;">35</div>
+                <div class="text-xs" style="color: #6B7280; margin-top: 4px;">B+ (60-69)</div>
+                <div class="text-xs" style="font-weight: 500; margin-top: 2px;">14.3%</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 24px; font-weight: 600; color: #F59E0B;">25</div>
+                <div class="text-xs" style="color: #6B7280; margin-top: 4px;">B (50-59)</div>
+                <div class="text-xs" style="font-weight: 500; margin-top: 2px;">10.2%</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 24px; font-weight: 600; color: #F59E0B;">14</div>
+                <div class="text-xs" style="color: #6B7280; margin-top: 4px;">C (40-49)</div>
+                <div class="text-xs" style="font-weight: 500; margin-top: 2px;">5.7%</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 24px; font-weight: 600; color: #EF4444;">13</div>
+                <div class="text-xs" style="color: #6B7280; margin-top: 4px;">F (<40)</div>
+                <div class="text-xs" style="font-weight: 500; margin-top: 2px;">5.3%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: Result Reports Generation -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Generate Result Reports</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+            <!-- Report Card 1 -->
+            <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 20px;">
+              <div style="display: flex; align-items: start; gap: 12px; margin-bottom: 16px;">
+                <i data-feather="file-text" style="width: 24px; height: 24px; color: #2563EB;"></i>
+                <div style="flex: 1;">
+                  <div style="font-weight: 600; font-size: 14px; color: #111827; margin-bottom: 4px;">Subject-wise Result Summary</div>
+                  <div class="text-xs" style="color: #6B7280;">Pass/Fail statistics, grade distribution, and subject performance analysis</div>
+                </div>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn btn-sm btn-secondary" style="flex: 1;">
+                  <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                  PDF
+                </button>
+                <button class="btn btn-sm btn-secondary" style="flex: 1;">
+                  <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+                  Excel
+                </button>
+              </div>
+            </div>
+
+            <!-- Report Card 2 -->
+            <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 20px;">
+              <div style="display: flex; align-items: start; gap: 12px; margin-bottom: 16px;">
+                <i data-feather="users" style="width: 24px; height: 24px; color: #2563EB;"></i>
+                <div style="flex: 1;">
+                  <div style="font-weight: 600; font-size: 14px; color: #111827; margin-bottom: 4px;">Student-wise Mark Statement</div>
+                  <div class="text-xs" style="color: #6B7280;">Individual student marks with internal, external, and total scores</div>
+                </div>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn btn-sm btn-secondary" style="flex: 1;">
+                  <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                  PDF
+                </button>
+                <button class="btn btn-sm btn-secondary" style="flex: 1;">
+                  <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+                  Excel
+                </button>
+              </div>
+            </div>
+
+            <!-- Report Card 3 -->
+            <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 20px;">
+              <div style="display: flex; align-items: start; gap: 12px; margin-bottom: 16px;">
+                <i data-feather="bar-chart-2" style="width: 24px; height: 24px; color: #2563EB;"></i>
+                <div style="flex: 1;">
+                  <div style="font-weight: 600; font-size: 14px; color: #111827; margin-bottom: 4px;">Department-wise Performance Report</div>
+                  <div class="text-xs" style="color: #6B7280;">Comparative analysis across departments and programs</div>
+                </div>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn btn-sm btn-secondary" style="flex: 1;">
+                  <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                  PDF
+                </button>
+                <button class="btn btn-sm btn-secondary" style="flex: 1;">
+                  <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+                  Excel
+                </button>
+              </div>
+            </div>
+
+            <!-- Report Card 4 -->
+            <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 20px;">
+              <div style="display: flex; align-items: start; gap: 12px; margin-bottom: 16px;">
+                <i data-feather="user-check" style="width: 24px; height: 24px; color: #2563EB;"></i>
+                <div style="flex: 1;">
+                  <div style="font-weight: 600; font-size: 14px; color: #111827; margin-bottom: 4px;">Evaluator Performance Report</div>
+                  <div class="text-xs" style="color: #6B7280;">Evaluator workload, completion rates, and marking patterns</div>
+                </div>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn btn-sm btn-secondary" style="flex: 1;">
+                  <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                  PDF
+                </button>
+                <button class="btn btn-sm btn-secondary" style="flex: 1;">
+                  <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+                  Excel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 6: Freeze Authorization -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Freeze Authorization</h2>
+        </div>
+        <div class="section-body">
+          <div class="alert alert-warning" style="margin-bottom: 24px;">
+            <i data-feather="alert-circle" style="width: 20px; height: 20px;"></i>
+            <div><strong>Warning:</strong> Freezing results will lock all marks and prevent further modifications. This action requires Exam Controller authorization and cannot be undone without formal approval process.</div>
+          </div>
+
+          <div style="background: #F8F9FA; border: 2px solid #E5E7EB; border-radius: 8px; padding: 24px;">
+            <div style="font-weight: 600; margin-bottom: 16px; font-size: 14px;">Authorization Details</div>
+
+            <div style="display: grid; gap: 16px;">
+              <div class="form-group">
+                <label class="form-label required">Authorized By</label>
+                <input type="text" class="form-input" value="Dr. Ramesh Kumar - Exam Controller" readonly />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label required">Digital Signature / Authentication</label>
+                <div style="display: flex; gap: 8px;">
+                  <input type="password" class="form-input" placeholder="Enter authentication password" style="flex: 1;" />
+                  <button class="btn btn-secondary">
+                    <i data-feather="key" style="width: 16px; height: 16px;"></i>
+                    Verify
+                  </button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label required">Freeze Remarks</label>
+                <textarea class="form-input" rows="3" placeholder="Enter remarks for freezing results (reason, approval details, etc.)"></textarea>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 8px; padding: 12px; background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px;">
+                <input type="checkbox" id="confirmFreeze" />
+                <label for="confirmFreeze" style="font-size: 13px; color: #111827; cursor: pointer;">
+                  I confirm that all validations have been reviewed and results are ready to be frozen
+                </label>
+              </div>
+
+              <div style="display: flex; gap: 8px; justify-content: flex-end; margin-top: 8px;">
+                <button class="btn btn-secondary">
+                  <i data-feather="x" style="width: 16px; height: 16px;"></i>
+                  Cancel
+                </button>
+                <button class="btn btn-primary" style="background: #F59E0B; border-color: #F59E0B;">
+                  <i data-feather="lock" style="width: 16px; height: 16px;"></i>
+                  Freeze Results & Publish
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 7: Freeze History (if applicable) -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Freeze History - December 2024</h2>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Subject</th>
+                  <th>Freeze Date & Time</th>
+                  <th>Authorized By</th>
+                  <th>Students Affected</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-weight: 500;">CS502 - Database Management Systems</td>
+                  <td style="font-size: 12px;">
+                    <div>12-Dec-2024</div>
+                    <div style="color: #6B7280;">03:45 PM</div>
+                  </td>
+                  <td>
+                    <div style="font-weight: 500;">Dr. Ramesh Kumar</div>
+                    <div class="text-xs" style="color: #6B7280;">Exam Controller</div>
+                  </td>
+                  <td style="text-align: center; font-weight: 500;">238</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Frozen & Published
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Freeze Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Download Report">
+                      <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-weight: 500;">CS503 - Operating Systems</td>
+                  <td style="font-size: 12px;">
+                    <div>10-Dec-2024</div>
+                    <div style="color: #6B7280;">11:20 AM</div>
+                  </td>
+                  <td>
+                    <div style="font-weight: 500;">Dr. Ramesh Kumar</div>
+                    <div class="text-xs" style="color: #6B7280;">Exam Controller</div>
+                  </td>
+                  <td style="text-align: center; font-weight: 500;">242</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Frozen & Published
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Freeze Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Download Report">
+                      <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

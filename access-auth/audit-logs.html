@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audit Logs - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Access & Authentication
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <a href="login.html" class="dropdown-item">Login</a>
+        <a href="../dashboard.html" class="dropdown-item">Dashboard</a>
+        <a href="access-control.html" class="dropdown-item">Access Control</a>
+        <a href="audit-logs.html" class="dropdown-item active">Audit Logs</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search logs..." />
+      </div>
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #DC2626; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">SA</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Super Admin</div>
+            <div style="font-size: 11px; color: #6B7280;">Audit & Compliance</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Access & Authentication</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Audit Logs</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="archive" style="width: 16px; height: 16px;"></i>
+        Archive Old Logs
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export Audit Report
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Audit Summary Statistics -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Audit Trail Summary - Last 24 Hours</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;">
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Activities</div>
+              <div style="font-size: 24px; font-weight: 600;">4,523</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">All logged actions</div>
+            </div>
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Successful Actions</div>
+              <div style="font-size: 24px; font-weight: 600; color: #22C55E;">4,380</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">96.8% success rate</div>
+            </div>
+            <div style="background: #FEE2E2; border: 1px solid #FCA5A5; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Failed Actions</div>
+              <div style="font-size: 24px; font-weight: 600; color: #DC2626;">143</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Requires review</div>
+            </div>
+            <div style="background: #DBEAFE; border: 1px solid #93C5FD; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Data Modifications</div>
+              <div style="font-size: 24px; font-weight: 600; color: #3B82F6;">856</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Create/Update/Delete</div>
+            </div>
+            <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Security Events</div>
+              <div style="font-size: 24px; font-weight: 600; color: #F59E0B;">12</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Suspicious activities</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alert Rules -->
+      <div class="alert alert-info">
+        <i data-feather="info" style="width: 20px; height: 20px;"></i>
+        <div>
+          <strong>Active Alert Rules:</strong> 5 automated alert rules are monitoring for suspicious activities (failed logins, off-hours access, bulk data exports, permission changes, and configuration modifications).
+        </div>
+        <button class="btn btn-sm btn-ghost">
+          <i data-feather="settings" style="width: 16px; height: 16px;"></i>
+          Configure
+        </button>
+      </div>
+
+      <!-- Advanced Search & Filters -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Search Audit Logs</h2>
+          <button class="btn btn-sm btn-ghost" onclick="document.getElementById('advancedFilters').style.display='block'">
+            <i data-feather="filter" style="width: 16px; height: 16px;"></i>
+            Advanced Filters
+          </button>
+        </div>
+        <div class="section-body">
+
+          <!-- Basic Filters -->
+          <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 16px;">
+            <div class="form-group">
+              <label class="form-label">Date Range</label>
+              <select class="form-select">
+                <option value="today">Today</option>
+                <option value="yesterday">Yesterday</option>
+                <option value="7days">Last 7 Days</option>
+                <option value="30days">Last 30 Days</option>
+                <option value="custom">Custom Range</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">User</label>
+              <input type="text" class="form-input" placeholder="User ID or name" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Module</label>
+              <select class="form-select">
+                <option value="">All Modules</option>
+                <option value="registration">Exam Registration</option>
+                <option value="scheduling">Exam Scheduling</option>
+                <option value="ia">Internal Assessment</option>
+                <option value="hallticket">Hall Ticket</option>
+                <option value="conduct">Conduct of Exam</option>
+                <option value="evaluation">Evaluation & Results</option>
+                <option value="marksheet">Mark Sheet</option>
+                <option value="certificates">Certificates</option>
+                <option value="auth">Access & Auth</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Action Type</label>
+              <select class="form-select">
+                <option value="">All Actions</option>
+                <option value="login">Login/Logout</option>
+                <option value="create">Create</option>
+                <option value="update">Update</option>
+                <option value="delete">Delete</option>
+                <option value="approve">Approve</option>
+                <option value="export">Export/Download</option>
+              </select>
+            </div>
+            <div style="display: flex; align-items: end;">
+              <button class="btn btn-primary" style="width: 100%;">
+                <i data-feather="search" style="width: 16px; height: 16px;"></i>
+                Search
+              </button>
+            </div>
+          </div>
+
+          <!-- Advanced Filters Modal (Hidden by default) -->
+          <div id="advancedFilters" style="display: none; background: #F8F9FA; padding: 16px; border-radius: 6px; margin-top: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <h4 style="font-size: 14px; font-weight: 600;">Advanced Filters</h4>
+              <button class="btn btn-sm btn-ghost" onclick="document.getElementById('advancedFilters').style.display='none'">
+                <i data-feather="x" style="width: 16px; height: 16px;"></i>
+              </button>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+              <div class="form-group">
+                <label class="form-label">IP Address</label>
+                <input type="text" class="form-input" placeholder="e.g., 192.168.1.10" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Status</label>
+                <select class="form-select">
+                  <option value="">All Status</option>
+                  <option value="success">Success</option>
+                  <option value="failure">Failure</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Session ID</label>
+                <input type="text" class="form-input" placeholder="Session identifier" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Data Modified</label>
+                <select class="form-select">
+                  <option value="">All</option>
+                  <option value="yes">Data Modified</option>
+                  <option value="no">Read-only</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Audit Logs Table -->
+      <div class="section">
+        <div class="section-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Audit Trail (4,523 entries)</h2>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-sm btn-ghost">
+              <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+              View Timeline
+            </button>
+            <button class="btn btn-sm btn-ghost">
+              <i data-feather="download" style="width: 16px; height: 16px;"></i>
+              Export CSV
+            </button>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>User</th>
+                  <th>Action</th>
+                  <th>Module / Screen</th>
+                  <th>IP Address</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-size: 12px;">
+                    16-Nov-2024<br/>
+                    <span style="color: #6B7280;">14:45:22</span>
+                  </td>
+                  <td>
+                    <div style="font-weight: 500; font-size: 13px;">Exam Controller</div>
+                    <div style="font-size: 11px; color: #6B7280; font-family: monospace;">CTRL-001</div>
+                  </td>
+                  <td>
+                    <div style="font-size: 13px; font-weight: 500;">Approved 45 Applications</div>
+                    <div style="font-size: 11px; color: #6B7280;">Batch Approval</div>
+                  </td>
+                  <td style="font-size: 12px;">
+                    Exam Registration<br/>
+                    <span style="color: #6B7280;">Verification Screen</span>
+                  </td>
+                  <td style="font-family: monospace; font-size: 12px;">192.168.1.15</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Success
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Full Details" onclick="document.getElementById('logDetailsModal').style.display='block'">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-size: 12px;">
+                    16-Nov-2024<br/>
+                    <span style="color: #6B7280;">14:42:15</span>
+                  </td>
+                  <td>
+                    <div style="font-weight: 500; font-size: 13px;">Data Entry Operator</div>
+                    <div style="font-size: 11px; color: #6B7280; font-family: monospace;">OP-001</div>
+                  </td>
+                  <td>
+                    <div style="font-size: 13px; font-weight: 500;">Created 12 Applications</div>
+                    <div style="font-size: 11px; color: #6B7280;">Data Entry</div>
+                  </td>
+                  <td style="font-size: 12px;">
+                    Exam Registration<br/>
+                    <span style="color: #6B7280;">Data Entry Screen</span>
+                  </td>
+                  <td style="font-family: monospace; font-size: 12px;">192.168.1.10</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Success
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Full Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-size: 12px;">
+                    16-Nov-2024<br/>
+                    <span style="color: #6B7280;">14:38:05</span>
+                  </td>
+                  <td>
+                    <div style="font-weight: 500; font-size: 13px;">Deputy Controller</div>
+                    <div style="font-size: 11px; color: #6B7280; font-family: monospace;">DEP-203</div>
+                  </td>
+                  <td>
+                    <div style="font-size: 13px; font-weight: 500;">Generated Hall Tickets</div>
+                    <div style="font-size: 11px; color: #6B7280;">Bulk Generation</div>
+                  </td>
+                  <td style="font-size: 12px;">
+                    Hall Ticket<br/>
+                    <span style="color: #6B7280;">Generation Screen</span>
+                  </td>
+                  <td style="font-family: monospace; font-size: 12px;">192.168.1.25</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Success
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Full Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #FEE2E2;">
+                  <td style="font-size: 12px;">
+                    16-Nov-2024<br/>
+                    <span style="color: #6B7280;">14:35:22</span>
+                  </td>
+                  <td>
+                    <div style="font-weight: 500; font-size: 13px; color: #DC2626;">Unknown User</div>
+                    <div style="font-size: 11px; color: #DC2626; font-family: monospace;">FAILED_LOGIN</div>
+                  </td>
+                  <td>
+                    <div style="font-size: 13px; font-weight: 500;">Login Attempt</div>
+                    <div style="font-size: 11px; color: #DC2626;">Invalid Credentials</div>
+                  </td>
+                  <td style="font-size: 12px;">
+                    Access & Auth<br/>
+                    <span style="color: #6B7280;">Login Screen</span>
+                  </td>
+                  <td style="font-family: monospace; font-size: 12px; color: #DC2626;">203.122.45.67</td>
+                  <td>
+                    <span class="status status-rejected">
+                      <span class="status-dot"></span>
+                      Failed
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Full Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #DBEAFE;">
+                  <td style="font-size: 12px;">
+                    16-Nov-2024<br/>
+                    <span style="color: #6B7280;">14:30:10</span>
+                  </td>
+                  <td>
+                    <div style="font-weight: 500; font-size: 13px;">Assistant Controller</div>
+                    <div style="font-size: 11px; color: #6B7280; font-family: monospace;">AST-102</div>
+                  </td>
+                  <td>
+                    <div style="font-size: 13px; font-weight: 500;">Exported Mark Sheet List</div>
+                    <div style="font-size: 11px; color: #6B7280;">Excel Export</div>
+                  </td>
+                  <td style="font-size: 12px;">
+                    Mark Sheet<br/>
+                    <span style="color: #6B7280;">Search & Export Screen</span>
+                  </td>
+                  <td style="font-family: monospace; font-size: 12px;">192.168.1.20</td>
+                  <td>
+                    <span class="status status-info">
+                      <span class="status-dot"></span>
+                      Export
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Full Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-size: 12px;">
+                    16-Nov-2024<br/>
+                    <span style="color: #6B7280;">14:25:45</span>
+                  </td>
+                  <td>
+                    <div style="font-weight: 500; font-size: 13px;">Exam Controller</div>
+                    <div style="font-size: 11px; color: #6B7280; font-family: monospace;">CTRL-001</div>
+                  </td>
+                  <td>
+                    <div style="font-size: 13px; font-weight: 500;">Updated Fee Structure</div>
+                    <div style="font-size: 11px; color: #6B7280;">Configuration Change</div>
+                  </td>
+                  <td style="font-size: 12px;">
+                    Exam Registration<br/>
+                    <span style="color: #6B7280;">Fee Configuration</span>
+                  </td>
+                  <td style="font-family: monospace; font-size: 12px;">192.168.1.15</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Success
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Full Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-size: 12px;">
+                    16-Nov-2024<br/>
+                    <span style="color: #6B7280;">14:20:30</span>
+                  </td>
+                  <td>
+                    <div style="font-weight: 500; font-size: 13px;">Data Entry Operator</div>
+                    <div style="font-size: 11px; color: #6B7280; font-family: monospace;">OP-001</div>
+                  </td>
+                  <td>
+                    <div style="font-size: 13px; font-weight: 500;">Login</div>
+                    <div style="font-size: 11px; color: #6B7280;">Biometric Authentication</div>
+                  </td>
+                  <td style="font-size: 12px;">
+                    Access & Auth<br/>
+                    <span style="color: #6B7280;">Login Screen</span>
+                  </td>
+                  <td style="font-family: monospace; font-size: 12px;">192.168.1.10</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Success
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Full Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid #E5E7EB;">
+            <div style="font-size: 13px; color: #6B7280;">
+              Showing 1-10 of 4,523 entries
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn btn-sm btn-secondary" disabled>
+                <i data-feather="chevron-left" style="width: 16px; height: 16px;"></i>
+                Previous
+              </button>
+              <button class="btn btn-sm btn-primary">
+                Next
+                <i data-feather="chevron-right" style="width: 16px; height: 16px;"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- User Activity Timeline -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Most Active Users (Last 24 Hours)</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+            <div style="background: #F8F9FA; padding: 16px; border-radius: 6px; border: 1px solid #E5E7EB;">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">EC</div>
+                <div>
+                  <div style="font-weight: 500; font-size: 14px;">Exam Controller</div>
+                  <div style="font-size: 11px; color: #6B7280;">CTRL-001</div>
+                </div>
+              </div>
+              <div style="font-size: 24px; font-weight: 600; margin-bottom: 4px;">342</div>
+              <div style="font-size: 12px; color: #6B7280;">actions performed</div>
+            </div>
+            <div style="background: #F8F9FA; padding: 16px; border-radius: 6px; border: 1px solid #E5E7EB;">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: #10B981; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">DE</div>
+                <div>
+                  <div style="font-weight: 500; font-size: 14px;">Data Entry Operator</div>
+                  <div style="font-size: 11px; color: #6B7280;">OP-001</div>
+                </div>
+              </div>
+              <div style="font-size: 24px; font-weight: 600; margin-bottom: 4px;">285</div>
+              <div style="font-size: 12px; color: #6B7280;">actions performed</div>
+            </div>
+            <div style="background: #F8F9FA; padding: 16px; border-radius: 6px; border: 1px solid #E5E7EB;">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: #6B7280; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">DC</div>
+                <div>
+                  <div style="font-weight: 500; font-size: 14px;">Deputy Controller</div>
+                  <div style="font-size: 11px; color: #6B7280;">DEP-203</div>
+                </div>
+              </div>
+              <div style="font-size: 24px; font-weight: 600; margin-bottom: 4px;">198</div>
+              <div style="font-size: 12px; color: #6B7280;">actions performed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Log Details Modal -->
+  <div id="logDetailsModal" class="modal">
+    <div class="modal-content" style="max-width: 800px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Audit Log Details</h3>
+        <button class="modal-close" onclick="document.getElementById('logDetailsModal').style.display='none'">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Log Entry Information -->
+        <div style="background: #F8F9FA; padding: 16px; border-radius: 6px; margin-bottom: 16px;">
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Timestamp</div>
+              <div style="font-weight: 600;">16-November-2024, 14:45:22</div>
+            </div>
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Session ID</div>
+              <div style="font-family: monospace;">SES-2024111614-CTRL001</div>
+            </div>
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">User</div>
+              <div style="font-weight: 600;">Exam Controller (CTRL-001)</div>
+            </div>
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">IP Address</div>
+              <div style="font-family: monospace;">192.168.1.15</div>
+            </div>
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Device</div>
+              <div>CONTROLLER-LAPTOP (Laptop)</div>
+            </div>
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Location</div>
+              <div>Administrative Block</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Details -->
+        <div style="margin-bottom: 16px;">
+          <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 8px;">Action Details</h4>
+          <div style="background: #F8F9FA; padding: 12px; border-radius: 6px; font-size: 13px;">
+            <strong>Action:</strong> Batch Approval of Applications<br/>
+            <strong>Module:</strong> Exam Registration - Verification Screen<br/>
+            <strong>Records Affected:</strong> 45 applications
+          </div>
+        </div>
+
+        <!-- Data Changes -->
+        <div style="margin-bottom: 16px;">
+          <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 8px;">Data Modifications</h4>
+          <div style="background: #F8F9FA; padding: 12px; border-radius: 6px; font-size: 12px; font-family: monospace;">
+            <div style="margin-bottom: 8px;"><strong>Field:</strong> status</div>
+            <div style="color: #DC2626;">- Before: pending_verification</div>
+            <div style="color: #22C55E;">+ After: approved</div>
+          </div>
+        </div>
+
+        <!-- Additional Metadata -->
+        <div>
+          <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 8px;">Additional Information</h4>
+          <div style="background: #F8F9FA; padding: 12px; border-radius: 6px; font-size: 13px;">
+            <strong>Status:</strong> <span class="status status-approved"><span class="status-dot"></span>Success</span><br/>
+            <strong>Duration:</strong> 2.3 seconds<br/>
+            <strong>Remarks:</strong> Batch approval performed successfully for BCA 2024-25 applications
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="document.getElementById('logDetailsModal').style.display='none'">Close</button>
+        <button class="btn btn-primary">
+          <i data-feather="download" style="width: 16px; height: 16px;"></i>
+          Export Log Entry
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

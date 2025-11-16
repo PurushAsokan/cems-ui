@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supplementary Result Integration - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Evaluation & Results
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px; max-height: 500px; overflow-y: auto;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Result Processing</div>
+        <a href="result-compilation.html" class="dropdown-item">Result Compilation</a>
+        <a href="result-verification.html" class="dropdown-item">Result Verification</a>
+        <a href="result-freeze.html" class="dropdown-item">Freeze Results</a>
+        <a href="result-publish.html" class="dropdown-item">Publish Results</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Revaluation</div>
+        <a href="revaluation-request.html" class="dropdown-item">Revaluation Request Entry</a>
+        <a href="revaluation-verification.html" class="dropdown-item">Eligibility Verification</a>
+        <a href="revaluation-processing.html" class="dropdown-item">Processing & Marks Entry</a>
+        <a href="revaluation-results.html" class="dropdown-item">Revaluation Results</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Retotaling</div>
+        <a href="retotaling-request.html" class="dropdown-item">Retotaling Request Entry</a>
+        <a href="retotaling-verification.html" class="dropdown-item">Retotaling Verification</a>
+        <a href="retotaling-results.html" class="dropdown-item">Retotaling Results</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Results</div>
+        <a href="supplementary-marks-entry.html" class="dropdown-item">Supplementary Marks Entry</a>
+        <a href="supplementary-result-integration.html" class="dropdown-item active">Result Integration</a>
+        <a href="supplementary-result-publish.html" class="dropdown-item">Publish Results</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">EC</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Exam Controller</div>
+            <div style="font-size: 11px; color: #6B7280;">CTRL-001</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <a href="result-compilation.html" class="breadcrumb-item">Evaluation & Results</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Supplementary Result Integration</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export Report
+      </button>
+      <button class="btn btn-sm btn-primary" onclick="approveIntegration()">
+        <i data-feather="check" style="width: 16px; height: 16px;"></i>
+        Approve & Integrate
+      </button>
+    </div>
+  </div>
+
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Integration Summary -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Supplementary Result Integration Summary - June 2025</h2>
+        </div>
+        <div class="section-body">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Students</div>
+              <div class="stat-value">248</div>
+              <div class="text-xs text-secondary" style="margin-top: 4px;">Appeared for supplementary</div>
+            </div>
+            <div class="stat-card">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Students Cleared</div>
+              <div class="stat-value">186</div>
+              <div style="margin-top: 4px;">
+                <span class="badge badge-success">75% pass rate</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">CGPA Updates</div>
+              <div class="stat-value">142</div>
+              <div class="text-xs text-info" style="margin-top: 4px;">CGPA improved</div>
+            </div>
+            <div class="stat-card">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Classification Changes</div>
+              <div class="stat-value">38</div>
+              <div class="text-xs text-success" style="margin-top: 4px;">Upgraded classification</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Students Pending Integration -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Students Pending Result Integration</h2>
+          <div class="text-sm" style="color: #6B7280;">24 students with verified supplementary marks</div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 50px;"><input type="checkbox" id="selectAll" /></th>
+                  <th>Reg. Number</th>
+                  <th>Student Name</th>
+                  <th>Subjects Cleared</th>
+                  <th>Current CGPA</th>
+                  <th>New CGPA</th>
+                  <th>Classification</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #ECFDF5;">
+                  <td style="text-align: center;"><input type="checkbox" class="student-checkbox" /></td>
+                  <td style="font-family: monospace; font-weight: 600;">25ENG1045</td>
+                  <td>Rajesh Kumar M</td>
+                  <td>
+                    <div style="font-weight: 500;">3/3 cleared</div>
+                    <div class="text-xs" style="color: #6B7280;">CS401, CS402, CS501</div>
+                  </td>
+                  <td>
+                    <div style="font-weight: 600; color: #F59E0B;">6.82</div>
+                    <div class="text-xs" style="color: #6B7280;">Second Class</div>
+                  </td>
+                  <td>
+                    <div style="font-weight: 600; color: #10B981;">7.45 ↑</div>
+                    <div class="text-xs" style="color: #065F46;">+0.63 increase</div>
+                  </td>
+                  <td>
+                    <div><span class="badge badge-success">First Class</span></div>
+                    <div class="text-xs" style="color: #065F46;">Upgraded ⬆</div>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" onclick="viewIntegrationDetails('25ENG1045')">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      View
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #ECFDF5;">
+                  <td style="text-align: center;"><input type="checkbox" class="student-checkbox" /></td>
+                  <td style="font-family: monospace; font-weight: 600;">25ENG1023</td>
+                  <td>Priya Sharma R</td>
+                  <td>
+                    <div style="font-weight: 500;">2/2 cleared</div>
+                    <div class="text-xs" style="color: #6B7280;">CS401, EC301</div>
+                  </td>
+                  <td>
+                    <div style="font-weight: 600; color: #DC2626;">5.95</div>
+                    <div class="text-xs" style="color: #6B7280;">Second Class</div>
+                  </td>
+                  <td>
+                    <div style="font-weight: 600; color: #10B981;">6.68 ↑</div>
+                    <div class="text-xs" style="color: #065F46;">+0.73 increase</div>
+                  </td>
+                  <td>
+                    <div><span class="badge badge-warning">Second Class</span></div>
+                    <div class="text-xs" style="color: #6B7280;">No change</div>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" onclick="viewIntegrationDetails('25ENG1023')">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      View
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #FEE2E2;">
+                  <td style="text-align: center;"><input type="checkbox" class="student-checkbox" disabled /></td>
+                  <td style="font-family: monospace; font-weight: 600;">25ENG1067</td>
+                  <td>Arun Kumar M</td>
+                  <td>
+                    <div style="font-weight: 500;">1/4 cleared</div>
+                    <div class="text-xs" style="color: #DC2626;">CS401 passed, 3 failed</div>
+                  </td>
+                  <td>
+                    <div style="font-weight: 600; color: #DC2626;">5.12</div>
+                    <div class="text-xs" style="color: #6B7280;">Third Class</div>
+                  </td>
+                  <td>
+                    <div style="font-weight: 600; color: #DC2626;">5.34 ↑</div>
+                    <div class="text-xs" style="color: #DC2626;">+0.22 (still failing)</div>
+                  </td>
+                  <td>
+                    <div><span class="badge badge-error">Arrears Remain</span></div>
+                    <div class="text-xs" style="color: #DC2626;">3 subjects pending</div>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" onclick="viewIntegrationDetails('25ENG1067')">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      View
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top: 16px; padding: 12px; background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 6px;">
+            <div style="font-size: 13px; color: #065F46;">
+              <i data-feather="check-circle" style="width: 14px; height: 14px; display: inline; vertical-align: middle;"></i>
+              <strong>Integration Rules:</strong> Supplementary marks replace original failed marks → Semester SGPA recalculated → Overall CGPA updated → Classification re-determined → Transcript updated → Mark sheet regeneration triggered.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Integration Details Modal -->
+  <div id="detailsModal" class="modal">
+    <div class="modal-content" style="max-width: 900px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Result Integration Details - 25ENG1045</h3>
+        <button class="modal-close" onclick="document.getElementById('detailsModal').style.display='none'">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Student Info -->
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; padding: 16px; background: #F8F9FA; border-radius: 6px;">
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Registration Number</div>
+            <div style="font-size: 14px; font-weight: 600; font-family: monospace;">25ENG1045</div>
+          </div>
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Student Name</div>
+            <div style="font-size: 14px; font-weight: 500;">Rajesh Kumar M</div>
+          </div>
+        </div>
+
+        <!-- Before/After Comparison -->
+        <div style="margin-bottom: 24px;">
+          <div style="font-size: 14px; font-weight: 600; margin-bottom: 12px;">Subject-wise Before/After Comparison</div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Subject</th>
+                  <th>Original Result</th>
+                  <th>Supplementary Marks</th>
+                  <th>New Total</th>
+                  <th>Grade Change</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #ECFDF5;">
+                  <td>CS401</td>
+                  <td>
+                    <div style="color: #DC2626; text-decoration: line-through;">36 (F)</div>
+                    <div class="text-xs">CIA: 28 | ESE: 18</div>
+                  </td>
+                  <td style="font-weight: 600; color: #10B981;">ESE: 42</td>
+                  <td style="font-weight: 600; color: #10B981;">70 (B+)</td>
+                  <td><span class="badge badge-success">F → B+</span></td>
+                </tr>
+                <tr style="background: #ECFDF5;">
+                  <td>CS402</td>
+                  <td>
+                    <div style="color: #DC2626; text-decoration: line-through;">37 (F)</div>
+                    <div class="text-xs">CIA: 22 | ESE: 15</div>
+                  </td>
+                  <td style="font-weight: 600; color: #10B981;">ESE: 38</td>
+                  <td style="font-weight: 600; color: #10B981;">60 (B+)</td>
+                  <td><span class="badge badge-success">F → B+</span></td>
+                </tr>
+                <tr style="background: #ECFDF5;">
+                  <td>CS501</td>
+                  <td>
+                    <div style="color: #DC2626; text-decoration: line-through;">0 (AB)</div>
+                    <div class="text-xs">Absent</div>
+                  </td>
+                  <td style="font-weight: 600; color: #10B981;">ESE: 45</td>
+                  <td style="font-weight: 600; color: #10B981;">72 (A)</td>
+                  <td><span class="badge badge-success">AB → A</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- CGPA Calculation -->
+        <div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 6px; padding: 16px; margin-bottom: 16px;">
+          <div style="font-size: 14px; font-weight: 600; margin-bottom: 12px;">CGPA Recalculation</div>
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+            <div>
+              <div style="font-size: 11px; color: #1E40AF; margin-bottom: 4px;">Before (Original)</div>
+              <div style="font-size: 24px; font-weight: 700; color: #F59E0B;">6.82</div>
+              <div style="font-size: 12px; color: #92400E; margin-top: 4px;">Second Class</div>
+            </div>
+            <div>
+              <div style="font-size: 11px; color: #065F46; margin-bottom: 4px;">After (Integrated)</div>
+              <div style="font-size: 24px; font-weight: 700; color: #10B981;">7.45</div>
+              <div style="font-size: 12px; color: #065F46; margin-top: 4px;">First Class ⬆</div>
+            </div>
+          </div>
+          <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #BFDBFE;">
+            <div style="font-size: 13px; color: #1E40AF;">
+              <strong>Change:</strong> +0.63 CGPA increase | <strong>Classification:</strong> Second Class → First Class
+            </div>
+          </div>
+        </div>
+
+        <!-- Actions Required -->
+        <div style="background: #FFFBEB; border: 1px solid #FCD34D; border-radius: 6px; padding: 12px;">
+          <div style="font-size: 12px; font-weight: 600; margin-bottom: 8px; color: #92400E;">Actions After Integration:</div>
+          <ul style="margin: 0; padding-left: 20px; font-size: 11px; color: #92400E;">
+            <li>Update semester SGPA for affected semesters</li>
+            <li>Recalculate overall CGPA (6.82 → 7.45)</li>
+            <li>Update classification (Second Class → First Class)</li>
+            <li>Regenerate mark sheet with updated grades</li>
+            <li>Update transcript with supplementary marks</li>
+            <li>Notify student of updated results</li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="document.getElementById('detailsModal').style.display='none'">Close</button>
+        <button class="btn btn-primary" onclick="integrateStudent()">
+          <i data-feather="check" style="width: 16px; height: 16px;"></i>
+          Integrate Results
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+
+    function viewIntegrationDetails(regNumber) {
+      document.getElementById('detailsModal').style.display = 'block';
+      feather.replace();
+    }
+
+    function integrateStudent() {
+      alert('Results integrated successfully!\n\n• CGPA updated: 6.82 → 7.45\n• Classification upgraded: Second Class → First Class\n• Mark sheet regeneration triggered\n• Student notified');
+      document.getElementById('detailsModal').style.display = 'none';
+    }
+
+    function approveIntegration() {
+      const selected = document.querySelectorAll('.student-checkbox:checked').length;
+      if (selected === 0) {
+        alert('Please select at least one student for result integration');
+        return;
+      }
+      if (confirm('Approve and integrate supplementary results for ' + selected + ' students?\n\nThis will:\n• Replace failed marks with supplementary marks\n• Recalculate CGPA\n• Update classifications\n• Regenerate mark sheets\n\nProceed?')) {
+        alert(selected + ' student results integrated successfully!\n\nCGPA and classifications updated.\nMark sheet regeneration in progress.');
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Batch Preparation - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Conduct of Examination
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <a href="attendance.html" class="dropdown-item">Attendance Entry</a>
+        <a href="marks-entry.html" class="dropdown-item">Marks Entry</a>
+        <a href="batch-preparation.html" class="dropdown-item active">Batch Preparation</a>
+        <a href="freeze-results.html" class="dropdown-item">Freeze & Reports</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">DC</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Deputy Controller</div>
+            <div style="font-size: 11px; color: #6B7280;">Batch Management</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Conduct of Examination</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Batch Preparation</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Download Batch Report
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="send" style="width: 16px; height: 16px;"></i>
+        Notify Evaluators
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Section 1: Subject & Batch Configuration -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Subject & Batch Configuration</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px;">
+            <div class="form-group">
+              <label class="form-label required">Exam Session</label>
+              <select class="form-select">
+                <option value="DEC2024" selected>December 2024 - Regular</option>
+                <option value="JUN2024">June 2024 - Regular</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Subject</label>
+              <select class="form-select">
+                <option value="">-- Select Subject --</option>
+                <option value="CS501" selected>CS501 - Data Structures & Algorithms</option>
+                <option value="CS502">CS502 - Database Management Systems</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Exam Type</label>
+              <select class="form-select">
+                <option value="theory" selected>Theory Exam</option>
+                <option value="practical">Practical Exam</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+            <div class="form-group">
+              <label class="form-label">Total Answer Sheets</label>
+              <input type="text" class="form-input" value="245" readonly />
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Batch Size (sheets per batch)</label>
+              <select class="form-select">
+                <option value="30">30 Sheets</option>
+                <option value="50" selected>50 Sheets (Recommended)</option>
+                <option value="75">75 Sheets</option>
+                <option value="100">100 Sheets</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Calculated Batches</label>
+              <input type="text" class="form-input" value="5 Batches" readonly />
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 8px; margin-top: 16px;">
+            <button class="btn btn-primary">
+              <i data-feather="grid" style="width: 16px; height: 16px;"></i>
+              Auto-Generate Batches
+            </button>
+            <button class="btn btn-secondary">
+              <i data-feather="settings" style="width: 16px; height: 16px;"></i>
+              Manual Batch Configuration
+            </button>
+          </div>
+
+          <div class="alert alert-info" style="margin-top: 16px;">
+            <i data-feather="info" style="width: 20px; height: 20px;"></i>
+            <div>245 answer sheets will be divided into <strong>5 batches</strong> of 50 sheets each (last batch: 45 sheets)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Batch Overview -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Batch Overview - CS501</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Batches</div>
+              <div style="font-size: 24px; font-weight: 600;">5</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">245 Answer Sheets</div>
+            </div>
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Assigned</div>
+              <div style="font-size: 24px; font-weight: 600; color: #22C55E;">5</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">All batches assigned</div>
+            </div>
+            <div style="background: #EFF6FF; border: 1px solid #93C5FD; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">In Progress</div>
+              <div style="font-size: 24px; font-weight: 600; color: #3B82F6;">3</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Evaluation ongoing</div>
+            </div>
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Completed</div>
+              <div style="font-size: 24px; font-weight: 600; color: #22C55E;">2</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Marks submitted</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Batch Assignment Table -->
+      <div class="section">
+        <div class="section-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Batch Assignment & Progress</h2>
+            <span class="status status-pending">
+              <span class="status-dot"></span>
+              5 Batches
+            </span>
+          </div>
+          <button class="btn btn-sm btn-secondary">
+            <i data-feather="refresh-cw" style="width: 16px; height: 16px;"></i>
+            Refresh Status
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Batch No.</th>
+                  <th>Dummy Number Range</th>
+                  <th style="text-align: center;">Sheet Count</th>
+                  <th>Internal Evaluator</th>
+                  <th>External Evaluator</th>
+                  <th>Deadline</th>
+                  <th style="text-align: center;">Progress</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-weight: 600; font-family: monospace;">BATCH-01</td>
+                  <td style="font-family: monospace;">DN-1001 to DN-1050</td>
+                  <td style="text-align: center; font-weight: 500;">50</td>
+                  <td>
+                    <div style="font-weight: 500;">Dr. Ramesh Kumar</div>
+                    <div class="text-xs" style="color: #6B7280;">EVAL-INT-001</div>
+                  </td>
+                  <td>
+                    <div style="font-weight: 500;">Dr. Suresh Patel</div>
+                    <div class="text-xs" style="color: #6B7280;">EVAL-EXT-045</div>
+                  </td>
+                  <td style="font-size: 12px;">
+                    <div>20-Dec-2024</div>
+                    <div style="color: #6B7280;">5 days left</div>
+                  </td>
+                  <td style="text-align: center;">
+                    <div style="font-weight: 600; color: #22C55E;">100%</div>
+                    <div class="text-xs" style="color: #6B7280;">50/50 completed</div>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Completed
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Download Report">
+                      <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-weight: 600; font-family: monospace;">BATCH-02</td>
+                  <td style="font-family: monospace;">DN-1051 to DN-1100</td>
+                  <td style="text-align: center; font-weight: 500;">50</td>
+                  <td>
+                    <div style="font-weight: 500;">Dr. Priya Sharma</div>
+                    <div class="text-xs" style="color: #6B7280;">EVAL-INT-002</div>
+                  </td>
+                  <td>
+                    <div style="font-weight: 500;">Dr. Anil Verma</div>
+                    <div class="text-xs" style="color: #6B7280;">EVAL-EXT-046</div>
+                  </td>
+                  <td style="font-size: 12px;">
+                    <div>20-Dec-2024</div>
+                    <div style="color: #6B7280;">5 days left</div>
+                  </td>
+                  <td style="text-align: center;">
+                    <div style="font-weight: 600; color: #22C55E;">100%</div>
+                    <div class="text-xs" style="color: #6B7280;">50/50 completed</div>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Completed
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Download Report">
+                      <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #EFF6FF;">
+                  <td style="font-weight: 600; font-family: monospace;">BATCH-03</td>
+                  <td style="font-family: monospace;">DN-1101 to DN-1150</td>
+                  <td style="text-align: center; font-weight: 500;">50</td>
+                  <td>
+                    <div style="font-weight: 500;">Dr. Rajesh Gupta</div>
+                    <div class="text-xs" style="color: #6B7280;">EVAL-INT-003</div>
+                  </td>
+                  <td>
+                    <div style="font-weight: 500;">Dr. Meera Nair</div>
+                    <div class="text-xs" style="color: #6B7280;">EVAL-EXT-047</div>
+                  </td>
+                  <td style="font-size: 12px;">
+                    <div>20-Dec-2024</div>
+                    <div style="color: #6B7280;">5 days left</div>
+                  </td>
+                  <td style="text-align: center;">
+                    <div style="font-weight: 600; color: #3B82F6;">70%</div>
+                    <div class="text-xs" style="color: #6B7280;">35/50 completed</div>
+                  </td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      In Progress
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Send Reminder">
+                      <i data-feather="send" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #EFF6FF;">
+                  <td style="font-weight: 600; font-family: monospace;">BATCH-04</td>
+                  <td style="font-family: monospace;">DN-1151 to DN-1200</td>
+                  <td style="text-align: center; font-weight: 500;">50</td>
+                  <td>
+                    <div style="font-weight: 500;">Dr. Amit Singh</div>
+                    <div class="text-xs" style="color: #6B7280;">EVAL-INT-004</div>
+                  </td>
+                  <td>
+                    <div style="font-weight: 500;">Dr. Kavita Reddy</div>
+                    <div class="text-xs" style="color: #6B7280;">EVAL-EXT-048</div>
+                  </td>
+                  <td style="font-size: 12px;">
+                    <div>20-Dec-2024</div>
+                    <div style="color: #6B7280;">5 days left</div>
+                  </td>
+                  <td style="text-align: center;">
+                    <div style="font-weight: 600; color: #3B82F6;">48%</div>
+                    <div class="text-xs" style="color: #6B7280;">24/50 completed</div>
+                  </td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      In Progress
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Send Reminder">
+                      <i data-feather="send" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #EFF6FF;">
+                  <td style="font-weight: 600; font-family: monospace;">BATCH-05</td>
+                  <td style="font-family: monospace;">DN-1201 to DN-1245</td>
+                  <td style="text-align: center; font-weight: 500;">45</td>
+                  <td>
+                    <div style="font-weight: 500;">Dr. Sneha Rao</div>
+                    <div class="text-xs" style="color: #6B7280;">EVAL-INT-005</div>
+                  </td>
+                  <td>
+                    <div style="font-weight: 500;">Dr. Vikram Joshi</div>
+                    <div class="text-xs" style="color: #6B7280;">EVAL-EXT-049</div>
+                  </td>
+                  <td style="font-size: 12px;">
+                    <div>20-Dec-2024</div>
+                    <div style="color: #6B7280;">5 days left</div>
+                  </td>
+                  <td style="text-align: center;">
+                    <div style="font-weight: 600; color: #3B82F6;">33%</div>
+                    <div class="text-xs" style="color: #6B7280;">15/45 completed</div>
+                  </td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      In Progress
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Send Reminder">
+                      <i data-feather="send" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Evaluator Workload Dashboard -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Evaluator Workload - December 2024</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="users" style="width: 16px; height: 16px;"></i>
+            Manage Evaluators
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Evaluator Name</th>
+                  <th>Type</th>
+                  <th>Department</th>
+                  <th style="text-align: center;">Assigned Subjects</th>
+                  <th style="text-align: center;">Total Batches</th>
+                  <th style="text-align: center;">Total Sheets</th>
+                  <th style="text-align: center;">Completed</th>
+                  <th>Workload Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight: 500;">Dr. Ramesh Kumar</td>
+                  <td>Internal</td>
+                  <td>Computer Science</td>
+                  <td style="text-align: center;">3</td>
+                  <td style="text-align: center;">6</td>
+                  <td style="text-align: center;">300</td>
+                  <td style="text-align: center;">
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      5/6 (83%)
+                    </span>
+                  </td>
+                  <td>
+                    <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 4px; padding: 4px 8px; display: inline-block; font-size: 12px; color: #22C55E; font-weight: 500;">Normal Load</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 500;">Dr. Priya Sharma</td>
+                  <td>Internal</td>
+                  <td>Computer Science</td>
+                  <td style="text-align: center;">2</td>
+                  <td style="text-align: center;">4</td>
+                  <td style="text-align: center;">200</td>
+                  <td style="text-align: center;">
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      4/4 (100%)
+                    </span>
+                  </td>
+                  <td>
+                    <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 4px; padding: 4px 8px; display: inline-block; font-size: 12px; color: #22C55E; font-weight: 500;">Light Load</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 500;">Dr. Rajesh Gupta</td>
+                  <td>Internal</td>
+                  <td>Computer Science</td>
+                  <td style="text-align: center;">4</td>
+                  <td style="text-align: center;">8</td>
+                  <td style="text-align: center;">400</td>
+                  <td style="text-align: center;">
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      3/8 (38%)
+                    </span>
+                  </td>
+                  <td>
+                    <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 4px; padding: 4px 8px; display: inline-block; font-size: 12px; color: #F59E0B; font-weight: 500;">Heavy Load</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 500;">Dr. Suresh Patel</td>
+                  <td>External</td>
+                  <td>External Faculty</td>
+                  <td style="text-align: center;">2</td>
+                  <td style="text-align: center;">4</td>
+                  <td style="text-align: center;">200</td>
+                  <td style="text-align: center;">
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      4/4 (100%)
+                    </span>
+                  </td>
+                  <td>
+                    <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 4px; padding: 4px 8px; display: inline-block; font-size: 12px; color: #22C55E; font-weight: 500;">Normal Load</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: Batch Handover & Notifications -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Recent Batch Activity</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <!-- Activity Item 1 -->
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                <div>
+                  <div style="font-weight: 600; font-size: 14px; color: #111827;">Batch Completed - BATCH-02</div>
+                  <div style="font-size: 13px; color: #6B7280;">CS501 - Data Structures & Algorithms</div>
+                </div>
+                <span class="status status-approved">
+                  <span class="status-dot"></span>
+                  Completed
+                </span>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; font-size: 12px; color: #6B7280;">
+                <div>
+                  <div style="font-weight: 500; color: #111827;">Evaluator</div>
+                  <div>Dr. Priya Sharma (Internal)</div>
+                </div>
+                <div>
+                  <div style="font-weight: 500; color: #111827;">Completion Date</div>
+                  <div>14-Dec-2024 04:30 PM</div>
+                </div>
+                <div>
+                  <div style="font-weight: 500; color: #111827;">Answer Sheets</div>
+                  <div>50/50 Evaluated</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Activity Item 2 -->
+            <div style="background: #EFF6FF; border: 1px solid #93C5FD; border-radius: 6px; padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                <div>
+                  <div style="font-weight: 600; font-size: 14px; color: #111827;">Batch Assigned - BATCH-05</div>
+                  <div style="font-size: 13px; color: #6B7280;">CS501 - Data Structures & Algorithms</div>
+                </div>
+                <span class="status status-verified">
+                  <span class="status-dot"></span>
+                  In Progress
+                </span>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; font-size: 12px; color: #6B7280;">
+                <div>
+                  <div style="font-weight: 500; color: #111827;">Evaluators</div>
+                  <div>Dr. Sneha Rao (Int) + Dr. Vikram Joshi (Ext)</div>
+                </div>
+                <div>
+                  <div style="font-weight: 500; color: #111827;">Assigned Date</div>
+                  <div>12-Dec-2024 11:00 AM</div>
+                </div>
+                <div>
+                  <div style="font-weight: 500; color: #111827;">Progress</div>
+                  <div>15/45 Evaluated (33%)</div>
+                </div>
+              </div>
+              <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #93C5FD; font-size: 11px; color: #6B7280;">
+                Notification sent to evaluators | Deadline: 20-Dec-2024
+              </div>
+            </div>
+
+            <!-- Activity Item 3 -->
+            <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                <div>
+                  <div style="font-weight: 600; font-size: 14px; color: #111827;">Reminder Sent - BATCH-04</div>
+                  <div style="font-size: 13px; color: #6B7280;">CS501 - Data Structures & Algorithms | Evaluation delayed</div>
+                </div>
+                <span class="status status-warning">
+                  <span class="status-dot"></span>
+                  Reminder Sent
+                </span>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; font-size: 12px; color: #6B7280;">
+                <div>
+                  <div style="font-weight: 500; color: #111827;">Evaluator</div>
+                  <div>Dr. Amit Singh (Internal)</div>
+                </div>
+                <div>
+                  <div style="font-weight: 500; color: #111827;">Reminder Sent</div>
+                  <div>15-Dec-2024 09:00 AM</div>
+                </div>
+                <div>
+                  <div style="font-weight: 500; color: #111827;">Current Status</div>
+                  <div>24/50 Evaluated (48%)</div>
+                </div>
+              </div>
+              <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #FCD34D; font-size: 11px; color: #6B7280;">
+                Automated reminder sent via SMS and Email | 5 days to deadline
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

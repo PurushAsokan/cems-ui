@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layout Template - CEMS</title>
+  <link rel="stylesheet" href="css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <!-- Module Dropdown -->
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Modules
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <div style="padding: 8px 16px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Pre-Examination</div>
+        <a href="exam-registration/data-entry.html" class="dropdown-item">Exam Registration</a>
+        <a href="exam-scheduling/timetable.html" class="dropdown-item">Exam Scheduling</a>
+        <a href="internal-assessment/marks-entry.html" class="dropdown-item">Internal Assessment</a>
+        <a href="hall-ticket/generation.html" class="dropdown-item">Hall Ticket</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 16px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Examination</div>
+        <a href="#" class="dropdown-item">Conduct of Exam</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 16px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Post-Examination</div>
+        <a href="#" class="dropdown-item">Evaluation & Results</a>
+        <a href="#" class="dropdown-item">Mark Sheet</a>
+        <a href="#" class="dropdown-item">Certificates</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">DK</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Dr. Kumar</div>
+            <div style="font-size: 11px; color: #6B7280;">Controller</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar (placeholder - each screen customizes) -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <span class="breadcrumb-item active">Dashboard</span>
+    </div>
+    <div class="context-actions">
+      <!-- Screen-specific actions go here -->
+    </div>
+  </div>
+
+  <!-- Main Container (placeholder - each screen fills) -->
+  <main class="main-container">
+    <div class="page-container">
+      <!-- Screen content goes here -->
+    </div>
+  </main>
+
+  <script src="js/cems.js"></script>
+  <!-- Initialize Feather Icons -->
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marks Entry - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Conduct of Examination
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <a href="attendance.html" class="dropdown-item">Attendance Entry</a>
+        <a href="marks-entry.html" class="dropdown-item active">Marks Entry</a>
+        <a href="batch-preparation.html" class="dropdown-item">Batch Preparation</a>
+        <a href="freeze-results.html" class="dropdown-item">Freeze & Reports</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">DE</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Data Entry Operator</div>
+            <div style="font-size: 11px; color: #6B7280;">Marks Entry</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Conduct of Examination</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Marks Entry</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="upload" style="width: 16px; height: 16px;"></i>
+        Bulk Upload (Excel)
+      </button>
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Download Template
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="save" style="width: 16px; height: 16px;"></i>
+        Submit for Verification
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Section 1: Subject & Batch Selection -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Select Exam & Batch</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 16px;">
+            <div class="form-group">
+              <label class="form-label required">Exam Session</label>
+              <select class="form-select">
+                <option value="DEC2024" selected>December 2024 - Regular</option>
+                <option value="JUN2024">June 2024 - Regular</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Subject</label>
+              <select class="form-select">
+                <option value="">-- Select Subject --</option>
+                <option value="CS501" selected>CS501 - Data Structures & Algorithms</option>
+                <option value="CS502">CS502 - Database Management Systems</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Exam Type</label>
+              <select class="form-select">
+                <option value="theory" selected>Theory Exam</option>
+                <option value="practical">Practical Exam</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Evaluator Batch</label>
+              <select class="form-select">
+                <option value="">-- Select Batch --</option>
+                <option value="BATCH-01" selected>Batch 01 (Dummy No: 1001-1050)</option>
+                <option value="BATCH-02">Batch 02 (Dummy No: 1051-1100)</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+            <div class="form-group">
+              <label class="form-label">Internal Evaluator</label>
+              <input type="text" class="form-input" value="Dr. Ramesh Kumar (EVAL-INT-001)" readonly />
+            </div>
+            <div class="form-group">
+              <label class="form-label">External Evaluator</label>
+              <input type="text" class="form-input" value="Dr. Suresh Patel (EVAL-EXT-045)" readonly />
+            </div>
+          </div>
+
+          <div class="alert alert-info" style="margin-top: 16px;">
+            <i data-feather="info" style="width: 20px; height: 20px;"></i>
+            <div>Batch 01: <strong>50 answer sheets</strong> | Max Marks: <strong>100</strong> (Internal: 40, External: 60) | Entry Progress: <strong>35/50 completed</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Marks Entry Statistics -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Entry Progress</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Answer Sheets</div>
+              <div style="font-size: 24px; font-weight: 600;">50</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">In this batch</div>
+            </div>
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Completed</div>
+              <div style="font-size: 24px; font-weight: 600; color: #22C55E;">35</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">70% Complete</div>
+            </div>
+            <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Pending</div>
+              <div style="font-size: 24px; font-weight: 600; color: #F59E0B;">15</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Requires Entry</div>
+            </div>
+            <div style="background: #FEE2E2; border: 1px solid #FCA5A5; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Validation Errors</div>
+              <div style="font-size: 24px; font-weight: 600; color: #EF4444;">2</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Needs Correction</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Marks Entry Grid (Dummy Number Based) -->
+      <div class="section">
+        <div class="section-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Marks Entry Grid - Batch 01</h2>
+            <span class="status status-pending">
+              <span class="status-dot"></span>
+              50 Answer Sheets
+            </span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-sm btn-secondary">
+              <i data-feather="filter" style="width: 16px; height: 16px;"></i>
+              Show: All
+            </button>
+            <button class="btn btn-sm btn-secondary">
+              <i data-feather="save" style="width: 16px; height: 16px;"></i>
+              Save Progress
+            </button>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="alert alert-warning" style="margin-bottom: 16px;">
+            <i data-feather="alert-circle" style="width: 20px; height: 20px;"></i>
+            <div><strong>Anonymized Evaluation:</strong> Answer sheets are identified only by Dummy Numbers. Registration numbers will be linked after all marks are finalized to ensure unbiased evaluation.</div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 50px;">S.No</th>
+                  <th>Dummy Number</th>
+                  <th style="text-align: center;">Internal Marks<br/><span style="font-size: 11px; font-weight: 400; color: #6B7280;">(Max: 40)</span></th>
+                  <th style="text-align: center;">External Marks<br/><span style="font-size: 11px; font-weight: 400; color: #6B7280;">(Max: 60)</span></th>
+                  <th style="text-align: center;">Total<br/><span style="font-size: 11px; font-weight: 400; color: #6B7280;">(Max: 100)</span></th>
+                  <th>Evaluator Remarks</th>
+                  <th style="text-align: center;">Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #F0FDF4;">
+                  <td style="text-align: center;">1</td>
+                  <td style="font-family: monospace; font-weight: 600; font-size: 14px;">DN-1001</td>
+                  <td style="text-align: center;">
+                    <input type="number" class="form-input" value="35" min="0" max="40" style="width: 70px; text-align: center; font-weight: 600;" readonly />
+                  </td>
+                  <td style="text-align: center;">
+                    <input type="number" class="form-input" value="52" min="0" max="60" style="width: 70px; text-align: center; font-weight: 600;" readonly />
+                  </td>
+                  <td style="text-align: center; font-weight: 600; font-size: 14px; color: #22C55E;">87</td>
+                  <td style="font-size: 12px; color: #6B7280;">Excellent work</td>
+                  <td style="text-align: center;">
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Verified
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Answer Sheet">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Edit Marks">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="text-align: center;">2</td>
+                  <td style="font-family: monospace; font-weight: 600; font-size: 14px;">DN-1002</td>
+                  <td style="text-align: center;">
+                    <input type="number" class="form-input" value="32" min="0" max="40" style="width: 70px; text-align: center; font-weight: 600;" readonly />
+                  </td>
+                  <td style="text-align: center;">
+                    <input type="number" class="form-input" value="45" min="0" max="60" style="width: 70px; text-align: center; font-weight: 600;" readonly />
+                  </td>
+                  <td style="text-align: center; font-weight: 600; font-size: 14px; color: #22C55E;">77</td>
+                  <td style="font-size: 12px; color: #6B7280;">Good performance</td>
+                  <td style="text-align: center;">
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Verified
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Answer Sheet">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Edit Marks">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #FEE2E2;">
+                  <td style="text-align: center;">3</td>
+                  <td style="font-family: monospace; font-weight: 600; font-size: 14px;">DN-1003</td>
+                  <td style="text-align: center;">
+                    <input type="number" class="form-input" value="45" min="0" max="40" style="width: 70px; text-align: center; font-weight: 600; border-color: #DC2626;" />
+                  </td>
+                  <td style="text-align: center;">
+                    <input type="number" class="form-input" value="38" min="0" max="60" style="width: 70px; text-align: center; font-weight: 600;" readonly />
+                  </td>
+                  <td style="text-align: center; font-weight: 600; font-size: 14px; color: #DC2626;">—</td>
+                  <td style="font-size: 12px; color: #DC2626; font-weight: 500;">ERROR: Internal marks exceed maximum</td>
+                  <td style="text-align: center;">
+                    <span class="status status-rejected">
+                      <span class="status-dot"></span>
+                      Invalid
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Answer Sheet">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Correct Entry">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="text-align: center;">4</td>
+                  <td style="font-family: monospace; font-weight: 600; font-size: 14px;">DN-1004</td>
+                  <td style="text-align: center;">
+                    <input type="number" class="form-input" placeholder="0-40" min="0" max="40" style="width: 70px; text-align: center; font-weight: 600;" />
+                  </td>
+                  <td style="text-align: center;">
+                    <input type="number" class="form-input" placeholder="0-60" min="0" max="60" style="width: 70px; text-align: center; font-weight: 600;" />
+                  </td>
+                  <td style="text-align: center; font-weight: 600; font-size: 14px; color: #9CA3AF;">—</td>
+                  <td style="font-size: 12px; color: #9CA3AF;">—</td>
+                  <td style="text-align: center;">
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Pending
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Answer Sheet">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Save Entry">
+                      <i data-feather="save" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="text-align: center;">5</td>
+                  <td style="font-family: monospace; font-weight: 600; font-size: 14px;">DN-1005</td>
+                  <td style="text-align: center;">
+                    <input type="number" class="form-input" placeholder="0-40" min="0" max="40" style="width: 70px; text-align: center; font-weight: 600;" />
+                  </td>
+                  <td style="text-align: center;">
+                    <input type="number" class="form-input" placeholder="0-60" min="0" max="60" style="width: 70px; text-align: center; font-weight: 600;" />
+                  </td>
+                  <td style="text-align: center; font-weight: 600; font-size: 14px; color: #9CA3AF;">—</td>
+                  <td style="font-size: 12px; color: #9CA3AF;">—</td>
+                  <td style="text-align: center;">
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Pending
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Answer Sheet">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Save Entry">
+                      <i data-feather="save" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="text-align: center;">6</td>
+                  <td style="font-family: monospace; font-weight: 600; font-size: 14px;">DN-1006</td>
+                  <td style="text-align: center;">
+                    <input type="number" class="form-input" value="28" min="0" max="40" style="width: 70px; text-align: center; font-weight: 600;" readonly />
+                  </td>
+                  <td style="text-align: center;">
+                    <input type="number" class="form-input" value="42" min="0" max="60" style="width: 70px; text-align: center; font-weight: 600;" readonly />
+                  </td>
+                  <td style="text-align: center; font-weight: 600; font-size: 14px; color: #22C55E;">70</td>
+                  <td style="font-size: 12px; color: #6B7280;">Average performance</td>
+                  <td style="text-align: center;">
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Verified
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Answer Sheet">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Edit Marks">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #FEE2E2;">
+                  <td style="text-align: center;">7</td>
+                  <td style="font-family: monospace; font-weight: 600; font-size: 14px;">DN-1007</td>
+                  <td style="text-align: center;">
+                    <input type="number" class="form-input" value="15" min="0" max="40" style="width: 70px; text-align: center; font-weight: 600;" readonly />
+                  </td>
+                  <td style="text-align: center;">
+                    <input type="number" class="form-input" placeholder="0-60" min="0" max="60" style="width: 70px; text-align: center; font-weight: 600; border-color: #F59E0B;" />
+                  </td>
+                  <td style="text-align: center; font-weight: 600; font-size: 14px; color: #F59E0B;">—</td>
+                  <td style="font-size: 12px; color: #F59E0B; font-weight: 500;">Waiting for external marks</td>
+                  <td style="text-align: center;">
+                    <span class="status status-warning">
+                      <span class="status-dot"></span>
+                      Incomplete
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Answer Sheet">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Complete Entry">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Question-wise Marks Breakdown (Expandable) -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Question-wise Marks Entry (Optional)</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+            Expand Section
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="alert alert-info">
+            <i data-feather="info" style="width: 20px; height: 20px;"></i>
+            <div>Question-wise marks breakdown is optional but recommended for detailed analysis. This helps in identifying weak areas and improving question paper quality.</div>
+          </div>
+
+          <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 24px; margin-top: 16px;">
+            <div style="font-weight: 600; margin-bottom: 16px;">Dummy Number: DN-1001 (Total Marks: 87/100)</div>
+
+            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px;">
+              <div>
+                <label class="form-label">Q1 (10 marks)</label>
+                <input type="number" class="form-input" value="9" min="0" max="10" style="text-align: center;" readonly />
+              </div>
+              <div>
+                <label class="form-label">Q2 (10 marks)</label>
+                <input type="number" class="form-input" value="8" min="0" max="10" style="text-align: center;" readonly />
+              </div>
+              <div>
+                <label class="form-label">Q3 (15 marks)</label>
+                <input type="number" class="form-input" value="13" min="0" max="15" style="text-align: center;" readonly />
+              </div>
+              <div>
+                <label class="form-label">Q4 (15 marks)</label>
+                <input type="number" class="form-input" value="12" min="0" max="15" style="text-align: center;" readonly />
+              </div>
+              <div>
+                <label class="form-label">Q5 (20 marks)</label>
+                <input type="number" class="form-input" value="18" min="0" max="20" style="text-align: center;" readonly />
+              </div>
+            </div>
+
+            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #E5E7EB; display: flex; justify-content: space-between; align-items: center;">
+              <div style="font-size: 13px; color: #6B7280;">Total Internal Marks: <strong style="color: #111827;">35/40</strong></div>
+              <button class="btn btn-sm btn-ghost">
+                <i data-feather="save" style="width: 16px; height: 16px;"></i>
+                Save Breakdown
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: Validation & Summary -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Validation Summary</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="refresh-cw" style="width: 16px; height: 16px;"></i>
+            Re-validate All
+          </button>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; gap: 12px;">
+            <!-- Validation Item 1 -->
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px; display: flex; align-items: center; gap: 12px;">
+              <i data-feather="check-circle" style="width: 24px; height: 24px; color: #22C55E;"></i>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; font-size: 14px; color: #111827;">Answer Sheet Count Match</div>
+                <div class="text-xs" style="color: #6B7280; margin-top: 2px;">50 answer sheets = 50 entries (including pending)</div>
+              </div>
+              <span class="status status-approved">
+                <span class="status-dot"></span>
+                Passed
+              </span>
+            </div>
+
+            <!-- Validation Item 2 -->
+            <div style="background: #FEE2E2; border: 1px solid #FCA5A5; border-radius: 6px; padding: 16px; display: flex; align-items: center; gap: 12px;">
+              <i data-feather="x-circle" style="width: 24px; height: 24px; color: #DC2626;"></i>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; font-size: 14px; color: #111827;">Marks Range Validation</div>
+                <div class="text-xs" style="color: #DC2626; margin-top: 2px; font-weight: 500;">2 entries have invalid marks exceeding maximum limits</div>
+              </div>
+              <span class="status status-rejected">
+                <span class="status-dot"></span>
+                Failed
+              </span>
+            </div>
+
+            <!-- Validation Item 3 -->
+            <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; padding: 16px; display: flex; align-items: center; gap: 12px;">
+              <i data-feather="alert-circle" style="width: 24px; height: 24px; color: #F59E0B;"></i>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; font-size: 14px; color: #111827;">Pending Entries</div>
+                <div class="text-xs" style="color: #6B7280; margin-top: 2px;">15 answer sheets still pending marks entry</div>
+              </div>
+              <span class="status status-warning">
+                <span class="status-dot"></span>
+                Incomplete
+              </span>
+            </div>
+
+            <!-- Validation Item 4 -->
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px; display: flex; align-items: center; gap: 12px;">
+              <i data-feather="check-circle" style="width: 24px; height: 24px; color: #22C55E;"></i>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; font-size: 14px; color: #111827;">Evaluator Assignment</div>
+                <div class="text-xs" style="color: #6B7280; margin-top: 2px;">All batches have assigned internal and external evaluators</div>
+              </div>
+              <span class="status status-approved">
+                <span class="status-dot"></span>
+                Passed
+              </span>
+            </div>
+          </div>
+
+          <div class="alert alert-warning" style="margin-top: 16px;">
+            <i data-feather="alert-circle" style="width: 20px; height: 20px;"></i>
+            <div><strong>Action Required:</strong> Please correct the 2 validation errors and complete the 15 pending entries before submitting for verification.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

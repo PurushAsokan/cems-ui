@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supplementary Exam Registration - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <!-- Module Dropdown -->
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Exam Registration
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Regular Registration</div>
+        <a href="data-entry.html" class="dropdown-item">Data Entry</a>
+        <a href="verification.html" class="dropdown-item">Verification</a>
+        <a href="fee-calculation.html" class="dropdown-item">Fee Calculation</a>
+        <a href="ern-batch.html" class="dropdown-item">ERN Generation</a>
+        <a href="registration-list.html" class="dropdown-item">Registration List</a>
+        <a href="reports.html" class="dropdown-item">Reports</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Registration</div>
+        <a href="supplementary-registration.html" class="dropdown-item active">Supplementary Registration</a>
+        <a href="supplementary-verification.html" class="dropdown-item">Supplementary Verification</a>
+        <a href="supplementary-list.html" class="dropdown-item">Supplementary List & Analytics</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">OP</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Data Entry Operator</div>
+            <div style="font-size: 11px; color: #6B7280;">OP-001</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <a href="data-entry.html" class="breadcrumb-item">Exam Registration</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Supplementary Registration</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="list" style="width: 16px; height: 16px;"></i>
+        View All Registrations
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Info Banner -->
+      <div class="alert alert-warning" style="margin-bottom: 24px;">
+        <i data-feather="alert-circle" style="width: 20px; height: 20px;"></i>
+        <div style="flex: 1;">
+          <div style="font-weight: 500; margin-bottom: 4px;">Supplementary Exam Eligibility Rules</div>
+          <div><strong>Permitted for:</strong> Even Semesters (2, 4, 6, 8) OR Final Year Students | <strong>Subjects:</strong> Failed/Absent subjects only | <strong>Fee:</strong> ₹800 per subject + ₹200 processing fee</div>
+        </div>
+      </div>
+
+      <!-- Section 1: Student Search -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Student Lookup & Eligibility Check</h2>
+        </div>
+        <div class="section-body">
+          <div class="form-inline">
+            <div class="form-group" style="flex: 1;">
+              <label class="form-label">Exam Registration Number</label>
+              <input
+                type="text"
+                class="form-input"
+                id="regNumber"
+                placeholder="Enter registration number (e.g., 25ENG1045)"
+                style="text-transform: uppercase; font-family: monospace;"
+              />
+            </div>
+            <button class="btn btn-primary" onclick="searchStudent()" style="align-self: flex-end;">
+              <i data-feather="search" style="width: 16px; height: 16px;"></i>
+              Check Eligibility
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Student Details (Hidden until search) -->
+      <div class="section" id="studentDetails" style="display: none;">
+        <div class="section-header">
+          <h2 class="section-title">Student Information</h2>
+          <span class="status status-approved">
+            <span class="status-dot"></span>
+            Eligible for Supplementary Exam
+          </span>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: auto 1fr; gap: 24px;">
+            <!-- Student Photo -->
+            <div style="width: 120px; height: 140px; background: #F8F9FA; border: 2px solid #E5E7EB; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+              <i data-feather="user" style="width: 64px; height: 64px; color: #9CA3AF;"></i>
+            </div>
+
+            <!-- Student Info Grid -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Registration Number</div>
+                <div style="font-size: 14px; font-weight: 600; font-family: monospace;">25ENG1045</div>
+              </div>
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Student Name</div>
+                <div style="font-size: 14px; font-weight: 500;">Rajesh Kumar M</div>
+              </div>
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Program</div>
+                <div style="font-size: 14px;">B.Eng - Computer Science</div>
+              </div>
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Current Semester</div>
+                <div style="font-size: 14px;">Semester 6 (Even Semester ✓)</div>
+              </div>
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Academic Year</div>
+                <div style="font-size: 14px;">2024-25</div>
+              </div>
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Final Year Student</div>
+                <div style="font-size: 14px;">No</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Eligibility Status -->
+          <div style="margin-top: 16px; padding: 12px; background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <i data-feather="check-circle" style="width: 16px; height: 16px; color: #059669;"></i>
+              <div style="font-size: 13px; color: #065F46;">
+                <strong>Eligible for Supplementary Exam:</strong> Even Semester (Sem 6) | 3 failed subjects available for supplementary registration
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Academic History & Failed Subjects -->
+      <div class="section" id="academicHistory" style="display: none;">
+        <div class="section-header">
+          <h2 class="section-title">Academic History & Eligible Subjects</h2>
+          <div class="text-sm" style="color: #6B7280;">Only failed/absent subjects can be registered for supplementary exam</div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 50px;">
+                    <input type="checkbox" id="selectAll" onchange="toggleAllSubjects()" />
+                  </th>
+                  <th>Semester</th>
+                  <th>Subject Code</th>
+                  <th>Subject Name</th>
+                  <th>Last Attempt</th>
+                  <th>CIA</th>
+                  <th>ESE</th>
+                  <th>Total</th>
+                  <th>Result</th>
+                  <th>Attempt No.</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #FEE2E2;">
+                  <td style="text-align: center;">
+                    <input type="checkbox" class="subject-checkbox" data-fee="800" data-subject="CS401" onchange="calculateFee()" />
+                  </td>
+                  <td>Sem 4</td>
+                  <td style="font-family: monospace; font-weight: 600;">CS401</td>
+                  <td>Database Management Systems</td>
+                  <td>Dec 2023</td>
+                  <td>28</td>
+                  <td>18</td>
+                  <td style="font-weight: 600; color: #DC2626;">36</td>
+                  <td><span class="status status-rejected"><span class="status-dot"></span>Failed</span></td>
+                  <td><span class="badge badge-warning">1st Supplementary</span></td>
+                </tr>
+                <tr style="background: #FEE2E2;">
+                  <td style="text-align: center;">
+                    <input type="checkbox" class="subject-checkbox" data-fee="800" data-subject="CS402" onchange="calculateFee()" />
+                  </td>
+                  <td>Sem 4</td>
+                  <td style="font-family: monospace; font-weight: 600;">CS402</td>
+                  <td>Operating Systems</td>
+                  <td>Dec 2023</td>
+                  <td>22</td>
+                  <td>15</td>
+                  <td style="font-weight: 600; color: #DC2626;">37</td>
+                  <td><span class="status status-rejected"><span class="status-dot"></span>Failed</span></td>
+                  <td><span class="badge badge-warning">1st Supplementary</span></td>
+                </tr>
+                <tr style="background: #FEF3C7;">
+                  <td style="text-align: center;">
+                    <input type="checkbox" class="subject-checkbox" data-fee="800" data-subject="CS501" onchange="calculateFee()" />
+                  </td>
+                  <td>Sem 5</td>
+                  <td style="font-family: monospace; font-weight: 600;">CS501</td>
+                  <td>Computer Networks</td>
+                  <td>Jun 2024</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td style="font-weight: 600; color: #F59E0B;">0</td>
+                  <td><span class="status status-pending"><span class="status-dot"></span>Absent</span></td>
+                  <td><span class="badge badge-warning">1st Supplementary</span></td>
+                </tr>
+                <tr style="opacity: 0.5;">
+                  <td style="text-align: center;">
+                    <input type="checkbox" disabled title="Already passed - not eligible" />
+                  </td>
+                  <td>Sem 5</td>
+                  <td style="font-family: monospace; font-weight: 600;">CS502</td>
+                  <td>Software Engineering</td>
+                  <td>Jun 2024</td>
+                  <td>35</td>
+                  <td>48</td>
+                  <td style="font-weight: 600; color: #059669;">83</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Passed</span></td>
+                  <td>-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top: 16px; padding: 12px; background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 6px;">
+            <div style="font-size: 13px; color: #1E40AF;">
+              <i data-feather="info" style="width: 14px; height: 14px; display: inline; vertical-align: middle;"></i>
+              <strong>Note:</strong> Failed subjects (red) and Absent subjects (yellow) are eligible. Passed subjects (grayed out) cannot be registered for supplementary exams. Maximum 3 supplementary attempts allowed per subject.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Supplementary Exam Details -->
+      <div class="section" id="suppExamDetails" style="display: none;">
+        <div class="section-header">
+          <h2 class="section-title">Supplementary Exam Session Details</h2>
+        </div>
+        <div class="section-body">
+          <div class="field-grid">
+            <div class="form-group">
+              <label class="form-label required">Exam Session</label>
+              <select class="form-select">
+                <option>June 2025 - Supplementary</option>
+                <option>December 2024 - Supplementary</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label required">Exam Type</label>
+              <input type="text" class="form-input" value="Supplementary Exam" readonly style="background: #F8F9FA;" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Expected Exam Dates</label>
+              <input type="text" class="form-input" value="15-Jun to 25-Jun 2025" readonly style="background: #F8F9FA;" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: Fee Calculation -->
+      <div class="section" id="feeSection" style="display: none;">
+        <div class="section-header">
+          <h2 class="section-title">Fee Calculation & Payment Details</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+            <!-- Payment Details Form -->
+            <div>
+              <div class="form-group">
+                <label class="form-label required">Payment Mode</label>
+                <select class="form-select">
+                  <option>-- Select Payment Mode --</option>
+                  <option>Cash</option>
+                  <option>Demand Draft</option>
+                  <option>Online Payment (NEFT/RTGS)</option>
+                  <option>UPI</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label required">Receipt/Transaction Number</label>
+                <input type="text" class="form-input" placeholder="Enter receipt or transaction number" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label required">Payment Date</label>
+                <input type="date" class="form-input" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Remarks</label>
+                <textarea class="form-input" rows="2" placeholder="Additional remarks (optional)"></textarea>
+              </div>
+            </div>
+
+            <!-- Fee Breakdown -->
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div style="font-size: 13px; font-weight: 600; color: #111827; margin-bottom: 12px;">Fee Breakdown</div>
+
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <div style="font-size: 13px; color: #6B7280;">Selected Subjects</div>
+                <div style="font-size: 13px; font-weight: 600;" id="subjectCount">0</div>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <div style="font-size: 13px; color: #6B7280;">Fee per Subject</div>
+                <div style="font-size: 13px; font-weight: 600;">₹800</div>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #E5E7EB;">
+                <div style="font-size: 13px; color: #6B7280;">Subject Fee</div>
+                <div style="font-size: 13px; font-weight: 600;" id="subjectFee">₹0</div>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <div style="font-size: 13px; color: #6B7280;">Processing Fee</div>
+                <div style="font-size: 13px; font-weight: 600;">₹200</div>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; padding-top: 8px; border-top: 2px solid #E5E7EB;">
+                <div style="font-size: 15px; font-weight: 600; color: #111827;">Total Amount</div>
+                <div style="font-size: 18px; font-weight: 600; color: #2563EB;" id="totalFee">₹200</div>
+              </div>
+
+              <div style="margin-top: 12px; padding: 8px; background: #FEF3C7; border-radius: 4px;">
+                <div style="font-size: 11px; color: #92400E; text-align: center;">
+                  <strong>Note:</strong> Fees are non-refundable<br/>
+                  Higher than regular exam (₹500 base)
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 6: Previous Supplementary Attempts -->
+      <div class="section" id="attemptHistory" style="display: none;">
+        <div class="section-header">
+          <h2 class="section-title">Previous Supplementary Attempt History</h2>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Subject Code</th>
+                  <th>Subject Name</th>
+                  <th>Attempt No.</th>
+                  <th>Exam Session</th>
+                  <th>Marks Obtained</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">CS301</td>
+                  <td>Data Structures</td>
+                  <td><span class="badge badge-warning">1st Supp</span></td>
+                  <td>Jun 2023</td>
+                  <td>42</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Passed</span></td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">CS302</td>
+                  <td>Computer Organization</td>
+                  <td><span class="badge badge-warning">1st Supp</span></td>
+                  <td>Jun 2023</td>
+                  <td>45</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Passed</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top: 12px; padding: 12px; background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 6px;">
+            <div style="font-size: 13px; color: #065F46;">
+              <i data-feather="check-circle" style="width: 14px; height: 14px; display: inline; vertical-align: middle;"></i>
+              <strong>Good Progress:</strong> Successfully cleared 2 subjects via supplementary exams in previous semesters
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 7: Confirmation -->
+      <div class="section" id="confirmationSection" style="display: none;">
+        <div class="section-header">
+          <h2 class="section-title">Registration Summary & Confirmation</h2>
+        </div>
+        <div class="section-body">
+          <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 16px;">
+              <div>
+                <div style="font-size: 11px; color: #6B7280; margin-bottom: 4px;">Registration Type</div>
+                <div style="font-size: 14px; font-weight: 600;">
+                  <span class="badge badge-error">Supplementary Exam</span>
+                </div>
+              </div>
+              <div>
+                <div style="font-size: 11px; color: #6B7280; margin-bottom: 4px;">Exam Session</div>
+                <div style="font-size: 14px; font-weight: 600;">June 2025</div>
+              </div>
+            </div>
+
+            <div style="background: white; border: 1px solid #E5E7EB; border-radius: 4px; padding: 12px; margin-bottom: 12px;">
+              <div style="font-size: 12px; font-weight: 600; margin-bottom: 8px;">Selected Subjects for Supplementary Exam:</div>
+              <div style="font-size: 13px; color: #6B7280;" id="selectedSubjectsSummary">
+                No subjects selected
+              </div>
+            </div>
+
+            <div style="background: white; border: 1px solid #E5E7EB; border-radius: 4px; padding: 12px;">
+              <div style="font-size: 12px; font-weight: 600; margin-bottom: 8px;">Fee Summary:</div>
+              <div style="font-size: 13px; color: #6B7280;">
+                <strong id="summarySubjectCount">0 subjects</strong> × ₹800 + Processing Fee ₹200 = <strong id="summaryTotalFee">₹200</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Confirmation Checkbox -->
+          <div style="margin-top: 16px; padding: 16px; background: #FFFBEB; border: 1px solid #FCD34D; border-radius: 6px;">
+            <label style="display: flex; align-items: start; gap: 12px; cursor: pointer;">
+              <input type="checkbox" id="confirmCheckbox" style="margin-top: 3px;" />
+              <div style="font-size: 13px; color: #92400E;">
+                I confirm that the information provided is accurate and I understand that:
+                <ul style="margin: 8px 0 0 20px; padding: 0;">
+                  <li>This registration is for <strong>supplementary exam only</strong> (failed/absent subjects)</li>
+                  <li>Supplementary exam fee is <strong>non-refundable</strong></li>
+                  <li>Maximum <strong>3 attempts</strong> allowed per subject</li>
+                  <li>Student must appear for all registered subjects</li>
+                  <li>Fees are higher than regular exam fees</li>
+                </ul>
+              </div>
+            </label>
+          </div>
+
+          <!-- Action Buttons -->
+          <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
+            <button class="btn btn-secondary" onclick="window.location.href='data-entry.html'">Cancel</button>
+            <button class="btn btn-primary" onclick="submitSupplementaryRegistration()">
+              <i data-feather="check" style="width: 16px; height: 16px;"></i>
+              Submit Supplementary Registration
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+
+    function searchStudent() {
+      const regNumber = document.getElementById('regNumber').value;
+      if (!regNumber) {
+        alert('Please enter a registration number');
+        return;
+      }
+
+      // Show all sections
+      document.getElementById('studentDetails').style.display = 'block';
+      document.getElementById('academicHistory').style.display = 'block';
+      document.getElementById('suppExamDetails').style.display = 'block';
+      document.getElementById('feeSection').style.display = 'block';
+      document.getElementById('attemptHistory').style.display = 'block';
+      document.getElementById('confirmationSection').style.display = 'block';
+
+      feather.replace();
+    }
+
+    function toggleAllSubjects() {
+      const selectAll = document.getElementById('selectAll');
+      const checkboxes = document.querySelectorAll('.subject-checkbox:not([disabled])');
+      checkboxes.forEach(cb => {
+        cb.checked = selectAll.checked;
+      });
+      calculateFee();
+    }
+
+    function calculateFee() {
+      const checkboxes = document.querySelectorAll('.subject-checkbox:checked');
+      const count = checkboxes.length;
+      const fee = count * 800;
+      const total = fee + 200; // Processing fee
+
+      document.getElementById('subjectCount').textContent = count;
+      document.getElementById('subjectFee').textContent = '₹' + fee;
+      document.getElementById('totalFee').textContent = '₹' + total;
+      document.getElementById('summarySubjectCount').textContent = count + ' subjects';
+      document.getElementById('summaryTotalFee').textContent = '₹' + total;
+
+      // Update selected subjects summary
+      const selectedSubjects = [];
+      checkboxes.forEach(cb => {
+        const subjectCode = cb.getAttribute('data-subject');
+        selectedSubjects.push(subjectCode);
+      });
+
+      if (selectedSubjects.length > 0) {
+        document.getElementById('selectedSubjectsSummary').textContent = selectedSubjects.join(', ');
+      } else {
+        document.getElementById('selectedSubjectsSummary').textContent = 'No subjects selected';
+      }
+    }
+
+    function submitSupplementaryRegistration() {
+      const confirmed = document.getElementById('confirmCheckbox').checked;
+      if (!confirmed) {
+        alert('Please confirm the declaration before submitting');
+        return;
+      }
+
+      const count = document.querySelectorAll('.subject-checkbox:checked').length;
+      if (count === 0) {
+        alert('Please select at least one subject for supplementary exam');
+        return;
+      }
+
+      alert('Supplementary exam registration submitted successfully!\n\nRegistration ID: SUPP-2025-0045\nExam Session: June 2025\nSubjects: ' + count + '\n\nThe registration will be verified and approved by the Exam Department.');
+      window.location.href = 'supplementary-verification.html';
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CIA + ESE Integration - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Mark Sheet Management
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 260px;">
+        <a href="mark-sheet-serial.html" class="dropdown-item">Serial Number Assignment</a>
+        <a href="cia-ese-integration.html" class="dropdown-item active">CIA + ESE Integration</a>
+        <a href="duplicate-request.html" class="dropdown-item">Duplicate Request & Reissue</a>
+        <a href="mark-sheet-verification.html" class="dropdown-item">Verification & Approval</a>
+        <a href="consolidated-statement.html" class="dropdown-item">Consolidated Statement</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">DE</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Data Entry Operator</div>
+            <div style="font-size: 11px; color: #6B7280;">Mark Sheet Generation</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Mark Sheet Management</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">CIA + ESE Integration</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export Mark Sheet
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="printer" style="width: 16px; height: 16px;"></i>
+        Generate Mark Sheet
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Section 1: Student Selection & Details -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Student Mark Sheet - BCA III Year V Semester</h2>
+        </div>
+        <div class="section-body">
+
+          <!-- Student Search -->
+          <div style="display: grid; grid-template-columns: 2fr 1fr auto; gap: 16px; margin-bottom: 24px;">
+            <div class="form-group">
+              <label class="form-label">Search by Registration Number or Name</label>
+              <input type="text" class="form-input" placeholder="Enter registration number or student name" value="REG2022001" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Exam Session</label>
+              <select class="form-select">
+                <option value="DEC2024" selected>December 2024</option>
+                <option value="MAY2024">May 2024</option>
+              </select>
+            </div>
+            <div style="display: flex; align-items: end;">
+              <button class="btn btn-primary">
+                <i data-feather="search" style="width: 16px; height: 16px;"></i>
+                Search
+              </button>
+            </div>
+          </div>
+
+          <!-- Student Information Card -->
+          <div style="background: #EFF6FF; border: 2px solid #2563EB; border-radius: 8px; padding: 24px;">
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Registration Number</div>
+                <div style="font-weight: 600;">REG2022001</div>
+              </div>
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Student Name</div>
+                <div style="font-weight: 600;">Rajesh Kumar</div>
+              </div>
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Program/Year</div>
+                <div style="font-weight: 600;">BCA III Year V Sem</div>
+              </div>
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Serial Number</div>
+                <div style="font-weight: 600; font-family: monospace; color: #2563EB;">MS-2024-1181</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Section 2: Grading System Reference -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">University Grading System</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+
+            <!-- Grade Scale -->
+            <div>
+              <div style="font-weight: 600; margin-bottom: 12px; font-size: 14px;">Grade Scale</div>
+              <div style="display: grid; gap: 8px;">
+                <div style="display: grid; grid-template-columns: 80px 120px 100px; gap: 12px; padding: 8px; background: #F0FDF4; border-radius: 4px; font-weight: 600; font-size: 13px;">
+                  <div>Grade</div>
+                  <div>Marks Range</div>
+                  <div>Grade Points</div>
+                </div>
+                <div style="display: grid; grid-template-columns: 80px 120px 100px; gap: 12px; padding: 8px; background: #F8F9FA; border-radius: 4px;">
+                  <div style="font-weight: 600;">O</div>
+                  <div>90 - 100</div>
+                  <div style="font-weight: 600;">10</div>
+                </div>
+                <div style="display: grid; grid-template-columns: 80px 120px 100px; gap: 12px; padding: 8px; background: #F8F9FA; border-radius: 4px;">
+                  <div style="font-weight: 600;">A+</div>
+                  <div>80 - 89</div>
+                  <div style="font-weight: 600;">9</div>
+                </div>
+                <div style="display: grid; grid-template-columns: 80px 120px 100px; gap: 12px; padding: 8px; background: #F8F9FA; border-radius: 4px;">
+                  <div style="font-weight: 600;">A</div>
+                  <div>70 - 79</div>
+                  <div style="font-weight: 600;">8</div>
+                </div>
+                <div style="display: grid; grid-template-columns: 80px 120px 100px; gap: 12px; padding: 8px; background: #F8F9FA; border-radius: 4px;">
+                  <div style="font-weight: 600;">B+</div>
+                  <div>60 - 69</div>
+                  <div style="font-weight: 600;">7</div>
+                </div>
+                <div style="display: grid; grid-template-columns: 80px 120px 100px; gap: 12px; padding: 8px; background: #F8F9FA; border-radius: 4px;">
+                  <div style="font-weight: 600;">B</div>
+                  <div>50 - 59</div>
+                  <div style="font-weight: 600;">6</div>
+                </div>
+                <div style="display: grid; grid-template-columns: 80px 120px 100px; gap: 12px; padding: 8px; background: #F8F9FA; border-radius: 4px;">
+                  <div style="font-weight: 600;">C</div>
+                  <div>40 - 49</div>
+                  <div style="font-weight: 600;">5</div>
+                </div>
+                <div style="display: grid; grid-template-columns: 80px 120px 100px; gap: 12px; padding: 8px; background: #FEE2E2; border-radius: 4px;">
+                  <div style="font-weight: 600;">F</div>
+                  <div>< 40 (Fail)</div>
+                  <div style="font-weight: 600; color: #DC2626;">0</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mark Sheet Formula -->
+            <div>
+              <div style="font-weight: 600; margin-bottom: 12px; font-size: 14px;">Mark Sheet Calculation Formula</div>
+              <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px; margin-bottom: 16px;">
+                <div style="font-weight: 600; margin-bottom: 8px;">Total Marks Calculation:</div>
+                <div style="font-family: monospace; background: white; padding: 12px; border-radius: 4px; margin-bottom: 8px;">
+                  Total = CIA (40) + ESE (60)
+                </div>
+                <div class="text-xs" style="color: #6B7280;">CIA: Continuous Internal Assessment (Max: 40)<br/>ESE: End Semester Examination (Max: 60)</div>
+              </div>
+
+              <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px; margin-bottom: 16px;">
+                <div style="font-weight: 600; margin-bottom: 8px;">SGPA Calculation:</div>
+                <div style="font-family: monospace; background: white; padding: 12px; border-radius: 4px; margin-bottom: 8px;">
+                  SGPA = Σ(Grade Points × Credits) / Σ(Credits)
+                </div>
+                <div class="text-xs" style="color: #6B7280;">Semester Grade Point Average (current semester only)</div>
+              </div>
+
+              <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+                <div style="font-weight: 600; margin-bottom: 8px;">CGPA Calculation:</div>
+                <div style="font-family: monospace; background: white; padding: 12px; border-radius: 4px; margin-bottom: 8px;">
+                  CGPA = Σ(All SGPA) / Total Semesters
+                </div>
+                <div class="text-xs" style="color: #6B7280;">Cumulative Grade Point Average (all semesters)</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Subject-wise Marks & Grade Calculation -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Subject-wise Marks - V Semester (December 2024)</h2>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 100px;">Subject Code</th>
+                  <th>Subject Name</th>
+                  <th style="text-align: center;">Credits</th>
+                  <th style="text-align: center;">CIA<br/><span style="font-size: 10px; color: #6B7280;">(Max: 40)</span></th>
+                  <th style="text-align: center;">ESE<br/><span style="font-size: 10px; color: #6B7280;">(Max: 60)</span></th>
+                  <th style="text-align: center;">Total<br/><span style="font-size: 10px; color: #6B7280;">(Max: 100)</span></th>
+                  <th style="text-align: center;">Grade</th>
+                  <th style="text-align: center;">Grade Points</th>
+                  <th style="text-align: center;">Credit Points<br/><span style="font-size: 10px; color: #6B7280;">(GP × Credits)</span></th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-family: monospace; font-weight: 600;">CS501</td>
+                  <td style="font-weight: 500;">Data Structures & Algorithms</td>
+                  <td style="text-align: center; font-weight: 600;">4</td>
+                  <td style="text-align: center; font-weight: 600;">35</td>
+                  <td style="text-align: center; font-weight: 600;">52</td>
+                  <td style="text-align: center; font-weight: 600; color: #22C55E; font-size: 15px;">87</td>
+                  <td style="text-align: center;">
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      A+
+                    </span>
+                  </td>
+                  <td style="text-align: center; font-weight: 600;">9</td>
+                  <td style="text-align: center; font-weight: 600; color: #2563EB;">36</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      PASS
+                    </span>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-family: monospace; font-weight: 600;">CS502</td>
+                  <td style="font-weight: 500;">Database Management Systems</td>
+                  <td style="text-align: center; font-weight: 600;">4</td>
+                  <td style="text-align: center; font-weight: 600;">32</td>
+                  <td style="text-align: center; font-weight: 600;">48</td>
+                  <td style="text-align: center; font-weight: 600; color: #22C55E; font-size: 15px;">80</td>
+                  <td style="text-align: center;">
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      A+
+                    </span>
+                  </td>
+                  <td style="text-align: center; font-weight: 600;">9</td>
+                  <td style="text-align: center; font-weight: 600; color: #2563EB;">36</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      PASS
+                    </span>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-family: monospace; font-weight: 600;">CS503</td>
+                  <td style="font-weight: 500;">Operating Systems</td>
+                  <td style="text-align: center; font-weight: 600;">4</td>
+                  <td style="text-align: center; font-weight: 600;">36</td>
+                  <td style="text-align: center; font-weight: 600;">46</td>
+                  <td style="text-align: center; font-weight: 600; color: #22C55E; font-size: 15px;">82</td>
+                  <td style="text-align: center;">
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      A+
+                    </span>
+                  </td>
+                  <td style="text-align: center; font-weight: 600;">9</td>
+                  <td style="text-align: center; font-weight: 600; color: #2563EB;">36</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      PASS
+                    </span>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-family: monospace; font-weight: 600;">CS504</td>
+                  <td style="font-weight: 500;">Computer Networks</td>
+                  <td style="text-align: center; font-weight: 600;">4</td>
+                  <td style="text-align: center; font-weight: 600;">38</td>
+                  <td style="text-align: center; font-weight: 600;">39</td>
+                  <td style="text-align: center; font-weight: 600; color: #22C55E; font-size: 15px;">77</td>
+                  <td style="text-align: center;">
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      A
+                    </span>
+                  </td>
+                  <td style="text-align: center; font-weight: 600;">8</td>
+                  <td style="text-align: center; font-weight: 600; color: #2563EB;">32</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      PASS
+                    </span>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-family: monospace; font-weight: 600;">CS505</td>
+                  <td style="font-weight: 500;">Software Engineering</td>
+                  <td style="text-align: center; font-weight: 600;">3</td>
+                  <td style="text-align: center; font-weight: 600;">34</td>
+                  <td style="text-align: center; font-weight: 600;">41</td>
+                  <td style="text-align: center; font-weight: 600; color: #22C55E; font-size: 15px;">75</td>
+                  <td style="text-align: center;">
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      A
+                    </span>
+                  </td>
+                  <td style="text-align: center; font-weight: 600;">8</td>
+                  <td style="text-align: center; font-weight: 600; color: #2563EB;">24</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      PASS
+                    </span>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-family: monospace; font-weight: 600;">CS506L</td>
+                  <td style="font-weight: 500;">DSA Lab</td>
+                  <td style="text-align: center; font-weight: 600;">2</td>
+                  <td style="text-align: center; font-weight: 600;">39</td>
+                  <td style="text-align: center; font-weight: 600;">56</td>
+                  <td style="text-align: center; font-weight: 600; color: #22C55E; font-size: 15px;">95</td>
+                  <td style="text-align: center;">
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      O
+                    </span>
+                  </td>
+                  <td style="text-align: center; font-weight: 600;">10</td>
+                  <td style="text-align: center; font-weight: 600; color: #2563EB;">20</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      PASS
+                    </span>
+                  </td>
+                </tr>
+
+                <!-- Total Row -->
+                <tr style="background: #EFF6FF; border-top: 2px solid #2563EB;">
+                  <td colspan="2" style="font-weight: 600; font-size: 14px;">SEMESTER TOTAL</td>
+                  <td style="text-align: center; font-weight: 600; font-size: 14px;">21</td>
+                  <td style="text-align: center; font-weight: 600; font-size: 14px;">214</td>
+                  <td style="text-align: center; font-weight: 600; font-size: 14px;">282</td>
+                  <td style="text-align: center; font-weight: 600; font-size: 16px; color: #2563EB;">496</td>
+                  <td colspan="2" style="text-align: center; font-weight: 600; font-size: 14px;">Total Credits: 21</td>
+                  <td style="text-align: center; font-weight: 600; font-size: 16px; color: #2563EB;">184</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: SGPA & CGPA Calculation -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Semester Performance Summary</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+
+            <!-- SGPA Calculation -->
+            <div style="background: #F0FDF4; border: 2px solid #22C55E; border-radius: 8px; padding: 24px;">
+              <div style="font-weight: 600; margin-bottom: 16px; font-size: 15px;">SGPA - V Semester (December 2024)</div>
+
+              <div style="background: white; border-radius: 6px; padding: 16px; margin-bottom: 16px;">
+                <div style="font-family: monospace; font-size: 13px; margin-bottom: 12px;">
+                  SGPA = Σ(Grade Points × Credits) / Σ(Credits)
+                </div>
+                <div style="font-family: monospace; font-size: 13px; margin-bottom: 12px;">
+                  SGPA = 184 / 21
+                </div>
+                <div style="font-family: monospace; font-size: 13px;">
+                  SGPA = 8.76
+                </div>
+              </div>
+
+              <div style="background: #22C55E; border-radius: 6px; padding: 20px; text-align: center; color: white;">
+                <div style="font-size: 14px; margin-bottom: 8px; opacity: 0.9;">V Semester SGPA</div>
+                <div style="font-size: 36px; font-weight: 600;">8.76</div>
+                <div style="font-size: 12px; margin-top: 8px; opacity: 0.9;">Out of 10.00</div>
+              </div>
+
+              <div style="margin-top: 16px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                  <span class="text-xs">Total Credit Points:</span>
+                  <span style="font-weight: 600;">184</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                  <span class="text-xs">Total Credits:</span>
+                  <span style="font-weight: 600;">21</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span class="text-xs">Result Status:</span>
+                  <span class="status status-approved">
+                    <span class="status-dot"></span>
+                    PASS
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- CGPA Calculation -->
+            <div style="background: #EFF6FF; border: 2px solid #2563EB; border-radius: 8px; padding: 24px;">
+              <div style="font-weight: 600; margin-bottom: 16px; font-size: 15px;">CGPA - Overall (Sem I to V)</div>
+
+              <div style="background: white; border-radius: 6px; padding: 16px; margin-bottom: 16px;">
+                <div style="display: grid; gap: 8px; margin-bottom: 12px;">
+                  <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                    <span>Semester I SGPA:</span>
+                    <span style="font-weight: 600;">8.2</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                    <span>Semester II SGPA:</span>
+                    <span style="font-weight: 600;">8.4</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                    <span>Semester III SGPA:</span>
+                    <span style="font-weight: 600;">8.6</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                    <span>Semester IV SGPA:</span>
+                    <span style="font-weight: 600;">8.5</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 13px; border-top: 1px solid #E5E7EB; padding-top: 8px;">
+                    <span>Semester V SGPA:</span>
+                    <span style="font-weight: 600; color: #22C55E;">8.76</span>
+                  </div>
+                </div>
+                <div style="font-family: monospace; font-size: 13px; border-top: 1px solid #E5E7EB; padding-top: 8px;">
+                  CGPA = (8.2+8.4+8.6+8.5+8.76) / 5 = 8.49
+                </div>
+              </div>
+
+              <div style="background: #2563EB; border-radius: 6px; padding: 20px; text-align: center; color: white;">
+                <div style="font-size: 14px; margin-bottom: 8px; opacity: 0.9;">Cumulative CGPA (5 Semesters)</div>
+                <div style="font-size: 36px; font-weight: 600;">8.49</div>
+                <div style="font-size: 12px; margin-top: 8px; opacity: 0.9;">Out of 10.00</div>
+              </div>
+
+              <div style="margin-top: 16px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                  <span class="text-xs">Total Semesters:</span>
+                  <span style="font-weight: 600;">5 / 6</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                  <span class="text-xs">Total Credits Earned:</span>
+                  <span style="font-weight: 600;">105 / 126</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span class="text-xs">Overall Result:</span>
+                  <span class="status status-approved">
+                    <span class="status-dot"></span>
+                    PASS
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: Mark Sheet Preview -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Mark Sheet Preview</h2>
+          <button class="btn btn-sm btn-primary">
+            <i data-feather="printer" style="width: 16px; height: 16px;"></i>
+            Print Mark Sheet
+          </button>
+        </div>
+        <div class="section-body">
+          <div style="background: white; border: 2px solid #2563EB; border-radius: 8px; padding: 32px; max-width: 800px; margin: 0 auto;">
+
+            <!-- University Header -->
+            <div style="text-align: center; margin-bottom: 24px; border-bottom: 2px solid #E5E7EB; padding-bottom: 16px;">
+              <div style="font-weight: 600; font-size: 18px; margin-bottom: 4px;">SGC Educational Institute</div>
+              <div style="font-size: 13px; color: #6B7280; margin-bottom: 4px;">Affiliated to SGC University, Bangalore</div>
+              <div style="font-weight: 600; font-size: 15px; margin-top: 12px;">SEMESTER MARK SHEET</div>
+              <div style="font-size: 12px; color: #6B7280; margin-top: 4px;">Bachelor of Computer Applications (BCA) - December 2024 Examination</div>
+            </div>
+
+            <!-- Student Details -->
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; background: #F8F9FA; padding: 16px; border-radius: 6px;">
+              <div>
+                <span style="font-size: 12px; color: #6B7280;">Registration Number:</span>
+                <span style="font-weight: 600; margin-left: 8px;">REG2022001</span>
+              </div>
+              <div>
+                <span style="font-size: 12px; color: #6B7280;">Student Name:</span>
+                <span style="font-weight: 600; margin-left: 8px;">RAJESH KUMAR</span>
+              </div>
+              <div>
+                <span style="font-size: 12px; color: #6B7280;">Program:</span>
+                <span style="font-weight: 600; margin-left: 8px;">BCA</span>
+              </div>
+              <div>
+                <span style="font-size: 12px; color: #6B7280;">Year/Semester:</span>
+                <span style="font-weight: 600; margin-left: 8px;">III Year / V Semester</span>
+              </div>
+              <div>
+                <span style="font-size: 12px; color: #6B7280;">Mark Sheet Serial No:</span>
+                <span style="font-weight: 600; margin-left: 8px; font-family: monospace;">MS-2024-1181</span>
+              </div>
+              <div>
+                <span style="font-size: 12px; color: #6B7280;">Exam Session:</span>
+                <span style="font-weight: 600; margin-left: 8px;">December 2024</span>
+              </div>
+            </div>
+
+            <!-- Marks Table (Simplified for preview) -->
+            <div style="border: 1px solid #E5E7EB; border-radius: 6px; overflow: hidden; margin-bottom: 20px;">
+              <table style="width: 100%; border-collapse: collapse;">
+                <thead style="background: #F8F9FA;">
+                  <tr>
+                    <th style="padding: 8px; text-align: left; font-size: 11px; border-bottom: 1px solid #E5E7EB;">Subject Code</th>
+                    <th style="padding: 8px; text-align: left; font-size: 11px; border-bottom: 1px solid #E5E7EB;">Subject Name</th>
+                    <th style="padding: 8px; text-align: center; font-size: 11px; border-bottom: 1px solid #E5E7EB;">Credits</th>
+                    <th style="padding: 8px; text-align: center; font-size: 11px; border-bottom: 1px solid #E5E7EB;">Marks</th>
+                    <th style="padding: 8px; text-align: center; font-size: 11px; border-bottom: 1px solid #E5E7EB;">Grade</th>
+                  </tr>
+                </thead>
+                <tbody style="font-size: 12px;">
+                  <tr>
+                    <td style="padding: 6px 8px; border-bottom: 1px solid #E5E7EB;">CS501</td>
+                    <td style="padding: 6px 8px; border-bottom: 1px solid #E5E7EB;">Data Structures</td>
+                    <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #E5E7EB;">4</td>
+                    <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #E5E7EB;">87</td>
+                    <td style="padding: 6px 8px; text-align: center; border-bottom: 1px solid #E5E7EB; font-weight: 600;">A+</td>
+                  </tr>
+                  <tr>
+                    <td colspan="5" style="padding: 6px 8px; text-align: center; color: #6B7280; font-size: 11px;">... 5 more subjects ...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Result Summary -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px;">
+              <div style="text-align: center; background: #F0FDF4; padding: 12px; border-radius: 6px;">
+                <div style="font-size: 11px; color: #6B7280; margin-bottom: 4px;">SGPA - V Semester</div>
+                <div style="font-size: 20px; font-weight: 600; color: #22C55E;">8.76</div>
+              </div>
+              <div style="text-align: center; background: #EFF6FF; padding: 12px; border-radius: 6px;">
+                <div style="font-size: 11px; color: #6B7280; margin-bottom: 4px;">Cumulative CGPA</div>
+                <div style="font-size: 20px; font-weight: 600; color: #2563EB;">8.49</div>
+              </div>
+              <div style="text-align: center; background: #F0FDF4; padding: 12px; border-radius: 6px;">
+                <div style="font-size: 11px; color: #6B7280; margin-bottom: 4px;">Result Status</div>
+                <div style="font-size: 16px; font-weight: 600; color: #22C55E;">PASS</div>
+              </div>
+            </div>
+
+            <!-- Signature Section -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; padding-top: 16px; border-top: 1px solid #E5E7EB;">
+              <div style="text-align: center;">
+                <div style="border-top: 1px solid #6B7280; padding-top: 8px; margin-top: 40px; font-size: 11px;">Principal</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="border-top: 1px solid #6B7280; padding-top: 8px; margin-top: 40px; font-size: 11px;">Controller of Examinations</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="border-top: 1px solid #6B7280; padding-top: 8px; margin-top: 40px; font-size: 11px;">Registrar</div>
+              </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 16px; font-size: 10px; color: #6B7280;">
+              Date of Issue: 16-Nov-2024
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>feather.replace();</script>
+</body>
+</html>

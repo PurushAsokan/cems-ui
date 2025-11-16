@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>University Submission Summary - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Certificates & Completion
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 260px;">
+        <a href="certificate-generation.html" class="dropdown-item">Certificate Generation</a>
+        <a href="certificate-verification.html" class="dropdown-item">Verification & Approval</a>
+        <a href="university-submission.html" class="dropdown-item active">University Submission</a>
+        <a href="certificate-tracking.html" class="dropdown-item">Certificate Tracking</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">EC</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Exam Controller</div>
+            <div style="font-size: 11px; color: #6B7280;">University Submission</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Certificates & Completion</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">University Submission</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+        Generate Cover Letter
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="send" style="width: 16px; height: 16px;"></i>
+        Prepare Submission Package
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Submission Period Selection -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">University Submission - Certificate Summary Report</h2>
+        </div>
+        <div class="section-body">
+          <div class="alert alert-info" style="margin-bottom: 16px;">
+            <i data-feather="info" style="width: 20px; height: 20px;"></i>
+            <div>
+              <strong>University Submission Guidelines:</strong> Generate consolidated summary of all certificates issued during the academic year for university records. Ensure all certificates are verified and approved before generating submission package.
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <div class="form-group">
+              <label class="form-label required">Academic Year</label>
+              <select class="form-select">
+                <option value="">-- Select Year --</option>
+                <option value="2024-25" selected>2024-25</option>
+                <option value="2023-24">2023-24</option>
+                <option value="2022-23">2022-23</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Program</label>
+              <select class="form-select">
+                <option value="">All Programs</option>
+                <option value="BCA">BCA</option>
+                <option value="MCA">MCA</option>
+                <option value="BSC">B.Sc Computer Science</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Certificate Type</label>
+              <select class="form-select">
+                <option value="">All Types</option>
+                <option value="completion">Course Completion</option>
+                <option value="diploma">Diploma Certificate</option>
+                <option value="provisional">Provisional Certificate</option>
+              </select>
+            </div>
+            <div style="display: flex; align-items: end;">
+              <button class="btn btn-primary" style="width: 100%;">
+                <i data-feather="search" style="width: 16px; height: 16px;"></i>
+                Generate Report
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary Statistics -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Certificate Issue Summary - 2024-25</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="download" style="width: 16px; height: 16px;"></i>
+            Export Statistics
+          </button>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;">
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Certificates Issued</div>
+              <div style="font-size: 28px; font-weight: 600; color: #22C55E;">245</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">All programs combined</div>
+            </div>
+            <div style="background: #DBEAFE; border: 1px solid #93C5FD; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Course Completion (3 Years)</div>
+              <div style="font-size: 28px; font-weight: 600; color: #3B82F6;">180</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">73% of total</div>
+            </div>
+            <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Diploma (2 Years)</div>
+              <div style="font-size: 28px; font-weight: 600; color: #F59E0B;">45</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">18% of total</div>
+            </div>
+            <div style="background: #F3E8FF; border: 1px solid #D8B4FE; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Completion (1 Year)</div>
+              <div style="font-size: 28px; font-weight: 600; color: #A855F7;">20</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">8% of total</div>
+            </div>
+          </div>
+
+          <!-- Program-wise Breakdown -->
+          <div style="background: #F8F9FA; padding: 16px; border-radius: 6px;">
+            <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 12px; color: #111827;">Program-wise Breakdown</h4>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+              <div style="background: white; padding: 12px; border-radius: 4px; border: 1px solid #E5E7EB;">
+                <div style="font-weight: 600; font-size: 16px; color: #2563EB;">BCA</div>
+                <div style="font-size: 24px; font-weight: 600; margin: 8px 0;">145</div>
+                <div style="font-size: 11px; color: #6B7280;">Course: 110 | Diploma: 25 | Completion: 10</div>
+              </div>
+              <div style="background: white; padding: 12px; border-radius: 4px; border: 1px solid #E5E7EB;">
+                <div style="font-weight: 600; font-size: 16px; color: #2563EB;">MCA</div>
+                <div style="font-size: 24px; font-weight: 600; margin: 8px 0;">72</div>
+                <div style="font-size: 11px; color: #6B7280;">Course: 50 | Diploma: 15 | Completion: 7</div>
+              </div>
+              <div style="background: white; padding: 12px; border-radius: 4px; border: 1px solid #E5E7EB;">
+                <div style="font-weight: 600; font-size: 16px; color: #2563EB;">B.Sc CS</div>
+                <div style="font-size: 24px; font-weight: 600; margin: 8px 0;">28</div>
+                <div style="font-size: 11px; color: #6B7280;">Course: 20 | Diploma: 5 | Completion: 3</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Classification Analysis -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Student Classification Analysis</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <div style="background: white; border: 2px solid #22C55E; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">First Class with Distinction</div>
+              <div style="font-size: 24px; font-weight: 600; color: #22C55E;">95</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">CGPA ≥ 8.0 (38.8%)</div>
+            </div>
+            <div style="background: white; border: 2px solid #3B82F6; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">First Class</div>
+              <div style="font-size: 24px; font-weight: 600; color: #3B82F6;">110</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">CGPA 7.0-7.99 (44.9%)</div>
+            </div>
+            <div style="background: white; border: 2px solid #F59E0B; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Second Class</div>
+              <div style="font-size: 24px; font-weight: 600; color: #F59E0B;">32</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">CGPA 6.0-6.99 (13.1%)</div>
+            </div>
+            <div style="background: white; border: 2px solid #9CA3AF; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Pass Class</div>
+              <div style="font-size: 24px; font-weight: 600; color: #6B7280;">8</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">CGPA 5.0-5.99 (3.3%)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detailed Certificate List -->
+      <div class="section">
+        <div class="section-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Detailed Certificate List - All Programs (245)</h2>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-sm btn-ghost">
+              <i data-feather="printer" style="width: 16px; height: 16px;"></i>
+              Print Summary
+            </button>
+            <button class="btn btn-sm btn-secondary">
+              <i data-feather="download" style="width: 16px; height: 16px;"></i>
+              Export to Excel
+            </button>
+            <button class="btn btn-sm btn-primary">
+              <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+              Export to PDF
+            </button>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 50px;">S.No</th>
+                  <th>Certificate No</th>
+                  <th>Registration No</th>
+                  <th>Student Name</th>
+                  <th>Program</th>
+                  <th>Years Completed</th>
+                  <th style="text-align: center;">CGPA</th>
+                  <th>Classification</th>
+                  <th>Issue Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="text-align: center;">1</td>
+                  <td style="font-family: monospace; font-weight: 600;">CERT-2025-0001</td>
+                  <td style="font-family: monospace; font-size: 12px;">REG2022001</td>
+                  <td style="font-weight: 500;">Rajesh Kumar</td>
+                  <td style="font-size: 12px;">BCA<br/><span style="color: #6B7280;">2022-2025</span></td>
+                  <td style="text-align: center;">3 Years</td>
+                  <td style="text-align: center; font-weight: 600;">8.49</td>
+                  <td style="font-size: 12px;">First Class with Distinction</td>
+                  <td style="font-size: 12px;">15-Nov-2024</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Issued
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="text-align: center;">2</td>
+                  <td style="font-family: monospace; font-weight: 600;">CERT-2025-0002</td>
+                  <td style="font-family: monospace; font-size: 12px;">REG2022002</td>
+                  <td style="font-weight: 500;">Meera Sharma</td>
+                  <td style="font-size: 12px;">BCA<br/><span style="color: #6B7280;">2022-2025</span></td>
+                  <td style="text-align: center;">3 Years</td>
+                  <td style="text-align: center; font-weight: 600;">8.92</td>
+                  <td style="font-size: 12px;">First Class with Distinction</td>
+                  <td style="font-size: 12px;">15-Nov-2024</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Issued
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="text-align: center;">3</td>
+                  <td style="font-family: monospace; font-weight: 600;">CERT-2025-0003</td>
+                  <td style="font-family: monospace; font-size: 12px;">REG2022003</td>
+                  <td style="font-weight: 500;">Anand Patel</td>
+                  <td style="font-size: 12px;">BCA<br/><span style="color: #6B7280;">2022-2025</span></td>
+                  <td style="text-align: center;">3 Years</td>
+                  <td style="text-align: center; font-weight: 600;">7.52</td>
+                  <td style="font-size: 12px;">First Class</td>
+                  <td style="font-size: 12px;">15-Nov-2024</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Issued
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="text-align: center;">4</td>
+                  <td style="font-family: monospace; font-weight: 600;">CERT-2025-0004</td>
+                  <td style="font-family: monospace; font-size: 12px;">REG2021034</td>
+                  <td style="font-weight: 500;">Priya Nair</td>
+                  <td style="font-size: 12px;">MCA<br/><span style="color: #6B7280;">2021-2023</span></td>
+                  <td style="text-align: center;">2 Years</td>
+                  <td style="text-align: center; font-weight: 600;">7.85</td>
+                  <td style="font-size: 12px;">First Class</td>
+                  <td style="font-size: 12px;">14-Nov-2024</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Issued
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="text-align: center;">5</td>
+                  <td style="font-family: monospace; font-weight: 600;">CERT-2025-0005</td>
+                  <td style="font-family: monospace; font-size: 12px;">REG2023012</td>
+                  <td style="font-weight: 500;">Arun Kumar</td>
+                  <td style="font-size: 12px;">BCA<br/><span style="color: #6B7280;">2023-2024</span></td>
+                  <td style="text-align: center;">1 Year</td>
+                  <td style="text-align: center; font-weight: 600;">6.45</td>
+                  <td style="font-size: 12px;">Second Class</td>
+                  <td style="font-size: 12px;">14-Nov-2024</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Issued
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="margin-top: 12px; font-size: 12px; color: #6B7280; text-align: center;">
+            Showing 5 of 245 records | <a href="#" style="color: #2563EB;">View All Records</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- University Submission Package -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">University Submission Package</h2>
+        </div>
+        <div class="section-body">
+
+          <div class="alert alert-warning" style="margin-bottom: 16px;">
+            <i data-feather="alert-circle" style="width: 20px; height: 20px;"></i>
+            <div>
+              <strong>Submission Checklist:</strong> Ensure all certificates are verified and approved before preparing the submission package. The package will include cover letter, detailed list, and statistical summary in university format.
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+
+            <!-- Document Checklist -->
+            <div style="background: #F8F9FA; padding: 16px; border-radius: 6px; border: 1px solid #E5E7EB;">
+              <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 12px; color: #111827;">Required Documents</h4>
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <div style="display: flex; align-items: center; padding: 8px; background: white; border-radius: 4px;">
+                  <input type="checkbox" checked style="margin-right: 12px;" />
+                  <label style="font-size: 13px; flex: 1;">Cover Letter (Principal Signature)</label>
+                  <span class="status status-approved" style="font-size: 11px;">
+                    <span class="status-dot"></span>
+                    Ready
+                  </span>
+                </div>
+                <div style="display: flex; align-items: center; padding: 8px; background: white; border-radius: 4px;">
+                  <input type="checkbox" checked style="margin-right: 12px;" />
+                  <label style="font-size: 13px; flex: 1;">Detailed Certificate List (PDF)</label>
+                  <span class="status status-approved" style="font-size: 11px;">
+                    <span class="status-dot"></span>
+                    Ready
+                  </span>
+                </div>
+                <div style="display: flex; align-items: center; padding: 8px; background: white; border-radius: 4px;">
+                  <input type="checkbox" checked style="margin-right: 12px;" />
+                  <label style="font-size: 13px; flex: 1;">Statistical Summary (Excel)</label>
+                  <span class="status status-approved" style="font-size: 11px;">
+                    <span class="status-dot"></span>
+                    Ready
+                  </span>
+                </div>
+                <div style="display: flex; align-items: center; padding: 8px; background: white; border-radius: 4px;">
+                  <input type="checkbox" checked style="margin-right: 12px;" />
+                  <label style="font-size: 13px; flex: 1;">Program-wise Summary</label>
+                  <span class="status status-approved" style="font-size: 11px;">
+                    <span class="status-dot"></span>
+                    Ready
+                  </span>
+                </div>
+                <div style="display: flex; align-items: center; padding: 8px; background: white; border-radius: 4px;">
+                  <input type="checkbox" checked style="margin-right: 12px;" />
+                  <label style="font-size: 13px; flex: 1;">Digital Signatures & Seals</label>
+                  <span class="status status-approved" style="font-size: 11px;">
+                    <span class="status-dot"></span>
+                    Ready
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Submission Details -->
+            <div style="background: #F8F9FA; padding: 16px; border-radius: 6px; border: 1px solid #E5E7EB;">
+              <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 12px; color: #111827;">Submission Details</h4>
+              <div class="form-group">
+                <label class="form-label required">Submission Format</label>
+                <select class="form-select">
+                  <option value="">-- Select Format --</option>
+                  <option value="digital" selected>Digital Submission (Email)</option>
+                  <option value="physical">Physical Documents</option>
+                  <option value="both">Both Digital & Physical</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">University Email</label>
+                <input type="email" class="form-input" value="exams@sgcuniversity.edu.in" readonly />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Submission Reference</label>
+                <input type="text" class="form-input" value="SGCEI/CERT/2024-25/001" readonly />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Authorized Signatory</label>
+                <input type="text" class="form-input" value="Dr. Suresh Kumar (Exam Controller)" readonly />
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Action Buttons -->
+          <div style="display: flex; gap: 8px; justify-content: flex-end;">
+            <button class="btn btn-secondary">
+              <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+              Preview Cover Letter
+            </button>
+            <button class="btn btn-secondary">
+              <i data-feather="download" style="width: 16px; height: 16px;"></i>
+              Download Package
+            </button>
+            <button class="btn btn-primary">
+              <i data-feather="send" style="width: 16px; height: 16px;"></i>
+              Submit to University
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Submission History -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Previous University Submissions</h2>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Submission Ref</th>
+                  <th>Academic Year</th>
+                  <th>Total Certificates</th>
+                  <th>Programs Covered</th>
+                  <th>Submission Date</th>
+                  <th>Submitted By</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-family: monospace; font-weight: 600;">SGCEI/CERT/2023-24/001</td>
+                  <td>2023-24</td>
+                  <td style="font-weight: 600;">198</td>
+                  <td style="font-size: 12px;">BCA (120), MCA (58), B.Sc (20)</td>
+                  <td style="font-size: 12px;">
+                    20-Aug-2024<br/>
+                    <span style="color: #6B7280;">03:30 PM</span>
+                  </td>
+                  <td>
+                    <div style="font-size: 12px; font-weight: 500;">Dr. Ramesh Kumar</div>
+                    <div style="font-size: 11px; color: #6B7280;">Exam Controller</div>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Acknowledged
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Package">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Download">
+                      <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-family: monospace; font-weight: 600;">SGCEI/CERT/2022-23/001</td>
+                  <td>2022-23</td>
+                  <td style="font-weight: 600;">175</td>
+                  <td style="font-size: 12px;">BCA (105), MCA (52), B.Sc (18)</td>
+                  <td style="font-size: 12px;">
+                    18-Aug-2023<br/>
+                    <span style="color: #6B7280;">02:15 PM</span>
+                  </td>
+                  <td>
+                    <div style="font-size: 12px; font-weight: 500;">Dr. Ramesh Kumar</div>
+                    <div style="font-size: 11px; color: #6B7280;">Exam Controller</div>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Acknowledged
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Package">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Download">
+                      <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>feather.replace();</script>
+</body>
+</html>

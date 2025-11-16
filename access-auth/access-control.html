@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Access Control - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Access & Authentication
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <a href="login.html" class="dropdown-item">Login</a>
+        <a href="../dashboard.html" class="dropdown-item">Dashboard</a>
+        <a href="access-control.html" class="dropdown-item active">Access Control</a>
+        <a href="audit-logs.html" class="dropdown-item">Audit Logs</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #DC2626; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">SA</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Super Admin</div>
+            <div style="font-size: 11px; color: #6B7280;">System Security</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Access & Authentication</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Access Control</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export Access Report
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="plus" style="width: 16px; height: 16px;"></i>
+        Add IP Range
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Security Status Overview -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Access Control & Security Status</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Active Sessions</div>
+              <div style="font-size: 24px; font-weight: 600; color: #22C55E;">24</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Currently logged in</div>
+            </div>
+            <div style="background: #DBEAFE; border: 1px solid #93C5FD; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Authorized Devices</div>
+              <div style="font-size: 24px; font-weight: 600; color: #3B82F6;">48</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Registered & approved</div>
+            </div>
+            <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Pending Approvals</div>
+              <div style="font-size: 24px; font-weight: 600; color: #F59E0B;">5</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Device registrations</div>
+            </div>
+            <div style="background: #FEE2E2; border: 1px solid #FCA5A5; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Access Violations</div>
+              <div style="font-size: 24px; font-weight: 600; color: #DC2626;">3</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Last 24 hours</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alert Banner -->
+      <div class="alert alert-warning">
+        <i data-feather="alert-triangle" style="width: 20px; height: 20px;"></i>
+        <div>
+          <strong>Security Notice:</strong> 3 unauthorized access attempts detected from IP 203.122.45.67 in the last hour. Device has been automatically blocked.
+        </div>
+        <button class="btn btn-sm btn-ghost">
+          View Details
+        </button>
+      </div>
+
+      <!-- IP Address Whitelist -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Authorized IP Address Ranges</h2>
+          <button class="btn btn-sm btn-primary">
+            <i data-feather="plus" style="width: 16px; height: 16px;"></i>
+            Add IP Range
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>IP Range / Network</th>
+                  <th>Location</th>
+                  <th>Description</th>
+                  <th>Added Date</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-family: monospace; font-weight: 600;">192.168.1.0/24</td>
+                  <td>Main Campus Building</td>
+                  <td style="font-size: 12px;">Primary network for exam department</td>
+                  <td style="font-size: 12px;">10-Jan-2024</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Disable">
+                      <i data-feather="pause-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-family: monospace; font-weight: 600;">192.168.2.0/24</td>
+                  <td>Computer Lab - Block A</td>
+                  <td style="font-size: 12px;">Computer Science department lab network</td>
+                  <td style="font-size: 12px;">10-Jan-2024</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Disable">
+                      <i data-feather="pause-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-family: monospace; font-weight: 600;">10.0.0.0/22</td>
+                  <td>Wi-Fi Network - Staff</td>
+                  <td style="font-size: 12px;">Campus-wide staff Wi-Fi network</td>
+                  <td style="font-size: 12px;">10-Jan-2024</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Disable">
+                      <i data-feather="pause-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #FEF3C7;">
+                  <td style="font-family: monospace; font-weight: 600;">172.16.5.0/24</td>
+                  <td>Administrative Block</td>
+                  <td style="font-size: 12px;">Controller's office and admin section</td>
+                  <td style="font-size: 12px;">15-Nov-2024</td>
+                  <td>
+                    <span class="status status-warning">
+                      <span class="status-dot"></span>
+                      Pending Approval
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-primary" title="Approve">
+                      <i data-feather="check" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger" title="Reject">
+                      <i data-feather="x" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Registered Devices -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Registered Devices</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="filter" style="width: 16px; height: 16px;"></i>
+            Filter
+          </button>
+        </div>
+        <div class="section-body">
+
+          <!-- Filters -->
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 16px;">
+            <div class="form-group">
+              <label class="form-label">Status</label>
+              <select class="form-select">
+                <option value="">All Devices</option>
+                <option value="approved">Approved</option>
+                <option value="pending">Pending Approval</option>
+                <option value="blocked">Blocked</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Device Type</label>
+              <select class="form-select">
+                <option value="">All Types</option>
+                <option value="desktop">Desktop</option>
+                <option value="laptop">Laptop</option>
+                <option value="mobile">Mobile</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Department</label>
+              <select class="form-select">
+                <option value="">All Departments</option>
+                <option value="exam">Exam Department</option>
+                <option value="cs">Computer Science</option>
+                <option value="admin">Administration</option>
+              </select>
+            </div>
+            <div style="display: flex; align-items: end;">
+              <button class="btn btn-primary" style="width: 100%;">
+                <i data-feather="search" style="width: 16px; height: 16px;"></i>
+                Apply Filter
+              </button>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Device Name</th>
+                  <th>MAC Address</th>
+                  <th>IP Address</th>
+                  <th>User</th>
+                  <th>Location</th>
+                  <th>Last Access</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #F0FDF4;">
+                  <td>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <i data-feather="monitor" style="width: 16px; height: 16px; color: #6B7280;"></i>
+                      <div style="font-weight: 500;">EXAM-DESK-01</div>
+                    </div>
+                  </td>
+                  <td style="font-family: monospace; font-size: 12px;">00:1A:2B:3C:4D:5E</td>
+                  <td style="font-family: monospace; font-size: 12px;">192.168.1.10</td>
+                  <td>
+                    <div style="font-size: 12px; font-weight: 500;">Data Entry Operator</div>
+                    <div style="font-size: 11px; color: #6B7280;">OP-001</div>
+                  </td>
+                  <td style="font-size: 12px;">Main Campus</td>
+                  <td style="font-size: 12px;">
+                    2 minutes ago<br/>
+                    <span style="color: #6B7280;">Currently active</span>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Block Device">
+                      <i data-feather="slash" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <i data-feather="laptop" style="width: 16px; height: 16px; color: #6B7280;"></i>
+                      <div style="font-weight: 500;">CONTROLLER-LAPTOP</div>
+                    </div>
+                  </td>
+                  <td style="font-family: monospace; font-size: 12px;">A1:B2:C3:D4:E5:F6</td>
+                  <td style="font-family: monospace; font-size: 12px;">192.168.1.15</td>
+                  <td>
+                    <div style="font-size: 12px; font-weight: 500;">Exam Controller</div>
+                    <div style="font-size: 11px; color: #6B7280;">CTRL-001</div>
+                  </td>
+                  <td style="font-size: 12px;">Admin Block</td>
+                  <td style="font-size: 12px;">
+                    15 minutes ago<br/>
+                    <span style="color: #6B7280;">Session active</span>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Block Device">
+                      <i data-feather="slash" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #FEF3C7;">
+                  <td>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <i data-feather="monitor" style="width: 16px; height: 16px; color: #6B7280;"></i>
+                      <div style="font-weight: 500;">EXAM-DESK-12</div>
+                    </div>
+                  </td>
+                  <td style="font-family: monospace; font-size: 12px;">11:22:33:44:55:66</td>
+                  <td style="font-family: monospace; font-size: 12px;">192.168.2.45</td>
+                  <td>
+                    <div style="font-size: 12px; font-weight: 500;">Assistant Controller</div>
+                    <div style="font-size: 11px; color: #6B7280;">AST-105</div>
+                  </td>
+                  <td style="font-size: 12px;">Computer Lab</td>
+                  <td style="font-size: 12px;">
+                    Pending<br/>
+                    <span style="color: #6B7280;">Never used</span>
+                  </td>
+                  <td>
+                    <span class="status status-warning">
+                      <span class="status-dot"></span>
+                      Pending
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-primary" title="Approve">
+                      <i data-feather="check" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger" title="Reject">
+                      <i data-feather="x" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #FEE2E2;">
+                  <td>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <i data-feather="smartphone" style="width: 16px; height: 16px; color: #6B7280;"></i>
+                      <div style="font-weight: 500;">UNKNOWN-DEVICE</div>
+                    </div>
+                  </td>
+                  <td style="font-family: monospace; font-size: 12px;">AA:BB:CC:DD:EE:FF</td>
+                  <td style="font-family: monospace; font-size: 12px;">203.122.45.67</td>
+                  <td>
+                    <div style="font-size: 12px; font-weight: 500; color: #DC2626;">Unauthorized</div>
+                    <div style="font-size: 11px; color: #6B7280;">Unknown</div>
+                  </td>
+                  <td style="font-size: 12px; color: #DC2626;">Outside Campus</td>
+                  <td style="font-size: 12px;">
+                    10 minutes ago<br/>
+                    <span style="color: #DC2626;">Access denied</span>
+                  </td>
+                  <td>
+                    <span class="status status-rejected">
+                      <span class="status-dot"></span>
+                      Blocked
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Attempts">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Unblock">
+                      <i data-feather="unlock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Access Policy Configuration -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Access Policy Configuration</h2>
+          <button class="btn btn-sm btn-primary">
+            <i data-feather="save" style="width: 16px; height: 16px;"></i>
+            Save Changes
+          </button>
+        </div>
+        <div class="section-body">
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+
+            <!-- Left Column: Location-based Policies -->
+            <div>
+              <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 12px; color: #111827;">Location-based Access Policies</h4>
+
+              <div class="form-group">
+                <label style="display: flex; align-items: center; font-size: 13px; cursor: pointer;">
+                  <input type="checkbox" checked style="margin-right: 12px;" />
+                  <div>
+                    <div style="font-weight: 500;">Enforce Premises-only Access</div>
+                    <div style="font-size: 11px; color: #6B7280; margin-top: 2px;">Block all access attempts from outside authorized IP ranges</div>
+                  </div>
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label style="display: flex; align-items: center; font-size: 13px; cursor: pointer;">
+                  <input type="checkbox" checked style="margin-right: 12px;" />
+                  <div>
+                    <div style="font-weight: 500;">Enable Geofencing</div>
+                    <div style="font-size: 11px; color: #6B7280; margin-top: 2px;">Use GPS coordinates for mobile device access validation</div>
+                  </div>
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label style="display: flex; align-items: center; font-size: 13px; cursor: pointer;">
+                  <input type="checkbox" style="margin-right: 12px;" />
+                  <div>
+                    <div style="font-weight: 500;">Allow Emergency Remote Access</div>
+                    <div style="font-size: 11px; color: #6B7280; margin-top: 2px;">Permit authorized users to request temporary remote access</div>
+                  </div>
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Geofence Radius (meters)</label>
+                <input type="number" class="form-input" value="500" />
+                <div style="font-size: 12px; color: #6B7280; margin-top: 4px;">Campus boundary geofence radius from center point</div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Campus Center Coordinates</label>
+                <input type="text" class="form-input" value="12.9716° N, 77.5946° E" readonly />
+              </div>
+
+            </div>
+
+            <!-- Right Column: Time and Device Policies -->
+            <div>
+              <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 12px; color: #111827;">Time & Device Policies</h4>
+
+              <div class="form-group">
+                <label style="display: flex; align-items: center; font-size: 13px; cursor: pointer;">
+                  <input type="checkbox" style="margin-right: 12px;" />
+                  <div>
+                    <div style="font-weight: 500;">Enforce Working Hours Access</div>
+                    <div style="font-size: 11px; color: #6B7280; margin-top: 2px;">Restrict access to specified working hours only</div>
+                  </div>
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Access Hours</label>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                  <input type="time" class="form-input" value="08:00" />
+                  <input type="time" class="form-input" value="20:00" />
+                </div>
+                <div style="font-size: 12px; color: #6B7280; margin-top: 4px;">Allowed access time window</div>
+              </div>
+
+              <div class="form-group">
+                <label style="display: flex; align-items: center; font-size: 13px; cursor: pointer;">
+                  <input type="checkbox" checked style="margin-right: 12px;" />
+                  <div>
+                    <div style="font-weight: 500;">Require Device Registration</div>
+                    <div style="font-size: 11px; color: #6B7280; margin-top: 2px;">Only allow access from approved and registered devices</div>
+                  </div>
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label style="display: flex; align-items: center; font-size: 13px; cursor: pointer;">
+                  <input type="checkbox" checked style="margin-right: 12px;" />
+                  <div>
+                    <div style="font-weight: 500;">Auto-block Suspicious Access</div>
+                    <div style="font-size: 11px; color: #6B7280; margin-top: 2px;">Automatically block devices after 3 failed attempts</div>
+                  </div>
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Session Timeout (minutes)</label>
+                <input type="number" class="form-input" value="30" />
+                <div style="font-size: 12px; color: #6B7280; margin-top: 4px;">Auto-logout after inactivity period</div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Recent Access Violations -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Recent Access Violations (Last 24 Hours)</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="download" style="width: 16px; height: 16px;"></i>
+            Export Report
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>IP Address</th>
+                  <th>Violation Type</th>
+                  <th>User Attempt</th>
+                  <th>Device Info</th>
+                  <th>Action Taken</th>
+                  <th style="text-align: right;">Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #FEE2E2;">
+                  <td style="font-size: 12px;">
+                    16-Nov-2024<br/>
+                    <span style="color: #6B7280;">14:35:22</span>
+                  </td>
+                  <td style="font-family: monospace; font-weight: 600;">203.122.45.67</td>
+                  <td>
+                    <span class="status status-rejected">
+                      <span class="status-dot"></span>
+                      Outside Premises
+                    </span>
+                  </td>
+                  <td style="font-size: 12px;">User ID: OP-001</td>
+                  <td style="font-size: 12px;">
+                    Mobile Device<br/>
+                    <span style="color: #6B7280;">MAC: AA:BB:CC:DD:EE:FF</span>
+                  </td>
+                  <td>
+                    <span class="status status-rejected">
+                      <span class="status-dot"></span>
+                      Blocked
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #FEE2E2;">
+                  <td style="font-size: 12px;">
+                    16-Nov-2024<br/>
+                    <span style="color: #6B7280;">10:22:15</span>
+                  </td>
+                  <td style="font-family: monospace; font-weight: 600;">45.123.78.90</td>
+                  <td>
+                    <span class="status status-rejected">
+                      <span class="status-dot"></span>
+                      Unregistered Device
+                    </span>
+                  </td>
+                  <td style="font-size: 12px;">Unknown</td>
+                  <td style="font-size: 12px;">
+                    Laptop<br/>
+                    <span style="color: #6B7280;">MAC: 11:22:33:44:55:66</span>
+                  </td>
+                  <td>
+                    <span class="status status-rejected">
+                      <span class="status-dot"></span>
+                      Denied
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #FEF3C7;">
+                  <td style="font-size: 12px;">
+                    15-Nov-2024<br/>
+                    <span style="color: #6B7280;">18:45:30</span>
+                  </td>
+                  <td style="font-family: monospace; font-weight: 600;">192.168.1.50</td>
+                  <td>
+                    <span class="status status-warning">
+                      <span class="status-dot"></span>
+                      Outside Hours
+                    </span>
+                  </td>
+                  <td style="font-size: 12px;">User ID: AST-105</td>
+                  <td style="font-size: 12px;">
+                    Desktop<br/>
+                    <span style="color: #6B7280;">EXAM-DESK-08</span>
+                  </td>
+                  <td>
+                    <span class="status status-warning">
+                      <span class="status-dot"></span>
+                      Warning Logged
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>feather.replace();</script>
+</body>
+</html>

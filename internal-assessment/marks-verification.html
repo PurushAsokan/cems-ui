@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marks Verification - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Internal Assessment
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <a href="marks-entry.html" class="dropdown-item">Marks Entry</a>
+        <a href="marks-verification.html" class="dropdown-item active">Marks Verification</a>
+        <a href="freeze-reports.html" class="dropdown-item">Freeze & Reports</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">HD</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">HOD - CSE</div>
+            <div style="font-size: 11px; color: #6B7280;">Verifier</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Internal Assessment</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Marks Verification</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+        Reject with Remarks
+      </button>
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="arrow-left" style="width: 16px; height: 16px;"></i>
+        Send Back for Correction
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="check-circle" style="width: 16px; height: 16px;"></i>
+        Batch Approve
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Section 1: Pending Verification Queue -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Pending Verification Queue</h2>
+          <span class="status status-pending">
+            <span class="status-dot"></span>
+            12 Subjects Pending
+          </span>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Subject Code</th>
+                  <th>Subject Name</th>
+                  <th>Faculty</th>
+                  <th>Program</th>
+                  <th>Year/Sem</th>
+                  <th style="text-align: center;">Students</th>
+                  <th>Submitted On</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #EFF6FF;">
+                  <td style="font-family: monospace; font-weight: 500;">CS501</td>
+                  <td>Data Structures & Algorithms</td>
+                  <td>Dr. Faculty</td>
+                  <td>B.Tech CSE</td>
+                  <td>III/V</td>
+                  <td style="text-align: center;">45</td>
+                  <td>15-Nov-2024</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Pending Review
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-primary">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      Verify
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">CS502</td>
+                  <td>DBMS</td>
+                  <td>Dr. Prof. Name</td>
+                  <td>B.Tech CSE</td>
+                  <td>III/V</td>
+                  <td style="text-align: center;">42</td>
+                  <td>14-Nov-2024</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Pending Review
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      Verify
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Subject Selection for Verification -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Verify Marks: CS501 - Data Structures & Algorithms</h2>
+          <span class="status status-approved">
+            <span class="status-dot"></span>
+            45 Students
+          </span>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px;">
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Faculty</div>
+              <div style="font-weight: 500;">Dr. Faculty Name</div>
+            </div>
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Program</div>
+              <div style="font-weight: 500;">B.Tech CSE - III Year / V Semester</div>
+            </div>
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Submitted On</div>
+              <div style="font-weight: 500;">15-Nov-2024, 4:30 PM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Statistical Analysis -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Statistical Summary</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;">
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Class Average</div>
+              <div style="font-size: 24px; font-weight: 600;">36.8 / 40</div>
+              <div class="text-xs" style="color: #22C55E; margin-top: 4px;">92% average</div>
+            </div>
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Highest Marks</div>
+              <div style="font-size: 24px; font-weight: 600;">40.0</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">REG2024005</div>
+            </div>
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Lowest Marks</div>
+              <div style="font-size: 24px; font-weight: 600;">28.5</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">REG2024032</div>
+            </div>
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Standard Deviation</div>
+              <div style="font-size: 24px; font-weight: 600;">3.2</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Normal distribution</div>
+            </div>
+          </div>
+
+          <!-- Component-wise Analysis -->
+          <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px;">
+            <div style="padding: 12px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Tests Avg (Best 2)</div>
+              <div style="font-weight: 600;">14.2 / 15</div>
+            </div>
+            <div style="padding: 12px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Model Exam Avg</div>
+              <div style="font-weight: 600;">8.6 / 10</div>
+            </div>
+            <div style="padding: 12px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Attendance Avg</div>
+              <div style="font-weight: 600;">4.3 / 5</div>
+            </div>
+            <div style="padding: 12px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Seminar Avg</div>
+              <div style="font-weight: 600;">4.6 / 5</div>
+            </div>
+            <div style="padding: 12px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Assignment Avg</div>
+              <div style="font-weight: 600;">4.4 / 5</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Outlier Detection -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Outlier Detection & Discrepancies</h2>
+        </div>
+        <div class="section-body">
+          <div class="alert alert-warning">
+            <i data-feather="alert-circle" style="width: 20px; height: 20px;"></i>
+            <div>
+              <div style="font-weight: 600; margin-bottom: 4px;">2 Potential Outliers Detected</div>
+              <div class="text-xs">Students with marks significantly above/below class average</div>
+            </div>
+          </div>
+
+          <div class="table-container" style="margin-top: 16px;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Reg. Number</th>
+                  <th>Student Name</th>
+                  <th style="text-align: center;">Total Marks</th>
+                  <th style="text-align: center;">Deviation</th>
+                  <th>Issue Type</th>
+                  <th>Remarks</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-family: monospace;">REG2024005</td>
+                  <td>Vikram Singh</td>
+                  <td style="text-align: center; font-weight: 600;">40.0</td>
+                  <td style="text-align: center; color: #22C55E;">+3.2σ</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Exceptionally High
+                    </span>
+                  </td>
+                  <td class="text-xs">Full marks in all components</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost">Flag</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace;">REG2024032</td>
+                  <td>Student Name</td>
+                  <td style="text-align: center; font-weight: 600;">28.5</td>
+                  <td style="text-align: center; color: #EF4444;">-2.6σ</td>
+                  <td>
+                    <span class="status status-rejected">
+                      <span class="status-dot"></span>
+                      Significantly Low
+                    </span>
+                  </td>
+                  <td class="text-xs">Below expected performance</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost">Flag</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: Student-wise Marks Detail View -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Student-wise Marks Detail</h2>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>S.No</th>
+                  <th>Reg. Number</th>
+                  <th>Student Name</th>
+                  <th style="text-align: center;">Tests</th>
+                  <th style="text-align: center;">Model</th>
+                  <th style="text-align: center;">Attend</th>
+                  <th style="text-align: center;">Seminar</th>
+                  <th style="text-align: center;">Assign</th>
+                  <th style="text-align: center; background: #F8F9FA;">Total</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td style="font-family: monospace;">REG2024001</td>
+                  <td style="font-weight: 500;">Rajesh Kumar</td>
+                  <td style="text-align: center;">15.0</td>
+                  <td style="text-align: center;">8.5</td>
+                  <td style="text-align: center;">4.3</td>
+                  <td style="text-align: center;">5</td>
+                  <td style="text-align: center;">5</td>
+                  <td style="text-align: center; background: #F8F9FA; font-weight: 600;">37.8</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td style="font-family: monospace;">REG2024002</td>
+                  <td style="font-weight: 500;">Priya Sharma</td>
+                  <td style="text-align: center;">15.0</td>
+                  <td style="text-align: center;">9.2</td>
+                  <td style="text-align: center;">4.6</td>
+                  <td style="text-align: center;">5</td>
+                  <td style="text-align: center;">5</td>
+                  <td style="text-align: center; background: #F8F9FA; font-weight: 600;">38.8</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 6: Verification Decision -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Verification Decision</h2>
+        </div>
+        <div class="section-body">
+          <div class="form-group">
+            <label class="form-label">Verification Remarks</label>
+            <textarea class="form-input" rows="3" placeholder="Add remarks about marks verification..."></textarea>
+          </div>
+
+          <div style="display: flex; gap: 12px; margin-top: 24px; padding-top: 24px; border-top: 1px solid #E5E7EB;">
+            <button class="btn btn-secondary">
+              <i data-feather="flag" style="width: 16px; height: 16px;"></i>
+              Request Clarification
+            </button>
+            <button class="btn btn-secondary">
+              <i data-feather="arrow-left" style="width: 16px; height: 16px;"></i>
+              Send Back for Correction
+            </button>
+            <button class="btn btn-secondary">
+              <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+              Reject with Remarks
+            </button>
+            <button class="btn btn-primary">
+              <i data-feather="check-circle" style="width: 16px; height: 16px;"></i>
+              Approve Marks
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

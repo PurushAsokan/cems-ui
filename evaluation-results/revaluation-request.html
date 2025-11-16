@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revaluation Request Entry - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Evaluation & Results
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px; max-height: 500px; overflow-y: auto;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Result Processing</div>
+        <a href="result-compilation.html" class="dropdown-item">Result Compilation</a>
+        <a href="result-verification.html" class="dropdown-item">Result Verification</a>
+        <a href="result-freeze.html" class="dropdown-item">Freeze Results</a>
+        <a href="result-publish.html" class="dropdown-item">Publish Results</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Revaluation</div>
+        <a href="revaluation-request.html" class="dropdown-item active">Revaluation Request Entry</a>
+        <a href="revaluation-verification.html" class="dropdown-item">Eligibility Verification</a>
+        <a href="revaluation-processing.html" class="dropdown-item">Processing & Marks Entry</a>
+        <a href="revaluation-results.html" class="dropdown-item">Revaluation Results</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Retotaling</div>
+        <a href="retotaling-request.html" class="dropdown-item">Retotaling Request Entry</a>
+        <a href="retotaling-verification.html" class="dropdown-item">Retotaling Verification</a>
+        <a href="retotaling-results.html" class="dropdown-item">Retotaling Results</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Results</div>
+        <a href="supplementary-marks-entry.html" class="dropdown-item">Supplementary Marks Entry</a>
+        <a href="supplementary-result-integration.html" class="dropdown-item">Result Integration</a>
+        <a href="supplementary-result-publish.html" class="dropdown-item">Publish Results</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">FD</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Front Desk Staff</div>
+            <div style="font-size: 11px; color: #6B7280;">Request Entry</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Evaluation & Results</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Revaluation Request Entry</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+        View Guidelines
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="send" style="width: 16px; height: 16px;"></i>
+        Submit Request
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Section 1: Student Search & Verification -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Student Search & Verification</h2>
+        </div>
+        <div class="section-body">
+          <div class="alert alert-info" style="margin-bottom: 16px;">
+            <i data-feather="info" style="width: 20px; height: 20px;"></i>
+            <div><strong>Revaluation Deadline:</strong> Applications accepted until 20-Dec-2024 (5 days remaining) | Fee: ₹500 per subject</div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 24px;">
+            <div class="form-group">
+              <label class="form-label required">Student Registration Number</label>
+              <div style="display: flex; gap: 8px;">
+                <input type="text" class="form-input" placeholder="Enter registration number" style="flex: 1;" value="REG2024045" />
+                <button class="btn btn-primary">
+                  <i data-feather="search" style="width: 16px; height: 16px;"></i>
+                  Search
+                </button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Exam Session</label>
+              <select class="form-select">
+                <option value="DEC2024" selected>December 2024 - Regular</option>
+                <option value="JUN2024">June 2024 - Regular</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Student Details (appears after search) -->
+          <div style="background: #EFF6FF; border: 2px solid #2563EB; border-radius: 8px; padding: 24px;">
+            <div style="display: grid; grid-template-columns: auto 1fr; gap: 24px;">
+              <div>
+                <div style="width: 80px; height: 100px; border-radius: 6px; background: #E5E7EB; border: 2px solid white;"></div>
+              </div>
+              <div>
+                <div style="font-size: 16px; font-weight: 600; color: #111827; margin-bottom: 12px;">Arun Kumar</div>
+                <div style="display: grid; gap: 8px;">
+                  <div style="display: grid; grid-template-columns: 150px 1fr; gap: 8px; font-size: 13px;">
+                    <div style="color: #6B7280;">Registration No:</div>
+                    <div style="font-weight: 500; font-family: monospace;">REG2024045</div>
+                  </div>
+                  <div style="display: grid; grid-template-columns: 150px 1fr; gap: 8px; font-size: 13px;">
+                    <div style="color: #6B7280;">Program:</div>
+                    <div>B.Tech - Computer Science & Engineering</div>
+                  </div>
+                  <div style="display: grid; grid-template-columns: 150px 1fr; gap: 8px; font-size: 13px;">
+                    <div style="color: #6B7280;">Year / Semester:</div>
+                    <div>III Year / V Semester</div>
+                  </div>
+                  <div style="display: grid; grid-template-columns: 150px 1fr; gap: 8px; font-size: 13px;">
+                    <div style="color: #6B7280;">Eligibility Status:</div>
+                    <div>
+                      <span class="status status-approved">
+                        <span class="status-dot"></span>
+                        Eligible for Revaluation
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Subject Selection & Request Type -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Subject Selection for Revaluation</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="plus" style="width: 16px; height: 16px;"></i>
+            Add Subject
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 40px;"><input type="checkbox" /></th>
+                  <th>Subject Code</th>
+                  <th>Subject Name</th>
+                  <th style="text-align: center;">Original Marks</th>
+                  <th style="text-align: center;">Grade</th>
+                  <th>Request Type</th>
+                  <th style="text-align: center;">Fee (₹)</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input type="checkbox" checked /></td>
+                  <td style="font-family: monospace; font-weight: 500;">CS501</td>
+                  <td style="font-weight: 500;">Data Structures & Algorithms</td>
+                  <td style="text-align: center; font-weight: 600;">63/100</td>
+                  <td style="text-align: center;">
+                    <span class="status status-warning">
+                      <span class="status-dot"></span>
+                      B+
+                    </span>
+                  </td>
+                  <td>
+                    <select class="form-select" style="width: 180px;">
+                      <option value="revaluation" selected>Revaluation</option>
+                      <option value="retotaling">Retotaling Only</option>
+                      <option value="photocopy">Answer Sheet Photocopy</option>
+                    </select>
+                  </td>
+                  <td style="text-align: center; font-weight: 600; color: #2563EB;">₹500</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Original Marks">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Remove">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" checked /></td>
+                  <td style="font-family: monospace; font-weight: 500;">CS502</td>
+                  <td style="font-weight: 500;">Database Management Systems</td>
+                  <td style="text-align: center; font-weight: 600;">58/100</td>
+                  <td style="text-align: center;">
+                    <span class="status status-warning">
+                      <span class="status-dot"></span>
+                      B
+                    </span>
+                  </td>
+                  <td>
+                    <select class="form-select" style="width: 180px;">
+                      <option value="revaluation" selected>Revaluation</option>
+                      <option value="retotaling">Retotaling Only</option>
+                      <option value="photocopy">Answer Sheet Photocopy</option>
+                    </select>
+                  </td>
+                  <td style="text-align: center; font-weight: 600; color: #2563EB;">₹500</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Original Marks">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Remove">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td><input type="checkbox" disabled /></td>
+                  <td style="font-family: monospace; font-weight: 500;">CS503</td>
+                  <td style="font-weight: 500;">Operating Systems</td>
+                  <td style="text-align: center; font-weight: 600;">82/100</td>
+                  <td style="text-align: center;">
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      A+
+                    </span>
+                  </td>
+                  <td style="color: #9CA3AF; font-size: 12px;">Good marks - Not selected</td>
+                  <td style="text-align: center; color: #9CA3AF;">—</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Original Marks">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Fee Calculation & Payment -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Fee Calculation & Payment Details</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+            <!-- Fee Breakdown -->
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 20px;">
+              <div style="font-weight: 600; margin-bottom: 16px; font-size: 14px;">Fee Breakdown</div>
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid #E5E7EB;">
+                  <div>
+                    <div style="font-size: 13px; color: #111827;">Subjects Selected</div>
+                    <div class="text-xs" style="color: #6B7280; margin-top: 2px;">CS501, CS502 (Revaluation)</div>
+                  </div>
+                  <div style="font-size: 14px; font-weight: 600;">2 subjects</div>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid #E5E7EB;">
+                  <div style="font-size: 13px; color: #111827;">Revaluation Fee</div>
+                  <div style="font-size: 14px; font-weight: 600;">₹500 × 2 = ₹1,000</div>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid #E5E7EB;">
+                  <div style="font-size: 13px; color: #111827;">Processing Fee</div>
+                  <div style="font-size: 14px; font-weight: 600;">₹100</div>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 8px;">
+                  <div style="font-size: 15px; font-weight: 600; color: #111827;">Total Amount</div>
+                  <div style="font-size: 20px; font-weight: 600; color: #2563EB;">₹1,100</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Payment Details -->
+            <div style="background: white; border: 1px solid #E5E7EB; border-radius: 6px; padding: 20px;">
+              <div style="font-weight: 600; margin-bottom: 16px; font-size: 14px;">Payment Information</div>
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div class="form-group">
+                  <label class="form-label required">Payment Mode</label>
+                  <select class="form-select">
+                    <option value="">-- Select --</option>
+                    <option value="online" selected>Online Payment</option>
+                    <option value="dd">Demand Draft</option>
+                    <option value="cash">Cash</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label required">Transaction ID / Receipt No</label>
+                  <input type="text" class="form-input" placeholder="Enter transaction ID" value="TXN20241115001" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label required">Payment Date</label>
+                  <input type="date" class="form-input" value="2024-11-15" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Upload Payment Receipt</label>
+                  <input type="file" class="form-input" accept=".pdf,.jpg,.png" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Request Summary & Submission -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Request Summary</h2>
+        </div>
+        <div class="section-body">
+          <div style="background: #F8F9FA; border: 2px solid #E5E7EB; border-radius: 8px; padding: 24px;">
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 24px;">
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 8px;">Student Information</div>
+                <div style="font-weight: 600; font-size: 15px; margin-bottom: 4px;">Arun Kumar (REG2024045)</div>
+                <div style="font-size: 13px; color: #6B7280;">B.Tech CSE - III Year / V Semester</div>
+              </div>
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 8px;">Request Details</div>
+                <div style="font-size: 13px;">
+                  <strong>2 subjects</strong> for Revaluation<br/>
+                  Exam Session: December 2024
+                </div>
+              </div>
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 8px;">Payment Information</div>
+                <div style="font-size: 13px;">
+                  Total Fee: <strong>₹1,100</strong><br/>
+                  Transaction ID: TXN20241115001
+                </div>
+              </div>
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 8px;">Submission Deadline</div>
+                <div style="font-size: 13px; color: #F59E0B; font-weight: 500;">
+                  20-Dec-2024 (5 days remaining)
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Additional Remarks (Optional)</label>
+              <textarea class="form-input" rows="3" placeholder="Enter any additional information or special circumstances"></textarea>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 8px; padding: 12px; background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; margin-top: 16px;">
+              <input type="checkbox" id="confirmRequest" />
+              <label for="confirmRequest" style="font-size: 13px; color: #111827; cursor: pointer;">
+                I confirm that the information provided is accurate and I understand that the revaluation fee is non-refundable.
+              </label>
+            </div>
+
+            <div style="display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px;">
+              <button class="btn btn-secondary">
+                <i data-feather="x" style="width: 16px; height: 16px;"></i>
+                Cancel
+              </button>
+              <button class="btn btn-secondary">
+                <i data-feather="save" style="width: 16px; height: 16px;"></i>
+                Save as Draft
+              </button>
+              <button class="btn btn-primary">
+                <i data-feather="send" style="width: 16px; height: 16px;"></i>
+                Submit Request
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: Recent Requests -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Recent Revaluation Requests</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="download" style="width: 16px; height: 16px;"></i>
+            Export List
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Request ID</th>
+                  <th>Registration No</th>
+                  <th>Student Name</th>
+                  <th>Subjects</th>
+                  <th>Total Fee</th>
+                  <th>Submitted Date</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">RV-2024-001</td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024032</td>
+                  <td>Meera Patel</td>
+                  <td>CS501, CS502 (2)</td>
+                  <td style="font-weight: 500;">₹1,100</td>
+                  <td style="font-size: 12px;">14-Nov-2024 03:20 PM</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Verified
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Print Receipt">
+                      <i data-feather="printer" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">RV-2024-002</td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024087</td>
+                  <td>Rajesh Singh</td>
+                  <td>CS503 (1)</td>
+                  <td style="font-weight: 500;">₹600</td>
+                  <td style="font-size: 12px;">14-Nov-2024 11:45 AM</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Pending Verification
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Edit Request">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

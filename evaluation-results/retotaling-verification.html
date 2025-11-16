@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retotaling Verification - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <!-- Module Dropdown -->
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Evaluation & Results
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px; max-height: 500px; overflow-y: auto;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Result Processing</div>
+        <a href="result-compilation.html" class="dropdown-item">Result Compilation</a>
+        <a href="result-verification.html" class="dropdown-item">Result Verification</a>
+        <a href="result-freeze.html" class="dropdown-item">Freeze Results</a>
+        <a href="result-publish.html" class="dropdown-item">Publish Results</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Revaluation</div>
+        <a href="revaluation-request.html" class="dropdown-item">Revaluation Request Entry</a>
+        <a href="revaluation-verification.html" class="dropdown-item">Eligibility Verification</a>
+        <a href="revaluation-processing.html" class="dropdown-item">Processing & Marks Entry</a>
+        <a href="revaluation-results.html" class="dropdown-item">Revaluation Results</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Retotaling</div>
+        <a href="retotaling-request.html" class="dropdown-item">Retotaling Request Entry</a>
+        <a href="retotaling-verification.html" class="dropdown-item active">Retotaling Verification</a>
+        <a href="retotaling-results.html" class="dropdown-item">Retotaling Results</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Results</div>
+        <a href="supplementary-marks-entry.html" class="dropdown-item">Supplementary Marks Entry</a>
+        <a href="supplementary-result-integration.html" class="dropdown-item">Result Integration</a>
+        <a href="supplementary-result-publish.html" class="dropdown-item">Publish Results</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">DC</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Deputy Controller</div>
+            <div style="font-size: 11px; color: #6B7280;">DEP-203</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <a href="result-compilation.html" class="breadcrumb-item">Evaluation & Results</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Retotaling Verification</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export Pending List
+      </button>
+      <button class="btn btn-sm btn-primary" onclick="bulkApprove()">
+        <i data-feather="check-circle" style="width: 16px; height: 16px;"></i>
+        Bulk Approve Selected
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Statistics Dashboard -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Pending Verification</div>
+          <div class="stat-value">24</div>
+          <div class="text-xs text-warning" style="margin-top: 4px;">Requires attention</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Verified Today</div>
+          <div class="stat-value">18</div>
+          <div class="text-xs text-success" style="margin-top: 4px;">↑ 12% from yesterday</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Total This Month</div>
+          <div class="stat-value">156</div>
+          <div class="text-xs text-secondary" style="margin-top: 4px;">December 2024</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Avg. Processing Time</div>
+          <div class="stat-value">2.4 days</div>
+          <div class="text-xs text-success" style="margin-top: 4px;">↓ Faster than target (3-5 days)</div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="section" style="margin-top: 24px;">
+        <div class="section-header">
+          <h2 class="section-title">Filter Retotaling Requests</h2>
+        </div>
+        <div class="section-body">
+          <div class="form-inline">
+            <div class="form-group">
+              <label class="form-label">Program</label>
+              <select class="form-select">
+                <option>-- All Programs --</option>
+                <option>B.Eng - Computer Science</option>
+                <option>B.Eng - Electronics</option>
+                <option>M.Tech - Software Engineering</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Semester</label>
+              <select class="form-select">
+                <option>-- All Semesters --</option>
+                <option>Semester 6</option>
+                <option>Semester 8</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Status</label>
+              <select class="form-select">
+                <option>Pending Verification</option>
+                <option>Verified - Awaiting Processing</option>
+                <option>Rejected</option>
+                <option>-- All Statuses --</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Request Date</label>
+              <input type="date" class="form-input" />
+            </div>
+
+            <button class="btn btn-primary" style="align-self: flex-end;">
+              <i data-feather="search" style="width: 16px; height: 16px;"></i>
+              Apply Filter
+            </button>
+            <button class="btn btn-secondary" style="align-self: flex-end;">Clear</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pending Retotaling Requests -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Pending Retotaling Requests</h2>
+          <div class="text-sm" style="color: #6B7280;">24 requests awaiting verification</div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 50px;">
+                    <input type="checkbox" id="selectAllRequests" />
+                  </th>
+                  <th>Request ID</th>
+                  <th>Reg. Number</th>
+                  <th>Student Name</th>
+                  <th>Program</th>
+                  <th>Subjects</th>
+                  <th>Fee Paid</th>
+                  <th>Request Date</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="text-align: center;">
+                    <input type="checkbox" class="request-checkbox" />
+                  </td>
+                  <td style="font-family: monospace; font-weight: 600;">RT-2024-0124</td>
+                  <td style="font-family: monospace;">25ENG1045</td>
+                  <td>Rajesh Kumar M</td>
+                  <td>B.Eng - CS</td>
+                  <td>
+                    <div style="font-size: 13px; font-weight: 500;">2 subjects</div>
+                    <div class="text-xs" style="color: #6B7280;">CS602, CS604</div>
+                  </td>
+                  <td>
+                    <div style="font-weight: 600;">₹500</div>
+                    <div class="text-xs" style="color: #6B7280;">Verified ✓</div>
+                  </td>
+                  <td>16-Dec-2024</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" onclick="showVerificationModal('RT-2024-0124')">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      Verify
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="text-align: center;">
+                    <input type="checkbox" class="request-checkbox" />
+                  </td>
+                  <td style="font-family: monospace; font-weight: 600;">RT-2024-0123</td>
+                  <td style="font-family: monospace;">25ENG1023</td>
+                  <td>Priya Sharma R</td>
+                  <td>B.Eng - CS</td>
+                  <td>
+                    <div style="font-size: 13px; font-weight: 500;">2 subjects</div>
+                    <div class="text-xs" style="color: #6B7280;">CS501, CS502</div>
+                  </td>
+                  <td>
+                    <div style="font-weight: 600;">₹500</div>
+                    <div class="text-xs" style="color: #6B7280;">Verified ✓</div>
+                  </td>
+                  <td>15-Dec-2024</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" onclick="showVerificationModal('RT-2024-0123')">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      Verify
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="text-align: center;">
+                    <input type="checkbox" class="request-checkbox" />
+                  </td>
+                  <td style="font-family: monospace; font-weight: 600;">RT-2024-0120</td>
+                  <td style="font-family: monospace;">25ENG1089</td>
+                  <td>Suresh Babu K</td>
+                  <td>B.Eng - EC</td>
+                  <td>
+                    <div style="font-size: 13px; font-weight: 500;">3 subjects</div>
+                    <div class="text-xs" style="color: #6B7280;">EC601, EC602, EC603</div>
+                  </td>
+                  <td>
+                    <div style="font-weight: 600;">₹700</div>
+                    <div class="text-xs" style="color: #6B7280;">Verified ✓</div>
+                  </td>
+                  <td>14-Dec-2024</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" onclick="showVerificationModal('RT-2024-0120')">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      Verify
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;">
+            <div style="font-size: 13px; color: #6B7280;">Showing 3 of 24 requests</div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn btn-sm btn-secondary">Previous</button>
+              <button class="btn btn-sm btn-primary">1</button>
+              <button class="btn btn-sm btn-ghost">2</button>
+              <button class="btn btn-sm btn-ghost">3</button>
+              <button class="btn btn-sm btn-secondary">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Verification Modal -->
+  <div id="verificationModal" class="modal">
+    <div class="modal-content" style="max-width: 900px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Verify Retotaling Request - RT-2024-0124</h3>
+        <button class="modal-close" onclick="document.getElementById('verificationModal').style.display='none'">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Student Information -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; padding: 16px; background: #F8F9FA; border-radius: 6px;">
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Registration Number</div>
+            <div style="font-size: 14px; font-weight: 600; font-family: monospace;">25ENG1045</div>
+          </div>
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Student Name</div>
+            <div style="font-size: 14px; font-weight: 500;">Rajesh Kumar M</div>
+          </div>
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Program</div>
+            <div style="font-size: 14px;">B.Eng - Computer Science</div>
+          </div>
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Semester</div>
+            <div style="font-size: 14px;">Semester 6</div>
+          </div>
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Request Date</div>
+            <div style="font-size: 14px;">16-Dec-2024</div>
+          </div>
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Expected Completion</div>
+            <div style="font-size: 14px; font-weight: 600; color: #F59E0B;">21-Dec-2024</div>
+          </div>
+        </div>
+
+        <!-- Verification Checklist -->
+        <div style="margin-bottom: 24px;">
+          <div style="font-size: 14px; font-weight: 600; margin-bottom: 12px;">Verification Checklist</div>
+          <div style="display: grid; gap: 8px;">
+            <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #F8F9FA; border-radius: 4px; cursor: pointer;">
+              <input type="checkbox" checked disabled />
+              <div style="flex: 1;">
+                <div style="font-size: 13px; font-weight: 500;">Payment Verified</div>
+                <div class="text-xs" style="color: #6B7280;">Fee payment receipt confirmed (₹500)</div>
+              </div>
+              <span class="status status-approved"><span class="status-dot"></span>Verified</span>
+            </label>
+
+            <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #F8F9FA; border-radius: 4px; cursor: pointer;">
+              <input type="checkbox" checked />
+              <div style="flex: 1;">
+                <div style="font-size: 13px; font-weight: 500;">Result Published Status</div>
+                <div class="text-xs" style="color: #6B7280;">Results published and within 30-day window</div>
+              </div>
+              <span class="status status-approved"><span class="status-dot"></span>Valid</span>
+            </label>
+
+            <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #F8F9FA; border-radius: 4px; cursor: pointer;">
+              <input type="checkbox" checked />
+              <div style="flex: 1;">
+                <div style="font-size: 13px; font-weight: 500;">No Pending Revaluation</div>
+                <div class="text-xs" style="color: #6B7280;">No active revaluation requests for selected subjects</div>
+              </div>
+              <span class="status status-approved"><span class="status-dot"></span>Clear</span>
+            </label>
+
+            <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #F8F9FA; border-radius: 4px; cursor: pointer;">
+              <input type="checkbox" checked />
+              <div style="flex: 1;">
+                <div style="font-size: 13px; font-weight: 500;">Subject Eligibility</div>
+                <div class="text-xs" style="color: #6B7280;">All selected subjects are from published results</div>
+              </div>
+              <span class="status status-approved"><span class="status-dot"></span>Eligible</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Selected Subjects with Current Marks -->
+        <div style="margin-bottom: 24px;">
+          <div style="font-size: 14px; font-weight: 600; margin-bottom: 12px;">Selected Subjects for Retotaling</div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Subject Code</th>
+                  <th>Subject Name</th>
+                  <th>CIA (40)</th>
+                  <th>ESE (60)</th>
+                  <th>Current Total (100)</th>
+                  <th>Grade</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">CS602</td>
+                  <td>Web Technologies</td>
+                  <td>28</td>
+                  <td>30</td>
+                  <td style="font-weight: 600;">58</td>
+                  <td><span class="badge badge-warning">B</span></td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">CS604</td>
+                  <td>Operating Systems</td>
+                  <td>30</td>
+                  <td>34</td>
+                  <td style="font-weight: 600;">64</td>
+                  <td><span class="badge badge-info">B+</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Verification Decision -->
+        <div style="margin-bottom: 16px;">
+          <label class="form-label">Verification Decision</label>
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+            <button class="btn btn-success" onclick="approveRequest()" style="padding: 16px;">
+              <i data-feather="check-circle" style="width: 20px; height: 20px;"></i>
+              <div style="margin-top: 4px;">Approve & Send for Processing</div>
+            </button>
+            <button class="btn btn-danger" onclick="showRejectReason()" style="padding: 16px;">
+              <i data-feather="x-circle" style="width: 20px; height: 20px;"></i>
+              <div style="margin-top: 4px;">Reject Request</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Remarks -->
+        <div class="form-group">
+          <label class="form-label">Verification Remarks</label>
+          <textarea class="form-input" rows="3" placeholder="Add any remarks or notes (optional)"></textarea>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+
+    function showVerificationModal(requestId) {
+      document.getElementById('verificationModal').style.display = 'block';
+      feather.replace();
+    }
+
+    function approveRequest() {
+      alert('Retotaling request approved successfully!\n\nRequest ID: RT-2024-0124\nStatus: Sent for Arithmetic Verification\n\nThe request will be processed within 3-5 days.');
+      document.getElementById('verificationModal').style.display = 'none';
+      // In real system, would refresh the list
+    }
+
+    function showRejectReason() {
+      const reason = prompt('Enter reason for rejection:');
+      if (reason) {
+        alert('Request rejected.\n\nReason: ' + reason + '\n\nStudent will be notified.');
+        document.getElementById('verificationModal').style.display = 'none';
+      }
+    }
+
+    function bulkApprove() {
+      const selected = document.querySelectorAll('.request-checkbox:checked').length;
+      if (selected === 0) {
+        alert('Please select at least one request to approve');
+        return;
+      }
+      if (confirm('Approve ' + selected + ' selected retotaling requests?')) {
+        alert(selected + ' requests approved and sent for processing.');
+        // In real system, would process bulk approval
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hall Ticket Generation - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Hall Ticket
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Regular Exams</div>
+        <a href="generation.html" class="dropdown-item active">Generation</a>
+        <a href="verification.html" class="dropdown-item">Verification & Approval</a>
+        <a href="printing.html" class="dropdown-item">Printing/Bulk Download</a>
+        <a href="distribution.html" class="dropdown-item">Distribution Tracking</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Exams</div>
+        <a href="supplementary-generation.html" class="dropdown-item">Supplementary Generation</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">AC</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Assistant Controller</div>
+            <div style="font-size: 11px; color: #6B7280;">Staff</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Hall Ticket</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Generation</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="settings" style="width: 16px; height: 16px;"></i>
+        Template Settings
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="send" style="width: 16px; height: 16px;"></i>
+        Submit for Verification
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Section 1: Exam Session & Student Selection -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Select Exam Session & Students</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <div class="form-group">
+              <label class="form-label required">Exam Session</label>
+              <select class="form-select">
+                <option value="DEC2024">December 2024 - Regular</option>
+                <option value="JUN2024">June 2024 - Regular</option>
+                <option value="SUP2024">Supplementary 2024</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Program</label>
+              <select class="form-select">
+                <option value="">-- Select Program --</option>
+                <option value="BTECH-CSE" selected>B.Tech - CSE</option>
+                <option value="BTECH-ECE">B.Tech - ECE</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Year / Semester</label>
+              <select class="form-select">
+                <option value="">-- Select --</option>
+                <option value="3-5" selected>III Year / V Semester</option>
+                <option value="3-6">III Year / VI Semester</option>
+              </select>
+            </div>
+            <div style="display: flex; align-items: end;">
+              <button class="btn btn-primary" style="width: 100%;">
+                <i data-feather="search" style="width: 16px; height: 16px;"></i>
+                Fetch Students
+              </button>
+            </div>
+          </div>
+
+          <div class="alert alert-info" style="margin-top: 16px;">
+            <i data-feather="info" style="width: 20px; height: 20px;"></i>
+            <div>Found <strong>245 eligible students</strong> for hall ticket generation | Fee Payment: <strong>242 Paid</strong>, <strong>3 Pending</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Template Selection -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Hall Ticket Template</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+            <button class="btn" style="height: auto; padding: 16px; text-align: left; background: #EFF6FF; border: 2px solid #2563EB;">
+              <div style="display: flex; align-items: start; gap: 12px;">
+                <i data-feather="layout" style="width: 24px; height: 24px; color: #2563EB; margin-top: 2px;"></i>
+                <div>
+                  <div style="font-weight: 600; font-size: 14px; color: #111827; margin-bottom: 4px;">Standard Template</div>
+                  <div class="text-xs" style="color: #6B7280;">Portrait layout with photo and timetable</div>
+                </div>
+              </div>
+            </button>
+
+            <button class="btn" style="height: auto; padding: 16px; text-align: left; background: white; border: 1px solid #E5E7EB;">
+              <div style="display: flex; align-items: start; gap: 12px;">
+                <i data-feather="maximize" style="width: 24px; height: 24px; color: #6B7280; margin-top: 2px;"></i>
+                <div>
+                  <div style="font-weight: 600; font-size: 14px; color: #111827; margin-bottom: 4px;">Landscape Template</div>
+                  <div class="text-xs" style="color: #6B7280;">Wide format with detailed instructions</div>
+                </div>
+              </div>
+            </button>
+
+            <button class="btn" style="height: auto; padding: 16px; text-align: left; background: white; border: 1px solid #E5E7EB;">
+              <div style="display: flex; align-items: start; gap: 12px;">
+                <i data-feather="credit-card" style="width: 24px; height: 24px; color: #6B7280; margin-top: 2px;"></i>
+                <div>
+                  <div style="font-weight: 600; font-size: 14px; color: #111827; margin-bottom: 4px;">Compact Card</div>
+                  <div class="text-xs" style="color: #6B7280;">ID card style hall ticket</div>
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Student List with Photo Quality Check -->
+      <div class="section">
+        <div class="section-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Students List - Photo Verification</h2>
+            <span class="status status-approved">
+              <span class="status-dot"></span>
+              245 Students
+            </span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-sm btn-secondary">
+              <i data-feather="filter" style="width: 16px; height: 16px;"></i>
+              Filter: Fee Paid Only
+            </button>
+            <button class="btn btn-sm btn-primary">
+              <i data-feather="grid" style="width: 16px; height: 16px;"></i>
+              Generate Selected (242)
+            </button>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 40px;"><input type="checkbox" checked /></th>
+                  <th style="width: 60px;">Photo</th>
+                  <th>Reg. Number</th>
+                  <th>Student Name</th>
+                  <th>Program</th>
+                  <th style="text-align: center;">Subjects</th>
+                  <th>Fee Status</th>
+                  <th>Photo Quality</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input type="checkbox" checked /></td>
+                  <td>
+                    <div style="width: 40px; height: 50px; border-radius: 4px; background: #E5E7EB; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #6B7280;">Photo</div>
+                  </td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024001</td>
+                  <td style="font-weight: 500;">Rajesh Kumar</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td style="text-align: center;">8</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Paid
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Good
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Preview Hall Ticket">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Replace Photo">
+                      <i data-feather="upload" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" checked /></td>
+                  <td>
+                    <div style="width: 40px; height: 50px; border-radius: 4px; background: #E5E7EB; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #6B7280;">Photo</div>
+                  </td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024002</td>
+                  <td style="font-weight: 500;">Priya Sharma</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td style="text-align: center;">7</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Paid
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Good
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Preview Hall Ticket">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Replace Photo">
+                      <i data-feather="upload" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #FEF3C7;">
+                  <td><input type="checkbox" /></td>
+                  <td>
+                    <div style="width: 40px; height: 50px; border-radius: 4px; background: #FCA5A5; display: flex; align-items: center; justify-content: center; font-size: 11px; color: white;">No Photo</div>
+                  </td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024003</td>
+                  <td style="font-weight: 500;">Amit Patel</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td style="text-align: center;">6</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Paid
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-rejected">
+                      <span class="status-dot"></span>
+                      Missing
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Preview Hall Ticket" disabled>
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Upload Photo">
+                      <i data-feather="upload" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #FEE2E2;">
+                  <td><input type="checkbox" disabled /></td>
+                  <td>
+                    <div style="width: 40px; height: 50px; border-radius: 4px; background: #E5E7EB; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #6B7280;">Photo</div>
+                  </td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024032</td>
+                  <td style="font-weight: 500;">Student Name</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td style="text-align: center;">8</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Pending
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Good
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Cannot Generate - Fee Pending" disabled>
+                      <i data-feather="alert-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Preview Individual Hall Ticket -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Hall Ticket Preview - REG2024001</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="download" style="width: 16px; height: 16px;"></i>
+            Download PDF
+          </button>
+        </div>
+        <div class="section-body">
+          <div style="background: white; border: 2px solid #E5E7EB; border-radius: 8px; padding: 32px; max-width: 800px; margin: 0 auto;">
+            <!-- Hall Ticket Header -->
+            <div style="text-align: center; border-bottom: 2px solid #111827; padding-bottom: 16px; margin-bottom: 24px;">
+              <div style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 4px;">SGC EDUCATIONAL INSTITUTE</div>
+              <div style="font-size: 14px; color: #6B7280; margin-bottom: 12px;">End Semester Examination - December 2024</div>
+              <div style="font-size: 16px; font-weight: 600; color: #2563EB;">HALL TICKET</div>
+            </div>
+
+            <!-- Student Details -->
+            <div style="display: grid; grid-template-columns: 1fr auto; gap: 24px; margin-bottom: 24px;">
+              <div>
+                <div style="display: grid; gap: 12px;">
+                  <div style="display: grid; grid-template-columns: 150px 1fr; gap: 8px;">
+                    <div style="font-weight: 600;">Registration No:</div>
+                    <div>REG2024001</div>
+                  </div>
+                  <div style="display: grid; grid-template-columns: 150px 1fr; gap: 8px;">
+                    <div style="font-weight: 600;">Student Name:</div>
+                    <div>RAJESH KUMAR</div>
+                  </div>
+                  <div style="display: grid; grid-template-columns: 150px 1fr; gap: 8px;">
+                    <div style="font-weight: 600;">Program:</div>
+                    <div>B.Tech - Computer Science & Engineering</div>
+                  </div>
+                  <div style="display: grid; grid-template-columns: 150px 1fr; gap: 8px;">
+                    <div style="font-weight: 600;">Year / Semester:</div>
+                    <div>III Year / V Semester</div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div style="width: 100px; height: 120px; border: 2px solid #E5E7EB; border-radius: 4px; background: #F8F9FA; display: flex; align-items: center; justify-content: center; color: #6B7280; font-size: 11px;">Student Photo</div>
+              </div>
+            </div>
+
+            <!-- Exam Timetable -->
+            <div style="margin-bottom: 24px;">
+              <div style="font-weight: 600; margin-bottom: 12px; font-size: 14px;">Examination Timetable:</div>
+              <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                <thead>
+                  <tr style="background: #F8F9FA;">
+                    <th style="border: 1px solid #E5E7EB; padding: 8px; text-align: left;">Date</th>
+                    <th style="border: 1px solid #E5E7EB; padding: 8px; text-align: left;">Time</th>
+                    <th style="border: 1px solid #E5E7EB; padding: 8px; text-align: left;">Subject Code</th>
+                    <th style="border: 1px solid #E5E7EB; padding: 8px; text-align: left;">Subject Name</th>
+                    <th style="border: 1px solid #E5E7EB; padding: 8px; text-align: left;">Venue</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="border: 1px solid #E5E7EB; padding: 8px;">02-Dec-2024</td>
+                    <td style="border: 1px solid #E5E7EB; padding: 8px;">10:00 AM - 1:00 PM</td>
+                    <td style="border: 1px solid #E5E7EB; padding: 8px;">CS501</td>
+                    <td style="border: 1px solid #E5E7EB; padding: 8px;">Data Structures & Algorithms</td>
+                    <td style="border: 1px solid #E5E7EB; padding: 8px;">Hall A</td>
+                  </tr>
+                  <tr>
+                    <td style="border: 1px solid #E5E7EB; padding: 8px;">04-Dec-2024</td>
+                    <td style="border: 1px solid #E5E7EB; padding: 8px;">10:00 AM - 1:00 PM</td>
+                    <td style="border: 1px solid #E5E7EB; padding: 8px;">CS502</td>
+                    <td style="border: 1px solid #E5E7EB; padding: 8px;">DBMS</td>
+                    <td style="border: 1px solid #E5E7EB; padding: 8px;">Hall A</td>
+                  </tr>
+                  <tr>
+                    <td style="border: 1px solid #E5E7EB; padding: 8px;">06-Dec-2024</td>
+                    <td style="border: 1px solid #E5E7EB; padding: 8px;">10:00 AM - 1:00 PM</td>
+                    <td style="border: 1px solid #E5E7EB; padding: 8px;">CS503</td>
+                    <td style="border: 1px solid #E5E7EB; padding: 8px;">Operating Systems</td>
+                    <td style="border: 1px solid #E5E7EB; padding: 8px;">Hall B</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Instructions -->
+            <div style="background: #F8F9FA; padding: 16px; border-radius: 6px; margin-bottom: 24px;">
+              <div style="font-weight: 600; margin-bottom: 8px; font-size: 13px;">Important Instructions:</div>
+              <ul style="font-size: 12px; margin: 0; padding-left: 20px; color: #6B7280;">
+                <li>Bring this hall ticket to the examination hall</li>
+                <li>Report 30 minutes before exam time</li>
+                <li>Carry valid ID proof (College ID / Aadhar Card)</li>
+                <li>Electronic devices not allowed in exam hall</li>
+                <li>Follow all exam regulations and instructions</li>
+              </ul>
+            </div>
+
+            <!-- Signatures -->
+            <div style="display: flex; justify-content: space-between; align-items: end;">
+              <div>
+                <div style="width: 150px; border-bottom: 1px solid #111827; margin-bottom: 4px;"></div>
+                <div style="font-size: 11px;">Student Signature</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="width: 80px; height: 60px; border: 1px solid #E5E7EB; margin: 0 auto 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #9CA3AF;">QR Code</div>
+              </div>
+              <div style="text-align: right;">
+                <div style="width: 150px; border-bottom: 1px solid #111827; margin-bottom: 4px; margin-left: auto;"></div>
+                <div style="font-size: 11px;">Exam Controller</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

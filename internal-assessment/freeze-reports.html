@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freeze & Generate Reports - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Internal Assessment
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <a href="marks-entry.html" class="dropdown-item">Marks Entry</a>
+        <a href="marks-verification.html" class="dropdown-item">Marks Verification</a>
+        <a href="freeze-reports.html" class="dropdown-item active">Freeze & Reports</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">DK</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Dr. Kumar</div>
+            <div style="font-size: 11px; color: #6B7280;">Controller</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Internal Assessment</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Freeze & Reports</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export to Excel
+      </button>
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="printer" style="width: 16px; height: 16px;"></i>
+        Print Reports
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="lock" style="width: 16px; height: 16px;"></i>
+        Freeze Marks
+          </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Section 1: Verification Status Dashboard -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Verification Status Overview - V Semester (2024-2025)</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Subjects</div>
+              <div style="font-size: 24px; font-weight: 600;">45</div>
+            </div>
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Verified</div>
+              <div style="font-size: 24px; font-weight: 600; color: #22C55E;">38</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">84% complete</div>
+            </div>
+            <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Pending Verification</div>
+              <div style="font-size: 24px; font-weight: 600; color: #F59E0B;">5</div>
+            </div>
+            <div style="background: #FEE2E2; border: 1px solid #FCA5A5; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Pending Corrections</div>
+              <div style="font-size: 24px; font-weight: 600; color: #EF4444;">2</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Subject-wise Freeze Status -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Subject-wise Freeze Status</h2>
+          <div style="display: flex; gap: 8px;">
+            <select class="form-select" style="width: 200px;">
+              <option value="">All Programs</option>
+              <option value="BTECH-CSE">B.Tech CSE</option>
+              <option value="BTECH-ECE">B.Tech ECE</option>
+            </select>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 40px;"><input type="checkbox" /></th>
+                  <th>Subject Code</th>
+                  <th>Subject Name</th>
+                  <th>Faculty</th>
+                  <th>Program</th>
+                  <th style="text-align: center;">Students</th>
+                  <th>Verification Status</th>
+                  <th>Freeze Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input type="checkbox" checked /></td>
+                  <td style="font-family: monospace; font-weight: 500;">CS501</td>
+                  <td>Data Structures & Algorithms</td>
+                  <td>Dr. Faculty</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td style="text-align: center;">45</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Verified
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Frozen
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Report">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost text-error" title="Unfreeze">
+                      <i data-feather="unlock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" checked /></td>
+                  <td style="font-family: monospace; font-weight: 500;">CS502</td>
+                  <td>DBMS</td>
+                  <td>Dr. Prof. Name</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td style="text-align: center;">42</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Verified
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Not Frozen
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Report">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Freeze">
+                      <i data-feather="lock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td style="font-family: monospace; font-weight: 500;">CS503</td>
+                  <td>Operating Systems</td>
+                  <td>Dr. Another Prof</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td style="text-align: center;">40</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Pending Verification
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Not Frozen
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Report" disabled>
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Cannot Freeze" disabled>
+                      <i data-feather="lock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Batch Freeze Actions -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Batch Freeze Operations</h2>
+        </div>
+        <div class="section-body">
+          <div class="alert alert-warning">
+            <i data-feather="alert-circle" style="width: 20px; height: 20px;"></i>
+            <div>
+              <div style="font-weight: 600; margin-bottom: 4px;">Warning: Freezing makes marks read-only</div>
+              <div class="text-xs">Once frozen, marks cannot be edited without proper authorization and unfreeze process. This action creates an audit trail.</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 16px; padding: 16px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px;">
+            <div style="font-weight: 600; margin-bottom: 12px;">Selected: 2 subjects ready for freezing</div>
+            <div style="display: flex; gap: 12px;">
+              <button class="btn btn-primary">
+                <i data-feather="lock" style="width: 16px; height: 16px;"></i>
+                Freeze Selected Subjects (2)
+              </button>
+              <button class="btn btn-secondary">
+                <i data-feather="layers" style="width: 16px; height: 16px;"></i>
+                Freeze All Verified Subjects (38)
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Generate Reports -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Generate Reports</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+            <!-- Report Type Cards -->
+            <button class="btn" style="height: auto; padding: 16px; text-align: left; background: white; border: 1px solid #E5E7EB;">
+              <div style="display: flex; align-items: start; gap: 12px;">
+                <i data-feather="file-text" style="width: 24px; height: 24px; color: #2563EB; margin-top: 2px;"></i>
+                <div style="flex: 1;">
+                  <div style="font-weight: 600; font-size: 14px; color: #111827; margin-bottom: 4px;">Frozen Internal Marks Report</div>
+                  <div class="text-xs" style="color: #6B7280; margin-bottom: 8px;">University submission format with digital signatures</div>
+                  <div style="display: flex; gap: 8px;">
+                    <button class="btn btn-sm btn-secondary" onclick="event.stopPropagation()">
+                      <i data-feather="eye" style="width: 14px; height: 14px;"></i>
+                      Preview
+                    </button>
+                    <button class="btn btn-sm btn-primary" onclick="event.stopPropagation()">
+                      <i data-feather="download" style="width: 14px; height: 14px;"></i>
+                      Generate PDF
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </button>
+
+            <button class="btn" style="height: auto; padding: 16px; text-align: left; background: white; border: 1px solid #E5E7EB;">
+              <div style="display: flex; align-items: start; gap: 12px;">
+                <i data-feather="grid" style="width: 24px; height: 24px; color: #2563EB; margin-top: 2px;"></i>
+                <div style="flex: 1;">
+                  <div style="font-weight: 600; font-size: 14px; color: #111827; margin-bottom: 4px;">Department-wise Summary</div>
+                  <div class="text-xs" style="color: #6B7280; margin-bottom: 8px;">Aggregate statistics by department</div>
+                  <div style="display: flex; gap: 8px;">
+                    <button class="btn btn-sm btn-secondary" onclick="event.stopPropagation()">
+                      <i data-feather="eye" style="width: 14px; height: 14px;"></i>
+                      Preview
+                    </button>
+                    <button class="btn btn-sm btn-primary" onclick="event.stopPropagation()">
+                      <i data-feather="download" style="width: 14px; height: 14px;"></i>
+                      Generate PDF
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </button>
+
+            <button class="btn" style="height: auto; padding: 16px; text-align: left; background: white; border: 1px solid #E5E7EB;">
+              <div style="display: flex; align-items: start; gap: 12px;">
+                <i data-feather="users" style="width: 24px; height: 24px; color: #2563EB; margin-top: 2px;"></i>
+                <div style="flex: 1;">
+                  <div style="font-weight: 600; font-size: 14px; color: #111827; margin-bottom: 4px;">Faculty-wise Submission Status</div>
+                  <div class="text-xs" style="color: #6B7280; margin-bottom: 8px;">Track faculty submission and verification status</div>
+                  <div style="display: flex; gap: 8px;">
+                    <button class="btn btn-sm btn-secondary" onclick="event.stopPropagation()">
+                      <i data-feather="eye" style="width: 14px; height: 14px;"></i>
+                      Preview
+                    </button>
+                    <button class="btn btn-sm btn-primary" onclick="event.stopPropagation()">
+                      <i data-feather="download" style="width: 14px; height: 14px;"></i>
+                      Generate PDF
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </button>
+
+            <button class="btn" style="height: auto; padding: 16px; text-align: left; background: white; border: 1px solid #E5E7EB;">
+              <div style="display: flex; align-items: start; gap: 12px;">
+                <i data-feather="user-check" style="width: 24px; height: 24px; color: #2563EB; margin-top: 2px;"></i>
+                <div style="flex: 1;">
+                  <div style="font-weight: 600; font-size: 14px; color: #111827; margin-bottom: 4px;">Student-wise Internal Marks Statement</div>
+                  <div class="text-xs" style="color: #6B7280; margin-bottom: 8px;">Individual student CIA marks across all subjects</div>
+                  <div style="display: flex; gap: 8px;">
+                    <button class="btn btn-sm btn-secondary" onclick="event.stopPropagation()">
+                      <i data-feather="eye" style="width: 14px; height: 14px;"></i>
+                      Preview
+                    </button>
+                    <button class="btn btn-sm btn-primary" onclick="event.stopPropagation()">
+                      <i data-feather="download" style="width: 14px; height: 14px;"></i>
+                      Generate PDF
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </button>
+
+            <button class="btn" style="height: auto; padding: 16px; text-align: left; background: white; border: 1px solid #E5E7EB;">
+              <div style="display: flex; align-items: start; gap: 12px;">
+                <i data-feather="bar-chart-2" style="width: 24px; height: 24px; color: #2563EB; margin-top: 2px;"></i>
+                <div style="flex: 1;">
+                  <div style="font-weight: 600; font-size: 14px; color: #111827; margin-bottom: 4px;">Statistical Analysis Report</div>
+                  <div class="text-xs" style="color: #6B7280; margin-bottom: 8px;">Pass %, component-wise performance analysis</div>
+                  <div style="display: flex; gap: 8px;">
+                    <button class="btn btn-sm btn-secondary" onclick="event.stopPropagation()">
+                      <i data-feather="eye" style="width: 14px; height: 14px;"></i>
+                      Preview
+                    </button>
+                    <button class="btn btn-sm btn-primary" onclick="event.stopPropagation()">
+                      <i data-feather="download" style="width: 14px; height: 14px;"></i>
+                      Generate PDF
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: Unfreeze Authorization -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Unfreeze Authorization (Emergency Only)</h2>
+        </div>
+        <div class="section-body">
+          <div class="alert alert-error">
+            <i data-feather="alert-triangle" style="width: 20px; height: 20px;"></i>
+            <div>
+              <div style="font-weight: 600; margin-bottom: 4px;">Restricted Access</div>
+              <div class="text-xs">Unfreezing marks requires Exam Controller authorization and creates audit trail. Only use for emergency corrections.</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 16px; padding: 16px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px;">
+            <div class="form-group">
+              <label class="form-label required">Subject to Unfreeze</label>
+              <select class="form-select">
+                <option value="">-- Select Frozen Subject --</option>
+                <option value="CS501">CS501 - Data Structures & Algorithms</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Justification for Unfreeze</label>
+              <textarea class="form-input" rows="3" placeholder="Provide detailed justification for unfreezing marks..."></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Authorization Password</label>
+              <input type="password" class="form-input" placeholder="Enter Exam Controller password" />
+            </div>
+            <button class="btn btn-secondary">
+              <i data-feather="unlock" style="width: 16px; height: 16px;"></i>
+              Request Unfreeze Authorization
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

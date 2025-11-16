@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publish Supplementary Results - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Evaluation & Results
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px; max-height: 500px; overflow-y: auto;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Result Processing</div>
+        <a href="result-compilation.html" class="dropdown-item">Result Compilation</a>
+        <a href="result-verification.html" class="dropdown-item">Result Verification</a>
+        <a href="result-freeze.html" class="dropdown-item">Freeze Results</a>
+        <a href="result-publish.html" class="dropdown-item">Publish Results</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Revaluation</div>
+        <a href="revaluation-request.html" class="dropdown-item">Revaluation Request Entry</a>
+        <a href="revaluation-verification.html" class="dropdown-item">Eligibility Verification</a>
+        <a href="revaluation-processing.html" class="dropdown-item">Processing & Marks Entry</a>
+        <a href="revaluation-results.html" class="dropdown-item">Revaluation Results</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Retotaling</div>
+        <a href="retotaling-request.html" class="dropdown-item">Retotaling Request Entry</a>
+        <a href="retotaling-verification.html" class="dropdown-item">Retotaling Verification</a>
+        <a href="retotaling-results.html" class="dropdown-item">Retotaling Results</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Results</div>
+        <a href="supplementary-marks-entry.html" class="dropdown-item">Supplementary Marks Entry</a>
+        <a href="supplementary-result-integration.html" class="dropdown-item">Result Integration</a>
+        <a href="supplementary-result-publish.html" class="dropdown-item active">Publish Results</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">EC</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Exam Controller</div>
+            <div style="font-size: 11px; color: #6B7280;">CTRL-001</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <a href="result-compilation.html" class="breadcrumb-item">Evaluation & Results</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Publish Supplementary Results</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Download Report (PDF)
+      </button>
+      <button class="btn btn-sm btn-primary" onclick="publishResults()">
+        <i data-feather="send" style="width: 16px; height: 16px;"></i>
+        Publish to Student Portal
+      </button>
+    </div>
+  </div>
+
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Publication Statistics -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Supplementary Results - June 2025 Session</h2>
+        </div>
+        <div class="section-body">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Appeared</div>
+              <div class="stat-value">248</div>
+              <div class="text-xs text-secondary" style="margin-top: 4px;">Students registered</div>
+            </div>
+            <div class="stat-card">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Results Integrated</div>
+              <div class="stat-value">224</div>
+              <div style="margin-top: 4px;">
+                <span class="badge badge-success">90% complete</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Overall Pass Rate</div>
+              <div class="stat-value">75%</div>
+              <div class="text-xs text-success" style="margin-top: 4px;">186 students cleared</div>
+            </div>
+            <div class="stat-card">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">All Arrears Cleared</div>
+              <div class="stat-value">124</div>
+              <div class="text-xs text-success" style="margin-top: 4px;">Promotion eligible</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subject-wise Pass Analysis -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Subject-wise Pass Percentage</h2>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Subject Code</th>
+                  <th>Subject Name</th>
+                  <th>Appeared</th>
+                  <th>Passed</th>
+                  <th>Failed</th>
+                  <th>Absent</th>
+                  <th>Pass %</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">CS401</td>
+                  <td>Database Management Systems</td>
+                  <td style="font-weight: 600;">68</td>
+                  <td style="color: #10B981; font-weight: 600;">52</td>
+                  <td style="color: #DC2626;">15</td>
+                  <td style="color: #F59E0B;">1</td>
+                  <td>
+                    <div style="font-weight: 600;">76.5%</div>
+                    <span class="badge badge-success">Good</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">CS402</td>
+                  <td>Operating Systems</td>
+                  <td style="font-weight: 600;">54</td>
+                  <td style="color: #10B981; font-weight: 600;">42</td>
+                  <td style="color: #DC2626;">11</td>
+                  <td style="color: #F59E0B;">1</td>
+                  <td>
+                    <div style="font-weight: 600;">77.8%</div>
+                    <span class="badge badge-success">Good</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">EC301</td>
+                  <td>Digital Electronics</td>
+                  <td style="font-weight: 600;">42</td>
+                  <td style="color: #10B981; font-weight: 600;">28</td>
+                  <td style="color: #DC2626;">13</td>
+                  <td style="color: #F59E0B;">1</td>
+                  <td>
+                    <div style="font-weight: 600;">66.7%</div>
+                    <span class="badge badge-warning">Average</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">CS501</td>
+                  <td>Computer Networks</td>
+                  <td style="font-weight: 600;">38</td>
+                  <td style="color: #10B981; font-weight: 600;">32</td>
+                  <td style="color: #DC2626;">5</td>
+                  <td style="color: #F59E0B;">1</td>
+                  <td>
+                    <div style="font-weight: 600;">84.2%</div>
+                    <span class="badge badge-success">Excellent</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Students with All Arrears Cleared -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Students Who Cleared All Arrears</h2>
+          <div class="text-sm" style="color: #6B7280;">124 students - Eligible for promotion</div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Reg. Number</th>
+                  <th>Student Name</th>
+                  <th>Program</th>
+                  <th>Subjects Cleared</th>
+                  <th>New CGPA</th>
+                  <th>Classification</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #ECFDF5;">
+                  <td style="font-family: monospace; font-weight: 600;">25ENG1045</td>
+                  <td>Rajesh Kumar M</td>
+                  <td>B.Eng - CS</td>
+                  <td>
+                    <div style="font-weight: 500;">3/3 cleared</div>
+                    <div class="text-xs" style="color: #6B7280;">CS401, CS402, CS501</div>
+                  </td>
+                  <td style="font-weight: 600; color: #10B981;">7.45</td>
+                  <td><span class="badge badge-success">First Class</span></td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>All Clear</span></td>
+                </tr>
+                <tr style="background: #ECFDF5;">
+                  <td style="font-family: monospace; font-weight: 600;">25ECE1089</td>
+                  <td>Suresh Babu K</td>
+                  <td>B.Eng - EC</td>
+                  <td>
+                    <div style="font-weight: 500;">1/1 cleared</div>
+                    <div class="text-xs" style="color: #6B7280;">EC401</div>
+                  </td>
+                  <td style="font-weight: 600; color: #10B981;">6.92</td>
+                  <td><span class="badge badge-warning">Second Class</span></td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>All Clear</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Students with Remaining Arrears -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Students with Remaining Arrears</h2>
+          <div class="text-sm" style="color: #6B7280;">62 students - Still have pending subjects</div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Reg. Number</th>
+                  <th>Student Name</th>
+                  <th>Subjects Cleared</th>
+                  <th>Remaining Arrears</th>
+                  <th>Next Supplementary</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #FEF3C7;">
+                  <td style="font-family: monospace; font-weight: 600;">25ENG1067</td>
+                  <td>Arun Kumar M</td>
+                  <td>
+                    <div style="font-weight: 500; color: #10B981;">1/4 cleared</div>
+                    <div class="text-xs" style="color: #6B7280;">CS401 passed</div>
+                  </td>
+                  <td>
+                    <div style="font-weight: 500; color: #DC2626;">3 subjects</div>
+                    <div class="text-xs" style="color: #DC2626;">CS402, CS403, CS404</div>
+                  </td>
+                  <td>December 2025</td>
+                  <td><span class="status status-pending"><span class="status-dot"></span>Arrears Remain</span></td>
+                </tr>
+                <tr style="background: #FEF3C7;">
+                  <td style="font-family: monospace; font-weight: 600;">25ENG1023</td>
+                  <td>Priya Sharma R</td>
+                  <td>
+                    <div style="font-weight: 500; color: #10B981;">2/3 cleared</div>
+                    <div class="text-xs" style="color: #6B7280;">CS401, EC301 passed</div>
+                  </td>
+                  <td>
+                    <div style="font-weight: 500; color: #DC2626;">1 subject</div>
+                    <div class="text-xs" style="color: #DC2626;">CS402</div>
+                  </td>
+                  <td>December 2025</td>
+                  <td><span class="status status-pending"><span class="status-dot"></span>Partial Clear</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top: 16px; padding: 12px; background: #FFFBEB; border: 1px solid #FCD34D; border-radius: 6px;">
+            <div style="font-size: 13px; color: #92400E;">
+              <i data-feather="alert-triangle" style="width: 14px; height: 14px; display: inline; vertical-align: middle;"></i>
+              <strong>Next Supplementary Session:</strong> December 2025. Students with remaining arrears can register again (maximum 3 attempts per subject).
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Publication Checklist -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Publication Checklist</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; gap: 12px;">
+            <label style="display: flex; align-items: center; gap: 12px; padding: 16px; background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 6px; cursor: pointer;">
+              <input type="checkbox" checked disabled />
+              <div style="flex: 1;">
+                <div style="font-size: 14px; font-weight: 500;">All Marks Entered & Verified</div>
+                <div class="text-xs" style="color: #065F46;">248 students, 524 subject attempts processed</div>
+              </div>
+              <span class="status status-approved"><span class="status-dot"></span>Complete</span>
+            </label>
+
+            <label style="display: flex; align-items: center; gap: 12px; padding: 16px; background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 6px; cursor: pointer;">
+              <input type="checkbox" checked disabled />
+              <div style="flex: 1;">
+                <div style="font-size: 14px; font-weight: 500;">Results Integrated with Main Records</div>
+                <div class="text-xs" style="color: #065F46;">CGPA updated for 224 students, classifications recalculated</div>
+              </div>
+              <span class="status status-approved"><span class="status-dot"></span>Complete</span>
+            </label>
+
+            <label style="display: flex; align-items: center; gap: 12px; padding: 16px; background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 6px; cursor: pointer;">
+              <input type="checkbox" checked disabled />
+              <div style="flex: 1;">
+                <div style="font-size: 14px; font-weight: 500;">Mark Sheets Regenerated</div>
+                <div class="text-xs" style="color: #065F46;">Updated transcripts with supplementary marks prepared</div>
+              </div>
+              <span class="status status-approved"><span class="status-dot"></span>Complete</span>
+            </label>
+
+            <label style="display: flex; align-items: center; gap: 12px; padding: 16px; background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 6px; cursor: pointer;">
+              <input type="checkbox" checked />
+              <div style="flex: 1;">
+                <div style="font-size: 14px; font-weight: 500;">Controller Approval Received</div>
+                <div class="text-xs" style="color: #065F46;">Final approval to publish results to student portal</div>
+              </div>
+              <span class="status status-approved"><span class="status-dot"></span>Approved</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+
+    function publishResults() {
+      if (confirm('Publish supplementary exam results to student portal?\n\n📊 Summary:\n• 248 students appeared\n• 186 students passed (75%)\n• 124 students cleared all arrears\n• 62 students have remaining arrears\n\n✅ Results will be visible to students immediately.\n📧 SMS/Email notifications will be sent.\n\nProceed with publication?')) {
+        alert('✅ Supplementary Results Published Successfully!\n\n📅 Published: ' + new Date().toLocaleString() + '\n\n✅ Students can now view their supplementary results on the Student Portal.\n📧 Notifications sent to all 248 students via SMS and Email.\n\n💾 Publication logged for audit trail.');
+      }
+    }
+  </script>
+
+</body>
+</html>

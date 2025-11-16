@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Entry - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <!-- Module Dropdown -->
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Exam Registration
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px; max-height: 500px; overflow-y: auto;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Regular Registration</div>
+        <a href="data-entry.html" class="dropdown-item active">Data Entry</a>
+        <a href="verification.html" class="dropdown-item">Verification Queue</a>
+        <a href="fee-calculation.html" class="dropdown-item">Fee Calculation</a>
+        <a href="ern-batch.html" class="dropdown-item">ERN Generation</a>
+        <a href="registration-list.html" class="dropdown-item">Registration List</a>
+        <a href="reports.html" class="dropdown-item">Reports</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Registration</div>
+        <a href="supplementary-registration.html" class="dropdown-item">Supplementary Registration</a>
+        <a href="supplementary-verification.html" class="dropdown-item">Supplementary Verification</a>
+        <a href="supplementary-list.html" class="dropdown-item">Supplementary List & Analytics</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <!-- Search -->
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search application..." />
+      </div>
+
+      <!-- Notifications -->
+      <button class="btn btn-icon btn-ghost">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <!-- User Menu -->
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">OP</div>
+          <span style="font-size: 13px;">OP-001</span>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Exam Registration</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Data Entry</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">Save Draft</button>
+      <button class="btn btn-sm btn-primary">Submit</button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Application Details -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Application</h2>
+        </div>
+        <div class="section-body">
+          <div class="field-grid">
+            <div class="form-group">
+              <label class="form-label required">App Ref Number</label>
+              <input type="text" class="form-input" placeholder="APP-2025-001234" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Previous Reg No</label>
+              <input type="text" class="form-input" placeholder="24ENG1001" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Student Details -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Student</h2>
+          <button class="btn btn-sm btn-ghost">Upload Photo</button>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: 1fr auto; gap: 24px;">
+            <!-- Form Fields -->
+            <div style="display: grid; gap: 16px;">
+              <div class="form-group">
+                <label class="form-label required">Full Name</label>
+                <input type="text" class="form-input" placeholder="Enter full name" />
+              </div>
+
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+                <div class="form-group">
+                  <label class="form-label required">Date of Birth</label>
+                  <input type="date" class="form-input" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label required">Gender</label>
+                  <select class="form-select">
+                    <option value="">Select</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label required">Contact</label>
+                  <input type="tel" class="form-input" placeholder="9876543210" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-input" placeholder="student@example.com" />
+              </div>
+
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                <div class="form-group">
+                  <label class="form-label required">Father's Name</label>
+                  <input type="text" class="form-input" placeholder="Enter father's name" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label required">Mother's Name</label>
+                  <input type="text" class="form-input" placeholder="Enter mother's name" />
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+                <div class="form-group">
+                  <label class="form-label required">Category</label>
+                  <select class="form-select">
+                    <option value="">Select</option>
+                    <option>General</option>
+                    <option>OBC</option>
+                    <option>SC</option>
+                    <option>ST</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Aadhaar Number</label>
+                  <input type="text" class="form-input" placeholder="12 digit Aadhaar" maxlength="12" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Nationality</label>
+                  <input type="text" class="form-input" value="INDIAN" readonly />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label required">Address (Communication)</label>
+                <textarea class="form-input" rows="2" placeholder="Enter current communication address"></textarea>
+              </div>
+            </div>
+
+            <!-- Photo Upload -->
+            <div style="width: 140px;">
+              <label class="form-label">Photo</label>
+              <div style="width: 120px; height: 140px; border: 2px dashed #E5E7EB; border-radius: 4px; display: flex; align-items: center; justify-content: center; background: #F8F9FA; cursor: pointer;">
+                <div style="text-align: center; color: #6B7280; font-size: 11px;">
+                  <i data-feather="user" style="width: 32px; height: 32px; margin: 0 auto 8px; display: block;"></i>
+                  <div>Click to<br/>upload</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Academic Details -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Academic</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 16px;">
+            <div class="form-group">
+              <label class="form-label required">Exam Type</label>
+              <select class="form-select">
+                <option value="">Select</option>
+                <option>Regular</option>
+                <option>Arrear</option>
+                <option>Supplementary</option>
+              </select>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Determines eligible subjects and fee calculation</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Fee Type</label>
+              <select class="form-select">
+                <option value="">Select</option>
+                <option>Normal</option>
+                <option>Special</option>
+                <option>Late Fee</option>
+              </select>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <div class="form-group">
+              <label class="form-label required">Program</label>
+              <select class="form-select">
+                <option value="">Select</option>
+                <option>B.Tech - CSE</option>
+                <option>B.Tech - ECE</option>
+                <option>B.Tech - MECH</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Department</label>
+              <select class="form-select">
+                <option value="">Select</option>
+                <option>Computer Science</option>
+                <option>Electronics</option>
+                <option>Mechanical</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Year</label>
+              <select class="form-select">
+                <option value="">Select</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Semester</label>
+              <select class="form-select">
+                <option value="">Select</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subjects -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Subjects</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="plus" style="width: 16px; height: 16px;"></i>
+            Add Subject
+          </button>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width: 40px;"><input type="checkbox" class="checkbox" /></th>
+                <th>Code</th>
+                <th>Subject Name</th>
+                <th>Type</th>
+                <th style="width: 60px;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox" class="checkbox" checked /></td>
+                <td><strong>CS601</strong></td>
+                <td>Data Structures & Algorithms</td>
+                <td><span class="status status-approved"><span class="status-dot"></span>Regular</span></td>
+                <td class="table-actions">
+                  <button class="btn btn-sm btn-icon btn-ghost">
+                    <i data-feather="more-vertical" style="width: 16px; height: 16px;"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="checkbox" checked /></td>
+                <td><strong>CS602</strong></td>
+                <td>Database Management Systems</td>
+                <td><span class="status status-approved"><span class="status-dot"></span>Regular</span></td>
+                <td class="table-actions">
+                  <button class="btn btn-sm btn-icon btn-ghost">
+                    <i data-feather="more-vertical" style="width: 16px; height: 16px;"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="checkbox" checked /></td>
+                <td><strong>CS501</strong></td>
+                <td>Design & Analysis of Algorithms</td>
+                <td><span class="status status-warning"><span class="status-dot"></span>Arrear</span></td>
+                <td class="table-actions">
+                  <button class="btn btn-sm btn-icon btn-ghost">
+                    <i data-feather="more-vertical" style="width: 16px; height: 16px;"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supplementary Registration List - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Exam Registration
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Regular Registration</div>
+        <a href="data-entry.html" class="dropdown-item">Data Entry</a>
+        <a href="verification.html" class="dropdown-item">Verification</a>
+        <a href="fee-calculation.html" class="dropdown-item">Fee Calculation</a>
+        <a href="ern-batch.html" class="dropdown-item">ERN Generation</a>
+        <a href="registration-list.html" class="dropdown-item">Registration List</a>
+        <a href="reports.html" class="dropdown-item">Reports</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Registration</div>
+        <a href="supplementary-registration.html" class="dropdown-item">Supplementary Registration</a>
+        <a href="supplementary-verification.html" class="dropdown-item">Supplementary Verification</a>
+        <a href="supplementary-list.html" class="dropdown-item active">Supplementary List & Analytics</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">EC</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Exam Controller</div>
+            <div style="font-size: 11px; color: #6B7280;">CTRL-001</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <a href="data-entry.html" class="breadcrumb-item">Exam Registration</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Supplementary List</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export to Excel
+      </button>
+      <button class="btn btn-sm btn-primary" onclick="window.location.href='supplementary-registration.html'">
+        <i data-feather="plus" style="width: 16px; height: 16px;"></i>
+        New Registration
+      </button>
+    </div>
+  </div>
+
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Statistics -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Supplementary Registration Statistics - June 2025</h2>
+        </div>
+        <div class="section-body">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Registrations</div>
+              <div class="stat-value">248</div>
+              <div class="text-xs text-secondary" style="margin-top: 4px;">June 2025 Session</div>
+            </div>
+            <div class="stat-card">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Approved</div>
+              <div class="stat-value">216</div>
+              <div style="margin-top: 4px;">
+                <span class="badge badge-success">87% approval rate</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Pending</div>
+              <div class="stat-value">32</div>
+              <div class="text-xs text-warning" style="margin-top: 4px;">Awaiting verification</div>
+            </div>
+            <div class="stat-card">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Subjects</div>
+              <div class="stat-value">524</div>
+              <div class="text-xs text-secondary" style="margin-top: 4px;">Avg 2.1 subjects/student</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subject-wise Analysis -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Most Registered Subjects (Top 5)</h2>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Subject Code</th>
+                  <th>Subject Name</th>
+                  <th>Registrations</th>
+                  <th>Pass Rate (Previous)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td style="font-family: monospace; font-weight: 600;">CS401</td>
+                  <td>Database Management Systems</td>
+                  <td style="font-weight: 600;">68</td>
+                  <td><span class="badge badge-warning">62% pass rate</span></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td style="font-family: monospace; font-weight: 600;">CS402</td>
+                  <td>Operating Systems</td>
+                  <td style="font-weight: 600;">54</td>
+                  <td><span class="badge badge-success">71% pass rate</span></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td style="font-family: monospace; font-weight: 600;">EC301</td>
+                  <td>Digital Electronics</td>
+                  <td style="font-weight: 600;">42</td>
+                  <td><span class="badge badge-warning">58% pass rate</span></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td style="font-family: monospace; font-weight: 600;">CS501</td>
+                  <td>Computer Networks</td>
+                  <td style="font-weight: 600;">38</td>
+                  <td><span class="badge badge-success">75% pass rate</span></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td style="font-family: monospace; font-weight: 600;">EC401</td>
+                  <td>Communication Systems</td>
+                  <td style="font-weight: 600;">35</td>
+                  <td><span class="badge badge-error">48% pass rate</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advanced Search -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Advanced Search & Filter</h2>
+        </div>
+        <div class="section-body">
+          <div class="field-grid">
+            <div class="form-group">
+              <label class="form-label">Registration Number</label>
+              <input type="text" class="form-input" placeholder="Search by reg number" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Student Name</label>
+              <input type="text" class="form-input" placeholder="Search by name" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Program</label>
+              <select class="form-select">
+                <option>-- All Programs --</option>
+                <option>B.Eng - Computer Science</option>
+                <option>B.Eng - Electronics</option>
+                <option>M.Tech - Software Engineering</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Semester</label>
+              <select class="form-select">
+                <option>-- All Semesters --</option>
+                <option>Semester 2</option>
+                <option>Semester 4</option>
+                <option>Semester 6</option>
+                <option>Semester 8</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Subject Code</label>
+              <input type="text" class="form-input" placeholder="e.g., CS401" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Status</label>
+              <select class="form-select">
+                <option>-- All Statuses --</option>
+                <option>Pending Verification</option>
+                <option>Verified</option>
+                <option>Approved</option>
+                <option>Rejected</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 16px;">
+            <button class="btn btn-secondary">Clear Filters</button>
+            <button class="btn btn-primary">
+              <i data-feather="search" style="width: 16px; height: 16px;"></i>
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Supplementary Registration List -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Supplementary Registrations - All</h2>
+          <div class="text-sm" style="color: #6B7280;">Showing 248 registrations</div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Reg. ID</th>
+                  <th>Reg. Number</th>
+                  <th>Student Name</th>
+                  <th>Program</th>
+                  <th>Semester</th>
+                  <th>Subjects</th>
+                  <th>Fee Paid</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">SUPP-2025-0045</td>
+                  <td style="font-family: monospace;">25ENG1045</td>
+                  <td>Rajesh Kumar M</td>
+                  <td>B.Eng - CS</td>
+                  <td>Sem 6</td>
+                  <td>
+                    <div style="font-weight: 500;">3 subjects</div>
+                    <div class="text-xs" style="color: #6B7280;">CS401, CS402, CS501</div>
+                  </td>
+                  <td style="font-weight: 600;">₹2,600</td>
+                  <td><span class="status status-pending"><span class="status-dot"></span>Pending Verification</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" onclick="showDetails('SUPP-2025-0045')">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      View
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">SUPP-2025-0044</td>
+                  <td style="font-family: monospace;">25ENG1023</td>
+                  <td>Priya Sharma R</td>
+                  <td>B.Eng - CS</td>
+                  <td>Sem 4</td>
+                  <td>
+                    <div style="font-weight: 500;">2 subjects</div>
+                    <div class="text-xs" style="color: #6B7280;">CS401, EC301</div>
+                  </td>
+                  <td style="font-weight: 600;">₹1,800</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Approved</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" onclick="showDetails('SUPP-2025-0044')">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      View
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">SUPP-2025-0043</td>
+                  <td style="font-family: monospace;">25ECE1089</td>
+                  <td>Suresh Babu K</td>
+                  <td>B.Eng - EC</td>
+                  <td>Sem 6</td>
+                  <td>
+                    <div style="font-weight: 500;">1 subject</div>
+                    <div class="text-xs" style="color: #6B7280;">EC401</div>
+                  </td>
+                  <td style="font-weight: 600;">₹1,000</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Approved</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" onclick="showDetails('SUPP-2025-0043')">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      View
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">SUPP-2025-0042</td>
+                  <td style="font-family: monospace;">25ENG1067</td>
+                  <td>Arun Kumar M</td>
+                  <td>B.Eng - CS</td>
+                  <td>Sem 4</td>
+                  <td>
+                    <div style="font-weight: 500;">4 subjects</div>
+                    <div class="text-xs" style="color: #6B7280;">CS401, CS402, CS403, CS404</div>
+                  </td>
+                  <td style="font-weight: 600;">₹3,400</td>
+                  <td><span class="status status-verified"><span class="status-dot"></span>Verified</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" onclick="showDetails('SUPP-2025-0042')">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      View
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;">
+            <div style="font-size: 13px; color: #6B7280;">Showing 4 of 248 registrations</div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn btn-sm btn-secondary">Previous</button>
+              <button class="btn btn-sm btn-primary">1</button>
+              <button class="btn btn-sm btn-ghost">2</button>
+              <button class="btn btn-sm btn-ghost">3</button>
+              <button class="btn btn-sm btn-ghost">...</button>
+              <button class="btn btn-sm btn-ghost">50</button>
+              <button class="btn btn-sm btn-secondary">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Details Modal -->
+  <div id="detailsModal" class="modal">
+    <div class="modal-content" style="max-width: 800px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Supplementary Registration Details - SUPP-2025-0045</h3>
+        <button class="modal-close" onclick="document.getElementById('detailsModal').style.display='none'">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Student Info -->
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; padding: 16px; background: #F8F9FA; border-radius: 6px;">
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Registration ID</div>
+            <div style="font-size: 14px; font-weight: 600; font-family: monospace;">SUPP-2025-0045</div>
+          </div>
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Registration Number</div>
+            <div style="font-size: 14px; font-weight: 600; font-family: monospace;">25ENG1045</div>
+          </div>
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Student Name</div>
+            <div style="font-size: 14px; font-weight: 500;">Rajesh Kumar M</div>
+          </div>
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Program</div>
+            <div style="font-size: 14px;">B.Eng - Computer Science</div>
+          </div>
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Current Semester</div>
+            <div style="font-size: 14px;">Semester 6 (Even)</div>
+          </div>
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Registration Date</div>
+            <div style="font-size: 14px;">16-Dec-2024</div>
+          </div>
+        </div>
+
+        <!-- Registered Subjects -->
+        <div style="margin-bottom: 16px;">
+          <div style="font-size: 14px; font-weight: 600; margin-bottom: 12px;">Registered Subjects</div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Subject Code</th>
+                  <th>Subject Name</th>
+                  <th>Original Semester</th>
+                  <th>Previous Result</th>
+                  <th>Attempt No.</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">CS401</td>
+                  <td>Database Management Systems</td>
+                  <td>Sem 4</td>
+                  <td><span class="status status-rejected"><span class="status-dot"></span>Failed (36)</span></td>
+                  <td><span class="badge badge-warning">1st Supp</span></td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">CS402</td>
+                  <td>Operating Systems</td>
+                  <td>Sem 4</td>
+                  <td><span class="status status-rejected"><span class="status-dot"></span>Failed (37)</span></td>
+                  <td><span class="badge badge-warning">1st Supp</span></td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">CS501</td>
+                  <td>Computer Networks</td>
+                  <td>Sem 5</td>
+                  <td><span class="status status-pending"><span class="status-dot"></span>Absent</span></td>
+                  <td><span class="badge badge-warning">1st Supp</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Fee Details -->
+        <div style="padding: 16px; background: #F8F9FA; border-radius: 6px; margin-bottom: 16px;">
+          <div style="font-size: 14px; font-weight: 600; margin-bottom: 12px;">Fee Details</div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+            <div style="font-size: 13px; color: #6B7280;">3 subjects × ₹800</div>
+            <div style="font-weight: 600;">₹2,400</div>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #E5E7EB;">
+            <div style="font-size: 13px; color: #6B7280;">Processing Fee</div>
+            <div style="font-weight: 600;">₹200</div>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding-top: 8px;">
+            <div style="font-size: 15px; font-weight: 600;">Total Paid</div>
+            <div style="font-size: 16px; font-weight: 600; color: #2563EB;">₹2,600</div>
+          </div>
+        </div>
+
+        <!-- Status -->
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div style="font-size: 14px; font-weight: 600;">Current Status:</div>
+          <span class="status status-pending" style="font-size: 14px;">
+            <span class="status-dot"></span>
+            Pending Verification
+          </span>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="document.getElementById('detailsModal').style.display='none'">Close</button>
+        <button class="btn btn-primary">
+          <i data-feather="download" style="width: 16px; height: 16px;"></i>
+          Download Receipt
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+
+    function showDetails(registrationId) {
+      document.getElementById('detailsModal').style.display = 'block';
+      feather.replace();
+    }
+  </script>
+
+</body>
+</html>

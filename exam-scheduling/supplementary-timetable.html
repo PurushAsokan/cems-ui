@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supplementary Exam Timetable - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Exam Scheduling
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Regular Exams</div>
+        <a href="degree-subject-setup.html" class="dropdown-item">Degree & Subject Setup</a>
+        <a href="program-subject-mapping.html" class="dropdown-item">Program-Subject Mapping</a>
+        <a href="timetable-entry.html" class="dropdown-item">Timetable Entry</a>
+        <a href="timetable-verification.html" class="dropdown-item">Timetable Verification</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Exams</div>
+        <a href="supplementary-timetable.html" class="dropdown-item active">Supplementary Timetable</a>
+        <a href="supplementary-timetable-verification.html" class="dropdown-item">Supplementary Verification</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">OP</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Data Entry Operator</div>
+            <div style="font-size: 11px; color: #6B7280;">OP-001</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <a href="timetable-entry.html" class="breadcrumb-item">Exam Scheduling</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Supplementary Timetable</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="upload" style="width: 16px; height: 16px;"></i>
+        Import from Template
+      </button>
+      <button class="btn btn-sm btn-primary" onclick="saveAndPublish()">
+        <i data-feather="check" style="width: 16px; height: 16px;"></i>
+        Save & Publish
+      </button>
+    </div>
+  </div>
+
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Info Banner -->
+      <div class="alert alert-info" style="margin-bottom: 24px;">
+        <i data-feather="info" style="width: 20px; height: 20px;"></i>
+        <div style="flex: 1;">
+          <div style="font-weight: 500; margin-bottom: 4px;">Supplementary Exam Timetable</div>
+          <div><strong>Important:</strong> Supplementary exams are scheduled subject-wise (not semester-wise). Ensure no student clashes. Duration: 15-Jun to 25-Jun 2025</div>
+        </div>
+      </div>
+
+      <!-- Exam Session Selection -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Exam Session Details</h2>
+        </div>
+        <div class="section-body">
+          <div class="field-grid">
+            <div class="form-group">
+              <label class="form-label required">Exam Session</label>
+              <select class="form-select">
+                <option>June 2025 - Supplementary Exam</option>
+                <option>December 2024 - Supplementary Exam</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label required">Exam Duration</label>
+              <input type="text" class="form-input" value="15-Jun-2025 to 25-Jun-2025" readonly style="background: #F8F9FA;" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Total Registered Subjects</label>
+              <input type="text" class="form-input" value="45 unique subjects" readonly style="background: #F8F9FA;" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subject-wise Timetable Entry -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Subject-wise Timetable (June 2025)</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="plus" style="width: 16px; height: 16px;"></i>
+            Add Subject
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Subject Code</th>
+                  <th>Subject Name</th>
+                  <th>Exam Date</th>
+                  <th>Exam Time</th>
+                  <th>Duration</th>
+                  <th>Venue</th>
+                  <th>Students</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">CS401</td>
+                  <td>Database Management Systems</td>
+                  <td>
+                    <input type="date" class="form-input" value="2025-06-15" style="width: 140px;" />
+                  </td>
+                  <td>
+                    <input type="time" class="form-input" value="10:00" style="width: 100px;" />
+                  </td>
+                  <td>
+                    <select class="form-select" style="width: 100px;">
+                      <option>3 hours</option>
+                      <option>2.5 hours</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select class="form-select" style="width: 120px;">
+                      <option>Hall A</option>
+                      <option>Hall B</option>
+                      <option>Lab 1</option>
+                    </select>
+                  </td>
+                  <td style="font-weight: 600;">68</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost">
+                      <i data-feather="save" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">CS402</td>
+                  <td>Operating Systems</td>
+                  <td>
+                    <input type="date" class="form-input" value="2025-06-16" style="width: 140px;" />
+                  </td>
+                  <td>
+                    <input type="time" class="form-input" value="10:00" style="width: 100px;" />
+                  </td>
+                  <td>
+                    <select class="form-select" style="width: 100px;">
+                      <option>3 hours</option>
+                      <option>2.5 hours</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select class="form-select" style="width: 120px;">
+                      <option>Hall A</option>
+                      <option>Hall B</option>
+                      <option>Lab 1</option>
+                    </select>
+                  </td>
+                  <td style="font-weight: 600;">54</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost">
+                      <i data-feather="save" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #FEF3C7;">
+                  <td style="font-family: monospace; font-weight: 600;">EC301</td>
+                  <td>Digital Electronics</td>
+                  <td>
+                    <input type="date" class="form-input" value="2025-06-15" style="width: 140px; border-color: #F59E0B;" />
+                  </td>
+                  <td>
+                    <input type="time" class="form-input" value="10:00" style="width: 100px; border-color: #F59E0B;" />
+                  </td>
+                  <td>
+                    <select class="form-select" style="width: 100px;">
+                      <option>3 hours</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select class="form-select" style="width: 120px;">
+                      <option>Lab 1</option>
+                      <option>Lab 2</option>
+                    </select>
+                  </td>
+                  <td style="font-weight: 600;">42</td>
+                  <td style="text-align: right;">
+                    <span class="badge badge-warning">Clash Warning</span>
+                    <button class="btn btn-sm btn-ghost">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">CS501</td>
+                  <td>Computer Networks</td>
+                  <td>
+                    <input type="date" class="form-input" value="2025-06-18" style="width: 140px;" />
+                  </td>
+                  <td>
+                    <input type="time" class="form-input" value="10:00" style="width: 100px;" />
+                  </td>
+                  <td>
+                    <select class="form-select" style="width: 100px;">
+                      <option>3 hours</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select class="form-select" style="width: 120px;">
+                      <option>Hall B</option>
+                    </select>
+                  </td>
+                  <td style="font-weight: 600;">38</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost">
+                      <i data-feather="save" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top: 16px; padding: 12px; background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <i data-feather="alert-triangle" style="width: 16px; height: 16px; color: #F59E0B;"></i>
+              <div style="font-size: 13px; color: #92400E;">
+                <strong>Clash Warning:</strong> EC301 scheduled at same time as CS401 (15-Jun, 10:00 AM). 12 students registered for both subjects - please reschedule.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Clash Detection Summary -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Clash Detection Report</h2>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Student Reg. No</th>
+                  <th>Student Name</th>
+                  <th>Clashing Subjects</th>
+                  <th>Date & Time</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #FEE2E2;">
+                  <td style="font-family: monospace;">25ECE1023</td>
+                  <td>Kiran Kumar R</td>
+                  <td>
+                    <div style="font-weight: 500;">CS401 & EC301</div>
+                    <div class="text-xs" style="color: #6B7280;">Both on 15-Jun at 10:00 AM</div>
+                  </td>
+                  <td>15-Jun-2025, 10:00 AM</td>
+                  <td><span class="status status-rejected"><span class="status-dot"></span>Clash Detected</span></td>
+                </tr>
+                <tr style="background: #FEE2E2;">
+                  <td style="font-family: monospace;">25ECE1045</td>
+                  <td>Meena Lakshmi S</td>
+                  <td>
+                    <div style="font-weight: 500;">CS401 & EC301</div>
+                    <div class="text-xs" style="color: #6B7280;">Both on 15-Jun at 10:00 AM</div>
+                  </td>
+                  <td>15-Jun-2025, 10:00 AM</td>
+                  <td><span class="status status-rejected"><span class="status-dot"></span>Clash Detected</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top: 16px; padding: 16px; background: #FEE2E2; border: 1px solid #FCA5A5; border-radius: 6px;">
+            <div style="font-size: 14px; font-weight: 600; color: #991B1B; margin-bottom: 8px;">⚠️ 12 Students with Schedule Clashes</div>
+            <div style="font-size: 13px; color: #991B1B;">
+              Please reschedule either CS401 or EC301 to avoid student exam clashes. Suggested: Move EC301 to 16-Jun or change time to 2:00 PM.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Calendar Preview -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Calendar Preview - June 2025</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px;">
+            <!-- Calendar Day Headers -->
+            <div style="padding: 8px; text-align: center; font-size: 12px; font-weight: 600; color: #6B7280;">Sun</div>
+            <div style="padding: 8px; text-align: center; font-size: 12px; font-weight: 600; color: #6B7280;">Mon</div>
+            <div style="padding: 8px; text-align: center; font-size: 12px; font-weight: 600; color: #6B7280;">Tue</div>
+            <div style="padding: 8px; text-align: center; font-size: 12px; font-weight: 600; color: #6B7280;">Wed</div>
+            <div style="padding: 8px; text-align: center; font-size: 12px; font-weight: 600; color: #6B7280;">Thu</div>
+            <div style="padding: 8px; text-align: center; font-size: 12px; font-weight: 600; color: #6B7280;">Fri</div>
+            <div style="padding: 8px; text-align: center; font-size: 12px; font-weight: 600; color: #6B7280;">Sat</div>
+
+            <!-- Calendar Days -->
+            <div style="padding: 8px; border: 1px solid #E5E7EB; border-radius: 4px; min-height: 80px;">
+              <div style="font-size: 13px; font-weight: 600; margin-bottom: 4px;">15</div>
+              <div style="font-size: 11px; padding: 4px; background: #DBEAFE; border-radius: 3px; margin-bottom: 2px;">CS401 (10AM)</div>
+              <div style="font-size: 11px; padding: 4px; background: #FEF3C7; border-radius: 3px;">EC301 (10AM) ⚠️</div>
+            </div>
+
+            <div style="padding: 8px; border: 1px solid #E5E7EB; border-radius: 4px; min-height: 80px;">
+              <div style="font-size: 13px; font-weight: 600; margin-bottom: 4px;">16</div>
+              <div style="font-size: 11px; padding: 4px; background: #DBEAFE; border-radius: 3px;">CS402 (10AM)</div>
+            </div>
+
+            <div style="padding: 8px; border: 1px solid #E5E7EB; border-radius: 4px; min-height: 80px;">
+              <div style="font-size: 13px; font-weight: 600; margin-bottom: 4px;">17</div>
+              <div style="font-size: 11px; color: #6B7280;">No Exams</div>
+            </div>
+
+            <div style="padding: 8px; border: 1px solid #E5E7EB; border-radius: 4px; min-height: 80px;">
+              <div style="font-size: 13px; font-weight: 600; margin-bottom: 4px;">18</div>
+              <div style="font-size: 11px; padding: 4px; background: #DBEAFE; border-radius: 3px;">CS501 (10AM)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+
+    function saveAndPublish() {
+      if (confirm('Save and publish supplementary timetable?\n\n• 45 subjects scheduled\n• 12 clash warnings detected\n\nPlease resolve clashes before publishing.')) {
+        alert('Please resolve all clash warnings before publishing the timetable.');
+      }
+    }
+  </script>
+
+</body>
+</html>

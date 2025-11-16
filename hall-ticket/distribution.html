@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hall Ticket Distribution - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Hall Ticket
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Regular Exams</div>
+        <a href="generation.html" class="dropdown-item">Generation</a>
+        <a href="verification.html" class="dropdown-item">Verification & Approval</a>
+        <a href="printing.html" class="dropdown-item">Printing/Bulk Download</a>
+        <a href="distribution.html" class="dropdown-item active">Distribution Tracking</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Exams</div>
+        <a href="supplementary-generation.html" class="dropdown-item">Supplementary Generation</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">FD</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Front Desk Staff</div>
+            <div style="font-size: 11px; color: #6B7280;">Distribution</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Hall Ticket</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Distribution Tracking</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="send" style="width: 16px; height: 16px;"></i>
+        Send Reminders (155)
+      </button>
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+        Generate Pending List
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="users" style="width: 16px; height: 16px;"></i>
+        Bulk Handover Mode
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Section 1: Quick Search & Handover -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Quick Handover</h2>
+        </div>
+        <div class="section-body">
+          <div class="alert alert-info" style="margin-bottom: 16px;">
+            <i data-feather="info" style="width: 20px; height: 20px;"></i>
+            <div>Search by Registration Number or Student Name to quickly mark hall tickets as distributed</div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 2fr 2fr 1fr; gap: 16px; margin-bottom: 24px;">
+            <div class="form-group">
+              <label class="form-label">Registration Number / Name</label>
+              <input type="text" class="form-input" placeholder="Enter reg. number or name" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Verification Method</label>
+              <select class="form-select">
+                <option value="manual" selected>Manual Identity Verification</option>
+                <option value="biometric">Biometric Fingerprint</option>
+                <option value="qr">QR Code Scan</option>
+                <option value="id-card">College ID Card Scan</option>
+              </select>
+            </div>
+            <div style="display: flex; align-items: end;">
+              <button class="btn btn-primary" style="width: 100%;">
+                <i data-feather="search" style="width: 16px; height: 16px;"></i>
+                Search
+              </button>
+            </div>
+          </div>
+
+          <!-- Search Result (appears after search) -->
+          <div style="background: #EFF6FF; border: 2px solid #2563EB; border-radius: 8px; padding: 24px;">
+            <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: start;">
+              <!-- Student Photo -->
+              <div>
+                <div style="width: 80px; height: 100px; border-radius: 6px; background: #E5E7EB; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #6B7280; border: 2px solid white;">Student Photo</div>
+              </div>
+
+              <!-- Student Details -->
+              <div>
+                <div style="font-size: 16px; font-weight: 600; color: #111827; margin-bottom: 12px;">Rajesh Kumar</div>
+                <div style="display: grid; gap: 8px;">
+                  <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; font-size: 13px;">
+                    <div style="color: #6B7280;">Registration No:</div>
+                    <div style="font-weight: 500; font-family: monospace;">REG2024001</div>
+                  </div>
+                  <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; font-size: 13px;">
+                    <div style="color: #6B7280;">Program:</div>
+                    <div>B.Tech - Computer Science & Engineering</div>
+                  </div>
+                  <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; font-size: 13px;">
+                    <div style="color: #6B7280;">Year / Semester:</div>
+                    <div>III Year / V Semester</div>
+                  </div>
+                  <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; font-size: 13px;">
+                    <div style="color: #6B7280;">Hall Ticket Status:</div>
+                    <div>
+                      <span class="status status-pending">
+                        <span class="status-dot"></span>
+                        Ready for Distribution
+                      </span>
+                    </div>
+                  </div>
+                  <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; font-size: 13px;">
+                    <div style="color: #6B7280;">Print Status:</div>
+                    <div>
+                      <span class="status status-approved">
+                        <span class="status-dot"></span>
+                        Printed on 12-Nov-2024 10:45 AM
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Action Buttons -->
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <button class="btn btn-primary">
+                  <i data-feather="check-circle" style="width: 16px; height: 16px;"></i>
+                  Mark as Distributed
+                </button>
+                <button class="btn btn-secondary">
+                  <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                  Capture Signature
+                </button>
+                <button class="btn btn-ghost">
+                  <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                  Preview Hall Ticket
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Distribution Statistics -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Distribution Statistics - December 2024</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Printed</div>
+              <div style="font-size: 24px; font-weight: 600;">242</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Hall Tickets</div>
+            </div>
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Distributed</div>
+              <div style="font-size: 24px; font-weight: 600; color: #22C55E;">87</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">36% Complete</div>
+            </div>
+            <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Pending Collection</div>
+              <div style="font-size: 24px; font-weight: 600; color: #F59E0B;">155</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Students notified</div>
+            </div>
+            <div style="background: #EFF6FF; border: 1px solid #93C5FD; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Collected by CR</div>
+              <div style="font-size: 24px; font-weight: 600; color: #3B82F6;">45</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Class Representatives</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Distribution Tracking Table -->
+      <div class="section">
+        <div class="section-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Distribution Tracking</h2>
+            <span class="status status-pending">
+              <span class="status-dot"></span>
+              242 Total
+            </span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-sm btn-secondary">
+              <i data-feather="filter" style="width: 16px; height: 16px;"></i>
+              Filter: Pending Only
+            </button>
+            <button class="btn btn-sm btn-secondary">
+              <i data-feather="download" style="width: 16px; height: 16px;"></i>
+              Export to Excel
+            </button>
+          </div>
+        </div>
+        <div class="section-body">
+          <!-- Filter Options -->
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 16px;">
+            <div class="form-group">
+              <label class="form-label">Program</label>
+              <select class="form-select">
+                <option value="">-- All Programs --</option>
+                <option value="BTECH-CSE" selected>B.Tech - CSE</option>
+                <option value="BTECH-ECE">B.Tech - ECE</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Year / Semester</label>
+              <select class="form-select">
+                <option value="">-- All --</option>
+                <option value="3-5" selected>III Year / V Semester</option>
+                <option value="3-6">III Year / VI Semester</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Distribution Status</label>
+              <select class="form-select">
+                <option value="">-- All --</option>
+                <option value="pending" selected>Pending Collection</option>
+                <option value="distributed">Distributed</option>
+                <option value="cr">Collected by CR</option>
+              </select>
+            </div>
+            <div style="display: flex; align-items: end;">
+              <button class="btn btn-primary" style="width: 100%;">
+                <i data-feather="search" style="width: 16px; height: 16px;"></i>
+                Apply Filters
+              </button>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 40px;"><input type="checkbox" /></th>
+                  <th style="width: 60px;">Photo</th>
+                  <th>Reg. Number</th>
+                  <th>Student Name</th>
+                  <th>Program</th>
+                  <th>Distribution Status</th>
+                  <th>Distributed To</th>
+                  <th>Date & Time</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #FEF3C7;">
+                  <td><input type="checkbox" /></td>
+                  <td>
+                    <div style="width: 40px; height: 50px; border-radius: 4px; background: #E5E7EB;"></div>
+                  </td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024001</td>
+                  <td style="font-weight: 500;">Rajesh Kumar</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Pending Collection
+                    </span>
+                  </td>
+                  <td style="color: #9CA3AF;">—</td>
+                  <td style="color: #9CA3AF;">—</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Preview Hall Ticket">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Send Reminder">
+                      <i data-feather="send" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Mark as Distributed">
+                      <i data-feather="check" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #FEF3C7;">
+                  <td><input type="checkbox" /></td>
+                  <td>
+                    <div style="width: 40px; height: 50px; border-radius: 4px; background: #E5E7EB;"></div>
+                  </td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024002</td>
+                  <td style="font-weight: 500;">Priya Sharma</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Pending Collection
+                    </span>
+                  </td>
+                  <td style="color: #9CA3AF;">—</td>
+                  <td style="color: #9CA3AF;">—</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Preview Hall Ticket">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Send Reminder">
+                      <i data-feather="send" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Mark as Distributed">
+                      <i data-feather="check" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td><input type="checkbox" /></td>
+                  <td>
+                    <div style="width: 40px; height: 50px; border-radius: 4px; background: #E5E7EB;"></div>
+                  </td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024003</td>
+                  <td style="font-weight: 500;">Amit Patel</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Distributed to Student
+                    </span>
+                  </td>
+                  <td>
+                    <div style="font-weight: 500;">Student (Self)</div>
+                    <div class="text-xs" style="color: #6B7280;">ID Verified by: FD Staff</div>
+                  </td>
+                  <td style="font-size: 12px;">
+                    <div>14-Nov-2024</div>
+                    <div style="color: #6B7280;">02:35 PM</div>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View Acknowledgment">
+                      <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #EFF6FF;">
+                  <td><input type="checkbox" /></td>
+                  <td>
+                    <div style="width: 40px; height: 50px; border-radius: 4px; background: #E5E7EB;"></div>
+                  </td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024004</td>
+                  <td style="font-weight: 500;">Sneha Reddy</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Collected by CR
+                    </span>
+                  </td>
+                  <td>
+                    <div style="font-weight: 500;">Karthik Rao (CR)</div>
+                    <div class="text-xs" style="color: #6B7280;">Bulk handover - 45 students</div>
+                  </td>
+                  <td style="font-size: 12px;">
+                    <div>13-Nov-2024</div>
+                    <div style="color: #6B7280;">11:20 AM</div>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View Acknowledgment">
+                      <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td><input type="checkbox" /></td>
+                  <td>
+                    <div style="width: 40px; height: 50px; border-radius: 4px; background: #E5E7EB;"></div>
+                  </td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024005</td>
+                  <td style="font-weight: 500;">Vikram Singh</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Distributed to Parent
+                    </span>
+                  </td>
+                  <td>
+                    <div style="font-weight: 500;">Mr. Rajesh Singh (Father)</div>
+                    <div class="text-xs" style="color: #6B7280;">Aadhar Verified</div>
+                  </td>
+                  <td style="font-size: 12px;">
+                    <div>13-Nov-2024</div>
+                    <div style="color: #6B7280;">09:45 AM</div>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View Acknowledgment">
+                      <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #FEF3C7;">
+                  <td><input type="checkbox" /></td>
+                  <td>
+                    <div style="width: 40px; height: 50px; border-radius: 4px; background: #E5E7EB;"></div>
+                  </td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024006</td>
+                  <td style="font-weight: 500;">Anjali Verma</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td>
+                    <span class="status status-warning">
+                      <span class="status-dot"></span>
+                      Reminder Sent (3 days ago)
+                    </span>
+                  </td>
+                  <td style="color: #9CA3AF;">—</td>
+                  <td style="color: #9CA3AF;">—</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Preview Hall Ticket">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Send Another Reminder">
+                      <i data-feather="send" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Mark as Distributed">
+                      <i data-feather="check" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Recent Distribution Activity -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Recent Distribution Activity</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+            View Full Audit Trail
+          </button>
+        </div>
+        <div class="section-body">
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <!-- Activity Item 1 -->
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                <div>
+                  <div style="font-weight: 600; font-size: 14px; color: #111827; margin-bottom: 4px;">Hall Ticket Distributed - REG2024003</div>
+                  <div style="font-size: 13px; color: #6B7280;">Student: Amit Patel | B.Tech CSE - III/V</div>
+                </div>
+                <span class="status status-approved">
+                  <span class="status-dot"></span>
+                  Distributed
+                </span>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; font-size: 12px; color: #6B7280;">
+                <div>
+                  <div style="font-weight: 500; color: #111827;">Distributed To</div>
+                  <div>Student (Self)</div>
+                </div>
+                <div>
+                  <div style="font-weight: 500; color: #111827;">Verification</div>
+                  <div>College ID Verified</div>
+                </div>
+                <div>
+                  <div style="font-weight: 500; color: #111827;">Date & Time</div>
+                  <div>14-Nov-2024 02:35 PM</div>
+                </div>
+              </div>
+              <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #E5E7EB; font-size: 11px; color: #6B7280;">
+                Processed by: Front Desk Staff | IP: 192.168.1.45
+              </div>
+            </div>
+
+            <!-- Activity Item 2 -->
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                <div>
+                  <div style="font-weight: 600; font-size: 14px; color: #111827; margin-bottom: 4px;">Bulk Handover to Class Representative - 45 Students</div>
+                  <div style="font-size: 13px; color: #6B7280;">Class: B.Tech CSE - III/V | CR: Karthik Rao (REG2024050)</div>
+                </div>
+                <span class="status status-verified">
+                  <span class="status-dot"></span>
+                  Bulk Handover
+                </span>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; font-size: 12px; color: #6B7280;">
+                <div>
+                  <div style="font-weight: 500; color: #111827;">CR Verification</div>
+                  <div>Biometric + College ID</div>
+                </div>
+                <div>
+                  <div style="font-weight: 500; color: #111827;">Acknowledgment</div>
+                  <div>Digital Signature Captured</div>
+                </div>
+                <div>
+                  <div style="font-weight: 500; color: #111827;">Date & Time</div>
+                  <div>13-Nov-2024 11:20 AM</div>
+                </div>
+              </div>
+              <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #E5E7EB; font-size: 11px; color: #6B7280;">
+                Processed by: Assistant Controller | IP: 192.168.1.42 | <a href="#" style="color: #2563EB; text-decoration: underline;">View Student List (45)</a>
+              </div>
+            </div>
+
+            <!-- Activity Item 3 -->
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                <div>
+                  <div style="font-weight: 600; font-size: 14px; color: #111827; margin-bottom: 4px;">Hall Ticket Distributed to Parent - REG2024005</div>
+                  <div style="font-size: 13px; color: #6B7280;">Student: Vikram Singh | B.Tech CSE - III/V</div>
+                </div>
+                <span class="status status-approved">
+                  <span class="status-dot"></span>
+                  Distributed
+                </span>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; font-size: 12px; color: #6B7280;">
+                <div>
+                  <div style="font-weight: 500; color: #111827;">Distributed To</div>
+                  <div>Mr. Rajesh Singh (Father)</div>
+                </div>
+                <div>
+                  <div style="font-weight: 500; color: #111827;">Verification</div>
+                  <div>Aadhar Card Verified</div>
+                </div>
+                <div>
+                  <div style="font-weight: 500; color: #111827;">Date & Time</div>
+                  <div>13-Nov-2024 09:45 AM</div>
+                </div>
+              </div>
+              <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #E5E7EB; font-size: 11px; color: #6B7280;">
+                Processed by: Front Desk Staff | IP: 192.168.1.45 | Authorization Letter on File
+              </div>
+            </div>
+
+            <!-- Activity Item 4 -->
+            <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                <div>
+                  <div style="font-weight: 600; font-size: 14px; color: #111827; margin-bottom: 4px;">Reminder Sent - 155 Students</div>
+                  <div style="font-size: 13px; color: #6B7280;">Pending hall ticket collection via SMS and Email</div>
+                </div>
+                <span class="status status-warning">
+                  <span class="status-dot"></span>
+                  Notification Sent
+                </span>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; font-size: 12px; color: #6B7280;">
+                <div>
+                  <div style="font-weight: 500; color: #111827;">Channel</div>
+                  <div>SMS + Email</div>
+                </div>
+                <div>
+                  <div style="font-weight: 500; color: #111827;">Delivery Status</div>
+                  <div>153 Delivered, 2 Failed</div>
+                </div>
+                <div>
+                  <div style="font-weight: 500; color: #111827;">Date & Time</div>
+                  <div>12-Nov-2024 04:00 PM</div>
+                </div>
+              </div>
+              <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #FCD34D; font-size: 11px; color: #6B7280;">
+                Triggered by: Assistant Controller | Scheduled Reminder
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

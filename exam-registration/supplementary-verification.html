@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supplementary Verification - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Exam Registration
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Regular Registration</div>
+        <a href="data-entry.html" class="dropdown-item">Data Entry</a>
+        <a href="verification.html" class="dropdown-item">Verification</a>
+        <a href="fee-calculation.html" class="dropdown-item">Fee Calculation</a>
+        <a href="ern-batch.html" class="dropdown-item">ERN Generation</a>
+        <a href="registration-list.html" class="dropdown-item">Registration List</a>
+        <a href="reports.html" class="dropdown-item">Reports</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Registration</div>
+        <a href="supplementary-registration.html" class="dropdown-item">Supplementary Registration</a>
+        <a href="supplementary-verification.html" class="dropdown-item active">Supplementary Verification</a>
+        <a href="supplementary-list.html" class="dropdown-item">Supplementary List & Analytics</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">DC</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Deputy Controller</div>
+            <div style="font-size: 11px; color: #6B7280;">DEP-203</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <a href="data-entry.html" class="breadcrumb-item">Exam Registration</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Supplementary Verification</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export Pending List
+      </button>
+      <button class="btn btn-sm btn-primary" onclick="bulkApprove()">
+        <i data-feather="check-circle" style="width: 16px; height: 16px;"></i>
+        Bulk Approve Selected
+      </button>
+    </div>
+  </div>
+
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Statistics -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Pending Verification</div>
+          <div class="stat-value">32</div>
+          <div class="text-xs text-warning" style="margin-top: 4px;">Requires attention</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Verified Today</div>
+          <div class="stat-value">15</div>
+          <div class="text-xs text-success" style="margin-top: 4px;">↑ 8% from yesterday</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Total This Session</div>
+          <div class="stat-value">248</div>
+          <div class="text-xs text-secondary" style="margin-top: 4px;">June 2025 Session</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Rejection Rate</div>
+          <div class="stat-value">4.2%</div>
+          <div class="text-xs text-success" style="margin-top: 4px;">↓ Lower than last session</div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="section" style="margin-top: 24px;">
+        <div class="section-header">
+          <h2 class="section-title">Filter Supplementary Registrations</h2>
+        </div>
+        <div class="section-body">
+          <div class="form-inline">
+            <div class="form-group">
+              <label class="form-label">Program</label>
+              <select class="form-select">
+                <option>-- All Programs --</option>
+                <option>B.Eng - Computer Science</option>
+                <option>B.Eng - Electronics</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Semester</label>
+              <select class="form-select">
+                <option>-- All Semesters --</option>
+                <option>Semester 2</option>
+                <option>Semester 4</option>
+                <option>Semester 6</option>
+                <option>Semester 8</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Status</label>
+              <select class="form-select">
+                <option>Pending Verification</option>
+                <option>Verified - Awaiting Approval</option>
+                <option>Rejected</option>
+                <option>-- All Statuses --</option>
+              </select>
+            </div>
+            <button class="btn btn-primary" style="align-self: flex-end;">
+              <i data-feather="search" style="width: 16px; height: 16px;"></i>
+              Apply Filter
+            </button>
+            <button class="btn btn-secondary" style="align-self: flex-end;">Clear</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pending List -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Pending Supplementary Registrations</h2>
+          <div class="text-sm" style="color: #6B7280;">32 registrations awaiting verification</div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 50px;"><input type="checkbox" id="selectAllRegistrations" /></th>
+                  <th>Registration ID</th>
+                  <th>Reg. Number</th>
+                  <th>Student Name</th>
+                  <th>Program</th>
+                  <th>Subjects</th>
+                  <th>Fee Paid</th>
+                  <th>Reg. Date</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="text-align: center;"><input type="checkbox" class="registration-checkbox" /></td>
+                  <td style="font-family: monospace; font-weight: 600;">SUPP-2025-0045</td>
+                  <td style="font-family: monospace;">25ENG1045</td>
+                  <td>Rajesh Kumar M</td>
+                  <td>B.Eng - CS</td>
+                  <td>
+                    <div style="font-weight: 500;">3 subjects</div>
+                    <div class="text-xs" style="color: #6B7280;">CS401, CS402, CS501</div>
+                  </td>
+                  <td>
+                    <div style="font-weight: 600;">₹2,600</div>
+                    <div class="text-xs" style="color: #6B7280;">Verified ✓</div>
+                  </td>
+                  <td>16-Dec-2024</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" onclick="showVerificationModal('SUPP-2025-0045')">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      Verify
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Verification Modal -->
+  <div id="verificationModal" class="modal">
+    <div class="modal-content" style="max-width: 900px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Verify Supplementary Registration - SUPP-2025-0045</h3>
+        <button class="modal-close" onclick="document.getElementById('verificationModal').style.display='none'">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Student Info -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; padding: 16px; background: #F8F9FA; border-radius: 6px;">
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Registration Number</div>
+            <div style="font-size: 14px; font-weight: 600; font-family: monospace;">25ENG1045</div>
+          </div>
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Student Name</div>
+            <div style="font-size: 14px; font-weight: 500;">Rajesh Kumar M</div>
+          </div>
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Current Semester</div>
+            <div style="font-size: 14px;">Semester 6 (Even ✓)</div>
+          </div>
+        </div>
+
+        <!-- Verification Checklist -->
+        <div style="margin-bottom: 24px;">
+          <div style="font-size: 14px; font-weight: 600; margin-bottom: 12px;">Verification Checklist</div>
+          <div style="display: grid; gap: 8px;">
+            <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #F8F9FA; border-radius: 4px; cursor: pointer;">
+              <input type="checkbox" checked />
+              <div style="flex: 1;">
+                <div style="font-size: 13px; font-weight: 500;">Semester Eligibility (Even or Final Year)</div>
+                <div class="text-xs" style="color: #6B7280;">Student in Semester 6 (Even) - Eligible ✓</div>
+              </div>
+              <span class="status status-approved"><span class="status-dot"></span>Verified</span>
+            </label>
+
+            <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #F8F9FA; border-radius: 4px; cursor: pointer;">
+              <input type="checkbox" checked />
+              <div style="flex: 1;">
+                <div style="font-size: 13px; font-weight: 500;">Subject Eligibility (Failed/Absent Only)</div>
+                <div class="text-xs" style="color: #6B7280;">All 3 subjects are failed/absent - Eligible ✓</div>
+              </div>
+              <span class="status status-approved"><span class="status-dot"></span>Valid</span>
+            </label>
+
+            <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #F8F9FA; border-radius: 4px; cursor: pointer;">
+              <input type="checkbox" checked />
+              <div style="flex: 1;">
+                <div style="font-size: 13px; font-weight: 500;">Attempt Limit Validation</div>
+                <div class="text-xs" style="color: #6B7280;">All subjects within 3 attempt limit - Valid ✓</div>
+              </div>
+              <span class="status status-approved"><span class="status-dot"></span>Clear</span>
+            </label>
+
+            <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #F8F9FA; border-radius: 4px; cursor: pointer;">
+              <input type="checkbox" checked />
+              <div style="flex: 1;">
+                <div style="font-size: 13px; font-weight: 500;">Fee Payment Verified</div>
+                <div class="text-xs" style="color: #6B7280;">₹2,600 received and confirmed - Verified ✓</div>
+              </div>
+              <span class="status status-approved"><span class="status-dot"></span>Paid</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Selected Subjects -->
+        <div style="margin-bottom: 24px;">
+          <div style="font-size: 14px; font-weight: 600; margin-bottom: 12px;">Selected Subjects for Supplementary Exam</div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Subject Code</th>
+                  <th>Subject Name</th>
+                  <th>Semester</th>
+                  <th>Last Attempt</th>
+                  <th>Previous Result</th>
+                  <th>Attempt No.</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">CS401</td>
+                  <td>Database Management Systems</td>
+                  <td>Sem 4</td>
+                  <td>Dec 2023</td>
+                  <td><span class="status status-rejected"><span class="status-dot"></span>Failed (36)</span></td>
+                  <td><span class="badge badge-warning">1st Supp</span></td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">CS402</td>
+                  <td>Operating Systems</td>
+                  <td>Sem 4</td>
+                  <td>Dec 2023</td>
+                  <td><span class="status status-rejected"><span class="status-dot"></span>Failed (37)</span></td>
+                  <td><span class="badge badge-warning">1st Supp</span></td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 600;">CS501</td>
+                  <td>Computer Networks</td>
+                  <td>Sem 5</td>
+                  <td>Jun 2024</td>
+                  <td><span class="status status-pending"><span class="status-dot"></span>Absent (0)</span></td>
+                  <td><span class="badge badge-warning">1st Supp</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Decision -->
+        <div style="margin-bottom: 16px;">
+          <label class="form-label">Verification Decision</label>
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+            <button class="btn btn-success" onclick="approveRegistration()" style="padding: 16px;">
+              <i data-feather="check-circle" style="width: 20px; height: 20px;"></i>
+              <div style="margin-top: 4px;">Approve Registration</div>
+            </button>
+            <button class="btn btn-danger" onclick="showRejectReason()" style="padding: 16px;">
+              <i data-feather="x-circle" style="width: 20px; height: 20px;"></i>
+              <div style="margin-top: 4px;">Reject Registration</div>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Verification Remarks</label>
+          <textarea class="form-input" rows="3" placeholder="Add any remarks or notes (optional)"></textarea>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+
+    function showVerificationModal(registrationId) {
+      document.getElementById('verificationModal').style.display = 'block';
+      feather.replace();
+    }
+
+    function approveRegistration() {
+      alert('Supplementary registration approved successfully!\n\nRegistration ID: SUPP-2025-0045\nStatus: Approved\n\nStudent will be notified and can appear for supplementary exam in June 2025.');
+      document.getElementById('verificationModal').style.display = 'none';
+    }
+
+    function showRejectReason() {
+      const reason = prompt('Enter reason for rejection:');
+      if (reason) {
+        alert('Registration rejected.\n\nReason: ' + reason + '\n\nStudent will be notified and fee will be refunded (if applicable).');
+        document.getElementById('verificationModal').style.display = 'none';
+      }
+    }
+
+    function bulkApprove() {
+      const selected = document.querySelectorAll('.registration-checkbox:checked').length;
+      if (selected === 0) {
+        alert('Please select at least one registration to approve');
+        return;
+      }
+      if (confirm('Approve ' + selected + ' selected supplementary registrations?')) {
+        alert(selected + ' registrations approved.');
+      }
+    }
+  </script>
+
+</body>
+</html>

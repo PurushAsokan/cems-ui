@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hall Ticket Printing - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Hall Ticket
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Regular Exams</div>
+        <a href="generation.html" class="dropdown-item">Generation</a>
+        <a href="verification.html" class="dropdown-item">Verification & Approval</a>
+        <a href="printing.html" class="dropdown-item active">Printing/Bulk Download</a>
+        <a href="distribution.html" class="dropdown-item">Distribution Tracking</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Exams</div>
+        <a href="supplementary-generation.html" class="dropdown-item">Supplementary Generation</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">AC</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Assistant Controller</div>
+            <div style="font-size: 11px; color: #6B7280;">Staff</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Hall Ticket</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Printing/Bulk Download</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="settings" style="width: 16px; height: 16px;"></i>
+        Printer Settings
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Generate Bulk PDF
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Section 1: Filter & Selection -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Select Hall Tickets for Printing</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;">
+            <div class="form-group">
+              <label class="form-label required">Exam Session</label>
+              <select class="form-select">
+                <option value="DEC2024" selected>December 2024 - Regular</option>
+                <option value="JUN2024">June 2024 - Regular</option>
+                <option value="SUP2024">Supplementary 2024</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Program</label>
+              <select class="form-select">
+                <option value="">-- All Programs --</option>
+                <option value="BTECH-CSE" selected>B.Tech - CSE</option>
+                <option value="BTECH-ECE">B.Tech - ECE</option>
+                <option value="BTECH-EEE">B.Tech - EEE</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Year / Semester</label>
+              <select class="form-select">
+                <option value="">-- All --</option>
+                <option value="3-5" selected>III Year / V Semester</option>
+                <option value="3-6">III Year / VI Semester</option>
+              </select>
+            </div>
+            <div style="display: flex; align-items: end;">
+              <button class="btn btn-primary" style="width: 100%;">
+                <i data-feather="search" style="width: 16px; height: 16px;"></i>
+                Fetch Approved Hall Tickets
+              </button>
+            </div>
+          </div>
+
+          <div class="alert alert-info">
+            <i data-feather="info" style="width: 20px; height: 20px;"></i>
+            <div>Found <strong>242 approved hall tickets</strong> ready for printing | Already printed: <strong>87</strong>, Pending: <strong>155</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Print Configuration -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Print Configuration</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+            <div class="form-group">
+              <label class="form-label">Paper Size</label>
+              <select class="form-select">
+                <option value="A4" selected>A4 (210 x 297 mm)</option>
+                <option value="Letter">Letter (8.5 x 11 in)</option>
+                <option value="A5">A5 (148 x 210 mm)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Print Quality</label>
+              <select class="form-select">
+                <option value="high" selected>High Quality (600 DPI)</option>
+                <option value="normal">Normal (300 DPI)</option>
+                <option value="draft">Draft (150 DPI)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Copies per Student</label>
+              <select class="form-select">
+                <option value="1" selected>1 Copy</option>
+                <option value="2">2 Copies (Duplicate)</option>
+                <option value="3">3 Copies</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Printer</label>
+              <select class="form-select">
+                <option value="HP-LaserJet-Pro" selected>HP LaserJet Pro M404dn (Office Printer)</option>
+                <option value="Canon-Pixma">Canon Pixma G3000 (Color Printer)</option>
+                <option value="PDF-Export">Save as PDF (No Printer)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Watermark</label>
+              <select class="form-select">
+                <option value="none">None</option>
+                <option value="draft">DRAFT</option>
+                <option value="duplicate" selected>DUPLICATE (for reprints)</option>
+                <option value="original">ORIGINAL</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Security Features</label>
+              <select class="form-select">
+                <option value="qr" selected>QR Code Verification</option>
+                <option value="barcode">Barcode Only</option>
+                <option value="both">Both QR + Barcode</option>
+                <option value="none">None</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Bulk Actions & Print Queue -->
+      <div class="section">
+        <div class="section-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Print Queue</h2>
+            <span class="status status-pending">
+              <span class="status-dot"></span>
+              242 Hall Tickets
+            </span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-sm btn-secondary">
+              <i data-feather="download" style="width: 16px; height: 16px;"></i>
+              Download All (ZIP)
+            </button>
+            <button class="btn btn-sm btn-secondary">
+              <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+              Export List (Excel)
+            </button>
+            <button class="btn btn-sm btn-primary">
+              <i data-feather="printer" style="width: 16px; height: 16px;"></i>
+              Print Selected (155)
+            </button>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 40px;"><input type="checkbox" checked /></th>
+                  <th>Reg. Number</th>
+                  <th>Student Name</th>
+                  <th>Program</th>
+                  <th style="text-align: center;">Subjects</th>
+                  <th>Print Status</th>
+                  <th>Last Printed</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input type="checkbox" checked /></td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024001</td>
+                  <td style="font-weight: 500;">Rajesh Kumar</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td style="text-align: center;">8</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Not Printed
+                    </span>
+                  </td>
+                  <td style="color: #9CA3AF; font-size: 12px;">—</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Preview PDF">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Download PDF">
+                      <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Print Now">
+                      <i data-feather="printer" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" checked /></td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024002</td>
+                  <td style="font-weight: 500;">Priya Sharma</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td style="text-align: center;">7</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Not Printed
+                    </span>
+                  </td>
+                  <td style="color: #9CA3AF; font-size: 12px;">—</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Preview PDF">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Download PDF">
+                      <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Print Now">
+                      <i data-feather="printer" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td><input type="checkbox" /></td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024003</td>
+                  <td style="font-weight: 500;">Amit Patel</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td style="text-align: center;">6</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Printed
+                    </span>
+                  </td>
+                  <td style="color: #6B7280; font-size: 12px;">12-Nov-2024 10:45 AM</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Preview PDF">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Download PDF">
+                      <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-secondary" title="Reprint (Duplicate)">
+                      <i data-feather="copy" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td><input type="checkbox" /></td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024004</td>
+                  <td style="font-weight: 500;">Sneha Reddy</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td style="text-align: center;">8</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Printed
+                    </span>
+                  </td>
+                  <td style="color: #6B7280; font-size: 12px;">12-Nov-2024 10:47 AM</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Preview PDF">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Download PDF">
+                      <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-secondary" title="Reprint (Duplicate)">
+                      <i data-feather="copy" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #FEF3C7;">
+                  <td><input type="checkbox" /></td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024005</td>
+                  <td style="font-weight: 500;">Karthik Rao</td>
+                  <td>B.Tech CSE - III/V</td>
+                  <td style="text-align: center;">7</td>
+                  <td>
+                    <span class="status status-warning">
+                      <span class="status-dot"></span>
+                      Print Failed
+                    </span>
+                  </td>
+                  <td style="color: #DC2626; font-size: 12px;">Error: Printer Offline</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Preview PDF">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View Error Details">
+                      <i data-feather="alert-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Retry Print">
+                      <i data-feather="refresh-cw" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Print Statistics & History -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Print Statistics - December 2024</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+            View Full History
+          </button>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;">
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Approved</div>
+              <div style="font-size: 24px; font-weight: 600;">242</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Hall Tickets</div>
+            </div>
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Printed</div>
+              <div style="font-size: 24px; font-weight: 600; color: #22C55E;">87</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">36% Complete</div>
+            </div>
+            <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Pending</div>
+              <div style="font-size: 24px; font-weight: 600; color: #F59E0B;">155</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Requires Action</div>
+            </div>
+            <div style="background: #FEE2E2; border: 1px solid #FCA5A5; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Failed Jobs</div>
+              <div style="font-size: 24px; font-weight: 600; color: #EF4444;">3</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Needs Retry</div>
+            </div>
+          </div>
+
+          <!-- Recent Print Jobs -->
+          <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+            <div style="font-weight: 600; margin-bottom: 12px; font-size: 14px;">Recent Print Jobs</div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px; background: white; border-radius: 4px;">
+                <div>
+                  <div style="font-size: 13px; font-weight: 500;">Batch Print - B.Tech CSE III/V (87 students)</div>
+                  <div class="text-xs" style="color: #6B7280; margin-top: 2px;">Printed by: Assistant Controller | 12-Nov-2024 10:45 AM</div>
+                </div>
+                <span class="status status-approved">
+                  <span class="status-dot"></span>
+                  Completed
+                </span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px; background: white; border-radius: 4px;">
+                <div>
+                  <div style="font-size: 13px; font-weight: 500;">Reprint Request - REG2024032 (Lost Hall Ticket)</div>
+                  <div class="text-xs" style="color: #6B7280; margin-top: 2px;">Printed by: Data Entry Operator | 11-Nov-2024 03:20 PM</div>
+                </div>
+                <span class="status status-approved">
+                  <span class="status-dot"></span>
+                  Completed
+                </span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px; background: white; border-radius: 4px;">
+                <div>
+                  <div style="font-size: 13px; font-weight: 500;">Batch Print - B.Tech ECE II/III (45 students)</div>
+                  <div class="text-xs" style="color: #DC2626; margin-top: 2px;">Error: Printer Offline | 10-Nov-2024 11:15 AM</div>
+                </div>
+                <span class="status status-rejected">
+                  <span class="status-dot"></span>
+                  Failed
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

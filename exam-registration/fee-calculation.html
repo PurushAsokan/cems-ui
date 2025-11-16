@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fee Calculation & Verification - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <!-- Module Dropdown -->
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Exam Registration
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px; max-height: 500px; overflow-y: auto;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Regular Registration</div>
+        <a href="data-entry.html" class="dropdown-item">Data Entry</a>
+        <a href="verification.html" class="dropdown-item">Verification Queue</a>
+        <a href="fee-calculation.html" class="dropdown-item active">Fee Calculation</a>
+        <a href="ern-batch.html" class="dropdown-item">ERN Generation</a>
+        <a href="registration-list.html" class="dropdown-item">Registration List</a>
+        <a href="reports.html" class="dropdown-item">Reports</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Registration</div>
+        <a href="supplementary-registration.html" class="dropdown-item">Supplementary Registration</a>
+        <a href="supplementary-verification.html" class="dropdown-item">Supplementary Verification</a>
+        <a href="supplementary-list.html" class="dropdown-item">Supplementary List & Analytics</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">AT</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Accounts Team</div>
+            <div style="font-size: 11px; color: #6B7280;">Staff</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Exam Registration</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Fee Calculation & Verification</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="flag" style="width: 16px; height: 16px;"></i>
+        Flag for Follow-up
+      </button>
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
+        Generate Demand
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="check-circle" style="width: 16px; height: 16px;"></i>
+        Confirm Payment
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Section 1: Application Search -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Search Application</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: end;">
+            <div class="form-group">
+              <label class="form-label">Academic Year</label>
+              <select class="form-select">
+                <option value="2024-2025" selected>2024-2025</option>
+                <option value="2023-2024">2023-2024</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Program</label>
+              <select class="form-select">
+                <option value="">-- Select Program --</option>
+                <option value="btech" selected>B.Tech</option>
+                <option value="mtech">M.Tech</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Registration No / Name</label>
+              <input type="text" class="form-input" placeholder="Enter Reg No or Name" value="REG2024001" />
+            </div>
+            <div>
+              <button class="btn btn-primary" style="width: 100%;">
+                <i data-feather="search" style="width: 16px; height: 16px;"></i>
+                Search
+              </button>
+            </div>
+          </div>
+
+          <div class="alert alert-info" style="margin-top: 16px;">
+            <i data-feather="info" style="width: 20px; height: 20px;"></i>
+            <div>Showing fee details for application: <strong>REG2024001 - Rajesh Kumar</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Student & Application Details -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Student & Application Details</h2>
+          <span class="status status-pending">
+            <span class="status-dot"></span>
+            Payment Pending
+          </span>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Student Name</div>
+              <div style="font-size: 14px; font-weight: 500;">Rajesh Kumar</div>
+            </div>
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Registration Number</div>
+              <div style="font-size: 14px; font-weight: 500;">REG2024001</div>
+            </div>
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Application Date</div>
+              <div style="font-size: 14px; font-weight: 500;">12-Nov-2024</div>
+            </div>
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Program</div>
+              <div style="font-size: 14px; font-weight: 500;">B.Tech - Computer Science</div>
+            </div>
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Year / Semester</div>
+              <div style="font-size: 14px; font-weight: 500;">III Year / V Semester</div>
+            </div>
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Verification Status</div>
+              <div>
+                <span class="status status-approved">
+                  <span class="status-dot"></span>
+                  Approved
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Fee Calculation -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Fee Calculation Breakdown</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="refresh-cw" style="width: 16px; height: 16px;"></i>
+            Recalculate
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Fee Component</th>
+                  <th>Description</th>
+                  <th style="text-align: right;">Quantity</th>
+                  <th style="text-align: right;">Rate (₹)</th>
+                  <th style="text-align: right;">Amount (₹)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight: 500;">Regular Theory Subjects</td>
+                  <td>Standard theory exam fee</td>
+                  <td style="text-align: right;">6</td>
+                  <td style="text-align: right;">150</td>
+                  <td style="text-align: right;">900</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 500;">Regular Practical Subjects</td>
+                  <td>Lab/Practical exam fee</td>
+                  <td style="text-align: right;">2</td>
+                  <td style="text-align: right;">200</td>
+                  <td style="text-align: right;">400</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 500;">Arrear Subjects</td>
+                  <td>Re-examination fee for backlog</td>
+                  <td style="text-align: right;">1</td>
+                  <td style="text-align: right;">300</td>
+                  <td style="text-align: right;">300</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 500;">Late Fee</td>
+                  <td>Application submitted after deadline</td>
+                  <td style="text-align: right;">1</td>
+                  <td style="text-align: right;">500</td>
+                  <td style="text-align: right;">500</td>
+                </tr>
+                <tr style="border-top: 2px solid #E5E7EB; background: #F8F9FA;">
+                  <td colspan="4" style="font-weight: 600; font-size: 14px;">Total Exam Fee Payable</td>
+                  <td style="text-align: right; font-weight: 600; font-size: 16px; color: #2563EB;">₹ 2,100</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="alert alert-warning" style="margin-top: 16px;">
+            <i data-feather="alert-circle" style="width: 20px; height: 20px;"></i>
+            <div>Late fee of ₹500 applied. Application submitted 3 days after deadline (09-Nov-2024).</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Payment Details & Verification -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Payment Details</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+            <div class="form-group">
+              <label class="form-label required">Payment Mode</label>
+              <select class="form-select">
+                <option value="">-- Select Payment Mode --</option>
+                <option value="cash">Cash</option>
+                <option value="dd">Demand Draft</option>
+                <option value="cheque">Cheque</option>
+                <option value="online" selected>Online Transfer/UPI</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Transaction ID / Reference No</label>
+              <input type="text" class="form-input" placeholder="Enter transaction ID" value="TXN20241112001234" />
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Payment Date</label>
+              <input type="date" class="form-input" value="2024-11-12" />
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Amount Paid (₹)</label>
+              <input type="number" class="form-input" placeholder="Enter amount" value="2100" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Bank Name</label>
+              <input type="text" class="form-input" placeholder="Enter bank name" value="State Bank of India" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Branch</label>
+              <input type="text" class="form-input" placeholder="Enter branch" value="Main Branch" />
+            </div>
+          </div>
+
+          <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #E5E7EB;">
+            <div class="form-group">
+              <label class="form-label required">Upload Payment Receipt</label>
+              <div style="display: flex; gap: 12px; align-items: center;">
+                <input type="file" class="form-input" accept=".pdf,.jpg,.jpeg,.png" style="flex: 1;" />
+                <button class="btn btn-secondary">
+                  <i data-feather="upload" style="width: 16px; height: 16px;"></i>
+                  Upload
+                </button>
+              </div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Accepted formats: PDF, JPG, PNG (Max 5MB)</div>
+            </div>
+
+            <div style="margin-top: 16px; padding: 12px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px;">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <i data-feather="file-text" style="width: 20px; height: 20px; color: #2563EB;"></i>
+                  <div>
+                    <div style="font-size: 13px; font-weight: 500;">payment_receipt_REG2024001.pdf</div>
+                    <div class="text-xs" style="color: #6B7280;">Uploaded on 12-Nov-2024, 2:45 PM • 245 KB</div>
+                  </div>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <button class="btn btn-sm btn-ghost">
+                    <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                  </button>
+                  <button class="btn btn-sm btn-ghost">
+                    <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                  </button>
+                  <button class="btn btn-sm btn-ghost text-error">
+                    <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 24px;">
+            <div class="form-group">
+              <label class="form-label">Verification Remarks</label>
+              <textarea class="form-input" rows="3" placeholder="Add any remarks about payment verification..."></textarea>
+            </div>
+          </div>
+
+          <!-- Validation Summary -->
+          <div style="margin-top: 24px; padding: 16px; background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px;">
+            <div style="font-weight: 600; margin-bottom: 12px; color: #166534;">
+              <i data-feather="check-circle" style="width: 20px; height: 20px; color: #22C55E;"></i>
+              Payment Validation Checks
+            </div>
+            <div style="display: grid; gap: 8px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <i data-feather="check" style="width: 16px; height: 16px; color: #22C55E;"></i>
+                <span style="font-size: 13px;">Amount matches calculated fee (₹2,100)</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <i data-feather="check" style="width: 16px; height: 16px; color: #22C55E;"></i>
+                <span style="font-size: 13px;">Payment date within deadline (Before 15-Nov-2024)</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <i data-feather="check" style="width: 16px; height: 16px; color: #22C55E;"></i>
+                <span style="font-size: 13px;">Receipt uploaded and verified</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <i data-feather="check" style="width: 16px; height: 16px; color: #22C55E;"></i>
+                <span style="font-size: 13px;">Transaction ID format valid</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: Payment History (for partial payments) -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Payment History</h2>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Transaction ID</th>
+                  <th>Mode</th>
+                  <th style="text-align: right;">Amount (₹)</th>
+                  <th>Status</th>
+                  <th>Verified By</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>12-Nov-2024</td>
+                  <td style="font-family: monospace;">TXN20241112001234</td>
+                  <td>Online Transfer</td>
+                  <td style="text-align: right;">2,100</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Verified
+                    </span>
+                  </td>
+                  <td>Accounts Team</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Receipt">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

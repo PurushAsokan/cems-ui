@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mark Sheet Verification - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Mark Sheet Management
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 260px;">
+        <a href="mark-sheet-serial.html" class="dropdown-item">Serial Number Assignment</a>
+        <a href="cia-ese-integration.html" class="dropdown-item">CIA + ESE Integration</a>
+        <a href="duplicate-request.html" class="dropdown-item">Duplicate Request & Reissue</a>
+        <a href="mark-sheet-verification.html" class="dropdown-item active">Verification & Approval</a>
+        <a href="consolidated-statement.html" class="dropdown-item">Consolidated Statement</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">AC</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Assistant Controller</div>
+            <div style="font-size: 11px; color: #6B7280;">Mark Sheet Verification</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Mark Sheet Management</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Verification & Approval</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export Verification Report
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="check-circle" style="width: 16px; height: 16px;"></i>
+        Verify Selected
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Section 1: Verification Statistics -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Mark Sheet Verification Dashboard - December 2024</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Mark Sheets Generated</div>
+              <div style="font-size: 24px; font-weight: 600;">238</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">BCA III Year V Semester</div>
+            </div>
+            <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Pending Verification</div>
+              <div style="font-size: 24px; font-weight: 600; color: #F59E0B;">65</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">27% pending</div>
+            </div>
+            <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Verified & Approved</div>
+              <div style="font-size: 24px; font-weight: 600; color: #22C55E;">165</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">69% completed</div>
+            </div>
+            <div style="background: #FEE2E2; border: 1px solid #FCA5A5; border-radius: 6px; padding: 16px;">
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Discrepancies Found</div>
+              <div style="font-size: 24px; font-weight: 600; color: #DC2626;">8</div>
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Requires correction</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Automated Validation Checks -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Automated Validation Summary</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; gap: 12px;">
+
+            <!-- Check 1 -->
+            <div style="display: flex; align-items: center; gap: 12px; background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px;">
+              <i data-feather="check-circle" style="width: 24px; height: 24px; color: #22C55E;"></i>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; margin-bottom: 4px;">Serial Number Sequence Validation</div>
+                <div class="text-xs" style="color: #6B7280;">All 238 mark sheets have sequential serial numbers (MS-2024-1181 to MS-2024-1418) with no duplicates</div>
+              </div>
+              <span class="status status-approved">
+                <span class="status-dot"></span>
+                Passed
+              </span>
+            </div>
+
+            <!-- Check 2 -->
+            <div style="display: flex; align-items: center; gap: 12px; background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px;">
+              <i data-feather="check-circle" style="width: 24px; height: 24px; color: #22C55E;"></i>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; margin-bottom: 4px;">Grade Calculation Accuracy</div>
+                <div class="text-xs" style="color: #6B7280;">All grades correctly mapped to marks as per university grading scale (O: 90-100, A+: 80-89, etc.)</div>
+              </div>
+              <span class="status status-approved">
+                <span class="status-dot"></span>
+                Passed
+              </span>
+            </div>
+
+            <!-- Check 3 -->
+            <div style="display: flex; align-items: center; gap: 12px; background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px;">
+              <i data-feather="check-circle" style="width: 24px; height: 24px; color: #22C55E;"></i>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; margin-bottom: 4px;">SGPA/CGPA Calculation</div>
+                <div class="text-xs" style="color: #6B7280;">All SGPA and CGPA values validated against credit points and semester totals</div>
+              </div>
+              <span class="status status-approved">
+                <span class="status-dot"></span>
+                Passed
+              </span>
+            </div>
+
+            <!-- Check 4 -->
+            <div style="display: flex; align-items: center; gap: 12px; background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; padding: 16px;">
+              <i data-feather="alert-circle" style="width: 24px; height: 24px; color: #F59E0B;"></i>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; margin-bottom: 4px;">Student Data Mismatch</div>
+                <div class="text-xs" style="color: #6B7280;">8 mark sheets have minor discrepancies in student names or registration numbers</div>
+              </div>
+              <span class="status status-warning">
+                <span class="status-dot"></span>
+                Attention Required
+              </span>
+            </div>
+
+            <!-- Check 5 -->
+            <div style="display: flex; align-items: center; gap: 12px; background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px; padding: 16px;">
+              <i data-feather="check-circle" style="width: 24px; height: 24px; color: #22C55E;"></i>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; margin-bottom: 4px;">University Compliance</div>
+                <div class="text-xs" style="color: #6B7280;">All mark sheets follow university format (SGCU/EXAM/2024/MS-FORMAT)</div>
+              </div>
+              <span class="status status-approved">
+                <span class="status-dot"></span>
+                Passed
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Flagged Discrepancies -->
+      <div class="section">
+        <div class="section-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Flagged Mark Sheets - Requires Attention</h2>
+            <span class="status status-warning">
+              <span class="status-dot"></span>
+              8 Cases
+            </span>
+          </div>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="download" style="width: 16px; height: 16px;"></i>
+            Export List
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="alert alert-warning" style="margin-bottom: 16px;">
+            <i data-feather="alert-circle" style="width: 20px; height: 20px;"></i>
+            <div><strong>Data Mismatch Detected:</strong> These mark sheets have discrepancies in student information or calculation errors. Please verify and correct before final approval.</div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Serial Number</th>
+                  <th>Student Details</th>
+                  <th>Issue Type</th>
+                  <th>Description</th>
+                  <th>Severity</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #FEF3C7;">
+                  <td style="font-family: monospace; font-weight: 600;">MS-2024-1225</td>
+                  <td style="font-weight: 500;">Amit Kumar<br/><span style="font-size: 11px; color: #6B7280;">REG2022052</span></td>
+                  <td>
+                    <span class="status status-warning">
+                      <span class="status-dot"></span>
+                      Name Mismatch
+                    </span>
+                  </td>
+                  <td style="font-size: 12px;">Student name on mark sheet: "Amit Kumar"<br/>Student database: "Amit Kumar Singh"</td>
+                  <td>
+                    <span class="status status-warning">
+                      <span class="status-dot"></span>
+                      Medium
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Correct & Verify">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #FEF3C7;">
+                  <td style="font-family: monospace; font-weight: 600;">MS-2024-1238</td>
+                  <td style="font-weight: 500;">Sneha Patel<br/><span style="font-size: 11px; color: #6B7280;">REG2022067</span></td>
+                  <td>
+                    <span class="status status-warning">
+                      <span class="status-dot"></span>
+                      SGPA Error
+                    </span>
+                  </td>
+                  <td style="font-size: 12px;">Calculated SGPA: 8.52<br/>Displayed SGPA: 8.62 (difference: 0.10)</td>
+                  <td>
+                    <span class="status status-rejected">
+                      <span class="status-dot"></span>
+                      High
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Correct & Verify">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Pending Verification Queue -->
+      <div class="section">
+        <div class="section-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Pending Manual Verification</h2>
+            <span class="status status-pending">
+              <span class="status-dot"></span>
+              65 Mark Sheets
+            </span>
+          </div>
+          <button class="btn btn-sm btn-primary">
+            <i data-feather="check-circle" style="width: 16px; height: 16px;"></i>
+            Verify All Selected
+          </button>
+        </div>
+        <div class="section-body">
+
+          <!-- Filter Options -->
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 16px;">
+            <div class="form-group">
+              <label class="form-label">Program</label>
+              <select class="form-select">
+                <option value="">All Programs</option>
+                <option value="BCA" selected>BCA</option>
+                <option value="MCA">MCA</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Year/Semester</label>
+              <select class="form-select">
+                <option value="">All Semesters</option>
+                <option value="V" selected>III Year / V Semester</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Status</label>
+              <select class="form-select">
+                <option value="pending" selected>Pending</option>
+                <option value="verified">Verified</option>
+                <option value="flagged">Flagged</option>
+              </select>
+            </div>
+            <div style="display: flex; align-items: end;">
+              <button class="btn btn-primary" style="width: 100%;">
+                <i data-feather="filter" style="width: 16px; height: 16px;"></i>
+                Apply Filter
+              </button>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 40px;"><input type="checkbox" /></th>
+                  <th>Serial Number</th>
+                  <th>Student Details</th>
+                  <th style="text-align: center;">SGPA</th>
+                  <th style="text-align: center;">CGPA</th>
+                  <th>Result</th>
+                  <th>Generated Date</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input type="checkbox" checked /></td>
+                  <td style="font-family: monospace; font-weight: 600;">MS-2024-1181</td>
+                  <td style="font-weight: 500;">Rajesh Kumar<br/><span style="font-size: 11px; color: #6B7280;">REG2022001 | BCA III Year V Sem</span></td>
+                  <td style="text-align: center; font-weight: 600;">8.76</td>
+                  <td style="text-align: center; font-weight: 600;">8.49</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      PASS
+                    </span>
+                  </td>
+                  <td style="font-size: 12px;">14-Nov-2024</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Pending
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Preview">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Verify">
+                      <i data-feather="check" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" checked /></td>
+                  <td style="font-family: monospace; font-weight: 600;">MS-2024-1182</td>
+                  <td style="font-weight: 500;">Meera Sharma<br/><span style="font-size: 11px; color: #6B7280;">REG2022002 | BCA III Year V Sem</span></td>
+                  <td style="text-align: center; font-weight: 600;">9.15</td>
+                  <td style="text-align: center; font-weight: 600;">8.92</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      PASS
+                    </span>
+                  </td>
+                  <td style="font-size: 12px;">14-Nov-2024</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Pending
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Preview">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Verify">
+                      <i data-feather="check" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" checked /></td>
+                  <td style="font-family: monospace; font-weight: 600;">MS-2024-1183</td>
+                  <td style="font-weight: 500;">Anand Patel<br/><span style="font-size: 11px; color: #6B7280;">REG2022003 | BCA III Year V Sem</span></td>
+                  <td style="text-align: center; font-weight: 600;">7.68</td>
+                  <td style="text-align: center; font-weight: 600;">7.52</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      PASS
+                    </span>
+                  </td>
+                  <td style="font-size: 12px;">14-Nov-2024</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Pending
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Preview">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-primary" title="Verify">
+                      <i data-feather="check" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Verification Remarks Section -->
+          <div style="margin-top: 24px; background: #EFF6FF; border: 2px solid #2563EB; border-radius: 8px; padding: 24px;">
+            <div style="font-weight: 600; margin-bottom: 12px; font-size: 14px;">Verification Remarks (Optional)</div>
+            <textarea class="form-input" rows="3" placeholder="Enter any observations, corrections, or notes about the verified mark sheets..."></textarea>
+            <div style="display: flex; gap: 12px; margin-top: 12px;">
+              <button class="btn btn-secondary">Save as Draft</button>
+              <button class="btn btn-primary">
+                <i data-feather="check-circle" style="width: 16px; height: 16px;"></i>
+                Complete Verification & Submit
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Section 5: Recently Verified Mark Sheets -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Recently Verified & Approved</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="download" style="width: 16px; height: 16px;"></i>
+            Export List
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Serial Number</th>
+                  <th>Student Details</th>
+                  <th style="text-align: center;">SGPA</th>
+                  <th style="text-align: center;">CGPA</th>
+                  <th>Verified By</th>
+                  <th>Verification Date</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-family: monospace; font-weight: 600;">MS-2024-1178</td>
+                  <td style="font-weight: 500;">Priya Verma<br/><span style="font-size: 11px; color: #6B7280;">REG2022045 | BCA III Year V Sem</span></td>
+                  <td style="text-align: center; font-weight: 600;">8.92</td>
+                  <td style="text-align: center; font-weight: 600;">8.65</td>
+                  <td style="font-size: 12px;">Assistant Controller<br/><span style="color: #6B7280;">Dr. Suresh Kumar</span></td>
+                  <td style="font-size: 12px;">14-Nov-2024<br/><span style="color: #6B7280;">04:30 PM</span></td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Verified
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Print">
+                      <i data-feather="printer" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr style="background: #F0FDF4;">
+                  <td style="font-family: monospace; font-weight: 600;">MS-2024-1177</td>
+                  <td style="font-weight: 500;">Karthik Rao<br/><span style="font-size: 11px; color: #6B7280;">REG2022044 | BCA III Year V Sem</span></td>
+                  <td style="text-align: center; font-weight: 600;">7.85</td>
+                  <td style="text-align: center; font-weight: 600;">7.68</td>
+                  <td style="font-size: 12px;">Assistant Controller<br/><span style="color: #6B7280;">Dr. Suresh Kumar</span></td>
+                  <td style="font-size: 12px;">14-Nov-2024<br/><span style="color: #6B7280;">04:25 PM</span></td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Verified
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Print">
+                      <i data-feather="printer" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>feather.replace();</script>
+</body>
+</html>

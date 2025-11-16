@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exam Timetable Entry - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Exam Scheduling
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Regular Exams</div>
+        <a href="degree-subject-setup.html" class="dropdown-item">Degree & Subject Setup</a>
+        <a href="program-subject-mapping.html" class="dropdown-item">Program-Subject Mapping</a>
+        <a href="timetable-entry.html" class="dropdown-item active">Timetable Entry</a>
+        <a href="timetable-verification.html" class="dropdown-item">Timetable Verification</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Exams</div>
+        <a href="supplementary-timetable.html" class="dropdown-item">Supplementary Timetable</a>
+        <a href="supplementary-timetable-verification.html" class="dropdown-item">Supplementary Verification</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">OP</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Data Entry Operator</div>
+            <div style="font-size: 11px; color: #6B7280;">Staff</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Exam Scheduling</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Timetable Entry</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="upload" style="width: 16px; height: 16px;"></i>
+        Bulk Upload Excel
+      </button>
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="save" style="width: 16px; height: 16px;"></i>
+        Save Draft
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="send" style="width: 16px; height: 16px;"></i>
+        Submit for Verification
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Section 1: Exam Session Configuration -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Exam Session Configuration</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <div class="form-group">
+              <label class="form-label required">Exam Month/Year</label>
+              <input type="month" class="form-input" value="2024-12" />
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Exam Type</label>
+              <select class="form-select">
+                <option value="regular" selected>Regular</option>
+                <option value="supplementary">Supplementary</option>
+                <option value="special">Special</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Exam Start Date</label>
+              <input type="date" class="form-input" value="2024-12-02" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Exam End Date</label>
+              <input type="date" class="form-input" value="2024-12-20" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Add Exam Slot -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Add New Exam Slot</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+            <div class="form-group">
+              <label class="form-label required">Subject</label>
+              <select class="form-select">
+                <option value="">-- Select Subject --</option>
+                <option value="CS501">CS501 - Data Structures & Algorithms</option>
+                <option value="CS502">CS502 - DBMS</option>
+                <option value="CS503">CS503 - Operating Systems</option>
+                <option value="CS504">CS504 - Computer Networks</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Program</label>
+              <select class="form-select">
+                <option value="">-- Select Program --</option>
+                <option value="BTECH-CSE">B.Tech - CSE</option>
+                <option value="BTECH-ECE">B.Tech - ECE</option>
+                <option value="BTECH-MECH">B.Tech - Mech</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Year/Semester</label>
+              <select class="form-select">
+                <option value="">-- Select --</option>
+                <option value="3-5">III Year / V Semester</option>
+                <option value="3-6">III Year / VI Semester</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Exam Date</label>
+              <input type="date" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Session</label>
+              <select class="form-select">
+                <option value="">-- Select Session --</option>
+                <option value="FN">FN (10:00 AM - 1:00 PM)</option>
+                <option value="AN">AN (2:00 PM - 5:00 PM)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Exam Hall/Venue</label>
+              <select class="form-select">
+                <option value="">-- Select Venue --</option>
+                <option value="Hall-A">Main Hall A (Capacity: 300)</option>
+                <option value="Hall-B">Main Hall B (Capacity: 250)</option>
+                <option value="Lab-1">CSE Lab 1 (Capacity: 60)</option>
+              </select>
+            </div>
+            <div class="form-group" style="grid-column: span 3;">
+              <label class="form-label required">Question Paper (QP) Code</label>
+              <input type="text" class="form-input" placeholder="Enter QP Code (e.g., QP-2024-CSE-501)" />
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Unique code for question paper printing and tracking</div>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding: 12px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px;">
+            <div style="display: flex; gap: 24px;">
+              <div>
+                <div class="text-xs" style="color: #6B7280;">Expected Students</div>
+                <div style="font-weight: 600; font-size: 14px;">245</div>
+              </div>
+              <div>
+                <div class="text-xs" style="color: #6B7280;">Venue Capacity</div>
+                <div style="font-weight: 600; font-size: 14px;">300</div>
+              </div>
+              <div>
+                <div class="text-xs" style="color: #6B7280;">Available Seats</div>
+                <div style="font-weight: 600; font-size: 14px; color: #22C55E;">55</div>
+              </div>
+            </div>
+            <button class="btn btn-primary">
+              <i data-feather="plus" style="width: 16px; height: 16px;"></i>
+              Add Exam Slot
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Calendar View -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Exam Calendar - December 2024</h2>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-sm btn-ghost">
+              <i data-feather="chevron-left" style="width: 16px; height: 16px;"></i>
+            </button>
+            <button class="btn btn-sm btn-ghost">Today</button>
+            <button class="btn btn-sm btn-ghost">
+              <i data-feather="chevron-right" style="width: 16px; height: 16px;"></i>
+            </button>
+          </div>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px;">
+            <!-- Calendar header -->
+            <div style="padding: 8px; text-align: center; font-weight: 600; font-size: 11px; color: #6B7280;">SUN</div>
+            <div style="padding: 8px; text-align: center; font-weight: 600; font-size: 11px; color: #6B7280;">MON</div>
+            <div style="padding: 8px; text-align: center; font-weight: 600; font-size: 11px; color: #6B7280;">TUE</div>
+            <div style="padding: 8px; text-align: center; font-weight: 600; font-size: 11px; color: #6B7280;">WED</div>
+            <div style="padding: 8px; text-align: center; font-weight: 600; font-size: 11px; color: #6B7280;">THU</div>
+            <div style="padding: 8px; text-align: center; font-weight: 600; font-size: 11px; color: #6B7280;">FRI</div>
+            <div style="padding: 8px; text-align: center; font-weight: 600; font-size: 11px; color: #6B7280;">SAT</div>
+
+            <!-- Calendar days -->
+            <div style="padding: 8px; border: 1px solid #E5E7EB; border-radius: 4px; min-height: 80px; background: #F8F9FA;">
+              <div class="text-xs" style="color: #9CA3AF;">1</div>
+            </div>
+            <div style="padding: 8px; border: 1px solid #2563EB; border-radius: 4px; min-height: 80px; background: #EFF6FF;">
+              <div class="text-xs" style="color: #2563EB; font-weight: 600; margin-bottom: 4px;">2</div>
+              <div class="text-xs" style="background: #2563EB; color: white; padding: 2px 4px; border-radius: 2px; margin-bottom: 2px;">FN: CS501</div>
+              <div class="text-xs" style="background: #2563EB; color: white; padding: 2px 4px; border-radius: 2px;">AN: CS502</div>
+            </div>
+            <div style="padding: 8px; border: 1px solid #E5E7EB; border-radius: 4px; min-height: 80px;">
+              <div class="text-xs" style="color: #6B7280;">3</div>
+            </div>
+            <div style="padding: 8px; border: 1px solid #2563EB; border-radius: 4px; min-height: 80px; background: #EFF6FF;">
+              <div class="text-xs" style="color: #2563EB; font-weight: 600; margin-bottom: 4px;">4</div>
+              <div class="text-xs" style="background: #2563EB; color: white; padding: 2px 4px; border-radius: 2px;">FN: CS503</div>
+            </div>
+            <div style="padding: 8px; border: 1px solid #E5E7EB; border-radius: 4px; min-height: 80px;">
+              <div class="text-xs" style="color: #6B7280;">5</div>
+            </div>
+            <div style="padding: 8px; border: 1px solid #2563EB; border-radius: 4px; min-height: 80px; background: #EFF6FF;">
+              <div class="text-xs" style="color: #2563EB; font-weight: 600; margin-bottom: 4px;">6</div>
+              <div class="text-xs" style="background: #2563EB; color: white; padding: 2px 4px; border-radius: 2px;">FN: CS504</div>
+            </div>
+            <div style="padding: 8px; border: 1px solid #E5E7EB; border-radius: 4px; min-height: 80px;">
+              <div class="text-xs" style="color: #6B7280;">7</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Scheduled Exams List -->
+      <div class="section">
+        <div class="section-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Scheduled Exams</h2>
+            <span class="status status-approved">
+              <span class="status-dot"></span>
+              24 Exams Scheduled
+            </span>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Session</th>
+                  <th>Subject Code</th>
+                  <th>Subject Name</th>
+                  <th>Program</th>
+                  <th>Year/Sem</th>
+                  <th style="text-align: center;">Students</th>
+                  <th>Venue</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>02-Dec-2024</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      FN
+                    </span>
+                  </td>
+                  <td style="font-family: monospace;">CS501</td>
+                  <td>Data Structures & Algorithms</td>
+                  <td>B.Tech CSE</td>
+                  <td>III/V</td>
+                  <td style="text-align: center;">245</td>
+                  <td>Hall A</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Valid
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost text-error" title="Delete">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>02-Dec-2024</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      AN
+                    </span>
+                  </td>
+                  <td style="font-family: monospace;">CS502</td>
+                  <td>DBMS</td>
+                  <td>B.Tech CSE</td>
+                  <td>III/V</td>
+                  <td style="text-align: center;">242</td>
+                  <td>Hall A</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Valid
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost text-error" title="Delete">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>04-Dec-2024</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      FN
+                    </span>
+                  </td>
+                  <td style="font-family: monospace;">CS503</td>
+                  <td>Operating Systems</td>
+                  <td>B.Tech CSE</td>
+                  <td>III/V</td>
+                  <td style="text-align: center;">238</td>
+                  <td>Hall B</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Valid
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost text-error" title="Delete">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>06-Dec-2024</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      FN
+                    </span>
+                  </td>
+                  <td style="font-family: monospace;">CS504</td>
+                  <td>Computer Networks</td>
+                  <td>B.Tech CSE</td>
+                  <td>III/V</td>
+                  <td style="text-align: center;">240</td>
+                  <td>Hall A</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Valid
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost text-error" title="Delete">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: Conflict Detection -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Conflict Detection Report</h2>
+        </div>
+        <div class="section-body">
+          <div class="alert alert-success">
+            <i data-feather="check-circle" style="width: 20px; height: 20px;"></i>
+            <div>No scheduling conflicts detected. All exams are properly spaced and venues are available.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

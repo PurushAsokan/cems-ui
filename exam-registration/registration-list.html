@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration List & Search - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <!-- Module Dropdown -->
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Exam Registration
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px; max-height: 500px; overflow-y: auto;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Regular Registration</div>
+        <a href="data-entry.html" class="dropdown-item">Data Entry</a>
+        <a href="verification.html" class="dropdown-item">Verification Queue</a>
+        <a href="fee-calculation.html" class="dropdown-item">Fee Calculation</a>
+        <a href="ern-batch.html" class="dropdown-item">ERN Generation</a>
+        <a href="registration-list.html" class="dropdown-item active">Registration List</a>
+        <a href="reports.html" class="dropdown-item">Reports</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Registration</div>
+        <a href="supplementary-registration.html" class="dropdown-item">Supplementary Registration</a>
+        <a href="supplementary-verification.html" class="dropdown-item">Supplementary Verification</a>
+        <a href="supplementary-list.html" class="dropdown-item">Supplementary List & Analytics</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">DK</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Dr. Kumar</div>
+            <div style="font-size: 11px; color: #6B7280;">Controller</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Exam Registration</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Registration List</span>
+    </div>
+    <div class="context-actions">
+      <div class="dropdown">
+        <button class="btn btn-sm btn-secondary dropdown-toggle">
+          <i data-feather="grid" style="width: 16px; height: 16px;"></i>
+          Bulk Operations
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Send SMS Notifications</a>
+          <a href="#" class="dropdown-item">Send Email Notifications</a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">Bulk Approve</a>
+          <a href="#" class="dropdown-item">Bulk Reject</a>
+        </div>
+      </div>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export List
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="page-container">
+
+      <!-- Section 1: Advanced Search Filters -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Search & Filter</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="rotate-ccw" style="width: 16px; height: 16px;"></i>
+            Reset Filters
+          </button>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <div class="form-group">
+              <label class="form-label">Academic Year</label>
+              <select class="form-select">
+                <option value="">All</option>
+                <option value="2024-2025" selected>2024-2025</option>
+                <option value="2023-2024">2023-2024</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Program</label>
+              <select class="form-select">
+                <option value="">All Programs</option>
+                <option value="btech">B.Tech</option>
+                <option value="mtech">M.Tech</option>
+                <option value="mca">MCA</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Department</label>
+              <select class="form-select">
+                <option value="">All Departments</option>
+                <option value="cse">Computer Science</option>
+                <option value="ece">Electronics</option>
+                <option value="mech">Mechanical</option>
+                <option value="civil">Civil</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Year</label>
+              <select class="form-select">
+                <option value="">All Years</option>
+                <option value="1">I Year</option>
+                <option value="2">II Year</option>
+                <option value="3">III Year</option>
+                <option value="4">IV Year</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Semester</label>
+              <select class="form-select">
+                <option value="">All Semesters</option>
+                <option value="1">I Semester</option>
+                <option value="2">II Semester</option>
+                <option value="3">III Semester</option>
+                <option value="4">IV Semester</option>
+                <option value="5">V Semester</option>
+                <option value="6">VI Semester</option>
+                <option value="7">VII Semester</option>
+                <option value="8">VIII Semester</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Registration Status</label>
+              <select class="form-select">
+                <option value="">All Status</option>
+                <option value="approved">Approved</option>
+                <option value="pending">Pending</option>
+                <option value="rejected">Rejected</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Date From</label>
+              <input type="date" class="form-input" value="2024-11-01" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Date To</label>
+              <input type="date" class="form-input" value="2024-11-15" />
+            </div>
+            <div class="form-group" style="grid-column: span 3;">
+              <label class="form-label">Quick Search (Reg No / Name / Mobile)</label>
+              <input type="text" class="form-input" placeholder="Enter registration number, name, or mobile number..." />
+            </div>
+            <div style="display: flex; align-items: end;">
+              <button class="btn btn-primary" style="width: 100%;">
+                <i data-feather="search" style="width: 16px; height: 16px;"></i>
+                Search
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Summary Cards -->
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;">
+        <div style="background: white; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+          <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Registrations</div>
+          <div style="font-size: 24px; font-weight: 600; color: #111827;">1,245</div>
+          <div class="text-xs" style="color: #22C55E; margin-top: 4px;">All applications</div>
+        </div>
+        <div style="background: white; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+          <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Approved</div>
+          <div style="font-size: 24px; font-weight: 600; color: #22C55E;">1,120</div>
+          <div class="text-xs" style="color: #6B7280; margin-top: 4px;">90% approval rate</div>
+        </div>
+        <div style="background: white; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+          <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Pending</div>
+          <div style="font-size: 24px; font-weight: 600; color: #F59E0B;">95</div>
+          <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Awaiting verification</div>
+        </div>
+        <div style="background: white; border: 1px solid #E5E7EB; border-radius: 6px; padding: 16px;">
+          <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Rejected</div>
+          <div style="font-size: 24px; font-weight: 600; color: #EF4444;">30</div>
+          <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Require resubmission</div>
+        </div>
+      </div>
+
+      <!-- Section 3: Registration List Table -->
+      <div class="section">
+        <div class="section-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Registered Students</h2>
+            <span class="status status-approved">
+              <span class="status-dot"></span>
+              1,245 Students
+            </span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <select class="form-select" style="width: 150px;">
+              <option value="25">Show 25</option>
+              <option value="50">Show 50</option>
+              <option value="100">Show 100</option>
+            </select>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 40px;">
+                    <input type="checkbox" />
+                  </th>
+                  <th>Registration No.</th>
+                  <th>Student Name</th>
+                  <th>Program</th>
+                  <th>Year / Semester</th>
+                  <th>Total Subjects</th>
+                  <th>Fee Status</th>
+                  <th>Registration Status</th>
+                  <th>Application Date</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024001</td>
+                  <td>Rajesh Kumar</td>
+                  <td>B.Tech - CSE</td>
+                  <td>III Year / V Sem</td>
+                  <td style="text-align: center;">8</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Paid
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Approved
+                    </span>
+                  </td>
+                  <td>12-Nov-2024</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Download">
+                      <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024002</td>
+                  <td>Priya Sharma</td>
+                  <td>B.Tech - ECE</td>
+                  <td>II Year / III Sem</td>
+                  <td style="text-align: center;">7</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Paid
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Approved
+                    </span>
+                  </td>
+                  <td>11-Nov-2024</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Download">
+                      <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024003</td>
+                  <td>Amit Patel</td>
+                  <td>M.Tech - CSE</td>
+                  <td>I Year / I Sem</td>
+                  <td style="text-align: center;">6</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Pending
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Pending
+                    </span>
+                  </td>
+                  <td>13-Nov-2024</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Download">
+                      <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024004</td>
+                  <td>Sneha Reddy</td>
+                  <td>B.Tech - Mech</td>
+                  <td>IV Year / VII Sem</td>
+                  <td style="text-align: center;">5</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Paid
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Approved
+                    </span>
+                  </td>
+                  <td>10-Nov-2024</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Download">
+                      <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024005</td>
+                  <td>Vikram Singh</td>
+                  <td>B.Tech - Civil</td>
+                  <td>III Year / V Sem</td>
+                  <td style="text-align: center;">9</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Paid
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-rejected">
+                      <span class="status-dot"></span>
+                      Rejected
+                    </span>
+                  </td>
+                  <td>09-Nov-2024</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Download">
+                      <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024006</td>
+                  <td>Ananya Das</td>
+                  <td>MCA</td>
+                  <td>II Year / III Sem</td>
+                  <td style="text-align: center;">6</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Paid
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Approved
+                    </span>
+                  </td>
+                  <td>12-Nov-2024</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Download">
+                      <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024007</td>
+                  <td>Karthik Nair</td>
+                  <td>B.Tech - ECE</td>
+                  <td>I Year / I Sem</td>
+                  <td style="text-align: center;">8</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Pending
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Pending
+                    </span>
+                  </td>
+                  <td>14-Nov-2024</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Download">
+                      <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024008</td>
+                  <td>Meera Krishnan</td>
+                  <td>M.Tech - Mech</td>
+                  <td>II Year / III Sem</td>
+                  <td style="text-align: center;">5</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Paid
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Approved
+                    </span>
+                  </td>
+                  <td>11-Nov-2024</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Download">
+                      <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024009</td>
+                  <td>Rohan Desai</td>
+                  <td>B.Tech - CSE</td>
+                  <td>II Year / III Sem</td>
+                  <td style="text-align: center;">7</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Paid
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Approved
+                    </span>
+                  </td>
+                  <td>13-Nov-2024</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Download">
+                      <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" /></td>
+                  <td style="font-family: monospace; font-weight: 500;">REG2024010</td>
+                  <td>Divya Menon</td>
+                  <td>B.Tech - Civil</td>
+                  <td>IV Year / VIII Sem</td>
+                  <td style="text-align: center;">4</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Paid
+                    </span>
+                  </td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Approved
+                    </span>
+                  </td>
+                  <td>10-Nov-2024</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="View Details">
+                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Download">
+                      <i data-feather="download" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid #E5E7EB;">
+            <div class="text-xs" style="color: #6B7280;">
+              Showing 1 to 10 of 1,245 entries
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn btn-sm btn-ghost" disabled>Previous</button>
+              <button class="btn btn-sm btn-primary">1</button>
+              <button class="btn btn-sm btn-ghost">2</button>
+              <button class="btn btn-sm btn-ghost">3</button>
+              <button class="btn btn-sm btn-ghost">...</button>
+              <button class="btn btn-sm btn-ghost">125</button>
+              <button class="btn btn-sm btn-ghost">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Subject-wise Registration Count -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Subject-wise Registration Count</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="download" style="width: 16px; height: 16px;"></i>
+            Export
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Subject Code</th>
+                  <th>Subject Name</th>
+                  <th>Type</th>
+                  <th style="text-align: center;">Regular Students</th>
+                  <th style="text-align: center;">Arrear Students</th>
+                  <th style="text-align: center;">Total Registered</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-family: monospace;">CS501</td>
+                  <td>Data Structures & Algorithms</td>
+                  <td>Theory</td>
+                  <td style="text-align: center;">245</td>
+                  <td style="text-align: center;">12</td>
+                  <td style="text-align: center; font-weight: 600;">257</td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace;">CS502</td>
+                  <td>Database Management Systems</td>
+                  <td>Theory</td>
+                  <td style="text-align: center;">242</td>
+                  <td style="text-align: center;">8</td>
+                  <td style="text-align: center; font-weight: 600;">250</td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace;">CS503</td>
+                  <td>Operating Systems</td>
+                  <td>Theory</td>
+                  <td style="text-align: center;">238</td>
+                  <td style="text-align: center;">15</td>
+                  <td style="text-align: center; font-weight: 600;">253</td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace;">CS504</td>
+                  <td>Computer Networks</td>
+                  <td>Theory</td>
+                  <td style="text-align: center;">240</td>
+                  <td style="text-align: center;">10</td>
+                  <td style="text-align: center; font-weight: 600;">250</td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace;">CS505L</td>
+                  <td>DBMS Lab</td>
+                  <td>Practical</td>
+                  <td style="text-align: center;">242</td>
+                  <td style="text-align: center;">5</td>
+                  <td style="text-align: center; font-weight: 600;">247</td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace;">CS506L</td>
+                  <td>OS Lab</td>
+                  <td>Practical</td>
+                  <td style="text-align: center;">238</td>
+                  <td style="text-align: center;">7</td>
+                  <td style="text-align: center; font-weight: 600;">245</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>
