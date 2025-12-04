@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fee Structure Configuration - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <!-- Module Dropdown -->
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Master Data
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <a href="degree-subject-setup.html" class="dropdown-item">Degree & Subject Setup</a>
+        <a href="program-subject-mapping.html" class="dropdown-item">Program-Subject Mapping</a>
+        <a href="fee-structure.html" class="dropdown-item active">Fee Structure</a>
+        <a href="grading-system.html" class="dropdown-item">Grading System</a>
+        <a href="user-management.html" class="dropdown-item">User Management</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">DK</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Dr. Kumar</div>
+            <div style="font-size: 11px; color: #6B7280;">Exam Controller</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Master Data</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Fee Structure</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export Fee List
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="plus" style="width: 16px; height: 16px;"></i>
+        Add New Fee
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container with Sidebar -->
+  <div class="main-with-sidebar">
+
+    <!-- Module Sidebar -->
+    <aside class="module-sidebar">
+      <div class="module-sidebar-header">
+        <i data-feather="database"></i>
+        <h3>Master Data</h3>
+      </div>
+
+      <nav class="module-nav">
+        <a href="degree-subject-setup.html" class="module-nav-item">
+          <span class="step-number">1</span>
+          <span class="step-label">Degree & Subject Setup</span>
+        </a>
+        <a href="program-subject-mapping.html" class="module-nav-item">
+          <span class="step-number">2</span>
+          <span class="step-label">Program-Subject Mapping</span>
+        </a>
+        <a href="fee-structure.html" class="module-nav-item active">
+          <span class="step-number">3</span>
+          <span class="step-label">Fee Structure</span>
+        </a>
+        <a href="grading-system.html" class="module-nav-item">
+          <span class="step-number">4</span>
+          <span class="step-label">Grading System</span>
+        </a>
+        <a href="user-management.html" class="module-nav-item">
+          <span class="step-number">5</span>
+          <span class="step-label">User Management</span>
+        </a>
+      </nav>
+
+      <button class="sidebar-toggle" title="Toggle Sidebar (Ctrl+B)">
+        <i data-feather="chevrons-left"></i>
+      </button>
+    </aside>
+
+    <!-- Main Container -->
+    <main class="main-container main-container-with-sidebar">
+      <div class="page-container">
+
+      <!-- Page Title -->
+      <div style="margin-bottom: 24px;">
+        <h1 class="page-title">Fee Structure Configuration</h1>
+        <div class="text-sm text-secondary" style="margin-top: 4px;">Configure exam fees for different programs and examination types</div>
+        <div class="text-xs" style="margin-top: 4px; color: #D97706;">
+          <i data-feather="shield" style="width: 14px; height: 14px; vertical-align: middle;"></i>
+          Access: Super Admin, Exam Controller Only
+        </div>
+      </div>
+
+      <!-- Info Alert -->
+      <div class="alert alert-info" style="margin-bottom: 24px;">
+        <i data-feather="info" style="width: 20px; height: 20px;"></i>
+        <div>
+          <div style="font-weight: 500; margin-bottom: 4px;">Fee Structure Guidelines</div>
+          <div class="text-sm">Configure fees by program, year, and examination type. Fees are auto-calculated during student registration based on these rules.</div>
+        </div>
+      </div>
+
+      <!-- Exam Fee Types Summary -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Fee Types Overview</h2>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; padding: 16px 0;">
+          <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 20px;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+              <div style="width: 40px; height: 40px; background: #DBEAFE; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                <i data-feather="book-open" style="width: 20px; height: 20px; color: #2563EB;"></i>
+              </div>
+              <div>
+                <div style="font-size: 13px; font-weight: 600; color: #111827;">Regular Exam Fee</div>
+                <div class="text-xs text-secondary">Per Semester</div>
+              </div>
+            </div>
+            <div style="font-size: 24px; font-weight: 600; color: #2563EB;">₹500 - ₹1,200</div>
+            <div class="text-xs text-secondary" style="margin-top: 4px;">Varies by program</div>
+          </div>
+
+          <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 20px;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+              <div style="width: 40px; height: 40px; background: #FEF3C7; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                <i data-feather="repeat" style="width: 20px; height: 20px; color: #D97706;"></i>
+              </div>
+              <div>
+                <div style="font-size: 13px; font-weight: 600; color: #111827;">Supplementary Fee</div>
+                <div class="text-xs text-secondary">Per Subject</div>
+              </div>
+            </div>
+            <div style="font-size: 24px; font-weight: 600; color: #D97706;">₹800</div>
+            <div class="text-xs text-secondary" style="margin-top: 4px;">+ ₹200 processing fee</div>
+          </div>
+
+          <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 20px;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+              <div style="width: 40px; height: 40px; background: #FEE2E2; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                <i data-feather="refresh-cw" style="width: 20px; height: 20px; color: #DC2626;"></i>
+              </div>
+              <div>
+                <div style="font-size: 13px; font-weight: 600; color: #111827;">Revaluation Fee</div>
+                <div class="text-xs text-secondary">Per Subject</div>
+              </div>
+            </div>
+            <div style="font-size: 24px; font-weight: 600; color: #DC2626;">₹500</div>
+            <div class="text-xs text-secondary" style="margin-top: 4px;">+ ₹100 processing fee</div>
+          </div>
+
+          <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 20px;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+              <div style="width: 40px; height: 40px; background: #D1FAE5; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                <i data-feather="check-circle" style="width: 20px; height: 20px; color: #059669;"></i>
+              </div>
+              <div>
+                <div style="font-size: 13px; font-weight: 600; color: #111827;">Retotaling Fee</div>
+                <div class="text-xs text-secondary">Per Subject</div>
+              </div>
+            </div>
+            <div style="font-size: 24px; font-weight: 600; color: #059669;">₹200</div>
+            <div class="text-xs text-secondary" style="margin-top: 4px;">Arithmetic check only</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Regular Exam Fee Structure -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Regular Exam Fee Structure</h2>
+          <button class="btn btn-sm btn-ghost">
+            <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+            Edit Fees
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Program</th>
+                  <th>Level</th>
+                  <th>Year</th>
+                  <th>Semester</th>
+                  <th style="text-align: right;">Base Fee</th>
+                  <th style="text-align: right;">Processing Fee</th>
+                  <th style="text-align: right;">Total Fee</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>B.Tech - Computer Science</td>
+                  <td>UG</td>
+                  <td>1st Year</td>
+                  <td>Sem 1 & 2</td>
+                  <td style="text-align: right;">₹1,000</td>
+                  <td style="text-align: right;">₹200</td>
+                  <td style="text-align: right; font-weight: 600;">₹1,200</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                    <button class="btn btn-sm btn-ghost"><i data-feather="trash-2" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>B.Tech - Computer Science</td>
+                  <td>UG</td>
+                  <td>2nd-4th Year</td>
+                  <td>All Semesters</td>
+                  <td style="text-align: right;">₹800</td>
+                  <td style="text-align: right;">₹200</td>
+                  <td style="text-align: right; font-weight: 600;">₹1,000</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                    <button class="btn btn-sm btn-ghost"><i data-feather="trash-2" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>B.Com - Commerce</td>
+                  <td>UG</td>
+                  <td>All Years</td>
+                  <td>All Semesters</td>
+                  <td style="text-align: right;">₹500</td>
+                  <td style="text-align: right;">₹150</td>
+                  <td style="text-align: right; font-weight: 600;">₹650</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                    <button class="btn btn-sm btn-ghost"><i data-feather="trash-2" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>M.Tech - Data Science</td>
+                  <td>PG</td>
+                  <td>All Years</td>
+                  <td>All Semesters</td>
+                  <td style="text-align: right;">₹1,500</td>
+                  <td style="text-align: right;">₹300</td>
+                  <td style="text-align: right; font-weight: 600;">₹1,800</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                    <button class="btn btn-sm btn-ghost"><i data-feather="trash-2" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>B.A - English</td>
+                  <td>UG</td>
+                  <td>All Years</td>
+                  <td>All Semesters</td>
+                  <td style="text-align: right;">₹400</td>
+                  <td style="text-align: right;">₹100</td>
+                  <td style="text-align: right; font-weight: 600;">₹500</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                    <button class="btn btn-sm btn-ghost"><i data-feather="trash-2" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Fee Types -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Additional Fee Types</h2>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Fee Type</th>
+                  <th>Description</th>
+                  <th>Calculation Method</th>
+                  <th style="text-align: right;">Amount</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight: 500;">Supplementary Exam Fee</td>
+                  <td>Per subject for failed/absent students</td>
+                  <td>Per Subject</td>
+                  <td style="text-align: right; font-weight: 600;">₹800 + ₹200</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 500;">Revaluation Fee</td>
+                  <td>Answer sheet recheck with external examiner</td>
+                  <td>Per Subject</td>
+                  <td style="text-align: right; font-weight: 600;">₹500 + ₹100</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 500;">Retotaling Fee</td>
+                  <td>Marks total verification (arithmetic check only)</td>
+                  <td>Per Subject</td>
+                  <td style="text-align: right; font-weight: 600;">₹200</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 500;">Duplicate Mark Sheet Fee</td>
+                  <td>Reissue of lost/damaged mark sheet</td>
+                  <td>Per Request</td>
+                  <td style="text-align: right; font-weight: 600;">₹300</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 500;">Late Fee (Registration)</td>
+                  <td>After last date of registration</td>
+                  <td>Flat Rate</td>
+                  <td style="text-align: right; font-weight: 600;">₹200</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 500;">Certificate Issuance Fee</td>
+                  <td>Course completion certificate</td>
+                  <td>Per Certificate</td>
+                  <td style="text-align: right; font-weight: 600;">₹100</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fee Change History -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Recent Fee Changes</h2>
+          <button class="btn btn-sm btn-ghost">View All History</button>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Fee Type</th>
+                  <th>Program</th>
+                  <th style="text-align: right;">Old Amount</th>
+                  <th style="text-align: right;">New Amount</th>
+                  <th>Changed By</th>
+                  <th>Reason</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2025-01-15</td>
+                  <td>Regular Exam</td>
+                  <td>B.Tech - CS (1st Year)</td>
+                  <td style="text-align: right;">₹1,000</td>
+                  <td style="text-align: right;">₹1,200</td>
+                  <td>Dr. Kumar (Controller)</td>
+                  <td>University fee revision</td>
+                </tr>
+                <tr>
+                  <td>2024-12-01</td>
+                  <td>Supplementary Fee</td>
+                  <td>All Programs</td>
+                  <td style="text-align: right;">₹700</td>
+                  <td style="text-align: right;">₹800</td>
+                  <td>Admin (Super Admin)</td>
+                  <td>Cost adjustment</td>
+                </tr>
+                <tr>
+                  <td>2024-11-10</td>
+                  <td>Retotaling Fee</td>
+                  <td>All Programs</td>
+                  <td style="text-align: right;">₹150</td>
+                  <td style="text-align: right;">₹200</td>
+                  <td>Dr. Kumar (Controller)</td>
+                  <td>Administrative cost increase</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  </div> <!-- End main-with-sidebar -->
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

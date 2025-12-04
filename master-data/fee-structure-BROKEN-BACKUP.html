@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fee Structure Configuration - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <!-- Module Dropdown -->
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Master Data
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <a href="degree-subject-setup.html" class="dropdown-item">Degree & Subject Setup</a>
+        <a href="program-subject-mapping.html" class="dropdown-item">Program-Subject Mapping</a>
+        <a href="fee-structure.html" class="dropdown-item active">Fee Structure</a>
+        <a href="grading-system.html" class="dropdown-item">Grading System</a>
+        <a href="user-management.html" class="dropdown-item">User Management</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">DK</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Dr. Kumar</div>
+            <div style="font-size: 11px; color: #6B7280;">Exam Controller</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Master Data</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Fee Structure</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export Fee List
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container with Sidebar -->
+  <div class="main-with-sidebar">
+
+    <!-- Module Sidebar -->
+    <aside class="module-sidebar">
+      <div class="module-sidebar-header">
+        <i data-feather="layout"></i>
+        <h3>All Modules</h3>
+      </div>
+
+      <nav class="module-nav" style="overflow-y: auto; max-height: calc(100vh - 200px);">
+        <!-- Dashboard Link -->
+        <a href="../dashboard.html" class="module-nav-item">
+          <i data-feather="home" style="width: 18px; height: 18px;"></i>
+          <span class="step-label">Dashboard</span>
+        </a>
+
+        <!-- System Setup Section -->
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px;">System Setup</div>
+
+        <!-- Master Data Module - EXPANDED -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('masterData')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="database" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Master Data</span>
+          </div>
+          <i data-feather="chevron-down" id="masterData-chevron" style="width: 16px; height: 16px; transform: rotate(180deg); transition: transform 0.2s;"></i>
+        </div>
+        <div id="masterData-pages" class="module-pages" style="display: block;">
+          <a href="degree-subject-setup.html" class="module-nav-item " style="padding-left: 40px; font-size: 13px;">Degree & Subject Setup</a>
+          <a href="program-subject-mapping.html" class="module-nav-item " style="padding-left: 40px; font-size: 13px;">Program-Subject Mapping</a>
+          <a href="fee-structure.html" class="module-nav-item active" style="padding-left: 40px; font-size: 13px;">Fee Structure</a>
+          <a href="grading-system.html" class="module-nav-item " style="padding-left: 40px; font-size: 13px;">Grading System</a>
+          <a href="user-management.html" class="module-nav-item " style="padding-left: 40px; font-size: 13px;">User Management</a>
+        </div>
+
+        <!-- Exam Workflow Section -->
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px;">Exam Workflow</div>
+
+        <!-- Exam Registration Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('examReg')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="user-plus" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Exam Registration</span>
+          </div>
+          <i data-feather="chevron-down" id="examReg-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="examReg-pages" class="module-pages" style="display: none;">
+          <a href="../exam-registration/data-entry.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Data Entry</a>
+          <a href="../exam-registration/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../exam-registration/approval.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Approval</a>
+          <a href="../exam-registration/ern-batch.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">ERN Generation</a>
+          <a href="../exam-registration/fee-verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Fee Verification</a>
+          <a href="../exam-registration/ern-batch.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">ERN Batch</a>
+          <a href="../exam-registration/freeze.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Freeze Applications</a>
+          <a href="../exam-registration/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+          <a href="../exam-registration/audit-log.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Audit Log</a>
+        </div>
+
+        <!-- Exam Scheduling Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('examScheduling')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="calendar" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Exam Scheduling</span>
+          </div>
+          <i data-feather="chevron-down" id="examScheduling-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="examScheduling-pages" class="module-pages" style="display: none;">
+          <a href="../exam-scheduling/course-setup.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Course Setup</a>
+          <a href="../exam-scheduling/timetable.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Timetable</a>
+          <a href="../exam-scheduling/freeze.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Freeze Timetable</a>
+          <a href="../exam-scheduling/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Internal Assessment Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('internalAssessment')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="clipboard" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Internal Assessment</span>
+          </div>
+          <i data-feather="chevron-down" id="internalAssessment-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="internalAssessment-pages" class="module-pages" style="display: none;">
+          <a href="../internal-assessment/marks-entry.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Marks Entry</a>
+          <a href="../internal-assessment/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../internal-assessment/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Hall Ticket Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('hallTicket')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="credit-card" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Hall Ticket</span>
+          </div>
+          <i data-feather="chevron-down" id="hallTicket-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="hallTicket-pages" class="module-pages" style="display: none;">
+          <a href="../hall-ticket/generation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Generation</a>
+          <a href="../hall-ticket/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../hall-ticket/seating-plan.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Seating Plan</a>
+          <a href="../hall-ticket/distribution.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Distribution</a>
+          <a href="../hall-ticket/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Conduct of Exam Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('conductExam')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="check-square" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Conduct of Exam</span>
+          </div>
+          <i data-feather="chevron-down" id="conductExam-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="conductExam-pages" class="module-pages" style="display: none;">
+          <a href="../conduct-exam/attendance.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Attendance</a>
+          <a href="../conduct-exam/answer-sheet.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Answer Sheet Handling</a>
+          <a href="../conduct-exam/batch-prep.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Batch Preparation</a>
+          <a href="../conduct-exam/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Evaluation & Results Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('evaluation')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="edit" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Evaluation & Results</span>
+          </div>
+          <i data-feather="chevron-down" id="evaluation-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="evaluation-pages" class="module-pages" style="display: none;">
+          <a href="../evaluation-results/marks-entry.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Marks Entry</a>
+          <a href="../evaluation-results/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../evaluation-results/revaluation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Revaluation</a>
+          <a href="../evaluation-results/result-compilation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Result Compilation</a>
+          <a href="../evaluation-results/grading.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Grading</a>
+          <a href="../evaluation-results/cgpa-calculation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">CGPA Calculation</a>
+          <a href="../evaluation-results/freeze.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Freeze Results</a>
+          <a href="../evaluation-results/publish.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Publish Results</a>
+          <a href="../evaluation-results/detained-students.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Detained Students</a>
+          <a href="../evaluation-results/pass-fail.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Pass/Fail Analysis</a>
+          <a href="../evaluation-results/subject-wise.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Subject-wise Analysis</a>
+          <a href="../evaluation-results/statistical.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Statistical Reports</a>
+          <a href="../evaluation-results/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+          <a href="../evaluation-results/audit-log.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Audit Log</a>
+        </div>
+
+        <!-- Mark Sheet Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('markSheet')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="file-text" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Mark Sheet</span>
+          </div>
+          <i data-feather="chevron-down" id="markSheet-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="markSheet-pages" class="module-pages" style="display: none;">
+          <a href="../mark-sheet/generation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Generation</a>
+          <a href="../mark-sheet/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../mark-sheet/consolidated.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Consolidated Statement</a>
+          <a href="../mark-sheet/distribution.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Distribution</a>
+          <a href="../mark-sheet/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Certificates Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('certificates')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="award" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Certificates</span>
+          </div>
+          <i data-feather="chevron-down" id="certificates-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="certificates-pages" class="module-pages" style="display: none;">
+          <a href="../certificates/generation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Generation</a>
+          <a href="../certificates/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../certificates/distribution.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Distribution</a>
+          <a href="../certificates/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Student Section -->
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px;">Student Portal</div>
+
+        <!-- Student Portal Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('studentPortal')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="book-open" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Student Portal</span>
+          </div>
+          <i data-feather="chevron-down" id="studentPortal-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="studentPortal-pages" class="module-pages" style="display: none;">
+          <a href="../student-portal/timetable.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Exam Timetable</a>
+          <a href="../student-portal/results.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">View Results</a>
+          <a href="../student-portal/hall-ticket.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Download Hall Ticket</a>
+        </div>
+
+        <!-- Administration Section -->
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px;">Administration</div>
+
+        <!-- Access Control Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('accessControl')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="lock" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Access Control</span>
+          </div>
+          <i data-feather="chevron-down" id="accessControl-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="accessControl-pages" class="module-pages" style="display: none;">
+          <a href="../access-auth/login.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Login</a>
+          <a href="../access-auth/biometric.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Biometric Auth</a>
+          <a href="../access-auth/audit-log.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Audit Log</a>
+        </div>
+      </nav>
+
+      <button class="sidebar-toggle" title="Toggle Sidebar (Ctrl+B)">
+        <i data-feather="chevrons-left"></i>
+      </button>
+    </aside>
+
+        <!-- Supplementary Exam Fees -->
+        <div class="section">
+          <div class="section-header">
+            <h2 class="section-title">Supplementary Exam Fees</h2>
+            <button class="btn btn-sm btn-primary" onclick="openAddFeeModal('Supplementary')">
+              <i data-feather="plus" style="width: 16px; height: 16px;"></i>
+              Add New Fee
+            </button>
+          </div>
+          <div class="section-body">
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Program</th>
+                    <th>Level</th>
+                    <th style="text-align: right;">Base Fee (Per Subject)</th>
+                    <th style="text-align: right;">Processing Fee</th>
+                    <th style="text-align: right;">Total Fee</th>
+                    <th>Status</th>
+                    <th style="text-align: right;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>All Programs</td>
+                    <td>All</td>
+                    <td style="text-align: right;">₹800</td>
+                    <td style="text-align: right;">₹200</td>
+                    <td style="text-align: right; font-weight: 600;">₹1,000</td>
+                    <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-ghost" onclick="openEditFeeModal('Supplementary', 'All Programs', 'All', '800', '200', '1000', 'Active')"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                      <button class="btn btn-sm btn-ghost" onclick="confirmDeleteFee('Supplementary', 'All Programs')"><i data-feather="trash-2" style="width: 16px; height: 16px;"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Post-Result Services -->
+      <div id="postResultServicesTab" style="display: none;">
+        <div class="section">
+          <div class="section-header">
+            <h2 class="section-title">Revaluation Fees</h2>
+            <button class="btn btn-sm btn-primary" onclick="openAddFeeModal('Revaluation')">
+              <i data-feather="plus" style="width: 16px; height: 16px;"></i>
+              Add New Fee
+            </button>
+          </div>
+          <div class="section-body">
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Program</th>
+                    <th>Level</th>
+                    <th style="text-align: right;">Base Fee (Per Subject)</th>
+                    <th style="text-align: right;">Processing Fee</th>
+                    <th style="text-align: right;">Total Fee</th>
+                    <th>Status</th>
+                    <th style="text-align: right;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>All Programs</td>
+                    <td>All</td>
+                    <td style="text-align: right;">₹500</td>
+                    <td style="text-align: right;">₹100</td>
+                    <td style="text-align: right; font-weight: 600;">₹600</td>
+                    <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-ghost" onclick="openEditFeeModal('Revaluation', 'All Programs', 'All', '500', '100', '600', 'Active')"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                      <button class="btn btn-sm btn-ghost" onclick="confirmDeleteFee('Revaluation', 'All Programs')"><i data-feather="trash-2" style="width: 16px; height: 16px;"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-header">
+            <h2 class="section-title">Retotaling / Scrutiny Fees</h2>
+            <button class="btn btn-sm btn-primary" onclick="openAddFeeModal('Retotaling')">
+              <i data-feather="plus" style="width: 16px; height: 16px;"></i>
+              Add New Fee
+            </button>
+          </div>
+          <div class="section-body">
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Service Type</th>
+                    <th>Description</th>
+                    <th style="text-align: right;">Fee (Per Subject)</th>
+                    <th>Status</th>
+                    <th style="text-align: right;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="font-weight: 500;">Retotaling</td>
+                    <td>Arithmetic verification of marks (no recheck)</td>
+                    <td style="text-align: right; font-weight: 600;">₹200</td>
+                    <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-ghost" onclick="openEditFeeModal('Retotaling', 'Arithmetic Verification', 'All', '200', '0', '200', 'Active')"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                      <button class="btn btn-sm btn-ghost" onclick="confirmDeleteFee('Retotaling', 'All Programs')"><i data-feather="trash-2" style="width: 16px; height: 16px;"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Administrative Fees -->
+      <div id="administrativeFeesTab" style="display: none;">
+        <div class="section">
+          <div class="section-header">
+            <h2 class="section-title">Administrative & Certificate Fees</h2>
+            <button class="btn btn-sm btn-primary" onclick="openAddFeeModal('Administrative')">
+              <i data-feather="plus" style="width: 16px; height: 16px;"></i>
+              Add New Fee
+            </button>
+          </div>
+          <div class="section-body">
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Service Type</th>
+                    <th>Description</th>
+                    <th style="text-align: right;">Fee Amount</th>
+                    <th>Status</th>
+                    <th style="text-align: right;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="font-weight: 500;">Duplicate Mark Sheet</td>
+                    <td>Reissue of lost/damaged mark sheet</td>
+                    <td style="text-align: right; font-weight: 600;">₹300</td>
+                    <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-ghost" onclick="openEditFeeModal('Administrative', 'Duplicate Mark Sheet', 'All', '300', '0', '300', 'Active')"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                      <button class="btn btn-sm btn-ghost" onclick="confirmDeleteFee('Administrative', 'Duplicate Mark Sheet')"><i data-feather="trash-2" style="width: 16px; height: 16px;"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: 500;">Late Fee (Registration)</td>
+                    <td>After last date of exam registration</td>
+                    <td style="text-align: right; font-weight: 600;">₹200</td>
+                    <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-ghost" onclick="openEditFeeModal('Administrative', 'Late Fee', 'All', '200', '0', '200', 'Active')"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                      <button class="btn btn-sm btn-ghost" onclick="confirmDeleteFee('Administrative', 'Late Fee')"><i data-feather="trash-2" style="width: 16px; height: 16px;"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: 500;">Provisional Certificate</td>
+                    <td>Temporary certificate until final issued</td>
+                    <td style="text-align: right; font-weight: 600;">₹100</td>
+                    <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-ghost" onclick="openEditFeeModal('Administrative', 'Provisional Certificate', 'All', '100', '0', '100', 'Active')"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                      <button class="btn btn-sm btn-ghost" onclick="confirmDeleteFee('Administrative', 'Provisional Certificate')"><i data-feather="trash-2" style="width: 16px; height: 16px;"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: 500;">Course Completion Certificate</td>
+                    <td>Official certificate after course completion</td>
+                    <td style="text-align: right; font-weight: 600;">₹150</td>
+                    <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-ghost" onclick="openEditFeeModal('Administrative', 'Course Completion', 'All', '150', '0', '150', 'Active')"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                      <button class="btn btn-sm btn-ghost" onclick="confirmDeleteFee('Administrative', 'Course Completion')"><i data-feather="trash-2" style="width: 16px; height: 16px;"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: 500;">Migration Certificate</td>
+                    <td>For students transferring to other universities</td>
+                    <td style="text-align: right; font-weight: 600;">₹200</td>
+                    <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-ghost" onclick="openEditFeeModal('Administrative', 'Migration Certificate', 'All', '200', '0', '200', 'Active')"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                      <button class="btn btn-sm btn-ghost" onclick="confirmDeleteFee('Administrative', 'Migration Certificate')"><i data-feather="trash-2" style="width: 16px; height: 16px;"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  </div> <!-- End main-with-sidebar -->
+
+  <!-- Add New Fee Modal (Adaptive) -->
+  <div id="addFeeModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: white; border-radius: 8px; padding: 24px; width: 600px; max-height: 90vh; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h3 style="font-size: 18px; font-weight: 600; color: #111827;" id="addFeeModalTitle">Add New Fee</h3>
+        <button class="btn btn-icon btn-ghost" onclick="closeAddFeeModal()">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+      <div style="display: grid; gap: 16px;">
+        <!-- Fee Category (Always visible, frozen) -->
+        <div class="form-group">
+          <label class="form-label required">Fee Category</label>
+          <input type="text" id="addFeeCategory" class="form-input" readonly style="background: #F8F9FA; cursor: not-allowed;" />
+        </div>
+
+        <!-- Program Field (for exam fees) -->
+        <div class="form-group" id="addProgramGroup">
+          <label class="form-label required">Program</label>
+          <select id="addProgram" class="form-select">
+            <option value="">-- Select Program --</option>
+            <option value="B.Tech - Computer Science">B.Tech - Computer Science</option>
+            <option value="B.Tech - Electronics">B.Tech - Electronics</option>
+            <option value="B.Com - Commerce">B.Com - Commerce</option>
+            <option value="B.A - English">B.A - English</option>
+            <option value="M.Tech - Data Science">M.Tech - Data Science</option>
+            <option value="M.Com - Commerce">M.Com - Commerce</option>
+            <option value="All UG Programs">All UG Programs</option>
+            <option value="All PG Programs">All PG Programs</option>
+            <option value="All Programs">All Programs</option>
+          </select>
+        </div>
+
+        <!-- Level Field (for exam fees) -->
+        <div class="form-group" id="addLevelGroup">
+          <label class="form-label required">Level</label>
+          <select id="addLevel" class="form-select">
+            <option value="">-- Select Level --</option>
+            <option value="UG">Undergraduate (UG)</option>
+            <option value="PG">Postgraduate (PG)</option>
+            <option value="All">All Levels</option>
+          </select>
+        </div>
+
+        <!-- Year Field (only for Regular Semester) -->
+        <div class="form-group" id="addYearGroup" style="display: none;">
+          <label class="form-label required">Year</label>
+          <select id="addYear" class="form-select">
+            <option value="">-- Select Year --</option>
+            <option value="1st Year">1st Year</option>
+            <option value="2nd Year">2nd Year</option>
+            <option value="3rd Year">3rd Year</option>
+            <option value="4th Year">4th Year</option>
+            <option value="2nd-4th Year">2nd-4th Year</option>
+            <option value="All Years">All Years</option>
+          </select>
+        </div>
+
+        <!-- Semester Field (only for Regular Semester) -->
+        <div class="form-group" id="addSemesterGroup" style="display: none;">
+          <label class="form-label required">Semester</label>
+          <select id="addSemester" class="form-select">
+            <option value="">-- Select Semester --</option>
+            <option value="Sem 1">Semester 1</option>
+            <option value="Sem 2">Semester 2</option>
+            <option value="Sem 1 & 2">Semester 1 & 2</option>
+            <option value="All Semesters">All Semesters</option>
+          </select>
+        </div>
+
+        <!-- Service Type (only for Retotaling and Administrative) -->
+        <div class="form-group" id="addServiceTypeGroup" style="display: none;">
+          <label class="form-label required">Service Type</label>
+          <input type="text" id="addServiceType" class="form-input" placeholder="e.g., Duplicate Mark Sheet" />
+        </div>
+
+        <!-- Description (only for Retotaling and Administrative) -->
+        <div class="form-group" id="addDescriptionGroup" style="display: none;">
+          <label class="form-label required">Description</label>
+          <textarea id="addDescription" class="form-input" rows="2" placeholder="Brief description of the service"></textarea>
+        </div>
+
+        <!-- Base Fee and Processing Fee (for exam fees) -->
+        <div id="addExamFeeGroup">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label required" id="addBaseFeeLabel">Base Fee (₹)</label>
+              <input type="number" id="addBaseFee" class="form-input" placeholder="1000" min="0" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Processing Fee (₹)</label>
+              <input type="number" id="addProcessingFee" class="form-input" placeholder="200" min="0" value="0" />
+            </div>
+          </div>
+          <div class="form-group" style="margin-top: 12px;">
+            <label class="form-label">Total Fee: ₹<span id="addTotalFee" style="font-weight: 600;">0</span></label>
+          </div>
+        </div>
+
+        <!-- Fee Amount (only for Retotaling and Administrative) -->
+        <div class="form-group" id="addFeeAmountGroup" style="display: none;">
+          <label class="form-label required">Fee Amount (₹)</label>
+          <input type="number" id="addFeeAmount" class="form-input" placeholder="300" min="0" />
+        </div>
+
+      </div>
+      <div style="display: flex; justify-content: end; gap: 12px; margin-top: 24px; padding-top: 24px; border-top: 1px solid #E5E7EB;">
+        <button class="btn btn-secondary" onclick="closeAddFeeModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="saveNewFee()">Save Fee</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Fee Modal -->
+  <div id="editFeeModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: white; border-radius: 8px; padding: 24px; width: 600px; max-height: 90vh; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h3 style="font-size: 18px; font-weight: 600; color: #111827;">Edit Fee</h3>
+        <button class="btn btn-icon btn-ghost" onclick="document.getElementById('editFeeModal').style.display='none'">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+      <div style="display: grid; gap: 16px;">
+        <div class="form-group">
+          <label class="form-label required">Fee Category</label>
+          <input type="text" id="editFeeCategory" class="form-input" readonly style="background: #F8F9FA;" />
+        </div>
+        <div class="form-group">
+          <label class="form-label required">Program</label>
+          <input type="text" id="editProgram" class="form-input" />
+        </div>
+        <div class="form-group">
+          <label class="form-label required">Level</label>
+          <select id="editLevel" class="form-select">
+            <option value="UG">Undergraduate (UG)</option>
+            <option value="PG">Postgraduate (PG)</option>
+            <option value="All">All Levels</option>
+          </select>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label class="form-label required">Base Fee (₹)</label>
+            <input type="number" id="editBaseFee" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Processing Fee (₹)</label>
+            <input type="number" id="editProcessingFee" class="form-input" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Total Fee: ₹<span id="editTotalFee">0</span></label>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: end; gap: 12px; margin-top: 24px; padding-top: 24px; border-top: 1px solid #E5E7EB;">
+        <button class="btn btn-secondary" onclick="document.getElementById('editFeeModal').style.display='none'">Cancel</button>
+        <button class="btn btn-primary">Update Fee</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div id="deleteFeeModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: white; border-radius: 8px; padding: 24px; width: 480px;">
+      <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px;">
+        <i data-feather="alert-circle" style="width: 24px; height: 24px; color: #DC2626; flex-shrink: 0;"></i>
+        <div>
+          <h3 style="font-size: 16px; font-weight: 600; color: #111827; margin: 0 0 8px 0;">Delete Fee Configuration?</h3>
+          <p id="deleteFeeMessage" style="font-size: 14px; color: #6B7280; margin: 0;">Are you sure you want to delete this fee?</p>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: end; gap: 12px; margin-top: 24px;">
+        <button class="btn btn-secondary" onclick="document.getElementById('deleteFeeModal').style.display='none'">Cancel</button>
+        <button class="btn btn-danger" onclick="performDeleteFee()">Delete Fee</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+
+    // Tab switching functionality
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const examinationFeesTab = document.getElementById('examinationFeesTab');
+    const postResultServicesTab = document.getElementById('postResultServicesTab');
+    const administrativeFeesTab = document.getElementById('administrativeFeesTab');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        tabButtons.forEach(btn => {
+          btn.classList.remove('active');
+          btn.style.borderBottom = '2px solid transparent';
+          btn.style.color = '#6B7280';
+          btn.style.fontWeight = 'normal';
+        });
+
+        // Add active class to clicked button
+        button.classList.add('active');
+        button.style.borderBottom = '2px solid #2563EB';
+        button.style.color = '#2563EB';
+        button.style.fontWeight = '600';
+
+        // Show/hide tabs based on selection
+        const tab = button.getAttribute('data-tab');
+        examinationFeesTab.style.display = tab === 'examinationFees' ? 'block' : 'none';
+        postResultServicesTab.style.display = tab === 'postResultServices' ? 'block' : 'none';
+        administrativeFeesTab.style.display = tab === 'administrativeFees' ? 'block' : 'none';
+
+        // Re-initialize feather icons after tab switch
+        setTimeout(() => feather.replace(), 0);
+      });
+    });
+
+    // Variables to store fee details for edit/delete
+    let currentFeeCategory = '';
+    let currentProgram = '';
+
+    // Function to open edit fee modal
+    function openEditFeeModal(category, program, level, baseFee, processingFee, totalFee, status) {
+      currentFeeCategory = category;
+      currentProgram = program;
+
+      document.getElementById('editFeeCategory').value = category;
+      document.getElementById('editProgram').value = program;
+      document.getElementById('editLevel').value = level;
+      document.getElementById('editBaseFee').value = baseFee;
+      document.getElementById('editProcessingFee').value = processingFee;
+      document.getElementById('editTotalFee').textContent = totalFee;
+
+      document.getElementById('editFeeModal').style.display = 'flex';
+      setTimeout(() => feather.replace(), 0);
+    }
+
+    // Function to show delete confirmation
+    function confirmDeleteFee(category, program) {
+      currentFeeCategory = category;
+      currentProgram = program;
+
+      const message = `Are you sure you want to delete the <strong>${category}</strong> fee for <strong>"${program}"</strong>? This action cannot be undone.`;
+      document.getElementById('deleteFeeMessage').innerHTML = message;
+
+      document.getElementById('deleteFeeModal').style.display = 'flex';
+      setTimeout(() => feather.replace(), 0);
+    }
+
+    // Function to perform delete
+    function performDeleteFee() {
+      console.log(`Deleting fee: ${currentFeeCategory} - ${currentProgram}`);
+
+      document.getElementById('deleteFeeModal').style.display = 'none';
+
+      alert(`Fee "${currentFeeCategory}" for "${currentProgram}" has been deleted successfully.`);
+
+      // In a real application, you would:
+      // 1. Make API call to delete the fee
+      // 2. Remove the row from the table
+      // 3. Refresh the data
+    }
+
+    // Function to open Add Fee Modal with category-specific fields
+    function openAddFeeModal(category) {
+      // Reset form
+      document.getElementById('addFeeCategory').value = category;
+      document.getElementById('addFeeModalTitle').textContent = `Add New ${category} Fee`;
+
+      // Hide all optional fields first
+      document.getElementById('addProgramGroup').style.display = 'none';
+      document.getElementById('addLevelGroup').style.display = 'none';
+      document.getElementById('addYearGroup').style.display = 'none';
+      document.getElementById('addSemesterGroup').style.display = 'none';
+      document.getElementById('addServiceTypeGroup').style.display = 'none';
+      document.getElementById('addDescriptionGroup').style.display = 'none';
+      document.getElementById('addExamFeeGroup').style.display = 'none';
+      document.getElementById('addFeeAmountGroup').style.display = 'none';
+
+      // Show fields based on category
+      if (category === 'Regular Semester') {
+        document.getElementById('addProgramGroup').style.display = 'block';
+        document.getElementById('addLevelGroup').style.display = 'block';
+        document.getElementById('addYearGroup').style.display = 'block';
+        document.getElementById('addSemesterGroup').style.display = 'block';
+        document.getElementById('addExamFeeGroup').style.display = 'block';
+        document.getElementById('addBaseFeeLabel').textContent = 'Base Fee (₹)';
+      } else if (category === 'Arrears' || category === 'Supplementary') {
+        document.getElementById('addProgramGroup').style.display = 'block';
+        document.getElementById('addLevelGroup').style.display = 'block';
+        document.getElementById('addExamFeeGroup').style.display = 'block';
+        document.getElementById('addBaseFeeLabel').textContent = 'Base Fee (Per Subject) (₹)';
+      } else if (category === 'Revaluation') {
+        document.getElementById('addProgramGroup').style.display = 'block';
+        document.getElementById('addLevelGroup').style.display = 'block';
+        document.getElementById('addExamFeeGroup').style.display = 'block';
+        document.getElementById('addBaseFeeLabel').textContent = 'Fee (Per Subject) (₹)';
+      } else if (category === 'Retotaling' || category === 'Administrative') {
+        document.getElementById('addServiceTypeGroup').style.display = 'block';
+        document.getElementById('addDescriptionGroup').style.display = 'block';
+        document.getElementById('addFeeAmountGroup').style.display = 'block';
+      }
+
+      // Clear all input fields
+      document.getElementById('addProgram').value = '';
+      document.getElementById('addLevel').value = '';
+      document.getElementById('addYear').value = '';
+      document.getElementById('addSemester').value = '';
+      document.getElementById('addServiceType').value = '';
+      document.getElementById('addDescription').value = '';
+      document.getElementById('addBaseFee').value = '';
+      document.getElementById('addProcessingFee').value = '0';
+      document.getElementById('addFeeAmount').value = '';
+      document.getElementById('addTotalFee').textContent = '0';
+
+      // Show modal
+      document.getElementById('addFeeModal').style.display = 'flex';
+      setTimeout(() => feather.replace(), 0);
+    }
+
+    // Function to close Add Fee Modal
+    function closeAddFeeModal() {
+      document.getElementById('addFeeModal').style.display = 'none';
+    }
+
+    // Function to save new fee
+    function saveNewFee() {
+      const category = document.getElementById('addFeeCategory').value;
+
+      console.log('Saving new fee:', category);
+
+      // In a real application, you would:
+      // 1. Validate all required fields
+      // 2. Make API call to save the fee
+      // 3. Add new row to the table
+      // 4. Close modal
+
+      alert(`New ${category} fee has been saved successfully!`);
+      closeAddFeeModal();
+    }
+
+    // Auto-calculate total fee when base fee or processing fee changes
+    document.getElementById('addBaseFee').addEventListener('input', function() {
+      const baseFee = parseFloat(this.value) || 0;
+      const processingFee = parseFloat(document.getElementById('addProcessingFee').value) || 0;
+      const total = baseFee + processingFee;
+      document.getElementById('addTotalFee').textContent = total.toLocaleString('en-IN');
+    });
+
+    document.getElementById('addProcessingFee').addEventListener('input', function() {
+      const baseFee = parseFloat(document.getElementById('addBaseFee').value) || 0;
+      const processingFee = parseFloat(this.value) || 0;
+      const total = baseFee + processingFee;
+      document.getElementById('addTotalFee').textContent = total.toLocaleString('en-IN');
+    });
+
+  </script>
+</body>
+</html>

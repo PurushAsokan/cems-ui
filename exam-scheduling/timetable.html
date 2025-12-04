@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fee Calculation & Verification - CEMS</title>
+  <title>Exam Timetable Entry - CEMS</title>
   <link rel="stylesheet" href="../css/cems.css">
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 </head>
@@ -18,26 +18,19 @@
 
     <div class="dropdown dropdown-left">
       <button class="btn btn-ghost dropdown-toggle">
-        Student Exam Registration
+        Exam Scheduling
         <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
       </button>
-      <div class="dropdown-menu" style="width: 280px;">
-        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px;">Sub-Topic A: Student Master & ERN</div>
-        <a href="data-entry.html" class="dropdown-item">A.1 Data Entry</a>
-        <a href="verification.html" class="dropdown-item">A.2 Data Verification</a>
-        <a href="ern-generation.html" class="dropdown-item">A.3 ERN Generation</a>
-        <a href="ern-approval.html" class="dropdown-item">A.4 ERN Approval</a>
-        <a href="student-master-list.html" class="dropdown-item">A.5 Student Master List</a>
-
-        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px; border-top: 1px solid #E5E7EB;">Sub-Topic B: Semester Exam Registration</div>
-        <a href="generate-applications.html" class="dropdown-item">B.1 Generate Applications</a>
-        <a href="fee-calculation.html" class="dropdown-item">B.2 Registration Processing</a>
-        <a href="reports.html" class="dropdown-item">B.7 Reports</a>
-
-        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px; border-top: 1px solid #E5E7EB;">Sub-Topic C: Supplementary Registration</div>
-        <a href="#" class="dropdown-item">C.1 Supplementary Applications</a>
-        <a href="#" class="dropdown-item">C.2 Processing & Approval</a>
-        <a href="#" class="dropdown-item">C.3 Supplementary Reports</a>
+      <div class="dropdown-menu" style="width: 240px;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Regular Exams</div>
+        <a href="degree-subject-setup.html" class="dropdown-item">Degree & Subject Setup</a>
+        <a href="program-subject-mapping.html" class="dropdown-item">Program-Subject Mapping</a>
+        <a href="timetable-entry.html" class="dropdown-item active">Timetable Entry</a>
+        <a href="timetable-verification.html" class="dropdown-item">Timetable Verification</a>
+        <div class="dropdown-divider"></div>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Exams</div>
+        <a href="supplementary-timetable.html" class="dropdown-item">Supplementary Timetable</a>
+        <a href="supplementary-timetable-verification.html" class="dropdown-item">Supplementary Verification</a>
       </div>
     </div>
 
@@ -56,9 +49,9 @@
 
       <div class="dropdown">
         <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
-          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">AT</div>
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">OP</div>
           <div style="text-align: left; line-height: 1.2;">
-            <div style="font-size: 13px; font-weight: 500; color: #111827;">Accounts Team</div>
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Data Entry Operator</div>
             <div style="font-size: 11px; color: #6B7280;">Staff</div>
           </div>
           <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
@@ -78,22 +71,22 @@
     <div class="breadcrumb">
       <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
       <span class="breadcrumb-separator">›</span>
-      <span class="breadcrumb-item">Student Exam Registration</span>
+      <span class="breadcrumb-item">Exam Scheduling</span>
       <span class="breadcrumb-separator">›</span>
-      <span class="breadcrumb-item active">Fee Calculation & Verification</span>
+      <span class="breadcrumb-item active">Timetable Entry</span>
     </div>
     <div class="context-actions">
       <button class="btn btn-sm btn-secondary">
-        <i data-feather="flag" style="width: 16px; height: 16px;"></i>
-        Flag for Follow-up
+        <i data-feather="upload" style="width: 16px; height: 16px;"></i>
+        Bulk Upload Excel
       </button>
       <button class="btn btn-sm btn-secondary">
-        <i data-feather="file-text" style="width: 16px; height: 16px;"></i>
-        Generate Demand
+        <i data-feather="save" style="width: 16px; height: 16px;"></i>
+        Save Draft
       </button>
       <button class="btn btn-sm btn-primary">
-        <i data-feather="check-circle" style="width: 16px; height: 16px;"></i>
-        Confirm Payment
+        <i data-feather="send" style="width: 16px; height: 16px;"></i>
+        Submit for Verification
       </button>
     </div>
   </div>
@@ -152,93 +145,86 @@
         <!-- PRE-EXAMINATION Section -->
         <div class="module-section-header">Pre-Examination</div>
 
-        <!-- Exam Registration Module - EXPANDED -->
+        <!-- Exam Registration Module -->
         <div>
-          <a href="data-entry.html" class="module-nav-item module-parent active" onclick="event.preventDefault(); toggleModule('examReg')" title="Exam Registration">
+          <a href="../exam-registration/data-entry.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('examReg')" title="Exam Registration">
             <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
               <i data-feather="user-plus" style="width: 18px; height: 18px;"></i>
               <span class="step-label">Exam Registration</span>
             </div>
-            <i data-feather="chevron-down" id="examReg-chevron" style="width: 16px; height: 16px; transform: rotate(180deg); transition: transform 0.2s;"></i>
+            <i data-feather="chevron-down" id="examReg-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
           </a>
-          <div id="examReg-pages" class="module-pages" style="display: block;">
-
-            <!-- Sub-Topic A: Student Master & ERN -->
+          <div id="examReg-pages" class="module-pages" style="display: none;">
             <div class="module-sub-section">Student Master & ERN</div>
-            <a href="data-entry.html" class="module-nav-item module-pages-item">
+            <a href="../exam-registration/data-entry.html" class="module-nav-item module-pages-item">
               <span class="step-number">A.1</span>
               <span class="step-label">Student Master Entry</span>
             </a>
-            <a href="verification.html" class="module-nav-item module-pages-item">
+            <a href="../exam-registration/verification.html" class="module-nav-item module-pages-item">
               <span class="step-number">A.2</span>
               <span class="step-label">Document Verification</span>
             </a>
-            <a href="ern-generation.html" class="module-nav-item module-pages-item">
+            <a href="../exam-registration/ern-generation.html" class="module-nav-item module-pages-item">
               <span class="step-number">A.3</span>
               <span class="step-label">ERN Generation (Batch)</span>
             </a>
-            <a href="ern-approval.html" class="module-nav-item module-pages-item">
+            <a href="../exam-registration/ern-approval.html" class="module-nav-item module-pages-item">
               <span class="step-number">A.4</span>
               <span class="step-label">Approval & Master Record</span>
             </a>
-            <a href="student-master-list.html" class="module-nav-item module-pages-item">
+            <a href="../exam-registration/student-master-list.html" class="module-nav-item module-pages-item">
               <span class="step-number">A.5</span>
               <span class="step-label">Student Master List</span>
             </a>
-
-            <!-- Sub-Topic B: Semester Exam Registration -->
             <div class="module-sub-section">Semester Exam Registration</div>
-            <a href="generate-applications.html" class="module-nav-item module-pages-item">
+            <a href="../exam-registration/generate-applications.html" class="module-nav-item module-pages-item">
               <span class="step-number">B.1</span>
               <span class="step-label">Generate Applications</span>
             </a>
-            <a href="fee-calculation.html" class="module-nav-item module-pages-item active">
+            <a href="../exam-registration/fee-calculation.html" class="module-nav-item module-pages-item">
               <span class="step-number">B.2</span>
               <span class="step-label">Fee Calculation &amp; Verification</span>
             </a>
-            <a href="reports.html" class="module-nav-item module-pages-item">
+            <a href="../exam-registration/reports.html" class="module-nav-item module-pages-item">
               <span class="step-number">B.7</span>
               <span class="step-label">Reports</span>
             </a>
-
-            <!-- Sub-Topic C: Supplementary Registration -->
             <div class="module-sub-section">Supplementary Registration</div>
-            <a href="supplementary-registration.html" class="module-nav-item module-pages-item">
+            <a href="../exam-registration/supplementary-registration.html" class="module-nav-item module-pages-item">
               <span class="step-number">C.1</span>
               <span class="step-label">Supplementary Registration</span>
             </a>
-            <a href="supplementary-verification.html" class="module-nav-item module-pages-item">
+            <a href="../exam-registration/supplementary-verification.html" class="module-nav-item module-pages-item">
               <span class="step-number">C.2</span>
               <span class="step-label">Supplementary Verification</span>
             </a>
-            <a href="supplementary-list.html" class="module-nav-item module-pages-item">
+            <a href="../exam-registration/supplementary-list.html" class="module-nav-item module-pages-item">
               <span class="step-number">C.3</span>
               <span class="step-label">Supplementary List</span>
             </a>
           </div>
         </div>
 
-        <!-- Other modules collapsed by default -->
-        <!-- Exam Scheduling -->
+        <!-- Exam Scheduling Module -->
         <div>
-          <a href="../exam-scheduling/timetable.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('examScheduling')" title="Exam Scheduling">
+          <a href="timetable.html" class="module-nav-item module-parent active" onclick="event.preventDefault(); toggleModule('examScheduling')" title="Exam Scheduling">
             <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
               <i data-feather="calendar" style="width: 18px; height: 18px;"></i>
               <span class="step-label">Exam Scheduling</span>
             </div>
-            <i data-feather="chevron-down" id="examScheduling-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+            <i data-feather="chevron-down" id="examScheduling-chevron" style="width: 16px; height: 16px; transform: rotate(180deg); transition: transform 0.2s;"></i>
           </a>
-          <div id="examScheduling-pages" class="module-pages" style="display: none;">
-            <a href="../exam-scheduling/timetable.html" class="module-nav-item module-pages-item">
-              <span class="step-number">2</span>
-              <span class="step-label">Timetable</span>
+          <div id="examScheduling-pages" class="module-pages" style="display: block;">
+            <a href="timetable.html" class="module-nav-item module-pages-item active">
+              <span class="step-number">1</span>
+              <span class="step-label">Timetable Entry</span>
             </a>
-            <a href="../exam-scheduling/freeze.html" class="module-nav-item module-pages-item">
-              <span class="step-number">3</span>
+            <a href="freeze.html" class="module-nav-item module-pages-item">
+              <span class="step-number">2</span>
               <span class="step-label">Freeze Timetable</span>
             </a>
-            <a href="../exam-scheduling/reports.html" class="module-nav-item module-pages-item">
-              <span class="step-number">4</span>
+            <a href="reports.html" class="module-nav-item module-pages-item">
+              <span class="step-number">3</span>
               <span class="step-label">Reports</span>
             </a>
           </div>
@@ -246,7 +232,7 @@
 
         <!-- Internal Assessment Module -->
         <div>
-          <a href="../internal-assessment/marks-entry.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('internalAssessment')" title="Internal Assessment">
+          <a href="../internal-assessment/marks-entry.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('internalAssessment')">
             <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
               <i data-feather="clipboard" style="width: 18px; height: 18px;"></i>
               <span class="step-label">Internal Assessment</span>
@@ -271,7 +257,7 @@
 
         <!-- Hall Ticket Module -->
         <div>
-          <a href="../hall-ticket/generation.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('hallTicket')" title="Hall Ticket">
+          <a href="../hall-ticket/generation.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('hallTicket')">
             <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
               <i data-feather="credit-card" style="width: 18px; height: 18px;"></i>
               <span class="step-label">Hall Ticket</span>
@@ -307,7 +293,7 @@
 
         <!-- Conduct of Exam Module -->
         <div>
-          <a href="../conduct-exam/attendance.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('conductExam')" title="Conduct of Exam">
+          <a href="../conduct-exam/attendance.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('conductExam')">
             <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
               <i data-feather="check-square" style="width: 18px; height: 18px;"></i>
               <span class="step-label">Conduct of Exam</span>
@@ -339,7 +325,7 @@
 
         <!-- Evaluation & Results Module -->
         <div>
-          <a href="../evaluation-results/marks-entry.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('evaluation')" title="Evaluation & Results">
+          <a href="../evaluation-results/marks-entry.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('evaluation')">
             <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
               <i data-feather="edit" style="width: 18px; height: 18px;"></i>
               <span class="step-label">Evaluation & Results</span>
@@ -408,7 +394,7 @@
 
         <!-- Mark Sheet Module -->
         <div>
-          <a href="../mark-sheet/generation.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('markSheet')" title="Mark Sheet">
+          <a href="../mark-sheet/generation.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('markSheet')">
             <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
               <i data-feather="file-text" style="width: 18px; height: 18px;"></i>
               <span class="step-label">Mark Sheet</span>
@@ -441,7 +427,7 @@
 
         <!-- Certificates Module -->
         <div>
-          <a href="../certificates/generation.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('certificates')" title="Certificates">
+          <a href="../certificates/generation.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('certificates')">
             <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
               <i data-feather="award" style="width: 18px; height: 18px;"></i>
               <span class="step-label">Certificates</span>
@@ -473,7 +459,7 @@
 
         <!-- Student Portal Module -->
         <div>
-          <a href="../student-portal/timetable.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('studentPortal')" title="Student Portal">
+          <a href="../student-portal/timetable.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('studentPortal')">
             <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
               <i data-feather="book-open" style="width: 18px; height: 18px;"></i>
               <span class="step-label">Student Portal</span>
@@ -501,7 +487,7 @@
 
         <!-- Access Control Module -->
         <div>
-          <a href="../access-auth/login.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('accessControl')" title="Access Control">
+          <a href="../access-auth/login.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('accessControl')">
             <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
               <i data-feather="lock" style="width: 18px; height: 18px;"></i>
               <span class="step-label">Access Control</span>
@@ -524,282 +510,193 @@
           </div>
         </div>
       </nav>
-
-      <button class="sidebar-toggle" title="Toggle Sidebar (Ctrl+B)">
-        <i data-feather="chevrons-left"></i>
-      </button>
     </aside>
 
-  <!-- Main Container -->
-    <!-- Main Container -->
     <main class="main-container main-container-with-sidebar">
-    <div class="page-container">
+      <div class="page-container">
 
-      <!-- Section 1: Application Search -->
+      <!-- Section 1: Exam Session Configuration -->
       <div class="section">
         <div class="section-header">
-          <h2 class="section-title">Search Application</h2>
+          <h2 class="section-title">Exam Session Configuration</h2>
         </div>
         <div class="section-body">
-          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: end;">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
             <div class="form-group">
-              <label class="form-label">Academic Year</label>
-              <select class="form-select">
-                <option value="2024-2025" selected>2024-2025</option>
-                <option value="2023-2024">2023-2024</option>
+              <label class="form-label required">Exam Month/Year</label>
+              <input type="month" class="form-input" value="2024-12" />
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Exam Type</label>
+              <select class="form-select" id="examTypeSelect">
+                <option value="regular" selected>Regular</option>
+                <option value="arrear">Arrear</option>
+                <option value="supplementary">Supplementary</option>
+                <option value="practical">Practical</option>
               </select>
             </div>
             <div class="form-group">
-              <label class="form-label">Program</label>
+              <label class="form-label">Exam Start Date</label>
+              <input type="date" class="form-input" value="2024-12-02" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Exam End Date</label>
+              <input type="date" class="form-input" value="2024-12-20" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Add Exam Slot -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Add New Exam Slot</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+            <div class="form-group">
+              <label class="form-label required">Subject</label>
+              <select class="form-select">
+                <option value="">-- Select Subject --</option>
+                <option value="CS501">CS501 - Data Structures & Algorithms</option>
+                <option value="CS502">CS502 - DBMS</option>
+                <option value="CS503">CS503 - Operating Systems</option>
+                <option value="CS504">CS504 - Computer Networks</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Program</label>
               <select class="form-select">
                 <option value="">-- Select Program --</option>
-                <option value="btech" selected>B.Tech</option>
-                <option value="mtech">M.Tech</option>
+                <option value="BTECH-CSE">B.Tech - CSE</option>
+                <option value="BTECH-ECE">B.Tech - ECE</option>
+                <option value="BTECH-MECH">B.Tech - Mech</option>
               </select>
             </div>
             <div class="form-group">
-              <label class="form-label">Registration No / Name</label>
-              <input type="text" class="form-input" placeholder="Enter Reg No or Name" value="REG2024001" />
-            </div>
-            <div>
-              <button class="btn btn-primary" style="width: 100%;">
-                <i data-feather="search" style="width: 16px; height: 16px;"></i>
-                Search
-              </button>
-            </div>
-          </div>
-
-          <div class="alert alert-info" style="margin-top: 16px;">
-            <i data-feather="info" style="width: 20px; height: 20px;"></i>
-            <div>Showing fee details for application: <strong>REG2024001 - Rajesh Kumar</strong></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Section 2: Student & Application Details -->
-      <div class="section">
-        <div class="section-header">
-          <h2 class="section-title">Student & Application Details</h2>
-          <span class="status status-pending">
-            <span class="status-dot"></span>
-            Payment Pending
-          </span>
-        </div>
-        <div class="section-body">
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
-            <div>
-              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Student Name</div>
-              <div style="font-size: 14px; font-weight: 500;">Rajesh Kumar</div>
-            </div>
-            <div>
-              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Registration Number</div>
-              <div style="font-size: 14px; font-weight: 500;">REG2024001</div>
-            </div>
-            <div>
-              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Application Date</div>
-              <div style="font-size: 14px; font-weight: 500;">12-Nov-2024</div>
-            </div>
-            <div>
-              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Program</div>
-              <div style="font-size: 14px; font-weight: 500;">B.Tech - Computer Science</div>
-            </div>
-            <div>
-              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Year / Semester</div>
-              <div style="font-size: 14px; font-weight: 500;">III Year / V Semester</div>
-            </div>
-            <div>
-              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Verification Status</div>
-              <div>
-                <span class="status status-approved">
-                  <span class="status-dot"></span>
-                  Approved
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Section 3: Fee Calculation -->
-      <div class="section">
-        <div class="section-header">
-          <h2 class="section-title">Fee Calculation Breakdown</h2>
-          <button class="btn btn-sm btn-ghost">
-            <i data-feather="refresh-cw" style="width: 16px; height: 16px;"></i>
-            Recalculate
-          </button>
-        </div>
-        <div class="section-body">
-          <div class="table-container">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Fee Component</th>
-                  <th>Description</th>
-                  <th style="text-align: right;">Quantity</th>
-                  <th style="text-align: right;">Rate (₹)</th>
-                  <th style="text-align: right;">Amount (₹)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="font-weight: 500;">Regular Theory Subjects</td>
-                  <td>Standard theory exam fee</td>
-                  <td style="text-align: right;">6</td>
-                  <td style="text-align: right;">150</td>
-                  <td style="text-align: right;">900</td>
-                </tr>
-                <tr>
-                  <td style="font-weight: 500;">Regular Practical Subjects</td>
-                  <td>Lab/Practical exam fee</td>
-                  <td style="text-align: right;">2</td>
-                  <td style="text-align: right;">200</td>
-                  <td style="text-align: right;">400</td>
-                </tr>
-                <tr>
-                  <td style="font-weight: 500;">Arrear Subjects</td>
-                  <td>Re-examination fee for backlog</td>
-                  <td style="text-align: right;">1</td>
-                  <td style="text-align: right;">300</td>
-                  <td style="text-align: right;">300</td>
-                </tr>
-                <tr>
-                  <td style="font-weight: 500;">Late Fee</td>
-                  <td>Application submitted after deadline</td>
-                  <td style="text-align: right;">1</td>
-                  <td style="text-align: right;">500</td>
-                  <td style="text-align: right;">500</td>
-                </tr>
-                <tr style="border-top: 2px solid #E5E7EB; background: #F8F9FA;">
-                  <td colspan="4" style="font-weight: 600; font-size: 14px;">Total Exam Fee Payable</td>
-                  <td style="text-align: right; font-weight: 600; font-size: 16px; color: #2563EB;">₹ 2,100</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="alert alert-warning" style="margin-top: 16px;">
-            <i data-feather="alert-circle" style="width: 20px; height: 20px;"></i>
-            <div>Late fee of ₹500 applied. Application submitted 3 days after deadline (09-Nov-2024).</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Section 4: Payment Details & Verification -->
-      <div class="section">
-        <div class="section-header">
-          <h2 class="section-title">Payment Details</h2>
-        </div>
-        <div class="section-body">
-          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
-            <div class="form-group">
-              <label class="form-label required">Payment Mode</label>
+              <label class="form-label required">Year/Semester</label>
               <select class="form-select">
-                <option value="">-- Select Payment Mode --</option>
-                <option value="cash">Cash</option>
-                <option value="dd">Demand Draft</option>
-                <option value="cheque">Cheque</option>
-                <option value="online" selected>Online Transfer/UPI</option>
+                <option value="">-- Select --</option>
+                <option value="3-5">III Year / V Semester</option>
+                <option value="3-6">III Year / VI Semester</option>
               </select>
             </div>
             <div class="form-group">
-              <label class="form-label required">Transaction ID / Reference No</label>
-              <input type="text" class="form-input" placeholder="Enter transaction ID" value="TXN20241112001234" />
+              <label class="form-label required">Exam Date</label>
+              <input type="date" class="form-input" />
             </div>
             <div class="form-group">
-              <label class="form-label required">Payment Date</label>
-              <input type="date" class="form-input" value="2024-11-12" />
+              <label class="form-label required">Session</label>
+              <select class="form-select" id="sessionSelect">
+                <option value="">-- Select Session --</option>
+                <option value="FN">FN (10:00 AM - 1:00 PM)</option>
+                <option value="AN">AN (2:00 PM - 5:00 PM)</option>
+              </select>
             </div>
             <div class="form-group">
-              <label class="form-label required">Amount Paid (₹)</label>
-              <input type="number" class="form-input" placeholder="Enter amount" value="2100" />
+              <label class="form-label required">Exam Hall/Venue</label>
+              <select class="form-select">
+                <option value="">-- Select Venue --</option>
+                <option value="Hall-A">Main Hall A (Capacity: 300)</option>
+                <option value="Hall-B">Main Hall B (Capacity: 250)</option>
+                <option value="Lab-1">CSE Lab 1 (Capacity: 60)</option>
+              </select>
             </div>
-            <div class="form-group">
-              <label class="form-label">Bank Name</label>
-              <input type="text" class="form-input" placeholder="Enter bank name" value="State Bank of India" />
-            </div>
-            <div class="form-group">
-              <label class="form-label">Branch</label>
-              <input type="text" class="form-input" placeholder="Enter branch" value="Main Branch" />
+            <div id="qpCodeGroup" class="form-group" style="grid-column: span 3;">
+              <label class="form-label required">Question Paper (QP) Code</label>
+              <input type="text" class="form-input" id="qpCodeInput" placeholder="Enter QP Code (e.g., QP-2024-CSE-501)" />
+              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Unique code for question paper printing and tracking</div>
             </div>
           </div>
 
-          <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #E5E7EB;">
-            <div class="form-group">
-              <label class="form-label required">Upload Payment Receipt</label>
-              <div style="display: flex; gap: 12px; align-items: center;">
-                <input type="file" class="form-input" accept=".pdf,.jpg,.jpeg,.png" style="flex: 1;" />
-                <button class="btn btn-secondary">
-                  <i data-feather="upload" style="width: 16px; height: 16px;"></i>
-                  Upload
-                </button>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding: 12px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px;">
+            <div style="display: flex; gap: 24px;">
+              <div>
+                <div class="text-xs" style="color: #6B7280;">Expected Students</div>
+                <div style="font-weight: 600; font-size: 14px;">245</div>
               </div>
-              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Accepted formats: PDF, JPG, PNG (Max 5MB)</div>
-            </div>
-
-            <div style="margin-top: 16px; padding: 12px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px;">
-              <div style="display: flex; align-items: center; justify-content: space-between;">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                  <i data-feather="file-text" style="width: 20px; height: 20px; color: #2563EB;"></i>
-                  <div>
-                    <div style="font-size: 13px; font-weight: 500;">payment_receipt_REG2024001.pdf</div>
-                    <div class="text-xs" style="color: #6B7280;">Uploaded on 12-Nov-2024, 2:45 PM • 245 KB</div>
-                  </div>
-                </div>
-                <div style="display: flex; gap: 8px;">
-                  <button class="btn btn-sm btn-ghost">
-                    <i data-feather="eye" style="width: 16px; height: 16px;"></i>
-                  </button>
-                  <button class="btn btn-sm btn-ghost">
-                    <i data-feather="download" style="width: 16px; height: 16px;"></i>
-                  </button>
-                  <button class="btn btn-sm btn-ghost text-error">
-                    <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
-                  </button>
-                </div>
+              <div>
+                <div class="text-xs" style="color: #6B7280;">Venue Capacity</div>
+                <div style="font-weight: 600; font-size: 14px;">300</div>
+              </div>
+              <div>
+                <div class="text-xs" style="color: #6B7280;">Available Seats</div>
+                <div style="font-weight: 600; font-size: 14px; color: #22C55E;">55</div>
               </div>
             </div>
+            <button class="btn btn-primary">
+              <i data-feather="plus" style="width: 16px; height: 16px;"></i>
+              Add Exam Slot
+            </button>
           </div>
+        </div>
+      </div>
 
-          <div style="margin-top: 24px;">
-            <div class="form-group">
-              <label class="form-label">Verification Remarks</label>
-              <textarea class="form-input" rows="3" placeholder="Add any remarks about payment verification..."></textarea>
-            </div>
+      <!-- Section 3: Calendar View -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Exam Calendar - December 2024</h2>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-sm btn-ghost">
+              <i data-feather="chevron-left" style="width: 16px; height: 16px;"></i>
+            </button>
+            <button class="btn btn-sm btn-ghost">Today</button>
+            <button class="btn btn-sm btn-ghost">
+              <i data-feather="chevron-right" style="width: 16px; height: 16px;"></i>
+            </button>
           </div>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px;">
+            <!-- Calendar header -->
+            <div style="padding: 8px; text-align: center; font-weight: 600; font-size: 11px; color: #6B7280;">SUN</div>
+            <div style="padding: 8px; text-align: center; font-weight: 600; font-size: 11px; color: #6B7280;">MON</div>
+            <div style="padding: 8px; text-align: center; font-weight: 600; font-size: 11px; color: #6B7280;">TUE</div>
+            <div style="padding: 8px; text-align: center; font-weight: 600; font-size: 11px; color: #6B7280;">WED</div>
+            <div style="padding: 8px; text-align: center; font-weight: 600; font-size: 11px; color: #6B7280;">THU</div>
+            <div style="padding: 8px; text-align: center; font-weight: 600; font-size: 11px; color: #6B7280;">FRI</div>
+            <div style="padding: 8px; text-align: center; font-weight: 600; font-size: 11px; color: #6B7280;">SAT</div>
 
-          <!-- Validation Summary -->
-          <div style="margin-top: 24px; padding: 16px; background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 6px;">
-            <div style="font-weight: 600; margin-bottom: 12px; color: #166534;">
-              <i data-feather="check-circle" style="width: 20px; height: 20px; color: #22C55E;"></i>
-              Payment Validation Checks
+            <!-- Calendar days -->
+            <div style="padding: 8px; border: 1px solid #E5E7EB; border-radius: 4px; min-height: 80px; background: #F8F9FA;">
+              <div class="text-xs" style="color: #9CA3AF;">1</div>
             </div>
-            <div style="display: grid; gap: 8px;">
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <i data-feather="check" style="width: 16px; height: 16px; color: #22C55E;"></i>
-                <span style="font-size: 13px;">Amount matches calculated fee (₹2,100)</span>
-              </div>
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <i data-feather="check" style="width: 16px; height: 16px; color: #22C55E;"></i>
-                <span style="font-size: 13px;">Payment date within deadline (Before 15-Nov-2024)</span>
-              </div>
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <i data-feather="check" style="width: 16px; height: 16px; color: #22C55E;"></i>
-                <span style="font-size: 13px;">Receipt uploaded and verified</span>
-              </div>
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <i data-feather="check" style="width: 16px; height: 16px; color: #22C55E;"></i>
-                <span style="font-size: 13px;">Transaction ID format valid</span>
-              </div>
+            <div style="padding: 8px; border: 1px solid #2563EB; border-radius: 4px; min-height: 80px; background: #EFF6FF;">
+              <div class="text-xs" style="color: #2563EB; font-weight: 600; margin-bottom: 4px;">2</div>
+              <div class="text-xs" style="background: #2563EB; color: white; padding: 2px 4px; border-radius: 2px; margin-bottom: 2px;">FN: CS501</div>
+              <div class="text-xs" style="background: #2563EB; color: white; padding: 2px 4px; border-radius: 2px;">AN: CS502</div>
+            </div>
+            <div style="padding: 8px; border: 1px solid #E5E7EB; border-radius: 4px; min-height: 80px;">
+              <div class="text-xs" style="color: #6B7280;">3</div>
+            </div>
+            <div style="padding: 8px; border: 1px solid #2563EB; border-radius: 4px; min-height: 80px; background: #EFF6FF;">
+              <div class="text-xs" style="color: #2563EB; font-weight: 600; margin-bottom: 4px;">4</div>
+              <div class="text-xs" style="background: #2563EB; color: white; padding: 2px 4px; border-radius: 2px;">FN: CS503</div>
+            </div>
+            <div style="padding: 8px; border: 1px solid #E5E7EB; border-radius: 4px; min-height: 80px;">
+              <div class="text-xs" style="color: #6B7280;">5</div>
+            </div>
+            <div style="padding: 8px; border: 1px solid #2563EB; border-radius: 4px; min-height: 80px; background: #EFF6FF;">
+              <div class="text-xs" style="color: #2563EB; font-weight: 600; margin-bottom: 4px;">6</div>
+              <div class="text-xs" style="background: #2563EB; color: white; padding: 2px 4px; border-radius: 2px;">FN: CS504</div>
+            </div>
+            <div style="padding: 8px; border: 1px solid #E5E7EB; border-radius: 4px; min-height: 80px;">
+              <div class="text-xs" style="color: #6B7280;">7</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Section 5: Payment History (for partial payments) -->
+      <!-- Section 4: Scheduled Exams List -->
       <div class="section">
         <div class="section-header">
-          <h2 class="section-title">Payment History</h2>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Scheduled Exams</h2>
+            <span class="status status-approved">
+              <span class="status-dot"></span>
+              24 Exams Scheduled
+            </span>
+          </div>
         </div>
         <div class="section-body">
           <div class="table-container">
@@ -807,30 +704,131 @@
               <thead>
                 <tr>
                   <th>Date</th>
-                  <th>Transaction ID</th>
-                  <th>Mode</th>
-                  <th style="text-align: right;">Amount (₹)</th>
+                  <th>Session</th>
+                  <th>Subject Code</th>
+                  <th>Subject Name</th>
+                  <th>Program</th>
+                  <th>Year/Sem</th>
+                  <th style="text-align: center;">Students</th>
+                  <th>Venue</th>
                   <th>Status</th>
-                  <th>Verified By</th>
                   <th style="text-align: right;">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>12-Nov-2024</td>
-                  <td style="font-family: monospace;">TXN20241112001234</td>
-                  <td>Online Transfer</td>
-                  <td style="text-align: right;">2,100</td>
+                  <td>02-Dec-2024</td>
                   <td>
                     <span class="status status-approved">
                       <span class="status-dot"></span>
-                      Verified
+                      FN
                     </span>
                   </td>
-                  <td>Accounts Team</td>
+                  <td style="font-family: monospace;">CS501</td>
+                  <td>Data Structures & Algorithms</td>
+                  <td>B.Tech CSE</td>
+                  <td>III/V</td>
+                  <td style="text-align: center;">245</td>
+                  <td>Hall A</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Valid
+                    </span>
+                  </td>
                   <td style="text-align: right;">
-                    <button class="btn btn-sm btn-ghost" title="View Receipt">
-                      <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost text-error" title="Delete">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>02-Dec-2024</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      AN
+                    </span>
+                  </td>
+                  <td style="font-family: monospace;">CS502</td>
+                  <td>DBMS</td>
+                  <td>B.Tech CSE</td>
+                  <td>III/V</td>
+                  <td style="text-align: center;">242</td>
+                  <td>Hall A</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Valid
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost text-error" title="Delete">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>04-Dec-2024</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      FN
+                    </span>
+                  </td>
+                  <td style="font-family: monospace;">CS503</td>
+                  <td>Operating Systems</td>
+                  <td>B.Tech CSE</td>
+                  <td>III/V</td>
+                  <td style="text-align: center;">238</td>
+                  <td>Hall B</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Valid
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost text-error" title="Delete">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>06-Dec-2024</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      FN
+                    </span>
+                  </td>
+                  <td style="font-family: monospace;">CS504</td>
+                  <td>Computer Networks</td>
+                  <td>B.Tech CSE</td>
+                  <td>III/V</td>
+                  <td style="text-align: center;">240</td>
+                  <td>Hall A</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Valid
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost text-error" title="Delete">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
                     </button>
                   </td>
                 </tr>
@@ -840,14 +838,61 @@
         </div>
       </div>
 
+      <!-- Section 5: Conflict Detection -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Conflict Detection Report</h2>
+        </div>
+        <div class="section-body">
+          <div class="alert alert-success">
+            <i data-feather="check-circle" style="width: 20px; height: 20px;"></i>
+            <div>No scheduling conflicts detected. All exams are properly spaced and venues are available.</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </main>
+  </div>
 
   <script src="../js/cems.js"></script>
   <script>
     feather.replace();
   </script>
-  </div>
+  <script>
+    (function(){
+      var examType = document.getElementById('examTypeSelect');
+      var qpGroup = document.getElementById('qpCodeGroup');
+      if (!examType || !qpGroup) return;
 
+      // create a small hint element under the exam type select (non-invasive)
+      var hint = document.getElementById('examTypeHint');
+      if (!hint) {
+        hint = document.createElement('div');
+        hint.id = 'examTypeHint';
+        hint.className = 'text-xs';
+        hint.style.color = '#6B7280';
+        hint.style.marginTop = '6px';
+        examType.parentNode.appendChild(hint);
+      }
+
+      function updateByType(){
+        var v = examType.value;
+        if (v === 'practical'){
+          qpGroup.style.display = 'none';
+          hint.textContent = 'Practical exams usually use lab-specific paper handling; QP code is not required here.';
+        } else {
+          qpGroup.style.display = '';
+          if (v === 'arrear') hint.textContent = 'Arrear exams schedule students with outstanding backlog subjects.';
+          else if (v === 'supplementary') hint.textContent = 'Supplementary exams are for eligible candidates needing re-examination.';
+          else hint.textContent = '';
+        }
+      }
+
+      examType.addEventListener('change', updateByType);
+      // initialize on load
+      updateByType();
+    })();
+  </script>
 </body>
 </html>

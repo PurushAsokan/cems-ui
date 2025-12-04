@@ -3,24 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Master Entry - CEMS</title>
+  <title>Exam Scheduling - Timetable Reports - CEMS</title>
   <link rel="stylesheet" href="../css/cems.css">
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-  <style>
-    /* Page-specific sizing to match Master Data pages (visual parity) */
-    .page-container { font-size: var(--font-size-base); }
-    .page-container .form-input,
-    .page-container .form-select,
-    .page-container textarea,
-    .page-container .data-table,
-    .page-container .data-table td,
-    .page-container .data-table th,
-    .page-container .btn {
-      font-size: var(--font-size-base);
-    }
-    .page-container .section-title { font-size: var(--font-size-lg); }
-    .page-container .form-label { font-size: var(--font-size-sm); }
-  </style>
 </head>
 <body>
 
@@ -31,48 +16,49 @@
       <span>CEMS</span>
     </a>
 
-    <!-- Module Dropdown -->
     <div class="dropdown dropdown-left">
       <button class="btn btn-ghost dropdown-toggle">
-        Exam Registration
+        Exam Scheduling
         <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
       </button>
-      <div class="dropdown-menu" style="width: 240px; max-height: 500px; overflow-y: auto;">
-        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Regular Registration</div>
-        <a href="data-entry.html" class="dropdown-item active">Data Entry</a>
-        <a href="verification.html" class="dropdown-item">Verification Queue</a>
-        <a href="fee-calculation.html" class="dropdown-item">Fee Calculation &amp; Verification</a>
-        <a href="ern-batch.html" class="dropdown-item">ERN Generation</a>
-        <a href="registration-list.html" class="dropdown-item">Registration List</a>
-        <a href="reports.html" class="dropdown-item">Reports</a>
+      <div class="dropdown-menu" style="width: 240px;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Regular Exams</div>
+        <a href="degree-subject-setup.html" class="dropdown-item">Degree & Subject Setup</a>
+        <a href="program-subject-mapping.html" class="dropdown-item">Program-Subject Mapping</a>
+        <a href="timetable-entry.html" class="dropdown-item">Timetable Entry</a>
+        <a href="timetable-verification.html" class="dropdown-item">Timetable Verification</a>
         <div class="dropdown-divider"></div>
-        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Registration</div>
-        <a href="supplementary-registration.html" class="dropdown-item">Supplementary Registration</a>
-        <a href="supplementary-verification.html" class="dropdown-item">Supplementary Verification</a>
-        <a href="supplementary-list.html" class="dropdown-item">Supplementary List & Analytics</a>
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Exams</div>
+        <a href="supplementary-timetable.html" class="dropdown-item">Supplementary Timetable</a>
+        <a href="supplementary-timetable-verification.html" class="dropdown-item">Supplementary Verification</a>
       </div>
     </div>
 
     <div class="topnav-actions">
-      <!-- Search -->
       <div class="topnav-search">
-        <input type="search" class="form-input" placeholder="Search application..." />
+        <input type="search" id="globalSearch" class="form-input" placeholder="Search (Ctrl+K)" />
       </div>
 
-      <!-- Notifications -->
-      <button class="btn btn-icon btn-ghost">
+      <button class="btn btn-icon btn-ghost" title="Notifications">
         <i data-feather="bell" style="width: 20px; height: 20px;"></i>
       </button>
 
-      <!-- User Menu -->
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
       <div class="dropdown">
         <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
           <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">OP</div>
-          <span style="font-size: 13px;">OP-001</span>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Data Entry Operator</div>
+            <div style="font-size: 11px; color: #6B7280;">Staff</div>
+          </div>
           <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
         </button>
         <div class="dropdown-menu">
           <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
           <div class="dropdown-divider"></div>
           <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
         </div>
@@ -85,13 +71,18 @@
     <div class="breadcrumb">
       <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
       <span class="breadcrumb-separator">›</span>
-      <span class="breadcrumb-item">Exam Registration</span>
+      <span class="breadcrumb-item">Exam Scheduling</span>
       <span class="breadcrumb-separator">›</span>
-      <span class="breadcrumb-item active">Student Master Entry</span>
+      <span class="breadcrumb-item active">Reports</span>
+    </div>
+    <div class="context-actions">
+      <button id="btnPrint" class="btn btn-primary">
+        <i data-feather="printer" style="width: 16px; height: 16px;"></i>
+        Print
+      </button>
     </div>
   </div>
 
-  <!-- Main Container with Sidebar -->
   <div class="main-with-sidebar">
     <aside class="module-sidebar">
       <div class="module-sidebar-header">
@@ -145,20 +136,20 @@
         <!-- PRE-EXAMINATION Section -->
         <div class="module-section-header">Pre-Examination</div>
 
-        <!-- Exam Registration Module - EXPANDED -->
+        <!-- Exam Registration Module -->
         <div>
-          <a href="data-entry.html" class="module-nav-item module-parent active" onclick="event.preventDefault(); toggleModule('examReg')" title="Exam Registration">
+          <a href="data-entry.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('examReg')" title="Exam Registration">
             <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
               <i data-feather="user-plus" style="width: 18px; height: 18px;"></i>
               <span class="step-label">Exam Registration</span>
             </div>
-            <i data-feather="chevron-down" id="examReg-chevron" style="width: 16px; height: 16px; transform: rotate(180deg); transition: transform 0.2s;"></i>
+            <i data-feather="chevron-down" id="examReg-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
           </a>
-          <div id="examReg-pages" class="module-pages" style="display: block;">
+          <div id="examReg-pages" class="module-pages" style="display: none;">
 
             <!-- Sub-Topic A: Student Master & ERN -->
             <div class="module-sub-section">Student Master & ERN</div>
-            <a href="data-entry.html" class="module-nav-item module-pages-item active">
+            <a href="data-entry.html" class="module-nav-item module-pages-item">
               <span class="step-number">A.1</span>
               <span class="step-label">Student Master Entry</span>
             </a>
@@ -211,27 +202,26 @@
           </div>
         </div>
 
-        <!-- Other modules collapsed by default -->
-        <!-- Exam Scheduling -->
+        <!-- Exam Scheduling Module -->
         <div>
-          <a href="../exam-scheduling/timetable.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('examScheduling')" title="Exam Scheduling">
+          <a href="timetable.html" class="module-nav-item module-parent active" onclick="event.preventDefault(); toggleModule('examScheduling')" title="Exam Scheduling">
             <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
               <i data-feather="calendar" style="width: 18px; height: 18px;"></i>
               <span class="step-label">Exam Scheduling</span>
             </div>
-            <i data-feather="chevron-down" id="examScheduling-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+            <i data-feather="chevron-down" id="examScheduling-chevron" style="width: 16px; height: 16px; transform: rotate(180deg); transition: transform 0.2s;"></i>
           </a>
-          <div id="examScheduling-pages" class="module-pages" style="display: none;">
+          <div id="examScheduling-pages" class="module-pages" style="display: block;">
             <a href="../exam-scheduling/timetable.html" class="module-nav-item module-pages-item">
-              <span class="step-number">2</span>
+              <span class="step-number">1</span>
               <span class="step-label">Timetable</span>
             </a>
             <a href="../exam-scheduling/freeze.html" class="module-nav-item module-pages-item">
-              <span class="step-number">3</span>
+              <span class="step-number">2</span>
               <span class="step-label">Freeze Timetable</span>
             </a>
-            <a href="../exam-scheduling/reports.html" class="module-nav-item module-pages-item">
-              <span class="step-number">4</span>
+            <a href="../exam-scheduling/reports.html" class="module-nav-item module-pages-item active">
+              <span class="step-number">3</span>
               <span class="step-label">Reports</span>
             </a>
           </div>
@@ -239,7 +229,7 @@
 
         <!-- Internal Assessment Module -->
         <div>
-          <a href="../internal-assessment/marks-entry.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('internalAssessment')" title="Internal Assessment">
+          <a href="../internal-assessment/marks-entry.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('internalAssessment')">
             <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
               <i data-feather="clipboard" style="width: 18px; height: 18px;"></i>
               <span class="step-label">Internal Assessment</span>
@@ -264,7 +254,7 @@
 
         <!-- Hall Ticket Module -->
         <div>
-          <a href="../hall-ticket/generation.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('hallTicket')" title="Hall Ticket">
+          <a href="../hall-ticket/generation.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('hallTicket')">
             <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
               <i data-feather="credit-card" style="width: 18px; height: 18px;"></i>
               <span class="step-label">Hall Ticket</span>
@@ -300,7 +290,7 @@
 
         <!-- Conduct of Exam Module -->
         <div>
-          <a href="../conduct-exam/attendance.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('conductExam')" title="Conduct of Exam">
+          <a href="../conduct-exam/attendance.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('conductExam')">
             <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
               <i data-feather="check-square" style="width: 18px; height: 18px;"></i>
               <span class="step-label">Conduct of Exam</span>
@@ -332,7 +322,7 @@
 
         <!-- Evaluation & Results Module -->
         <div>
-          <a href="../evaluation-results/marks-entry.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('evaluation')" title="Evaluation & Results">
+          <a href="../evaluation-results/marks-entry.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('evaluation')">
             <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
               <i data-feather="edit" style="width: 18px; height: 18px;"></i>
               <span class="step-label">Evaluation & Results</span>
@@ -401,7 +391,7 @@
 
         <!-- Mark Sheet Module -->
         <div>
-          <a href="../mark-sheet/generation.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('markSheet')" title="Mark Sheet">
+          <a href="../mark-sheet/generation.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('markSheet')">
             <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
               <i data-feather="file-text" style="width: 18px; height: 18px;"></i>
               <span class="step-label">Mark Sheet</span>
@@ -434,7 +424,7 @@
 
         <!-- Certificates Module -->
         <div>
-          <a href="../certificates/generation.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('certificates')" title="Certificates">
+          <a href="../certificates/generation.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('certificates')">
             <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
               <i data-feather="award" style="width: 18px; height: 18px;"></i>
               <span class="step-label">Certificates</span>
@@ -466,7 +456,7 @@
 
         <!-- Student Portal Module -->
         <div>
-          <a href="../student-portal/timetable.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('studentPortal')" title="Student Portal">
+          <a href="../student-portal/timetable.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('studentPortal')">
             <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
               <i data-feather="book-open" style="width: 18px; height: 18px;"></i>
               <span class="step-label">Student Portal</span>
@@ -494,7 +484,7 @@
 
         <!-- Access Control Module -->
         <div>
-          <a href="../access-auth/login.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('accessControl')" title="Access Control">
+          <a href="../access-auth/login.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('accessControl')">
             <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
               <i data-feather="lock" style="width: 18px; height: 18px;"></i>
               <span class="step-label">Access Control</span>
@@ -517,214 +507,277 @@
           </div>
         </div>
       </nav>
-
-      <button class="sidebar-toggle" title="Toggle Sidebar (Ctrl+B)">
-        <i data-feather="chevrons-left"></i>
-      </button>
     </aside>
 
-    <!-- Main Container -->
     <main class="main-container main-container-with-sidebar">
-    <div class="page-container">
-
-      <!-- Application Details -->
-      <div class="section">
-        <div class="section-header">
-          <h2 class="section-title">Application</h2>
-        </div>
-        <div class="section-body">
-          <div class="field-grid">
-            <div class="form-group">
-              <label class="form-label required">App Ref Number</label>
-              <input type="text" class="form-input" placeholder="APP-2025-001234" />
-            </div>
-            <div class="form-group">
-              <label class="form-label">Previous Reg No</label>
-              <input type="text" class="form-input" placeholder="24ENG1001" />
-            </div>
+      <div class="page-container">
+        <div class="section">
+          <div class="section-header">
+            <h2 class="section-title">Timetable Report</h2>
           </div>
-        </div>
-      </div>
-
-      <!-- Student Details -->
-      <div class="section">
-        <div class="section-header">
-          <h2 class="section-title">Student</h2>
-          <button class="btn btn-sm btn-ghost">Upload Photo</button>
-        </div>
-        <div class="section-body">
-          <div style="display: grid; grid-template-columns: 1fr auto; gap: 24px;">
-            <!-- Form Fields -->
-            <div style="display: grid; gap: 16px;">
-              <div class="form-group">
-                <label class="form-label required">Full Name</label>
-                <input type="text" class="form-input" placeholder="Enter full name" />
-              </div>
-
-              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+          <div class="section-body">
+            <div style="padding:16px; background:#fff; border:1px solid #E5E7EB; border-radius:6px; margin-bottom:16px;">
+              <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:16px;">
                 <div class="form-group">
-                  <label class="form-label required">Date of Birth</label>
-                  <input type="date" class="form-input" />
-                </div>
-                <div class="form-group">
-                  <label class="form-label required">Gender</label>
-                  <select class="form-select">
-                    <option value="">Select</option>
-                    <option>Male</option>
-                    <option>Female</option>
-                    <option>Other</option>
+                  <label class="form-label">Program</label>
+                  <select id="programFilter" class="form-select">
+                    <option value="">All Programs</option>
+                    <option value="B.Tech - CSE">B.Tech - CSE</option>
+                    <option value="BCA1">BCA1</option>
                   </select>
                 </div>
-                <div class="form-group">
-                  <label class="form-label required">Contact</label>
-                  <input type="tel" class="form-input" placeholder="9876543210" />
-                </div>
-              </div>
 
-              <div class="form-group">
-                <label class="form-label">Email</label>
-                <input type="email" class="form-input" placeholder="student@example.com" />
-              </div>
-
-              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
                 <div class="form-group">
-                  <label class="form-label required">Father's Name</label>
-                  <input type="text" class="form-input" placeholder="Enter father's name" />
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Father's Aadhaar Number</label>
-                  <input type="text" class="form-input" placeholder="12 digit Aadhaar" maxlength="12" pattern="[0-9]{12}" />
-                </div>
-              </div>
-
-              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
-                <div class="form-group">
-                  <label class="form-label required">Mother's Name</label>
-                  <input type="text" class="form-input" placeholder="Enter mother's name" />
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Mother's Aadhaar Number</label>
-                  <input type="text" class="form-input" placeholder="12 digit Aadhaar" maxlength="12" pattern="[0-9]{12}" />
-                </div>
-              </div>
-
-              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
-                <div class="form-group">
-                  <label class="form-label required">Category</label>
-                  <select class="form-select">
-                    <option value="">Select</option>
-                    <option>General</option>
-                    <option>OBC</option>
-                    <option>SC</option>
-                    <option>ST</option>
+                  <label class="form-label">Degree</label>
+                  <select id="degreeFilter" class="form-select">
+                    <option value="">All Degrees</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
                   </select>
                 </div>
+
                 <div class="form-group">
-                  <label class="form-label">Caste</label>
-                  <input type="text" class="form-input" placeholder="Enter caste" />
+                  <label class="form-label">Year</label>
+                  <select id="yearFilter" class="form-select">
+                    <option value="">All Years</option>
+                    <option value="I">I</option>
+                    <option value="II">II</option>
+                    <option value="III">III</option>
+                  </select>
                 </div>
+
                 <div class="form-group">
-                  <label class="form-label">Aadhaar Number</label>
-                  <input type="text" class="form-input" placeholder="12 digit Aadhaar" maxlength="12" />
+                  <label class="form-label">Semester</label>
+                  <select id="semFilter" class="form-select">
+                    <option value="">All Semesters</option>
+                    <option value="V">V</option>
+                    <option value="VI">VI</option>
+                  </select>
                 </div>
+
                 <div class="form-group">
-                  <label class="form-label">Nationality</label>
-                  <input type="text" class="form-input" value="INDIAN" readonly />
+                  <label class="form-label">Subject</label>
+                  <input type="text" id="subjectFilter" class="form-input" placeholder="Subject (text)" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Exam Type</label>
+                  <select id="examTypeFilter" class="form-select">
+                    <option value="">All Exam Types</option>
+                    <option value="regular">Regular</option>
+                    <option value="arrear">Arrear</option>
+                    <option value="supplementary">Supplementary</option>
+                    <option value="practical">Practical</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Session</label>
+                  <select id="sessionFilter" class="form-select">
+                    <option value="">All Sessions</option>
+                    <option value="FN">FN</option>
+                    <option value="AN">AN</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Date</label>
+                  <input type="date" id="dateFilter" class="form-input" />
                 </div>
               </div>
-
-              <div class="form-group">
-                <label class="form-label required">Address (Communication)</label>
-                <textarea class="form-input" rows="2" placeholder="Enter current communication address"></textarea>
+              <div style="display:flex; gap:8px; margin-top:16px;">
+                <button id="btnClearFilters" class="btn btn-ghost">Clear</button>
+                <button id="btnSearch" class="btn btn-primary">Search</button>
               </div>
             </div>
-
-            <!-- Photo Upload -->
-            <div style="width: 140px;">
-              <label class="form-label">Photo</label>
-              <div style="width: 120px; height: 140px; border: 2px dashed #E5E7EB; border-radius: 4px; display: flex; align-items: center; justify-content: center; background: #F8F9FA; cursor: pointer;">
-                <div style="text-align: center; color: #6B7280; font-size: 11px;">
-                  <i data-feather="user" style="width: 32px; height: 32px; margin: 0 auto 8px; display: block;"></i>
-                  <div>Click to<br/>upload</div>
-                </div>
-              </div>
+            <div class="table-container">
+              <table id="timetableReportTable" class="data-table" style="width:100%;">
+                <thead>
+                  <tr>
+                    <th>PROGRAM</th>
+                    <th>DEGREE</th>
+                    <th>YEAR</th>
+                    <th>SEM</th>
+                    <th>SUBJECT</th>
+                    <th>DATE</th>
+                    <th>SESSION</th>
+                    <th>EXAM TYPE</th>
+                    <th>QPCODE</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- sample rows (replace with real data) -->
+                  <tr>
+                    <td>BCA1</td>
+                    <td>B</td>
+                    <td>II</td>
+                    <td>B</td>
+                    <td>PYTHON PROGRAMMING</td>
+                    <td>2024-12-31</td>
+                    <td>AN</td>
+                    <td>regular</td>
+                    <td>B821CBCS/921CBCS/1721CBCS</td>
+                  </tr>
+                  <tr>
+                    <td>BCA1</td>
+                    <td>B</td>
+                    <td>II</td>
+                    <td>B</td>
+                    <td>DATA STRUCTURES &amp; ALGORITHMS</td>
+                    <td>2025-01-02</td>
+                    <td>AN</td>
+                    <td>regular</td>
+                    <td>B822CBCS/922CBCS/1722CBCS</td>
+                  </tr>
+                  <tr>
+                    <td>BCA1</td>
+                    <td>C</td>
+                    <td>III</td>
+                    <td>C</td>
+                    <td>OBJECT ORIENTED PROGRAMMING USING JAVA</td>
+                    <td>2024-12-18</td>
+                    <td>FN</td>
+                    <td>regular</td>
+                    <td>B831CBCS/931CBCS/1731CBCS</td>
+                  </tr>
+                  <tr>
+                    <td>BCA1</td>
+                    <td>D</td>
+                    <td>III</td>
+                    <td>D</td>
+                    <td>DATABASE MANAGEMENT SYSTEM</td>
+                    <td>2024-12-18</td>
+                    <td>AN</td>
+                    <td>supplementary</td>
+                    <td>B842CBCS/942CBCS/1741CBCS</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Academic Details -->
-      <div class="section">
-        <div class="section-header">
-          <h2 class="section-title">Academic</h2>
-        </div>
-        <div class="section-body">
-          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
-            <div class="form-group">
-              <label class="form-label required">Program</label>
-              <select class="form-select">
-                <option value="">Select</option>
-                <option>B.Tech - CSE</option>
-                <option>B.Tech - ECE</option>
-                <option>B.Tech - MECH</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label required">Department</label>
-              <select class="form-select">
-                <option value="">Select</option>
-                <option>Computer Science</option>
-                <option>Electronics</option>
-                <option>Mechanical</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label required">Year</label>
-              <select class="form-select">
-                <option value="">Select</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Year of Admission</label>
-              <select class="form-select">
-                <option value="">Select</option>
-                <option>2025</option>
-                <option>2024</option>
-                <option>2023</option>
-                <option>2022</option>
-              </select>
-              <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Academic year when student joined</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Form Actions -->
-      <div class="section">
-        <div class="section-body" style="display: flex; justify-content: flex-end; gap: 12px; padding-top: 8px; padding-bottom: 8px;">
-          <button class="btn btn-secondary">
-            <i data-feather="x" style="width: 16px; height: 16px;"></i>
-            Clear Form
-          </button>
-          <button class="btn btn-primary">
-            <i data-feather="check-circle" style="width: 16px; height: 16px;"></i>
-            Submit for Verification
-          </button>
-        </div>
-      </div>
-
-    </div>
-  </main>
-
-  </div> <!-- End main-with-sidebar -->
+    </main>
+  </div>
 
   <script src="../js/cems.js"></script>
   <script>
     feather.replace();
+
+    (function(){
+      var table = document.getElementById('timetableReportTable');
+      var globalSearch = document.getElementById('globalSearch');
+      var programFilter = document.getElementById('programFilter');
+      var degreeFilter = document.getElementById('degreeFilter');
+      var yearFilter = document.getElementById('yearFilter');
+      var semFilter = document.getElementById('semFilter');
+      var subjectFilter = document.getElementById('subjectFilter');
+      var examTypeFilter = document.getElementById('examTypeFilter');
+      var sessionFilter = document.getElementById('sessionFilter');
+      var dateFilter = document.getElementById('dateFilter');
+      var btnClear = document.getElementById('btnClearFilters');
+      var btnSearch = document.getElementById('btnSearch');
+      var btnPrint = document.getElementById('btnPrint');
+
+      function rowMatches(row){
+        var txt = row.textContent.toLowerCase();
+        var gs = (globalSearch && globalSearch.value) ? globalSearch.value.toLowerCase() : '';
+        if (gs && txt.indexOf(gs) === -1) return false;
+        if (programFilter && programFilter.value){
+          if (row.cells[0].textContent.trim() !== programFilter.value) return false;
+        }
+        if (degreeFilter && degreeFilter.value){
+          if (row.cells[1].textContent.trim() !== degreeFilter.value) return false;
+        }
+        if (yearFilter && yearFilter.value){
+          if (row.cells[2].textContent.trim() !== yearFilter.value) return false;
+        }
+        if (semFilter && semFilter.value){
+          if (row.cells[3].textContent.trim() !== semFilter.value) return false;
+        }
+        if (subjectFilter && subjectFilter.value){
+          if (row.cells[4].textContent.toLowerCase().indexOf(subjectFilter.value.toLowerCase()) === -1) return false;
+        }
+        if (examTypeFilter && examTypeFilter.value){
+          if (row.cells[7].textContent.trim() !== examTypeFilter.value) return false;
+        }
+        if (sessionFilter && sessionFilter.value){
+          if (row.cells[6].textContent.trim() !== sessionFilter.value) return false;
+        }
+        if (dateFilter && dateFilter.value){
+          if (row.cells[5].textContent.trim() !== dateFilter.value) return false;
+        }
+        return true;
+      }
+
+      function filterTable(){
+        var tbody = table.tBodies[0];
+        Array.from(tbody.rows).forEach(function(r){
+          r.style.display = rowMatches(r) ? '' : 'none';
+        });
+      }
+
+      if (globalSearch) globalSearch.addEventListener('input', filterTable);
+      if (programFilter) programFilter.addEventListener('change', filterTable);
+      if (degreeFilter) degreeFilter.addEventListener('change', filterTable);
+      if (yearFilter) yearFilter.addEventListener('change', filterTable);
+      if (semFilter) semFilter.addEventListener('change', filterTable);
+      if (subjectFilter) subjectFilter.addEventListener('input', filterTable);
+      if (examTypeFilter) examTypeFilter.addEventListener('change', filterTable);
+      if (sessionFilter) sessionFilter.addEventListener('change', filterTable);
+      if (dateFilter) dateFilter.addEventListener('change', filterTable);
+      if (btnClear) btnClear.addEventListener('click', function(){
+        if (globalSearch) globalSearch.value = '';
+        if (programFilter) programFilter.value = '';
+        if (degreeFilter) degreeFilter.value = '';
+        if (yearFilter) yearFilter.value = '';
+        if (semFilter) semFilter.value = '';
+        if (subjectFilter) subjectFilter.value = '';
+        if (examTypeFilter) examTypeFilter.value = '';
+        if (sessionFilter) sessionFilter.value = '';
+        if (dateFilter) dateFilter.value = '';
+        filterTable();
+      });
+      if (btnSearch) btnSearch.addEventListener('click', function(){ filterTable(); });
+
+      if (btnPrint) btnPrint.addEventListener('click', function(){
+        var tbody = table.tBodies[0];
+        var rows = Array.from(tbody.rows).filter(function(r){ return r.style.display !== 'none'; });
+        var win = window.open('', '_blank');
+        var cssHref = '../css/cems.css';
+        var html = '<!doctype html><html><head><meta charset="utf-8"><title>Timetable Report</title>' +
+          '<link rel="stylesheet" href="'+cssHref+'">' +
+          '</head><body>' +
+          '<div style="padding:16px;">' +
+          '<h2>Timetable Report</h2>' +
+          '<table style="width:100%; border-collapse: collapse;">' +
+          '<thead><tr>' +
+          '<th style="border:1px solid #ddd; padding:8px; text-align:left;">PROGRAM</th>' +
+          '<th style="border:1px solid #ddd; padding:8px; text-align:left;">DEGREE</th>' +
+          '<th style="border:1px solid #ddd; padding:8px; text-align:left;">YEAR</th>' +
+          '<th style="border:1px solid #ddd; padding:8px; text-align:left;">SEM</th>' +
+          '<th style="border:1px solid #ddd; padding:8px; text-align:left;">SUBJECT</th>' +
+          '<th style="border:1px solid #ddd; padding:8px; text-align:left;">DATE</th>' +
+          '<th style="border:1px solid #ddd; padding:8px; text-align:left;">SESSION</th>' +
+          '<th style="border:1px solid #ddd; padding:8px; text-align:left;">EXAM TYPE</th>' +
+          '<th style="border:1px solid #ddd; padding:8px; text-align:left;">QPCODE</th>' +
+          '</tr></thead><tbody>';
+        rows.forEach(function(r){
+          html += '<tr>';
+          Array.from(r.cells).forEach(function(c){
+            html += '<td style="border:1px solid #ddd; padding:8px;">' + c.textContent + '</td>';
+          });
+          html += '</tr>';
+        });
+        html += '</tbody></table></div>' +
+          '<script>window.onload=function(){ setTimeout(function(){ window.print(); },200); }<'+'/script>' +
+          '</body></html>';
+        win.document.write(html);
+        win.document.close();
+      });
+
+    })();
   </script>
 </body>
 </html>

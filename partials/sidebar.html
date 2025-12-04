@@ -1,0 +1,208 @@
+<aside class="module-sidebar">
+  <div class="module-sidebar-header">
+    <i data-feather="layout"></i>
+    <h3>All Modules</h3>
+  </div>
+
+  <nav class="module-nav" style="overflow-y: auto; max-height: calc(100vh - 200px);">
+    <!-- Dashboard Link -->
+    <a href="../dashboard.html" class="module-nav-item">
+      <i data-feather="home" style="width: 18px; height: 18px;"></i>
+      <span class="step-label">Dashboard</span>
+    </a>
+
+    <!-- System Setup Section -->
+    <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px;">System Setup</div>
+
+    <!-- Master Data Module -->
+    <div class="module-nav-item module-parent" onclick="toggleModule('masterData')">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <i data-feather="database" style="width: 18px; height: 18px;"></i>
+        <span class="step-label">Master Data</span>
+      </div>
+      <i data-feather="chevron-down" id="masterData-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+    </div>
+    <div id="masterData-pages" class="module-pages" style="display: none;">
+      <a href="../master-data/degree-subject-setup.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Degree & Subject Setup</a>
+      <a href="../master-data/program-subject-mapping.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Program-Subject Mapping</a>
+      <a href="../master-data/fee-structure.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Fee Structure</a>
+      <a href="../master-data/grading-system.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Grading System</a>
+      <a href="../master-data/user-management.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">User Management</a>
+    </div>
+
+    <!-- Exam Workflow Section -->
+    <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px;">Exam Workflow</div>
+
+    <!-- Exam Registration Module -->
+    <div class="module-nav-item module-parent" onclick="toggleModule('examReg')">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <i data-feather="user-plus" style="width: 18px; height: 18px;"></i>
+        <span class="step-label">Exam Registration</span>
+      </div>
+      <i data-feather="chevron-down" id="examReg-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+    </div>
+    <div id="examReg-pages" class="module-pages" style="display: none;">
+      <a href="../exam-registration/data-entry.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Data Entry</a>
+      <a href="../exam-registration/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+      <a href="../exam-registration/approval.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Approval</a>
+      <a href="../exam-registration/ern-generation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">ERN Generation</a>
+      <a href="../exam-registration/fee-verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Fee Verification</a>
+      <a href="../exam-registration/freeze.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Freeze Applications</a>
+      <a href="../exam-registration/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+      <a href="../exam-registration/audit-log.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Audit Log</a>
+    </div>
+
+    <!-- Exam Scheduling Module -->
+    <div class="module-nav-item module-parent" onclick="toggleModule('examScheduling')">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <i data-feather="calendar" style="width: 18px; height: 18px;"></i>
+        <span class="step-label">Exam Scheduling</span>
+      </div>
+      <i data-feather="chevron-down" id="examScheduling-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+    </div>
+    <div id="examScheduling-pages" class="module-pages" style="display: none;">
+      <a href="../exam-scheduling/timetable.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Timetable</a>
+      <a href="../exam-scheduling/freeze.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Freeze Timetable</a>
+      <a href="../exam-scheduling/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+    </div>
+
+    <!-- Internal Assessment Module -->
+    <div class="module-nav-item module-parent" onclick="toggleModule('internalAssessment')">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <i data-feather="clipboard" style="width: 18px; height: 18px;"></i>
+        <span class="step-label">Internal Assessment</span>
+      </div>
+      <i data-feather="chevron-down" id="internalAssessment-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+    </div>
+    <div id="internalAssessment-pages" class="module-pages" style="display: none;">
+      <a href="../internal-assessment/marks-entry.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Marks Entry</a>
+      <a href="../internal-assessment/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+      <a href="../internal-assessment/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+    </div>
+
+    <!-- Hall Ticket Module -->
+    <div class="module-nav-item module-parent" onclick="toggleModule('hallTicket')">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <i data-feather="credit-card" style="width: 18px; height: 18px;"></i>
+        <span class="step-label">Hall Ticket</span>
+      </div>
+      <i data-feather="chevron-down" id="hallTicket-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+    </div>
+    <div id="hallTicket-pages" class="module-pages" style="display: none;">
+      <a href="../hall-ticket/generation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Generation</a>
+      <a href="../hall-ticket/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+      <a href="../hall-ticket/seating-plan.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Seating Plan</a>
+      <a href="../hall-ticket/distribution.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Distribution</a>
+      <a href="../hall-ticket/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+    </div>
+
+    <!-- Conduct of Exam Module -->
+    <div class="module-nav-item module-parent" onclick="toggleModule('conductExam')">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <i data-feather="check-square" style="width: 18px; height: 18px;"></i>
+        <span class="step-label">Conduct of Exam</span>
+      </div>
+      <i data-feather="chevron-down" id="conductExam-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+    </div>
+    <div id="conductExam-pages" class="module-pages" style="display: none;">
+      <a href="../conduct-exam/attendance.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Attendance</a>
+      <a href="../conduct-exam/answer-sheet.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Answer Sheet Handling</a>
+      <a href="../conduct-exam/batch-prep.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Batch Preparation</a>
+      <a href="../conduct-exam/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+    </div>
+
+    <!-- Evaluation & Results Module -->
+    <div class="module-nav-item module-parent" onclick="toggleModule('evaluation')">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <i data-feather="edit" style="width: 18px; height: 18px;"></i>
+        <span class="step-label">Evaluation & Results</span>
+      </div>
+      <i data-feather="chevron-down" id="evaluation-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+    </div>
+    <div id="evaluation-pages" class="module-pages" style="display: none;">
+      <a href="../evaluation-results/marks-entry.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Marks Entry</a>
+      <a href="../evaluation-results/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+      <a href="../evaluation-results/revaluation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Revaluation</a>
+      <a href="../evaluation-results/result-compilation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Result Compilation</a>
+      <a href="../evaluation-results/grading.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Grading</a>
+      <a href="../evaluation-results/cgpa-calculation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">CGPA Calculation</a>
+      <a href="../evaluation-results/freeze.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Freeze Results</a>
+      <a href="../evaluation-results/publish.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Publish Results</a>
+      <a href="../evaluation-results/detained-students.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Detained Students</a>
+      <a href="../evaluation-results/pass-fail.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Pass/Fail Analysis</a>
+      <a href="../evaluation-results/subject-wise.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Subject-wise Analysis</a>
+      <a href="../evaluation-results/statistical.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Statistical Reports</a>
+      <a href="../evaluation-results/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+      <a href="../evaluation-results/audit-log.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Audit Log</a>
+    </div>
+
+    <!-- Mark Sheet Module -->
+    <div class="module-nav-item module-parent" onclick="toggleModule('markSheet')">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <i data-feather="file-text" style="width: 18px; height: 18px;"></i>
+        <span class="step-label">Mark Sheet</span>
+      </div>
+      <i data-feather="chevron-down" id="markSheet-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+    </div>
+    <div id="markSheet-pages" class="module-pages" style="display: none;">
+      <a href="../mark-sheet/generation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Generation</a>
+      <a href="../mark-sheet/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+      <a href="../mark-sheet/consolidated.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Consolidated Statement</a>
+      <a href="../mark-sheet/distribution.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Distribution</a>
+      <a href="../mark-sheet/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+    </div>
+
+    <!-- Certificates Module -->
+    <div class="module-nav-item module-parent" onclick="toggleModule('certificates')">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <i data-feather="award" style="width: 18px; height: 18px;"></i>
+        <span class="step-label">Certificates</span>
+      </div>
+      <i data-feather="chevron-down" id="certificates-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+    </div>
+    <div id="certificates-pages" class="module-pages" style="display: none;">
+      <a href="../certificates/generation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Generation</a>
+      <a href="../certificates/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+      <a href="../certificates/distribution.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Distribution</a>
+      <a href="../certificates/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+    </div>
+
+    <!-- Student Section -->
+    <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px;">Student Portal</div>
+
+    <!-- Student Portal Module -->
+    <div class="module-nav-item module-parent" onclick="toggleModule('studentPortal')">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <i data-feather="book-open" style="width: 18px; height: 18px;"></i>
+        <span class="step-label">Student Portal</span>
+      </div>
+      <i data-feather="chevron-down" id="studentPortal-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+    </div>
+    <div id="studentPortal-pages" class="module-pages" style="display: none;">
+      <a href="../student-portal/timetable.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Exam Timetable</a>
+      <a href="../student-portal/results.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">View Results</a>
+      <a href="../student-portal/hall-ticket.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Download Hall Ticket</a>
+    </div>
+
+    <!-- Administration Section -->
+    <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px;">Administration</div>
+
+    <!-- Access Control Module -->
+    <div class="module-nav-item module-parent" onclick="toggleModule('accessControl')">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <i data-feather="lock" style="width: 18px; height: 18px;"></i>
+        <span class="step-label">Access Control</span>
+      </div>
+      <i data-feather="chevron-down" id="accessControl-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+    </div>
+    <div id="accessControl-pages" class="module-pages" style="display: none;">
+      <a href="../access-auth/login.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Login</a>
+      <a href="../access-auth/biometric.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Biometric Auth</a>
+      <a href="../access-auth/audit-log.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Audit Log</a>
+    </div>
+  </nav>
+
+  <button class="sidebar-toggle" title="Toggle Sidebar (Ctrl+B)">
+    <i data-feather="chevrons-left"></i>
+  </button>
+</aside>

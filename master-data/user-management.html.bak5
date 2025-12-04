@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <!-- Module Dropdown -->
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Master Data
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <a href="degree-subject-setup.html" class="dropdown-item">Degree & Subject Setup</a>
+        <a href="program-subject-mapping.html" class="dropdown-item">Program-Subject Mapping</a>
+        <a href="fee-structure.html" class="dropdown-item">Fee Structure</a>
+        <a href="grading-system.html" class="dropdown-item">Grading System</a>
+        <a href="user-management.html" class="dropdown-item active">User Management</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">DK</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Dr. Kumar</div>
+            <div style="font-size: 11px; color: #6B7280;">Exam Controller</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Master Data</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">User Management</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export User List
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="user-plus" style="width: 16px; height: 16px;"></i>
+        Add New User
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container with Sidebar -->
+  <div class="main-with-sidebar">
+    <aside class="module-sidebar">
+      <div class="module-sidebar-header">
+        <i data-feather="layout"></i>
+        <h3>All Modules</h3>
+      </div>
+
+      <nav class="module-nav" style="overflow-y: auto; max-height: calc(100vh - 200px);">
+        <!-- Dashboard Link -->
+        <a href="../dashboard.html" class="module-nav-item">
+          <i data-feather="home" style="width: 18px; height: 18px;"></i>
+          <span class="step-label">Dashboard</span>
+        </a>
+
+        <!-- SYSTEM SETUP Section -->
+        <div class="module-section-header">System Setup</div>
+
+        <!-- Master Data Module - EXPANDED -->
+        <div>
+          <a href="degree-subject-setup.html" class="module-nav-item module-parent active" onclick="event.preventDefault(); toggleModule('masterData')" title="Master Data">
+            <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+              <i data-feather="database" style="width: 18px; height: 18px;"></i>
+              <span class="step-label">Master Data</span>
+            </div>
+            <i data-feather="chevron-down" id="masterData-chevron" style="width: 16px; height: 16px; transform: rotate(180deg); transition: transform 0.2s;"></i>
+          </a>
+          <div id="masterData-pages" class="module-pages" style="display: block;">
+            <a href="degree-subject-setup.html" class="module-nav-item module-pages-item">
+              <span class="step-number">1</span>
+              <span class="step-label">Degree & Subject Setup</span>
+            </a>
+            <a href="program-subject-mapping.html" class="module-nav-item module-pages-item">
+              <span class="step-number">2</span>
+              <span class="step-label">Program-Subject Mapping</span>
+            </a>
+            <a href="fee-structure.html" class="module-nav-item module-pages-item">
+              <span class="step-number">3</span>
+              <span class="step-label">Fee Structure</span>
+            </a>
+            <a href="grading-system.html" class="module-nav-item module-pages-item">
+              <span class="step-number">4</span>
+              <span class="step-label">Grading System</span>
+            </a>
+            <a href="user-management.html" class="module-nav-item module-pages-item active">
+              <span class="step-number">5</span>
+              <span class="step-label">User Management</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- PRE-EXAMINATION Section -->
+        <div class="module-section-header">Pre-Examination</div>
+
+        <!-- Exam Registration Module -->
+        <div>
+          <a href="../exam-registration/data-entry.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('examReg')" title="Exam Registration">
+            <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+              <i data-feather="user-plus" style="width: 18px; height: 18px;"></i>
+              <span class="step-label">Exam Registration</span>
+            </div>
+            <i data-feather="chevron-down" id="examReg-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+          </a>
+          <div id="examReg-pages" class="module-pages" style="display: none;">
+
+            <!-- Sub-Topic A: Student Master & ERN -->
+            <div class="module-sub-section">Student Master & ERN</div>
+            <a href="../exam-registration/data-entry.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.1</span>
+              <span class="step-label">Student Master Entry</span>
+            </a>
+            <a href="../exam-registration/document-verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.2</span>
+              <span class="step-label">Document Verification</span>
+            </a>
+            <a href="../exam-registration/ern-generation.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.3</span>
+              <span class="step-label">ERN Generation (Batch)</span>
+            </a>
+            <a href="../exam-registration/ern-approval.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.4</span>
+              <span class="step-label">Approval & Master Record</span>
+            </a>
+            <a href="../exam-registration/student-master-list.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.5</span>
+              <span class="step-label">Student Master List</span>
+            </a>
+
+            <!-- Sub-Topic B: Semester Exam Registration -->
+            <div class="module-sub-section">Semester Exam Registration</div>
+            <a href="../exam-registration/generate-applications.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.1</span>
+              <span class="step-label">Generate Applications</span>
+            </a>
+            <a href="../exam-registration/fee-calculation.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.2</span>
+              <span class="step-label">Fee Calculation</span>
+            </a>
+            <a href="../exam-registration/fee-verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.3</span>
+              <span class="step-label">Fee Verification</span>
+            </a>
+            <a href="../exam-registration/eligibility-verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.4</span>
+              <span class="step-label">Eligibility Verification</span>
+            </a>
+            <a href="../exam-registration/final-approval.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.5</span>
+              <span class="step-label">Final Approval</span>
+            </a>
+            <a href="../exam-registration/registered-students.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.6</span>
+              <span class="step-label">Registered Students</span>
+            </a>
+            <a href="../exam-registration/reports.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.7</span>
+              <span class="step-label">Reports</span>
+            </a>
+
+            <!-- Sub-Topic C: Supplementary Registration -->
+            <div class="module-sub-section">Supplementary Registration</div>
+            <a href="../exam-registration/supplementary-registration.html" class="module-nav-item module-pages-item">
+              <span class="step-number">C.1</span>
+              <span class="step-label">Supplementary Registration</span>
+            </a>
+            <a href="../exam-registration/supplementary-verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">C.2</span>
+              <span class="step-label">Supplementary Verification</span>
+            </a>
+            <a href="../exam-registration/supplementary-list.html" class="module-nav-item module-pages-item">
+              <span class="step-number">C.3</span>
+              <span class="step-label">Supplementary List</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Exam Scheduling Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('examScheduling')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="calendar" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Exam Scheduling</span>
+          </div>
+          <i data-feather="chevron-down" id="examScheduling-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="examScheduling-pages" class="module-pages" style="display: none;">
+          <a href="../exam-scheduling/course-setup.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Course Setup</a>
+          <a href="../exam-scheduling/timetable.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Timetable</a>
+          <a href="../exam-scheduling/freeze.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Freeze Timetable</a>
+          <a href="../exam-scheduling/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Internal Assessment Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('internalAssessment')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="clipboard" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Internal Assessment</span>
+          </div>
+          <i data-feather="chevron-down" id="internalAssessment-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="internalAssessment-pages" class="module-pages" style="display: none;">
+          <a href="../internal-assessment/marks-entry.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Marks Entry</a>
+          <a href="../internal-assessment/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../internal-assessment/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Hall Ticket Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('hallTicket')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="credit-card" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Hall Ticket</span>
+          </div>
+          <i data-feather="chevron-down" id="hallTicket-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="hallTicket-pages" class="module-pages" style="display: none;">
+          <a href="../hall-ticket/generation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Generation</a>
+          <a href="../hall-ticket/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../hall-ticket/seating-plan.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Seating Plan</a>
+          <a href="../hall-ticket/distribution.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Distribution</a>
+          <a href="../hall-ticket/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Conduct of Exam Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('conductExam')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="check-square" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Conduct of Exam</span>
+          </div>
+          <i data-feather="chevron-down" id="conductExam-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="conductExam-pages" class="module-pages" style="display: none;">
+          <a href="../conduct-exam/attendance.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Attendance</a>
+          <a href="../conduct-exam/answer-sheet.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Answer Sheet Handling</a>
+          <a href="../conduct-exam/batch-prep.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Batch Preparation</a>
+          <a href="../conduct-exam/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Evaluation & Results Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('evaluation')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="edit" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Evaluation & Results</span>
+          </div>
+          <i data-feather="chevron-down" id="evaluation-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="evaluation-pages" class="module-pages" style="display: none;">
+          <a href="../evaluation-results/marks-entry.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Marks Entry</a>
+          <a href="../evaluation-results/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../evaluation-results/revaluation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Revaluation</a>
+          <a href="../evaluation-results/result-compilation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Result Compilation</a>
+          <a href="../evaluation-results/grading.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Grading</a>
+          <a href="../evaluation-results/cgpa-calculation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">CGPA Calculation</a>
+          <a href="../evaluation-results/freeze.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Freeze Results</a>
+          <a href="../evaluation-results/publish.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Publish Results</a>
+          <a href="../evaluation-results/detained-students.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Detained Students</a>
+          <a href="../evaluation-results/pass-fail.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Pass/Fail Analysis</a>
+          <a href="../evaluation-results/subject-wise.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Subject-wise Analysis</a>
+          <a href="../evaluation-results/statistical.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Statistical Reports</a>
+          <a href="../evaluation-results/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+          <a href="../evaluation-results/audit-log.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Audit Log</a>
+        </div>
+
+        <!-- Mark Sheet Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('markSheet')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="file-text" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Mark Sheet</span>
+          </div>
+          <i data-feather="chevron-down" id="markSheet-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="markSheet-pages" class="module-pages" style="display: none;">
+          <a href="../mark-sheet/generation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Generation</a>
+          <a href="../mark-sheet/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../mark-sheet/consolidated.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Consolidated Statement</a>
+          <a href="../mark-sheet/distribution.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Distribution</a>
+          <a href="../mark-sheet/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Certificates Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('certificates')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="award" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Certificates</span>
+          </div>
+          <i data-feather="chevron-down" id="certificates-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="certificates-pages" class="module-pages" style="display: none;">
+          <a href="../certificates/generation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Generation</a>
+          <a href="../certificates/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../certificates/distribution.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Distribution</a>
+          <a href="../certificates/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Student Section -->
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px;">Student Portal</div>
+
+        <!-- Student Portal Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('studentPortal')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="book-open" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Student Portal</span>
+          </div>
+          <i data-feather="chevron-down" id="studentPortal-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="studentPortal-pages" class="module-pages" style="display: none;">
+          <a href="../student-portal/timetable.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Exam Timetable</a>
+          <a href="../student-portal/results.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">View Results</a>
+          <a href="../student-portal/hall-ticket.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Download Hall Ticket</a>
+        </div>
+
+        <!-- Administration Section -->
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px;">Administration</div>
+
+        <!-- Access Control Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('accessControl')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="lock" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Access Control</span>
+          </div>
+          <i data-feather="chevron-down" id="accessControl-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="accessControl-pages" class="module-pages" style="display: none;">
+          <a href="../access-auth/login.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Login</a>
+          <a href="../access-auth/biometric.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Biometric Auth</a>
+          <a href="../access-auth/audit-log.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Audit Log</a>
+        </div>
+      </nav>
+
+      <button class="sidebar-toggle" title="Toggle Sidebar (Ctrl+B)">
+        <i data-feather="chevrons-left"></i>
+      </button>
+    </aside>
+    <div id="sidebar-container"></div>
+
+    <!-- Main Container -->
+    <main class="main-container main-container-with-sidebar">
+      <div class="page-container">
+
+      <!-- Page Title -->
+      <div style="margin-bottom: 24px;">
+        <h1 class="page-title">User Management</h1>
+        <div class="text-sm text-secondary" style="margin-top: 4px;">Manage staff accounts, role assignments, and biometric authentication</div>
+        <div class="text-xs" style="margin-top: 4px; color: #D97706;">
+          <i data-feather="shield" style="width: 14px; height: 14px; vertical-align: middle;"></i>
+          Access: Super Admin Only
+        </div>
+      </div>
+
+      <!-- User Stats -->
+      <div class="stats-grid" style="margin-bottom: 24px;">
+        <div class="stat-card">
+          <div class="stat-label">Total Users</div>
+          <div class="stat-value">15</div>
+          <div class="text-xs text-success" style="margin-top: 4px;">↑ 2 new this month</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Active Sessions</div>
+          <div class="stat-value">8</div>
+          <div class="text-xs text-secondary" style="margin-top: 4px;">Currently logged in</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Pending Approvals</div>
+          <div class="stat-value">3</div>
+          <div class="text-xs text-warning" style="margin-top: 4px;">Requires review</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Roles Defined</div>
+          <div class="stat-value">5</div>
+          <div class="text-xs text-secondary" style="margin-top: 4px;">Controller to Data Entry</div>
+        </div>
+      </div>
+
+      <!-- Role Hierarchy -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Role Hierarchy & Permissions</h2>
+          <span class="text-xs text-secondary" style="margin-left: 8px;">Access levels from highest to lowest</span>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; gap: 12px;">
+
+            <!-- Super Admin Role -->
+            <div style="background: white; border: 2px solid #2563EB; border-radius: 8px; padding: 20px;">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                  <div style="width: 48px; height: 48px; background: #DBEAFE; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                    <i data-feather="shield" style="width: 24px; height: 24px; color: #2563EB;"></i>
+                  </div>
+                  <div>
+                    <div style="font-size: 16px; font-weight: 600; color: #111827;">Super Admin</div>
+                    <div class="text-sm text-secondary">Full system access and configuration rights</div>
+                  </div>
+                </div>
+                <span style="font-size: 11px; padding: 4px 12px; background: #DBEAFE; color: #2563EB; border-radius: 12px; font-weight: 500;">1 User</span>
+              </div>
+              <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #E5E7EB;">
+                <div class="text-sm" style="font-weight: 500; margin-bottom: 8px; color: #6B7280;">Key Permissions:</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                  <span class="text-xs" style="padding: 4px 8px; background: #F8F9FA; border-radius: 4px;">Master Data Management</span>
+                  <span class="text-xs" style="padding: 4px 8px; background: #F8F9FA; border-radius: 4px;">User Management</span>
+                  <span class="text-xs" style="padding: 4px 8px; background: #F8F9FA; border-radius: 4px;">System Configuration</span>
+                  <span class="text-xs" style="padding: 4px 8px; background: #F8F9FA; border-radius: 4px;">All Modules Access</span>
+                  <span class="text-xs" style="padding: 4px 8px; background: #F8F9FA; border-radius: 4px;">Audit Log Access</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Exam Controller Role -->
+            <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 20px;">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                  <div style="width: 48px; height: 48px; background: #D1FAE5; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                    <i data-feather="award" style="width: 24px; height: 24px; color: #059669;"></i>
+                  </div>
+                  <div>
+                    <div style="font-size: 16px; font-weight: 600; color: #111827;">Exam Controller</div>
+                    <div class="text-sm text-secondary">Final approval authority for all exam operations</div>
+                  </div>
+                </div>
+                <span style="font-size: 11px; padding: 4px 12px; background: #D1FAE5; color: #059669; border-radius: 12px; font-weight: 500;">2 Users</span>
+              </div>
+              <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #E5E7EB;">
+                <div class="text-sm" style="font-weight: 500; margin-bottom: 8px; color: #6B7280;">Key Permissions:</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                  <span class="text-xs" style="padding: 4px 8px; background: #F8F9FA; border-radius: 4px;">Final Approval</span>
+                  <span class="text-xs" style="padding: 4px 8px; background: #F8F9FA; border-radius: 4px;">Result Freeze</span>
+                  <span class="text-xs" style="padding: 4px 8px; background: #F8F9FA; border-radius: 4px;">Result Publishing</span>
+                  <span class="text-xs" style="padding: 4px 8px; background: #F8F9FA; border-radius: 4px;">Mark Sheet Approval</span>
+                  <span class="text-xs" style="padding: 4px 8px; background: #F8F9FA; border-radius: 4px;">Certificate Signing</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Deputy Controller Role -->
+            <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 20px;">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                  <div style="width: 48px; height: 48px; background: #FEF3C7; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                    <i data-feather="user-check" style="width: 24px; height: 24px; color: #D97706;"></i>
+                  </div>
+                  <div>
+                    <div style="font-size: 16px; font-weight: 600; color: #111827;">Deputy Controller</div>
+                    <div class="text-sm text-secondary">Level 2 verification and approval authority</div>
+                  </div>
+                </div>
+                <span style="font-size: 11px; padding: 4px 12px; background: #FEF3C7; color: #D97706; border-radius: 12px; font-weight: 500;">3 Users</span>
+              </div>
+              <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #E5E7EB;">
+                <div class="text-sm" style="font-weight: 500; margin-bottom: 8px; color: #6B7280;">Key Permissions:</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                  <span class="text-xs" style="padding: 4px 8px; background: #F8F9FA; border-radius: 4px;">Level 2 Verification</span>
+                  <span class="text-xs" style="padding: 4px 8px; background: #F8F9FA; border-radius: 4px;">Hall Ticket Approval</span>
+                  <span class="text-xs" style="padding: 4px 8px; background: #F8F9FA; border-radius: 4px;">Marks Verification</span>
+                  <span class="text-xs" style="padding: 4px 8px; background: #F8F9FA; border-radius: 4px;">Timetable Publishing</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Assistant Controller Role -->
+            <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 20px;">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                  <div style="width: 48px; height: 48px; background: #CFFAFE; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                    <i data-feather="users" style="width: 24px; height: 24px; color: #0891B2;"></i>
+                  </div>
+                  <div>
+                    <div style="font-size: 16px; font-weight: 600; color: #111827;">Assistant Controller</div>
+                    <div class="text-sm text-secondary">Level 1 verification and data management</div>
+                  </div>
+                </div>
+                <span style="font-size: 11px; padding: 4px 12px; background: #CFFAFE; color: #0891B2; border-radius: 12px; font-weight: 500;">4 Users</span>
+              </div>
+              <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #E5E7EB;">
+                <div class="text-sm" style="font-weight: 500; margin-bottom: 8px; color: #6B7280;">Key Permissions:</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                  <span class="text-xs" style="padding: 4px 8px; background: #F8F9FA; border-radius: 4px;">Level 1 Verification</span>
+                  <span class="text-xs" style="padding: 4px 8px; background: #F8F9FA; border-radius: 4px;">Data Entry Review</span>
+                  <span class="text-xs" style="padding: 4px 8px; background: #F8F9FA; border-radius: 4px;">Report Generation</span>
+                  <span class="text-xs" style="padding: 4px 8px; background: #F8F9FA; border-radius: 4px;">Student Records Access</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Data Entry Operator Role -->
+            <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 20px;">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                  <div style="width: 48px; height: 48px; background: #F8F9FA; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                    <i data-feather="edit-3" style="width: 24px; height: 24px; color: #6B7280;"></i>
+                  </div>
+                  <div>
+                    <div style="font-size: 16px; font-weight: 600; color: #111827;">Data Entry Operator</div>
+                    <div class="text-sm text-secondary">Basic data entry and record management</div>
+                  </div>
+                </div>
+                <span style="font-size: 11px; padding: 4px 12px; background: #F8F9FA; color: #6B7280; border-radius: 12px; font-weight: 500;">5 Users</span>
+              </div>
+              <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #E5E7EB;">
+                <div class="text-sm" style="font-weight: 500; margin-bottom: 8px; color: #6B7280;">Key Permissions:</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                  <span class="text-xs" style="padding: 4px 8px; background: #F8F9FA; border-radius: 4px;">Data Entry Only</span>
+                  <span class="text-xs" style="padding: 4px 8px; background: #F8F9FA; border-radius: 4px;">No Approval Rights</span>
+                  <span class="text-xs" style="padding: 4px 8px; background: #F8F9FA; border-radius: 4px;">Limited Module Access</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- User List -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">User Accounts</h2>
+          <div style="display: flex; gap: 8px;">
+            <select class="form-select" style="width: 150px;">
+              <option>All Roles</option>
+              <option>Super Admin</option>
+              <option>Exam Controller</option>
+              <option>Deputy Controller</option>
+              <option>Assistant Controller</option>
+              <option>Data Entry Operator</option>
+            </select>
+            <select class="form-select" style="width: 120px;">
+              <option>All Status</option>
+              <option>Active</option>
+              <option>Inactive</option>
+              <option>Suspended</option>
+            </select>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>User ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Department</th>
+                  <th>Biometric</th>
+                  <th>Last Login</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-family: monospace; color: #2563EB;">ADMIN-001</td>
+                  <td style="font-weight: 500;">System Admin</td>
+                  <td>admin@sgc.edu.in</td>
+                  <td><span style="font-size: 11px; padding: 4px 8px; background: #DBEAFE; color: #2563EB; border-radius: 4px; font-weight: 500;">Super Admin</span></td>
+                  <td>IT Department</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Enrolled</span></td>
+                  <td>2 min ago</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                    <button class="btn btn-sm btn-ghost"><i data-feather="key" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; color: #2563EB;">CTRL-001</td>
+                  <td style="font-weight: 500;">Dr. Kumar</td>
+                  <td>kumar@sgc.edu.in</td>
+                  <td><span style="font-size: 11px; padding: 4px 8px; background: #D1FAE5; color: #059669; border-radius: 4px; font-weight: 500;">Exam Controller</span></td>
+                  <td>Exam Department</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Enrolled</span></td>
+                  <td>15 min ago</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                    <button class="btn btn-sm btn-ghost"><i data-feather="key" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; color: #2563EB;">DEP-203</td>
+                  <td style="font-weight: 500;">Prof. Sharma</td>
+                  <td>sharma@sgc.edu.in</td>
+                  <td><span style="font-size: 11px; padding: 4px 8px; background: #FEF3C7; color: #D97706; border-radius: 4px; font-weight: 500;">Deputy Controller</span></td>
+                  <td>Exam Department</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Enrolled</span></td>
+                  <td>1 hour ago</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                    <button class="btn btn-sm btn-ghost"><i data-feather="key" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; color: #2563EB;">AST-102</td>
+                  <td style="font-weight: 500;">Ms. Priya</td>
+                  <td>priya@sgc.edu.in</td>
+                  <td><span style="font-size: 11px; padding: 4px 8px; background: #CFFAFE; color: #0891B2; border-radius: 4px; font-weight: 500;">Assistant Controller</span></td>
+                  <td>Exam Department</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Enrolled</span></td>
+                  <td>2 hours ago</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                    <button class="btn btn-sm btn-ghost"><i data-feather="key" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; color: #2563EB;">OP-001</td>
+                  <td style="font-weight: 500;">Mr. Ravi</td>
+                  <td>ravi@sgc.edu.in</td>
+                  <td><span style="font-size: 11px; padding: 4px 8px; background: #F8F9FA; color: #6B7280; border-radius: 4px; font-weight: 500;">Data Entry Operator</span></td>
+                  <td>Exam Department</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Enrolled</span></td>
+                  <td>3 hours ago</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                    <button class="btn btn-sm btn-ghost"><i data-feather="key" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; color: #2563EB;">OP-002</td>
+                  <td style="font-weight: 500;">Ms. Lakshmi</td>
+                  <td>lakshmi@sgc.edu.in</td>
+                  <td><span style="font-size: 11px; padding: 4px 8px; background: #F8F9FA; color: #6B7280; border-radius: 4px; font-weight: 500;">Data Entry Operator</span></td>
+                  <td>Exam Department</td>
+                  <td><span class="status status-pending"><span class="status-dot"></span>Pending</span></td>
+                  <td>Yesterday</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                    <button class="btn btn-sm btn-ghost"><i data-feather="key" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr style="background: #FEE2E2;">
+                  <td style="font-family: monospace; color: #2563EB;">OP-003</td>
+                  <td style="font-weight: 500;">Mr. Suresh</td>
+                  <td>suresh@sgc.edu.in</td>
+                  <td><span style="font-size: 11px; padding: 4px 8px; background: #F8F9FA; color: #6B7280; border-radius: 4px; font-weight: 500;">Data Entry Operator</span></td>
+                  <td>Exam Department</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Enrolled</span></td>
+                  <td>3 days ago</td>
+                  <td><span class="status status-rejected"><span class="status-dot"></span>Suspended</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                    <button class="btn btn-sm btn-ghost"><i data-feather="unlock" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Activity Log -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Recent User Activity</h2>
+          <button class="btn btn-sm btn-ghost">View Full Audit Log</button>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>User</th>
+                  <th>Action</th>
+                  <th>IP Address</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2025-11-27 13:42:15</td>
+                  <td>ADMIN-001 (System Admin)</td>
+                  <td>Created new user: OP-004</td>
+                  <td>192.168.1.100</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Success</span></td>
+                </tr>
+                <tr>
+                  <td>2025-11-27 12:30:42</td>
+                  <td>CTRL-001 (Dr. Kumar)</td>
+                  <td>Changed role: OP-002 to Assistant Controller</td>
+                  <td>192.168.1.50</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Success</span></td>
+                </tr>
+                <tr>
+                  <td>2025-11-27 11:15:30</td>
+                  <td>ADMIN-001 (System Admin)</td>
+                  <td>Suspended user: OP-003</td>
+                  <td>192.168.1.100</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Success</span></td>
+                </tr>
+                <tr style="background: #FEE2E2;">
+                  <td>2025-11-27 10:45:12</td>
+                  <td>OP-003 (Mr. Suresh)</td>
+                  <td>Failed login attempt (5 consecutive failures)</td>
+                  <td>192.168.1.75</td>
+                  <td><span class="status status-rejected"><span class="status-dot"></span>Failed</span></td>
+                </tr>
+                <tr>
+                  <td>2025-11-27 09:00:00</td>
+                  <td>OP-002 (Ms. Lakshmi)</td>
+                  <td>Biometric enrollment initiated</td>
+                  <td>192.168.1.65</td>
+                  <td><span class="status status-pending"><span class="status-dot"></span>Pending</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  </div> <!-- End main-with-sidebar -->
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+
+    // Load sidebar dynamically
+  </script>
+</body>
+</html>

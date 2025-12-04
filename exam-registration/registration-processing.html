@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Processing & Approval - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <!-- Module Dropdown -->
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Exam Registration
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px; max-height: 500px; overflow-y: auto;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Semester Exam Registration</div>
+        <a href="generate-applications.html" class="dropdown-item">B.1 Generate Applications</a>
+        <a href="fee-calculation.html" class="dropdown-item active">B.2 Registration Processing</a>
+        <a href="reports.html" class="dropdown-item">B.7 Reports</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <!-- Search -->
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search by ERN or Name..." />
+      </div>
+
+      <!-- Notifications -->
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <!-- Settings -->
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <!-- User Menu -->
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">EC</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Exam Controller</div>
+            <div style="font-size: 11px; color: #6B7280;">CTRL-001</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Exam Registration</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Fee Calculation &amp; Verification</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary" onclick="printRegistrationReport()">
+        <i data-feather="printer" style="width: 16px; height: 16px;"></i>
+        Print Registration Report
+      </button>
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export to Excel
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container with Sidebar -->
+  <div class="main-with-sidebar">
+    <aside class="module-sidebar">
+      <div class="module-sidebar-header">
+        <i data-feather="layout"></i>
+        <h3>All Modules</h3>
+      </div>
+
+      <nav class="module-nav" style="overflow-y: auto; max-height: calc(100vh - 200px);">
+        <!-- Dashboard Link -->
+        <a href="../dashboard.html" class="module-nav-item">
+          <i data-feather="home" style="width: 18px; height: 18px;"></i>
+          <span class="step-label">Dashboard</span>
+        </a>
+
+        <!-- SYSTEM SETUP Section -->
+        <div class="module-section-header">System Setup</div>
+
+        <!-- Master Data Module (collapsed) -->
+        <div>
+          <a href="../master-data/degree-subject-setup.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('masterData')" title="Master Data">
+            <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+              <i data-feather="database" style="width: 18px; height: 18px;"></i>
+              <span class="step-label">Master Data</span>
+            </div>
+            <i data-feather="chevron-down" id="masterData-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+          </a>
+          <div id="masterData-pages" class="module-pages" style="display: none;"></div>
+        </div>
+
+        <!-- PRE-EXAMINATION Section -->
+        <div class="module-section-header">Pre-Examination</div>
+
+        <!-- Exam Registration Module - EXPANDED -->
+        <div>
+          <a href="generate-applications.html" class="module-nav-item module-parent active" onclick="event.preventDefault(); toggleModule('examReg')" title="Exam Registration">
+            <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+              <i data-feather="user-plus" style="width: 18px; height: 18px;"></i>
+              <span class="step-label">Exam Registration</span>
+            </div>
+            <i data-feather="chevron-down" id="examReg-chevron" style="width: 16px; height: 16px; transform: rotate(180deg); transition: transform 0.2s;"></i>
+          </a>
+          <div id="examReg-pages" class="module-pages" style="display: block;">
+
+            <!-- Sub-Topic A: Student Master & ERN -->
+            <div class="module-sub-section">Student Master & ERN</div>
+            <a href="data-entry.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.1</span>
+              <span class="step-label">Student Master Entry</span>
+            </a>
+            <a href="verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.2</span>
+              <span class="step-label">Document Verification</span>
+            </a>
+            <a href="ern-generation.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.3</span>
+              <span class="step-label">ERN Generation (Batch)</span>
+            </a>
+            <a href="ern-approval.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.4</span>
+              <span class="step-label">Approval & Master Record</span>
+            </a>
+            <a href="student-master-list.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.5</span>
+              <span class="step-label">Student Master List</span>
+            </a>
+
+            <!-- Sub-Topic B: Semester Exam Registration -->
+            <div class="module-sub-section">Semester Exam Registration</div>
+            <a href="generate-applications.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.1</span>
+              <span class="step-label">Generate Applications</span>
+            </a>
+            <a href="fee-calculation.html" class="module-nav-item module-pages-item active">
+              <span class="step-number">B.2</span>
+              <span class="step-label">Fee Calculation &amp; Verification</span>
+            </a>
+            <a href="reports.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.3</span>
+              <span class="step-label">Reports</span>
+            </a>
+
+            <!-- Sub-Topic C: Supplementary Registration -->
+            <div class="module-sub-section">Supplementary Registration</div>
+            <a href="supplementary-registration.html" class="module-nav-item module-pages-item">
+              <span class="step-number">C.1</span>
+              <span class="step-label">Supplementary Registration</span>
+            </a>
+            <a href="supplementary-verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">C.2</span>
+              <span class="step-label">Supplementary Verification</span>
+            </a>
+            <a href="supplementary-list.html" class="module-nav-item module-pages-item">
+              <span class="step-number">C.3</span>
+              <span class="step-label">Supplementary List</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Other modules collapsed -->
+        <div>
+          <a href="../exam-scheduling/timetable.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('examScheduling')" title="Exam Scheduling">
+            <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+              <i data-feather="calendar" style="width: 18px; height: 18px;"></i>
+              <span class="step-label">Exam Scheduling</span>
+            </div>
+            <i data-feather="chevron-down" id="examScheduling-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+          </a>
+          <div id="examScheduling-pages" class="module-pages" style="display: none;"></div>
+        </div>
+      </nav>
+
+      <button class="sidebar-toggle" title="Toggle Sidebar (Ctrl+B)">
+        <i data-feather="chevrons-left"></i>
+      </button>
+    </aside>
+
+    <!-- Main Container -->
+    <main class="main-container main-container-with-sidebar">
+      <div class="page-container">
+
+        <!-- Alert Section -->
+        <div class="alert alert-info">
+          <i data-feather="info" style="width: 20px; height: 20px;"></i>
+          <div>
+            <strong>Registration Workflow:</strong> Process student registrations through fee calculation → payment verification → eligibility check → final approval. Use bulk actions for faster processing.
+          </div>
+        </div>
+
+        <!-- Session Summary -->
+        <div class="section">
+          <div class="section-header">
+            <h2 class="section-title">Exam Session Details</h2>
+          </div>
+          <div class="section-body">
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 20px;">
+              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; font-size: 14px;">
+                <div>
+                  <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Academic Year</div>
+                  <div style="font-weight: 600; color: #111827;">2024-2025</div>
+                </div>
+                <div>
+                  <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Exam Session</div>
+                  <div style="font-weight: 600; color: #111827;">Semester 1 - Nov 2024</div>
+                </div>
+                <div>
+                  <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Program</div>
+                  <div style="font-weight: 600; color: #111827;">B.E. - CSE - I Year - Section A</div>
+                </div>
+                <div>
+                  <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Applications</div>
+                  <div style="font-weight: 600; color: #2563EB;">65 students</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Statistics Dashboard -->
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 24px;">
+
+          <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 16px;">
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Generated</div>
+            <div style="font-size: 28px; font-weight: 600; color: #6B7280;">65</div>
+          </div>
+
+          <div style="background: white; border: 1px solid #BFDBFE; border-radius: 8px; padding: 16px;">
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Fee Calculated</div>
+            <div style="font-size: 28px; font-weight: 600; color: #2563EB;">65</div>
+          </div>
+
+          <div style="background: white; border: 1px solid #FDE68A; border-radius: 8px; padding: 16px;">
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Payment Pending</div>
+            <div style="font-size: 28px; font-weight: 600; color: #F59E0B;">8</div>
+          </div>
+
+          <div style="background: white; border: 1px solid #D1FAE5; border-radius: 8px; padding: 16px;">
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Payment Verified</div>
+            <div style="font-size: 28px; font-weight: 600; color: #10B981;">57</div>
+          </div>
+
+          <div style="background: white; border: 1px solid #D1FAE5; border-radius: 8px; padding: 16px;">
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Eligible</div>
+            <div style="font-size: 28px; font-weight: 600; color: #10B981;">55</div>
+          </div>
+
+          <div style="background: white; border: 1px solid #DBEAFE; border-radius: 8px; padding: 16px;">
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Approved</div>
+            <div style="font-size: 28px; font-weight: 600; color: #2563EB;">52</div>
+          </div>
+
+        </div>
+
+        <!-- Bulk Actions Toolbar -->
+        <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 16px; margin-bottom: 24px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-size: 14px; font-weight: 600; color: #111827;">
+              <span id="selectedCount">0</span> students selected
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn btn-sm btn-secondary" id="bulkCalculateFee" disabled>
+                <i data-feather="dollar-sign" style="width: 16px; height: 16px;"></i>
+                Calculate Fees
+              </button>
+              <button class="btn btn-sm btn-secondary" id="bulkVerifyPayment" disabled>
+                <i data-feather="check-circle" style="width: 16px; height: 16px;"></i>
+                Mark as Paid
+              </button>
+              <button class="btn btn-sm btn-secondary" id="bulkCheckEligibility" disabled>
+                <i data-feather="clipboard-check" style="width: 16px; height: 16px;"></i>
+                Check Eligibility
+              </button>
+              <button class="btn btn-sm btn-primary" id="bulkApprove" disabled>
+                <i data-feather="check-circle" style="width: 16px; height: 16px;"></i>
+                Approve Selected
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Student Registration Grid -->
+        <div class="section">
+          <div class="section-header">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <h2 class="section-title">Student Registrations</h2>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <select class="form-select" style="width: 180px;">
+                <option value="all">All Statuses</option>
+                <option value="pending">Pending Actions</option>
+                <option value="paid">Payment Verified</option>
+                <option value="eligible">Eligible</option>
+                <option value="approved">Approved</option>
+              </select>
+            </div>
+          </div>
+          <div class="section-body">
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 40px;">
+                      <input type="checkbox" id="selectAll" />
+                    </th>
+                    <th style="width: 70px;">Photo</th>
+                    <th>ERN</th>
+                    <th>Student Name</th>
+                    <th style="text-align: center;">Subjects</th>
+                    <th style="text-align: right;">Fee Amount</th>
+                    <th style="text-align: center;">Payment</th>
+                    <th style="text-align: center;">Eligibility</th>
+                    <th style="text-align: center;">Status</th>
+                    <th style="text-align: right;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <!-- Student 1 - Approved -->
+                  <tr>
+                    <td><input type="checkbox" class="student-checkbox" /></td>
+                    <td>
+                      <div style="width: 48px; height: 48px; border-radius: 4px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 16px;">
+                        AK
+                      </div>
+                    </td>
+                    <td><strong style="color: #2563EB; font-family: monospace; font-size: 13px;">2024-CSE-1000</strong></td>
+                    <td><strong>Aarav Kumar</strong></td>
+                    <td style="text-align: center;">6</td>
+                    <td style="text-align: right;"><strong>₹2,840</strong></td>
+                    <td style="text-align: center;">
+                      <span class="status status-approved">
+                        <span class="status-dot"></span>
+                        Paid
+                      </span>
+                    </td>
+                    <td style="text-align: center;">
+                      <span class="status status-approved">
+                        <span class="status-dot"></span>
+                        Eligible
+                      </span>
+                    </td>
+                    <td style="text-align: center;">
+                      <span style="background: #DBEAFE; border: 1px solid #93C5FD; padding: 4px 12px; border-radius: 16px; font-size: 13px; font-weight: 600; color: #1E40AF;">
+                        ⭐ Approved
+                      </span>
+                    </td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-ghost" title="View Details">
+                        <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Student 2 - Eligible, Not Yet Approved -->
+                  <tr>
+                    <td><input type="checkbox" class="student-checkbox" /></td>
+                    <td>
+                      <div style="width: 48px; height: 48px; border-radius: 4px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 16px;">
+                        BS
+                      </div>
+                    </td>
+                    <td><strong style="color: #2563EB; font-family: monospace; font-size: 13px;">2024-CSE-1001</strong></td>
+                    <td><strong>Bhavya Sharma</strong></td>
+                    <td style="text-align: center;">8 <span style="color: #F59E0B; font-size: 11px;">(+2)</span></td>
+                    <td style="text-align: right;"><strong>₹3,790</strong></td>
+                    <td style="text-align: center;">
+                      <span class="status status-approved">
+                        <span class="status-dot"></span>
+                        Paid
+                      </span>
+                    </td>
+                    <td style="text-align: center;">
+                      <span class="status status-approved">
+                        <span class="status-dot"></span>
+                        Eligible
+                      </span>
+                    </td>
+                    <td style="text-align: center;">
+                      <span class="status status-verified">
+                        <span class="status-dot"></span>
+                        Pending Approval
+                      </span>
+                    </td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-primary" onclick="approveStudent('2024-CSE-1001')" title="Approve">
+                        <i data-feather="check" style="width: 16px; height: 16px;"></i>
+                      </button>
+                      <button class="btn btn-sm btn-ghost" title="View Details">
+                        <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Student 3 - Payment Pending -->
+                  <tr>
+                    <td><input type="checkbox" class="student-checkbox" /></td>
+                    <td>
+                      <div style="width: 48px; height: 48px; border-radius: 4px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 16px;">
+                        CR
+                      </div>
+                    </td>
+                    <td><strong style="color: #2563EB; font-family: monospace; font-size: 13px;">2024-CSE-1002</strong></td>
+                    <td><strong>Chetan Reddy</strong></td>
+                    <td style="text-align: center;">6</td>
+                    <td style="text-align: right;"><strong>₹2,840</strong></td>
+                    <td style="text-align: center;">
+                      <span class="status status-pending">
+                        <span class="status-dot"></span>
+                        Pending
+                      </span>
+                    </td>
+                    <td style="text-align: center;">
+                      <span style="color: #9CA3AF;">—</span>
+                    </td>
+                    <td style="text-align: center;">
+                      <span class="status status-pending">
+                        <span class="status-dot"></span>
+                        Awaiting Payment
+                      </span>
+                    </td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-secondary" onclick="verifyPayment('2024-CSE-1002')" title="Mark as Paid">
+                        <i data-feather="dollar-sign" style="width: 16px; height: 16px;"></i>
+                      </button>
+                      <button class="btn btn-sm btn-ghost" title="View Details">
+                        <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Student 4 - Not Eligible (Low Attendance) -->
+                  <tr>
+                    <td><input type="checkbox" class="student-checkbox" /></td>
+                    <td>
+                      <div style="width: 48px; height: 48px; border-radius: 4px; background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 16px;">
+                        DP
+                      </div>
+                    </td>
+                    <td><strong style="color: #2563EB; font-family: monospace; font-size: 13px;">2024-CSE-1003</strong></td>
+                    <td><strong>Divya Patel</strong></td>
+                    <td style="text-align: center;">7 <span style="color: #F59E0B; font-size: 11px;">(+1)</span></td>
+                    <td style="text-align: right;"><strong>₹3,315</strong></td>
+                    <td style="text-align: center;">
+                      <span class="status status-approved">
+                        <span class="status-dot"></span>
+                        Paid
+                      </span>
+                    </td>
+                    <td style="text-align: center;">
+                      <span class="status status-rejected">
+                        <span class="status-dot"></span>
+                        Not Eligible
+                      </span>
+                    </td>
+                    <td style="text-align: center;">
+                      <span class="status status-rejected">
+                        <span class="status-dot"></span>
+                        Attendance: 68%
+                      </span>
+                    </td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-ghost" title="View Details">
+                        <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Student 5 - Approved -->
+                  <tr>
+                    <td><input type="checkbox" class="student-checkbox" /></td>
+                    <td>
+                      <div style="width: 48px; height: 48px; border-radius: 4px; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 16px;">
+                        EG
+                      </div>
+                    </td>
+                    <td><strong style="color: #2563EB; font-family: monospace; font-size: 13px;">2024-CSE-1004</strong></td>
+                    <td><strong>Esha Gupta</strong></td>
+                    <td style="text-align: center;">6</td>
+                    <td style="text-align: right;"><strong>₹2,840</strong></td>
+                    <td style="text-align: center;">
+                      <span class="status status-approved">
+                        <span class="status-dot"></span>
+                        Paid
+                      </span>
+                    </td>
+                    <td style="text-align: center;">
+                      <span class="status status-approved">
+                        <span class="status-dot"></span>
+                        Eligible
+                      </span>
+                    </td>
+                    <td style="text-align: center;">
+                      <span style="background: #DBEAFE; border: 1px solid #93C5FD; padding: 4px 12px; border-radius: 16px; font-size: 13px; font-weight: 600; color: #1E40AF;">
+                        ⭐ Approved
+                      </span>
+                    </td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-ghost" title="View Details">
+                        <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      </button>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Freeze Registrations Section -->
+        <div style="margin-top: 24px; padding: 20px; background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 8px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-size: 16px; font-weight: 600; color: #111827; margin-bottom: 8px;">
+                <i data-feather="lock" style="width: 18px; height: 18px; vertical-align: -3px; margin-right: 8px; color: #F59E0B;"></i>
+                Freeze Registrations
+              </div>
+              <div class="text-xs" style="color: #92400E; line-height: 1.6;">
+                <strong>52 students approved</strong> • Once frozen, no further changes can be made to registrations. Ensure all approvals are complete before freezing.
+              </div>
+            </div>
+            <button class="btn btn-primary" style="padding: 12px 24px;" onclick="freezeRegistrations()">
+              <i data-feather="lock" style="width: 16px; height: 16px;"></i>
+              Freeze Registrations
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+
+    // Select All Checkboxes
+    document.getElementById('selectAll').addEventListener('change', function() {
+      const checkboxes = document.querySelectorAll('.student-checkbox');
+      checkboxes.forEach(cb => cb.checked = this.checked);
+      updateSelectedCount();
+    });
+
+    // Update selected count and enable/disable bulk buttons
+    function updateSelectedCount() {
+      const checked = document.querySelectorAll('.student-checkbox:checked').length;
+      document.getElementById('selectedCount').textContent = checked;
+
+      const bulkButtons = [
+        document.getElementById('bulkCalculateFee'),
+        document.getElementById('bulkVerifyPayment'),
+        document.getElementById('bulkCheckEligibility'),
+        document.getElementById('bulkApprove')
+      ];
+
+      bulkButtons.forEach(btn => {
+        btn.disabled = checked === 0;
+      });
+    }
+
+    // Add change listener to all checkboxes
+    document.querySelectorAll('.student-checkbox').forEach(cb => {
+      cb.addEventListener('change', updateSelectedCount);
+    });
+
+    // Approve Student
+    function approveStudent(ern) {
+      if (confirm('Approve registration for student ' + ern + '?')) {
+        alert('Student ' + ern + ' approved successfully!');
+        location.reload();
+      }
+    }
+
+    // Verify Payment
+    function verifyPayment(ern) {
+      if (confirm('Mark payment as verified for student ' + ern + '?')) {
+        alert('Payment verified for student ' + ern + '!');
+        location.reload();
+      }
+    }
+
+    // Freeze Registrations
+    function freezeRegistrations() {
+      if (confirm('Are you sure you want to freeze all registrations? This action cannot be undone.')) {
+        alert('Registrations frozen successfully! No further changes can be made.');
+        location.reload();
+      }
+    }
+
+    // Print Registration Report
+    function printRegistrationReport() {
+      window.open('registration-report.html', '_blank');
+    }
+  </script>
+
+</body>
+</html>

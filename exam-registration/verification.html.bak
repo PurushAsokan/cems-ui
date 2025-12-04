@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document Verification - CEMS</title>
+  <title>Verification Queue - CEMS</title>
   <link rel="stylesheet" href="../css/cems.css">
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 </head>
@@ -26,7 +26,7 @@
         <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Regular Registration</div>
         <a href="data-entry.html" class="dropdown-item">Data Entry</a>
         <a href="verification.html" class="dropdown-item active">Verification Queue</a>
-        <a href="fee-calculation.html" class="dropdown-item">Fee Calculation &amp; Verification</a>
+        <a href="fee-calculation.html" class="dropdown-item">Fee Calculation</a>
         <a href="ern-generation.html" class="dropdown-item">ERN Generation</a>
         <a href="registration-list.html" class="dropdown-item">Registration List</a>
         <a href="reports.html" class="dropdown-item">Reports</a>
@@ -72,7 +72,7 @@
       <span class="breadcrumb-separator">›</span>
       <span class="breadcrumb-item">Exam Registration</span>
       <span class="breadcrumb-separator">›</span>
-      <span class="breadcrumb-item active">Document Verification</span>
+      <span class="breadcrumb-item active">Verification Queue</span>
     </div>
     <div class="context-actions">
       <div class="dropdown">
@@ -145,7 +145,7 @@
         <!-- PRE-EXAMINATION Section -->
         <div class="module-section-header">Pre-Examination</div>
 
-                <!-- Exam Registration Module - EXPANDED -->
+        <!-- Exam Registration Module - EXPANDED -->
         <div>
           <a href="data-entry.html" class="module-nav-item module-parent active" onclick="event.preventDefault(); toggleModule('examReg')" title="Exam Registration">
             <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
@@ -155,58 +155,38 @@
             <i data-feather="chevron-down" id="examReg-chevron" style="width: 16px; height: 16px; transform: rotate(180deg); transition: transform 0.2s;"></i>
           </a>
           <div id="examReg-pages" class="module-pages" style="display: block;">
-
-            <!-- Sub-Topic A: Student Master & ERN -->
-            <div class="module-sub-section">Student Master & ERN</div>
             <a href="data-entry.html" class="module-nav-item module-pages-item">
-              <span class="step-number">A.1</span>
-              <span class="step-label">Student Master Entry</span>
+              <span class="step-number">1</span>
+              <span class="step-label">Data Entry</span>
             </a>
-            <a href="verification.html" class="module-nav-item module-pages-item active">
-              <span class="step-number">A.2</span>
-              <span class="step-label">Document Verification</span>
+            <a href="verification.html" class="module-nav-item module-pages-item active" aria-current="page">
+              <span class="step-number">2</span>
+              <span class="step-label">Verification</span>
+            </a>
+            <a href="approval.html" class="module-nav-item module-pages-item">
+              <span class="step-number">3</span>
+              <span class="step-label">Approval</span>
             </a>
             <a href="ern-generation.html" class="module-nav-item module-pages-item">
-              <span class="step-number">A.3</span>
-              <span class="step-label">ERN Generation (Batch)</span>
+              <span class="step-number">4</span>
+              <span class="step-label">ERN Generation</span>
             </a>
-            <a href="ern-approval.html" class="module-nav-item module-pages-item">
-              <span class="step-number">A.4</span>
-              <span class="step-label">Approval & Master Record</span>
+            <a href="fee-verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">5</span>
+              <span class="step-label">Fee Verification</span>
             </a>
-            <a href="student-master-list.html" class="module-nav-item module-pages-item">
-              <span class="step-number">A.5</span>
-              <span class="step-label">Student Master List</span>
-            </a>
-
-            <!-- Sub-Topic B: Semester Exam Registration -->
-            <div class="module-sub-section">Semester Exam Registration</div>
-            <a href="generate-applications.html" class="module-nav-item module-pages-item">
-              <span class="step-number">B.1</span>
-              <span class="step-label">Generate Applications</span>
-            </a>
-            <a href="fee-calculation.html" class="module-nav-item module-pages-item">
-              <span class="step-number">B.2</span>
-              <span class="step-label">Fee Calculation &amp; Verification</span>
+            <!-- Removed duplicate 'ERN Batch' entry; ERN Generation is the canonical page -->
+            <a href="freeze.html" class="module-nav-item module-pages-item">
+              <span class="step-number">7</span>
+              <span class="step-label">Freeze Applications</span>
             </a>
             <a href="reports.html" class="module-nav-item module-pages-item">
-              <span class="step-number">B.7</span>
+              <span class="step-number">8</span>
               <span class="step-label">Reports</span>
             </a>
-
-            <!-- Sub-Topic C: Supplementary Registration -->
-            <div class="module-sub-section">Supplementary Registration</div>
-            <a href="supplementary-registration.html" class="module-nav-item module-pages-item">
-              <span class="step-number">C.1</span>
-              <span class="step-label">Supplementary Registration</span>
-            </a>
-            <a href="supplementary-verification.html" class="module-nav-item module-pages-item">
-              <span class="step-number">C.2</span>
-              <span class="step-label">Supplementary Verification</span>
-            </a>
-            <a href="supplementary-list.html" class="module-nav-item module-pages-item">
-              <span class="step-number">C.3</span>
-              <span class="step-label">Supplementary List</span>
+            <a href="audit-log.html" class="module-nav-item module-pages-item">
+              <span class="step-number">9</span>
+              <span class="step-label">Audit Log</span>
             </a>
           </div>
         </div>
@@ -214,7 +194,7 @@
         <!-- Other modules collapsed by default -->
         <!-- Exam Scheduling -->
         <div>
-          <a href="../exam-scheduling/timetable.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('examScheduling')" title="Exam Scheduling">
+          <a href="../exam-scheduling/course-setup.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('examScheduling')" title="Exam Scheduling">
             <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
               <i data-feather="calendar" style="width: 18px; height: 18px;"></i>
               <span class="step-label">Exam Scheduling</span>
@@ -222,6 +202,10 @@
             <i data-feather="chevron-down" id="examScheduling-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
           </a>
           <div id="examScheduling-pages" class="module-pages" style="display: none;">
+            <a href="../exam-scheduling/course-setup.html" class="module-nav-item module-pages-item">
+              <span class="step-number">1</span>
+              <span class="step-label">Course Setup</span>
+            </a>
             <a href="../exam-scheduling/timetable.html" class="module-nav-item module-pages-item">
               <span class="step-number">2</span>
               <span class="step-label">Timetable</span>

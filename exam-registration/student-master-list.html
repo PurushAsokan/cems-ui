@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Master List - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <!-- Module Dropdown -->
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Exam Registration
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px; max-height: 500px; overflow-y: auto;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Student Master & ERN</div>
+        <a href="data-entry.html" class="dropdown-item">A.1 Student Master Entry</a>
+        <a href="verification.html" class="dropdown-item">A.2 Document Verification</a>
+        <a href="ern-generation.html" class="dropdown-item">A.3 ERN Generation</a>
+        <a href="ern-approval.html" class="dropdown-item">A.4 Approval & Master Record</a>
+        <a href="student-master-list.html" class="dropdown-item active">A.5 Student Master List</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <!-- Search -->
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search by ERN or Name..." id="quickSearch" />
+      </div>
+
+      <!-- Notifications -->
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <!-- Settings -->
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <!-- User Menu -->
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">EC</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Exam Controller</div>
+            <div style="font-size: 11px; color: #6B7280;">CTRL-001</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Exam Registration</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Student Master List</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="upload" style="width: 16px; height: 16px;"></i>
+        Bulk Photo Upload
+      </button>
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export to Excel
+      </button>
+      <button class="btn btn-sm btn-primary" onclick="printStudentList()">
+        <i data-feather="printer" style="width: 16px; height: 16px;"></i>
+        Print List
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container with Sidebar -->
+  <div class="main-with-sidebar">
+    <aside class="module-sidebar">
+      <div class="module-sidebar-header">
+        <i data-feather="layout"></i>
+        <h3>All Modules</h3>
+      </div>
+
+      <nav class="module-nav" style="overflow-y: auto; max-height: calc(100vh - 200px);">
+        <!-- Dashboard Link -->
+        <a href="../dashboard.html" class="module-nav-item">
+          <i data-feather="home" style="width: 18px; height: 18px;"></i>
+          <span class="step-label">Dashboard</span>
+        </a>
+
+        <!-- SYSTEM SETUP Section -->
+        <div class="module-section-header">System Setup</div>
+
+        <!-- Master Data Module -->
+        <div>
+          <a href="../master-data/degree-subject-setup.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('masterData')" aria-expanded="false" title="Master Data">
+            <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+              <i data-feather="database" style="width: 18px; height: 18px;"></i>
+              <span class="step-label">Master Data</span>
+            </div>
+            <i data-feather="chevron-down" id="masterData-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+          </a>
+          <div id="masterData-pages" class="module-pages" style="display: none;">
+            <a href="../master-data/degree-subject-setup.html" class="module-nav-item module-pages-item">
+              <span class="step-number">1</span>
+              <span class="step-label">Degree & Subject Setup</span>
+            </a>
+            <a href="../master-data/program-subject-mapping.html" class="module-nav-item module-pages-item">
+              <span class="step-number">2</span>
+              <span class="step-label">Program-Subject Mapping</span>
+            </a>
+            <a href="../master-data/fee-structure.html" class="module-nav-item module-pages-item">
+              <span class="step-number">3</span>
+              <span class="step-label">Fee Structure</span>
+            </a>
+            <a href="../master-data/grading-system.html" class="module-nav-item module-pages-item">
+              <span class="step-number">4</span>
+              <span class="step-label">Grading System</span>
+            </a>
+            <a href="../master-data/user-management.html" class="module-nav-item module-pages-item">
+              <span class="step-number">5</span>
+              <span class="step-label">User Management</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- PRE-EXAMINATION Section -->
+        <div class="module-section-header">Pre-Examination</div>
+
+        <!-- Exam Registration Module - EXPANDED -->
+        <div>
+          <a href="data-entry.html" class="module-nav-item module-parent active" onclick="event.preventDefault(); toggleModule('examReg')" title="Exam Registration">
+            <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+              <i data-feather="user-plus" style="width: 18px; height: 18px;"></i>
+              <span class="step-label">Exam Registration</span>
+            </div>
+            <i data-feather="chevron-down" id="examReg-chevron" style="width: 16px; height: 16px; transform: rotate(180deg); transition: transform 0.2s;"></i>
+          </a>
+          <div id="examReg-pages" class="module-pages" style="display: block;">
+
+            <!-- Sub-Topic A: Student Master & ERN -->
+            <div class="module-sub-section">Student Master & ERN</div>
+            <a href="data-entry.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.1</span>
+              <span class="step-label">Student Master Entry</span>
+            </a>
+            <a href="verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.2</span>
+              <span class="step-label">Document Verification</span>
+            </a>
+            <a href="ern-generation.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.3</span>
+              <span class="step-label">ERN Generation (Batch)</span>
+            </a>
+            <a href="ern-approval.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.4</span>
+              <span class="step-label">Approval & Master Record</span>
+            </a>
+            <a href="student-master-list.html" class="module-nav-item module-pages-item active">
+              <span class="step-number">A.5</span>
+              <span class="step-label">Student Master List</span>
+            </a>
+
+            <!-- Sub-Topic B: Semester Exam Registration -->
+            <div class="module-sub-section">Semester Exam Registration</div>
+            <a href="generate-applications.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.1</span>
+              <span class="step-label">Generate Applications</span>
+            </a>
+            <a href="fee-calculation.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.2</span>
+              <span class="step-label">Fee Calculation &amp; Verification</span>
+            </a>
+            <a href="reports.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.7</span>
+              <span class="step-label">Reports</span>
+            </a>
+
+            <!-- Sub-Topic C: Supplementary Registration -->
+            <div class="module-sub-section">Supplementary Registration</div>
+            <a href="supplementary-registration.html" class="module-nav-item module-pages-item">
+              <span class="step-number">C.1</span>
+              <span class="step-label">Supplementary Registration</span>
+            </a>
+            <a href="supplementary-verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">C.2</span>
+              <span class="step-label">Supplementary Verification</span>
+            </a>
+            <a href="supplementary-list.html" class="module-nav-item module-pages-item">
+              <span class="step-number">C.3</span>
+              <span class="step-label">Supplementary List</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Other modules collapsed -->
+        <div>
+          <a href="../exam-scheduling/timetable.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('examScheduling')" title="Exam Scheduling">
+            <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+              <i data-feather="calendar" style="width: 18px; height: 18px;"></i>
+              <span class="step-label">Exam Scheduling</span>
+            </div>
+            <i data-feather="chevron-down" id="examScheduling-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+          </a>
+          <div id="examScheduling-pages" class="module-pages" style="display: none;"></div>
+        </div>
+      </nav>
+
+      <button class="sidebar-toggle" title="Toggle Sidebar (Ctrl+B)">
+        <i data-feather="chevrons-left"></i>
+      </button>
+    </aside>
+
+    <!-- Main Container -->
+    <main class="main-container main-container-with-sidebar">
+      <div class="page-container">
+
+        <!-- Statistics Dashboard -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;">
+
+          <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 16px;">
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Students</div>
+            <div style="font-size: 32px; font-weight: 600; color: #2563EB; margin-bottom: 4px;">1,847</div>
+            <div class="text-xs" style="color: #10B981;">↑ 142 from last year</div>
+          </div>
+
+          <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 16px;">
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">UG Students</div>
+            <div style="font-size: 32px; font-weight: 600; color: #111827; margin-bottom: 4px;">1,523</div>
+            <div class="text-xs" style="color: #6B7280;">Across 6 programs</div>
+          </div>
+
+          <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 16px;">
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">PG Students</div>
+            <div style="font-size: 32px; font-weight: 600; color: #111827; margin-bottom: 4px;">324</div>
+            <div class="text-xs" style="color: #6B7280;">Across 4 programs</div>
+          </div>
+
+          <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 16px;">
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Active Batches</div>
+            <div style="font-size: 32px; font-weight: 600; color: #111827; margin-bottom: 4px;">12</div>
+            <div class="text-xs" style="color: #6B7280;">2020-2024 cohorts</div>
+          </div>
+
+        </div>
+
+        <!-- Advanced Filters -->
+        <div class="section">
+          <div class="section-header">
+            <h2 class="section-title">Advanced Filters</h2>
+            <button class="btn btn-sm btn-ghost" onclick="resetFilters()">
+              <i data-feather="x" style="width: 16px; height: 16px;"></i>
+              Reset Filters
+            </button>
+          </div>
+          <div class="section-body">
+
+            <!-- Row 1: Primary Filters -->
+            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 16px;">
+
+              <div class="form-group">
+                <label class="form-label">Academic Year</label>
+                <select class="form-select">
+                  <option value="">All Years</option>
+                  <option value="2024-2025" selected>2024-2025</option>
+                  <option value="2023-2024">2023-2024</option>
+                  <option value="2022-2023">2022-2023</option>
+                  <option value="2021-2022">2021-2022</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Program</label>
+                <select class="form-select">
+                  <option value="">All Programs</option>
+                  <option value="BE-CSE">B.E. - CSE</option>
+                  <option value="BE-ECE">B.E. - ECE</option>
+                  <option value="BE-MECH">B.E. - Mech</option>
+                  <option value="BE-EEE">B.E. - EEE</option>
+                  <option value="BE-CIVIL">B.E. - Civil</option>
+                  <option value="ME-CSE">M.E. - CSE</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Department</label>
+                <select class="form-select">
+                  <option value="">All Departments</option>
+                  <option value="CSE">Computer Science</option>
+                  <option value="ECE">Electronics</option>
+                  <option value="MECH">Mechanical</option>
+                  <option value="EEE">Electrical</option>
+                  <option value="CIVIL">Civil</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Current Year</label>
+                <select class="form-select">
+                  <option value="">All Years</option>
+                  <option value="I">I Year</option>
+                  <option value="II">II Year</option>
+                  <option value="III">III Year</option>
+                  <option value="IV">IV Year</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Section</label>
+                <select class="form-select">
+                  <option value="">All Sections</option>
+                  <option value="A">Section A</option>
+                  <option value="B">Section B</option>
+                  <option value="C">Section C</option>
+                </select>
+              </div>
+
+            </div>
+
+            <!-- Row 2: Secondary Filters -->
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr) auto; gap: 16px; align-items: end;">
+
+              <div class="form-group">
+                <label class="form-label">Search by ERN</label>
+                <input type="text" class="form-input" placeholder="e.g., 2024-CSE-1000" style="font-family: monospace;" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Search by Name</label>
+                <input type="text" class="form-input" placeholder="Enter student name" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Admission Year</label>
+                <select class="form-select">
+                  <option value="">All</option>
+                  <option value="2024">2024</option>
+                  <option value="2023">2023</option>
+                  <option value="2022">2022</option>
+                  <option value="2021">2021</option>
+                  <option value="2020">2020</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Status</label>
+                <select class="form-select">
+                  <option value="">All</option>
+                  <option value="active" selected>Active</option>
+                  <option value="detained">Detained</option>
+                  <option value="discontinued">Discontinued</option>
+                  <option value="graduated">Graduated</option>
+                </select>
+              </div>
+
+              <button class="btn btn-primary" style="height: 40px;">
+                <i data-feather="search" style="width: 16px; height: 16px;"></i>
+                Search
+              </button>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Results Summary -->
+        <div class="section">
+          <div class="section-header">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <h2 class="section-title">Student Master Records</h2>
+              <span class="status status-approved">
+                <span class="status-dot"></span>
+                487 Records Found
+              </span>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <select class="form-select" style="width: 150px;">
+                <option value="20">20 per page</option>
+                <option value="50" selected>50 per page</option>
+                <option value="100">100 per page</option>
+              </select>
+              <select class="form-select" style="width: 200px;">
+                <option value="name">Sort by: Name (A-Z)</option>
+                <option value="ern">Sort by: ERN</option>
+                <option value="year">Sort by: Year</option>
+                <option value="recent">Sort by: Recently Added</option>
+              </select>
+            </div>
+          </div>
+          <div class="section-body">
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 40px;">
+                      <input type="checkbox" id="selectAll" />
+                    </th>
+                    <th style="width: 70px;">Photo</th>
+                    <th>ERN</th>
+                    <th>Student Name</th>
+                    <th>Program</th>
+                    <th>Year</th>
+                    <th>Section</th>
+                    <th>Mobile</th>
+                    <th>Status</th>
+                    <th style="text-align: right;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <!-- Student 1 -->
+                  <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>
+                      <div style="width: 48px; height: 48px; border-radius: 4px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 16px;">
+                        AK
+                      </div>
+                    </td>
+                    <td><strong style="color: #2563EB; font-family: monospace; font-size: 13px;">2024-CSE-1000</strong></td>
+                    <td><strong>Aarav Kumar</strong></td>
+                    <td>B.E. - CSE</td>
+                    <td>I Year</td>
+                    <td>A</td>
+                    <td>+91 98765 43210</td>
+                    <td>
+                      <span class="status status-approved">
+                        <span class="status-dot"></span>
+                        Active
+                      </span>
+                    </td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-ghost" onclick="viewStudentProfile('2024-CSE-1000')" title="View Profile">
+                        <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      </button>
+                      <button class="btn btn-sm btn-ghost" title="Edit">
+                        <i data-feather="edit-2" style="width: 16px; height: 16px;"></i>
+                      </button>
+                      <button class="btn btn-sm btn-ghost" title="Print ID Card">
+                        <i data-feather="credit-card" style="width: 16px; height: 16px;"></i>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Student 2 -->
+                  <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>
+                      <div style="width: 48px; height: 48px; border-radius: 4px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 16px;">
+                        BS
+                      </div>
+                    </td>
+                    <td><strong style="color: #2563EB; font-family: monospace; font-size: 13px;">2024-CSE-1001</strong></td>
+                    <td><strong>Bhavya Sharma</strong></td>
+                    <td>B.E. - CSE</td>
+                    <td>I Year</td>
+                    <td>A</td>
+                    <td>+91 98765 43211</td>
+                    <td>
+                      <span class="status status-approved">
+                        <span class="status-dot"></span>
+                        Active
+                      </span>
+                    </td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-ghost" onclick="viewStudentProfile('2024-CSE-1001')" title="View Profile">
+                        <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      </button>
+                      <button class="btn btn-sm btn-ghost" title="Edit">
+                        <i data-feather="edit-2" style="width: 16px; height: 16px;"></i>
+                      </button>
+                      <button class="btn btn-sm btn-ghost" title="Print ID Card">
+                        <i data-feather="credit-card" style="width: 16px; height: 16px;"></i>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Student 3 -->
+                  <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>
+                      <div style="width: 48px; height: 48px; border-radius: 4px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 16px;">
+                        CR
+                      </div>
+                    </td>
+                    <td><strong style="color: #2563EB; font-family: monospace; font-size: 13px;">2024-CSE-1002</strong></td>
+                    <td><strong>Chetan Reddy</strong></td>
+                    <td>B.E. - CSE</td>
+                    <td>I Year</td>
+                    <td>A</td>
+                    <td>+91 98765 43212</td>
+                    <td>
+                      <span class="status status-approved">
+                        <span class="status-dot"></span>
+                        Active
+                      </span>
+                    </td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-ghost" onclick="viewStudentProfile('2024-CSE-1002')" title="View Profile">
+                        <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      </button>
+                      <button class="btn btn-sm btn-ghost" title="Edit">
+                        <i data-feather="edit-2" style="width: 16px; height: 16px;"></i>
+                      </button>
+                      <button class="btn btn-sm btn-ghost" title="Print ID Card">
+                        <i data-feather="credit-card" style="width: 16px; height: 16px;"></i>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Student 4 -->
+                  <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>
+                      <div style="width: 48px; height: 48px; border-radius: 4px; background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 16px;">
+                        DP
+                      </div>
+                    </td>
+                    <td><strong style="color: #2563EB; font-family: monospace; font-size: 13px;">2024-CSE-1003</strong></td>
+                    <td><strong>Divya Patel</strong></td>
+                    <td>B.E. - CSE</td>
+                    <td>I Year</td>
+                    <td>A</td>
+                    <td>+91 98765 43213</td>
+                    <td>
+                      <span class="status status-approved">
+                        <span class="status-dot"></span>
+                        Active
+                      </span>
+                    </td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-ghost" onclick="viewStudentProfile('2024-CSE-1003')" title="View Profile">
+                        <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      </button>
+                      <button class="btn btn-sm btn-ghost" title="Edit">
+                        <i data-feather="edit-2" style="width: 16px; height: 16px;"></i>
+                      </button>
+                      <button class="btn btn-sm btn-ghost" title="Print ID Card">
+                        <i data-feather="credit-card" style="width: 16px; height: 16px;"></i>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Student 5 -->
+                  <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>
+                      <div style="width: 48px; height: 48px; border-radius: 4px; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 16px;">
+                        EG
+                      </div>
+                    </td>
+                    <td><strong style="color: #2563EB; font-family: monospace; font-size: 13px;">2024-CSE-1004</strong></td>
+                    <td><strong>Esha Gupta</strong></td>
+                    <td>B.E. - CSE</td>
+                    <td>I Year</td>
+                    <td>A</td>
+                    <td>+91 98765 43214</td>
+                    <td>
+                      <span class="status status-approved">
+                        <span class="status-dot"></span>
+                        Active
+                      </span>
+                    </td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-ghost" onclick="viewStudentProfile('2024-CSE-1004')" title="View Profile">
+                        <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      </button>
+                      <button class="btn btn-sm btn-ghost" title="Edit">
+                        <i data-feather="edit-2" style="width: 16px; height: 16px;"></i>
+                      </button>
+                      <button class="btn btn-sm btn-ghost" title="Print ID Card">
+                        <i data-feather="credit-card" style="width: 16px; height: 16px;"></i>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Student 6 - Detained Status Example -->
+                  <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>
+                      <div style="width: 48px; height: 48px; border-radius: 4px; background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 16px;">
+                        FA
+                      </div>
+                    </td>
+                    <td><strong style="color: #2563EB; font-family: monospace; font-size: 13px;">2024-CSE-1005</strong></td>
+                    <td><strong>Farhan Ali</strong></td>
+                    <td>B.E. - CSE</td>
+                    <td>I Year</td>
+                    <td>A</td>
+                    <td>+91 98765 43215</td>
+                    <td>
+                      <span class="status status-approved">
+                        <span class="status-dot"></span>
+                        Active
+                      </span>
+                    </td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-ghost" onclick="viewStudentProfile('2024-CSE-1005')" title="View Profile">
+                        <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      </button>
+                      <button class="btn btn-sm btn-ghost" title="Edit">
+                        <i data-feather="edit-2" style="width: 16px; height: 16px;"></i>
+                      </button>
+                      <button class="btn btn-sm btn-ghost" title="Print ID Card">
+                        <i data-feather="credit-card" style="width: 16px; height: 16px;"></i>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Student 7 -->
+                  <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>
+                      <div style="width: 48px; height: 48px; border-radius: 4px; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); display: flex; align-items: center; justify-content: center; color: #111827; font-weight: 600; font-size: 16px;">
+                        GM
+                      </div>
+                    </td>
+                    <td><strong style="color: #2563EB; font-family: monospace; font-size: 13px;">2024-CSE-1006</strong></td>
+                    <td><strong>Gayatri Menon</strong></td>
+                    <td>B.E. - CSE</td>
+                    <td>I Year</td>
+                    <td>A</td>
+                    <td>+91 98765 43216</td>
+                    <td>
+                      <span class="status status-approved">
+                        <span class="status-dot"></span>
+                        Active
+                      </span>
+                    </td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-sm btn-ghost" onclick="viewStudentProfile('2024-CSE-1006')" title="View Profile">
+                        <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                      </button>
+                      <button class="btn btn-sm btn-ghost" title="Edit">
+                        <i data-feather="edit-2" style="width: 16px; height: 16px;"></i>
+                      </button>
+                      <button class="btn btn-sm btn-ghost" title="Print ID Card">
+                        <i data-feather="credit-card" style="width: 16px; height: 16px;"></i>
+                      </button>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination -->
+            <div style="margin-top: 16px; display: flex; justify-content: space-between; align-items: center;">
+              <div class="text-xs" style="color: #6B7280;">
+                Showing 1-7 of 487 students
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn btn-sm btn-secondary" disabled>
+                  <i data-feather="chevron-left" style="width: 16px; height: 16px;"></i>
+                  Previous
+                </button>
+                <button class="btn btn-sm btn-secondary">1</button>
+                <button class="btn btn-sm btn-ghost">2</button>
+                <button class="btn btn-sm btn-ghost">3</button>
+                <button class="btn btn-sm btn-ghost">...</button>
+                <button class="btn btn-sm btn-ghost">10</button>
+                <button class="btn btn-sm btn-secondary">
+                  Next
+                  <i data-feather="chevron-right" style="width: 16px; height: 16px;"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bulk Actions -->
+        <div style="margin-top: 16px; padding: 16px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 6px; display: flex; justify-content: space-between; align-items: center;">
+          <div class="text-xs" style="color: #6B7280;">
+            <span id="selectedCount">0</span> students selected
+          </div>
+          <div style="display: flex; gap: 12px;">
+            <button class="btn btn-sm btn-secondary" disabled id="bulkPrintBtn">
+              <i data-feather="printer" style="width: 16px; height: 16px;"></i>
+              Bulk Print ID Cards
+            </button>
+            <button class="btn btn-sm btn-secondary" disabled id="bulkExportBtn">
+              <i data-feather="download" style="width: 16px; height: 16px;"></i>
+              Export Selected
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Student Profile Modal -->
+  <div id="profileModal" class="modal" style="display: none;">
+    <div class="modal-content" style="max-width: 800px;">
+      <div class="modal-header">
+        <h2 class="modal-title">Student Profile</h2>
+        <button class="btn btn-icon btn-ghost" onclick="closeProfileModal()">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Student Header -->
+        <div style="display: flex; gap: 24px; padding: 24px; background: #F8F9FA; border-radius: 8px; margin-bottom: 24px;">
+          <div style="width: 120px; height: 120px; border-radius: 8px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 48px;">
+            AK
+          </div>
+          <div style="flex: 1;">
+            <h3 style="font-size: 24px; font-weight: 600; color: #111827; margin-bottom: 8px;">Aarav Kumar</h3>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; font-size: 14px;">
+              <div>
+                <span style="color: #6B7280;">ERN:</span>
+                <strong style="margin-left: 8px; color: #2563EB; font-family: monospace;">2024-CSE-1000</strong>
+              </div>
+              <div>
+                <span style="color: #6B7280;">Registration No:</span>
+                <strong style="margin-left: 8px;">APP-2024-001</strong>
+              </div>
+              <div>
+                <span style="color: #6B7280;">Program:</span>
+                <strong style="margin-left: 8px;">B.E. - Computer Science</strong>
+              </div>
+              <div>
+                <span style="color: #6B7280;">Current Year:</span>
+                <strong style="margin-left: 8px;">I Year - Section A</strong>
+              </div>
+            </div>
+            <div style="margin-top: 12px;">
+              <span class="status status-approved">
+                <span class="status-dot"></span>
+                Active
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile Tabs -->
+        <div style="border-bottom: 1px solid #E5E7EB; margin-bottom: 24px;">
+          <div style="display: flex; gap: 24px;">
+            <button class="btn btn-ghost" style="border-bottom: 2px solid #2563EB; border-radius: 0; padding: 12px 0; font-weight: 600; color: #2563EB;">Personal Details</button>
+            <button class="btn btn-ghost" style="border-radius: 0; padding: 12px 0;">Academic Info</button>
+            <button class="btn btn-ghost" style="border-radius: 0; padding: 12px 0;">Documents</button>
+            <button class="btn btn-ghost" style="border-radius: 0; padding: 12px 0;">Audit Trail</button>
+          </div>
+        </div>
+
+        <!-- Personal Details Content -->
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Date of Birth</div>
+            <div style="font-weight: 500; color: #111827;">05-Mar-2006</div>
+          </div>
+
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Gender</div>
+            <div style="font-weight: 500; color: #111827;">Male</div>
+          </div>
+
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Mobile Number</div>
+            <div style="font-weight: 500; color: #111827;">+91 98765 43210</div>
+          </div>
+
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Email Address</div>
+            <div style="font-weight: 500; color: #111827;">aarav.kumar@student.sgc.edu.in</div>
+          </div>
+
+          <div style="grid-column: span 2;">
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Permanent Address</div>
+            <div style="font-weight: 500; color: #111827;">123, MG Road, Bangalore, Karnataka - 560001</div>
+          </div>
+
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Father's Name</div>
+            <div style="font-weight: 500; color: #111827;">Rajesh Kumar</div>
+          </div>
+
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Father's Mobile</div>
+            <div style="font-weight: 500; color: #111827;">+91 98765 00001</div>
+          </div>
+
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Mother's Name</div>
+            <div style="font-weight: 500; color: #111827;">Priya Kumar</div>
+          </div>
+
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Mother's Mobile</div>
+            <div style="font-weight: 500; color: #111827;">+91 98765 00002</div>
+          </div>
+
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Blood Group</div>
+            <div style="font-weight: 500; color: #111827;">O+</div>
+          </div>
+
+          <div>
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Admission Date</div>
+            <div style="font-weight: 500; color: #111827;">15-Aug-2024</div>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeProfileModal()">Close</button>
+        <button class="btn btn-primary">
+          <i data-feather="edit-2" style="width: 16px; height: 16px;"></i>
+          Edit Profile
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+
+    // Profile Modal Functions
+    function viewStudentProfile(ern) {
+      document.getElementById('profileModal').style.display = 'flex';
+      setTimeout(() => feather.replace(), 100);
+      // In real implementation, fetch student data by ERN
+    }
+
+    function closeProfileModal() {
+      document.getElementById('profileModal').style.display = 'none';
+    }
+
+    // Print Student List
+    function printStudentList() {
+      window.print();
+    }
+
+    // Reset Filters
+    function resetFilters() {
+      document.querySelectorAll('.form-select').forEach(select => {
+        select.selectedIndex = 0;
+      });
+      document.querySelectorAll('.form-input[type="text"]').forEach(input => {
+        input.value = '';
+      });
+    }
+
+    // Select All Checkboxes
+    document.getElementById('selectAll').addEventListener('change', function() {
+      const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = this.checked);
+      updateSelectedCount();
+    });
+
+    // Update selected count
+    function updateSelectedCount() {
+      const checked = document.querySelectorAll('tbody input[type="checkbox"]:checked').length;
+      document.getElementById('selectedCount').textContent = checked;
+
+      // Enable/disable bulk action buttons
+      const bulkPrintBtn = document.getElementById('bulkPrintBtn');
+      const bulkExportBtn = document.getElementById('bulkExportBtn');
+
+      if (checked > 0) {
+        bulkPrintBtn.disabled = false;
+        bulkExportBtn.disabled = false;
+      } else {
+        bulkPrintBtn.disabled = true;
+        bulkExportBtn.disabled = true;
+      }
+    }
+
+    // Add change listener to all checkboxes
+    document.querySelectorAll('tbody input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener('change', updateSelectedCount);
+    });
+
+    // Close modal on outside click
+    document.getElementById('profileModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeProfileModal();
+      }
+    });
+
+    // Quick search functionality
+    document.getElementById('quickSearch').addEventListener('keyup', function(e) {
+      if (e.key === 'Enter') {
+        // Implement quick search
+        console.log('Quick search:', this.value);
+      }
+    });
+  </script>
+
+</body>
+</html>

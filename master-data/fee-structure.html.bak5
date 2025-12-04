@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fee Structure - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <!-- Module Dropdown -->
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Master Data
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <a href="degree-subject-setup.html" class="dropdown-item">Degree & Subject Setup</a>
+        <a href="program-subject-mapping.html" class="dropdown-item">Program-Subject Mapping</a>
+        <a href="fee-structure.html" class="dropdown-item active">Fee Structure</a>
+        <a href="grading-system.html" class="dropdown-item">Grading System</a>
+        <a href="user-management.html" class="dropdown-item">User Management</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">AD</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Admin</div>
+            <div style="font-size: 11px; color: #6B7280;">Exam Controller</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Master Data</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Fee Structure</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export Fee List
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container with Sidebar -->
+  <div class="main-with-sidebar">
+
+    <!-- Module Sidebar -->
+    <aside class="module-sidebar">
+      <div class="module-sidebar-header">
+        <i data-feather="layout"></i>
+        <h3>All Modules</h3>
+      </div>
+
+      <nav class="module-nav" style="overflow-y: auto; max-height: calc(100vh - 200px);">
+        <!-- Dashboard Link -->
+        <a href="../dashboard.html" class="module-nav-item">
+          <i data-feather="home" style="width: 18px; height: 18px;"></i>
+          <span class="step-label">Dashboard</span>
+        </a>
+
+        <!-- SYSTEM SETUP Section -->
+        <div class="module-section-header">System Setup</div>
+
+        <!-- Master Data Module - EXPANDED -->
+        <div>
+          <a href="degree-subject-setup.html" class="module-nav-item module-parent active" onclick="event.preventDefault(); toggleModule('masterData')" title="Master Data">
+            <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+              <i data-feather="database" style="width: 18px; height: 18px;"></i>
+              <span class="step-label">Master Data</span>
+            </div>
+            <i data-feather="chevron-down" id="masterData-chevron" style="width: 16px; height: 16px; transform: rotate(180deg); transition: transform 0.2s;"></i>
+          </a>
+          <div id="masterData-pages" class="module-pages" style="display: block;">
+            <a href="degree-subject-setup.html" class="module-nav-item module-pages-item">
+              <span class="step-number">1</span>
+              <span class="step-label">Degree & Subject Setup</span>
+            </a>
+            <a href="program-subject-mapping.html" class="module-nav-item module-pages-item">
+              <span class="step-number">2</span>
+              <span class="step-label">Program-Subject Mapping</span>
+            </a>
+            <a href="fee-structure.html" class="module-nav-item module-pages-item active">
+              <span class="step-number">3</span>
+              <span class="step-label">Fee Structure</span>
+            </a>
+            <a href="grading-system.html" class="module-nav-item module-pages-item">
+              <span class="step-number">4</span>
+              <span class="step-label">Grading System</span>
+            </a>
+            <a href="user-management.html" class="module-nav-item module-pages-item">
+              <span class="step-number">5</span>
+              <span class="step-label">User Management</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- PRE-EXAMINATION Section -->
+        <div class="module-section-header">Pre-Examination</div>
+
+        <!-- Exam Registration Module -->
+        <div>
+          <a href="../exam-registration/data-entry.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('examReg')" title="Exam Registration">
+            <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+              <i data-feather="user-plus" style="width: 18px; height: 18px;"></i>
+              <span class="step-label">Exam Registration</span>
+            </div>
+            <i data-feather="chevron-down" id="examReg-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+          </a>
+          <div id="examReg-pages" class="module-pages" style="display: none;">
+
+            <!-- Sub-Topic A: Student Master & ERN -->
+            <div class="module-sub-section">Student Master & ERN</div>
+            <a href="../exam-registration/data-entry.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.1</span>
+              <span class="step-label">Student Master Entry</span>
+            </a>
+            <a href="../exam-registration/document-verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.2</span>
+              <span class="step-label">Document Verification</span>
+            </a>
+            <a href="../exam-registration/ern-generation.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.3</span>
+              <span class="step-label">ERN Generation (Batch)</span>
+            </a>
+            <a href="../exam-registration/ern-approval.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.4</span>
+              <span class="step-label">Approval & Master Record</span>
+            </a>
+            <a href="../exam-registration/student-master-list.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.5</span>
+              <span class="step-label">Student Master List</span>
+            </a>
+
+            <!-- Sub-Topic B: Semester Exam Registration -->
+            <div class="module-sub-section">Semester Exam Registration</div>
+            <a href="../exam-registration/generate-applications.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.1</span>
+              <span class="step-label">Generate Applications</span>
+            </a>
+            <a href="../exam-registration/fee-calculation.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.2</span>
+              <span class="step-label">Fee Calculation</span>
+            </a>
+            <a href="../exam-registration/fee-verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.3</span>
+              <span class="step-label">Fee Verification</span>
+            </a>
+            <a href="../exam-registration/eligibility-verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.4</span>
+              <span class="step-label">Eligibility Verification</span>
+            </a>
+            <a href="../exam-registration/final-approval.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.5</span>
+              <span class="step-label">Final Approval</span>
+            </a>
+            <a href="../exam-registration/registered-students.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.6</span>
+              <span class="step-label">Registered Students</span>
+            </a>
+            <a href="../exam-registration/reports.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.7</span>
+              <span class="step-label">Reports</span>
+            </a>
+
+            <!-- Sub-Topic C: Supplementary Registration -->
+            <div class="module-sub-section">Supplementary Registration</div>
+            <a href="../exam-registration/supplementary-registration.html" class="module-nav-item module-pages-item">
+              <span class="step-number">C.1</span>
+              <span class="step-label">Supplementary Registration</span>
+            </a>
+            <a href="../exam-registration/supplementary-verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">C.2</span>
+              <span class="step-label">Supplementary Verification</span>
+            </a>
+            <a href="../exam-registration/supplementary-list.html" class="module-nav-item module-pages-item">
+              <span class="step-number">C.3</span>
+              <span class="step-label">Supplementary List</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Exam Scheduling Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('examScheduling')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="calendar" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Exam Scheduling</span>
+          </div>
+          <i data-feather="chevron-down" id="examScheduling-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="examScheduling-pages" class="module-pages" style="display: none;">
+          <a href="../exam-scheduling/course-setup.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Course Setup</a>
+          <a href="../exam-scheduling/timetable.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Timetable</a>
+          <a href="../exam-scheduling/freeze.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Freeze Timetable</a>
+          <a href="../exam-scheduling/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Internal Assessment Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('internalAssessment')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="clipboard" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Internal Assessment</span>
+          </div>
+          <i data-feather="chevron-down" id="internalAssessment-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="internalAssessment-pages" class="module-pages" style="display: none;">
+          <a href="../internal-assessment/marks-entry.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Marks Entry</a>
+          <a href="../internal-assessment/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../internal-assessment/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Hall Ticket Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('hallTicket')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="credit-card" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Hall Ticket</span>
+          </div>
+          <i data-feather="chevron-down" id="hallTicket-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="hallTicket-pages" class="module-pages" style="display: none;">
+          <a href="../hall-ticket/generation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Generation</a>
+          <a href="../hall-ticket/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../hall-ticket/seating-plan.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Seating Plan</a>
+          <a href="../hall-ticket/distribution.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Distribution</a>
+          <a href="../hall-ticket/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Conduct of Exam Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('conductExam')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="check-square" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Conduct of Exam</span>
+          </div>
+          <i data-feather="chevron-down" id="conductExam-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="conductExam-pages" class="module-pages" style="display: none;">
+          <a href="../conduct-exam/attendance.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Attendance</a>
+          <a href="../conduct-exam/answer-sheet.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Answer Sheet Handling</a>
+          <a href="../conduct-exam/batch-prep.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Batch Preparation</a>
+          <a href="../conduct-exam/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Evaluation & Results Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('evaluation')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="edit" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Evaluation & Results</span>
+          </div>
+          <i data-feather="chevron-down" id="evaluation-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="evaluation-pages" class="module-pages" style="display: none;">
+          <a href="../evaluation-results/marks-entry.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Marks Entry</a>
+          <a href="../evaluation-results/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../evaluation-results/revaluation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Revaluation</a>
+          <a href="../evaluation-results/result-compilation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Result Compilation</a>
+          <a href="../evaluation-results/grading.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Grading</a>
+          <a href="../evaluation-results/cgpa-calculation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">CGPA Calculation</a>
+          <a href="../evaluation-results/freeze.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Freeze Results</a>
+          <a href="../evaluation-results/publish.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Publish Results</a>
+          <a href="../evaluation-results/detained-students.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Detained Students</a>
+          <a href="../evaluation-results/pass-fail.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Pass/Fail Analysis</a>
+          <a href="../evaluation-results/subject-wise.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Subject-wise Analysis</a>
+          <a href="../evaluation-results/statistical.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Statistical Reports</a>
+          <a href="../evaluation-results/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+          <a href="../evaluation-results/audit-log.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Audit Log</a>
+        </div>
+
+        <!-- Mark Sheet Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('markSheet')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="file-text" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Mark Sheet</span>
+          </div>
+          <i data-feather="chevron-down" id="markSheet-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="markSheet-pages" class="module-pages" style="display: none;">
+          <a href="../mark-sheet/generation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Generation</a>
+          <a href="../mark-sheet/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../mark-sheet/consolidated.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Consolidated Statement</a>
+          <a href="../mark-sheet/distribution.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Distribution</a>
+          <a href="../mark-sheet/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Certificates Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('certificates')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="award" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Certificates</span>
+          </div>
+          <i data-feather="chevron-down" id="certificates-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="certificates-pages" class="module-pages" style="display: none;">
+          <a href="../certificates/generation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Generation</a>
+          <a href="../certificates/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../certificates/distribution.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Distribution</a>
+          <a href="../certificates/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Student Section -->
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px;">Student Portal</div>
+
+        <!-- Student Portal Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('studentPortal')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="book-open" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Student Portal</span>
+          </div>
+          <i data-feather="chevron-down" id="studentPortal-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="studentPortal-pages" class="module-pages" style="display: none;">
+          <a href="../student-portal/timetable.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Exam Timetable</a>
+          <a href="../student-portal/results.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">View Results</a>
+          <a href="../student-portal/hall-ticket.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Download Hall Ticket</a>
+        </div>
+
+        <!-- Administration Section -->
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px;">Administration</div>
+
+        <!-- Access Control Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('accessControl')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="lock" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Access Control</span>
+          </div>
+          <i data-feather="chevron-down" id="accessControl-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="accessControl-pages" class="module-pages" style="display: none;">
+          <a href="../access-auth/login.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Login</a>
+          <a href="../access-auth/biometric.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Biometric Auth</a>
+          <a href="../access-auth/audit-log.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Audit Log</a>
+        </div>
+      </nav>
+
+      <button class="sidebar-toggle" title="Toggle Sidebar (Ctrl+B)">
+        <i data-feather="chevrons-left"></i>
+      </button>
+    </aside>
+
+    <!-- Main Container -->
+    <main class="main-container main-container-with-sidebar">
+      <div class="page-container">
+
+      <!-- Page Title -->
+      <div style="margin-bottom: 24px;">
+        <h1 class="page-title">Fee Structure Configuration</h1>
+        <div class="text-sm text-secondary" style="margin-top: 4px;">Manage exam fees at program, year, and semester level</div>
+      </div>
+
+      <!-- Section 1: Regular Exam Fee Structure -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Regular Exam Fee Structure</h2>
+          <button class="btn btn-sm btn-primary" onclick="openAddRegularFeeModal()">
+            <i data-feather="plus" style="width: 16px; height: 16px;"></i>
+            Add Regular Fee
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Program</th>
+                  <th>Level</th>
+                  <th>Year</th>
+                  <th>Semester</th>
+                  <th style="text-align: right;">Base Fee</th>
+                  <th style="text-align: right;">Processing Fee</th>
+                  <th style="text-align: right;">Total Fee</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>B.Tech - Computer Science</td>
+                  <td>UG</td>
+                  <td>1st Year</td>
+                  <td>Sem 1 & 2</td>
+                  <td style="text-align: right;">₹1,000</td>
+                  <td style="text-align: right;">₹200</td>
+                  <td style="text-align: right; font-weight: 600;">₹1,200</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit" onclick="openEditRegularFeeModal('B.Tech - Computer Science', 'UG', '1st Year', 'Sem 1 & 2', '1000', '200')">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Delete" onclick="confirmDelete('Regular Fee', 'B.Tech - Computer Science - 1st Year')">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>B.Tech - Computer Science</td>
+                  <td>UG</td>
+                  <td>2nd-4th Year</td>
+                  <td>All Semesters</td>
+                  <td style="text-align: right;">₹800</td>
+                  <td style="text-align: right;">₹200</td>
+                  <td style="text-align: right; font-weight: 600;">₹1,000</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit" onclick="openEditRegularFeeModal('B.Tech - Computer Science', 'UG', '2nd-4th Year', 'All Semesters', '800', '200')">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Delete" onclick="confirmDelete('Regular Fee', 'B.Tech - Computer Science - 2nd-4th Year')">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>B.Com - Commerce</td>
+                  <td>UG</td>
+                  <td>All Years</td>
+                  <td>All Semesters</td>
+                  <td style="text-align: right;">₹500</td>
+                  <td style="text-align: right;">₹150</td>
+                  <td style="text-align: right; font-weight: 600;">₹650</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit" onclick="openEditRegularFeeModal('B.Com - Commerce', 'UG', 'All Years', 'All Semesters', '500', '150')">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Delete" onclick="confirmDelete('Regular Fee', 'B.Com - Commerce')">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>M.Tech - Data Science</td>
+                  <td>PG</td>
+                  <td>All Years</td>
+                  <td>All Semesters</td>
+                  <td style="text-align: right;">₹1,500</td>
+                  <td style="text-align: right;">₹300</td>
+                  <td style="text-align: right; font-weight: 600;">₹1,800</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit" onclick="openEditRegularFeeModal('M.Tech - Data Science', 'PG', 'All Years', 'All Semesters', '1500', '300')">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Delete" onclick="confirmDelete('Regular Fee', 'M.Tech - Data Science')">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>B.A - English</td>
+                  <td>UG</td>
+                  <td>All Years</td>
+                  <td>All Semesters</td>
+                  <td style="text-align: right;">₹400</td>
+                  <td style="text-align: right;">₹100</td>
+                  <td style="text-align: right; font-weight: 600;">₹500</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit" onclick="openEditRegularFeeModal('B.A - English', 'UG', 'All Years', 'All Semesters', '400', '100')">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Delete" onclick="confirmDelete('Regular Fee', 'B.A - English')">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Additional Fee Types -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Additional Fee Types</h2>
+          <button class="btn btn-sm btn-primary" onclick="openAddAdditionalFeeModal()">
+            <i data-feather="plus" style="width: 16px; height: 16px;"></i>
+            Add Additional Fee
+          </button>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Fee Type</th>
+                  <th>Description</th>
+                  <th>Calculation Method</th>
+                  <th style="text-align: right;">Amount</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight: 500;">Supplementary Exam Fee</td>
+                  <td>Per subject for failed/absent students</td>
+                  <td>Per Subject</td>
+                  <td style="text-align: right; font-weight: 600;">₹800 + ₹200</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit" onclick="openEditAdditionalFeeModal('Supplementary Exam Fee', 'Per subject for failed/absent students', 'Per Subject', '800', '200')">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Delete" onclick="confirmDelete('Additional Fee', 'Supplementary Exam Fee')">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 500;">Revaluation Fee</td>
+                  <td>Answer sheet recheck with external examiner</td>
+                  <td>Per Subject</td>
+                  <td style="text-align: right; font-weight: 600;">₹500 + ₹100</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit" onclick="openEditAdditionalFeeModal('Revaluation Fee', 'Answer sheet recheck with external examiner', 'Per Subject', '500', '100')">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Delete" onclick="confirmDelete('Additional Fee', 'Revaluation Fee')">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 500;">Retotaling Fee</td>
+                  <td>Marks total verification (arithmetic check only)</td>
+                  <td>Per Subject</td>
+                  <td style="text-align: right; font-weight: 600;">₹200</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit" onclick="openEditAdditionalFeeModal('Retotaling Fee', 'Marks total verification (arithmetic check only)', 'Per Subject', '200', '0')">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Delete" onclick="confirmDelete('Additional Fee', 'Retotaling Fee')">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 500;">Duplicate Mark Sheet Fee</td>
+                  <td>Reissue of lost/damaged mark sheet</td>
+                  <td>Per Request</td>
+                  <td style="text-align: right; font-weight: 600;">₹300</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit" onclick="openEditAdditionalFeeModal('Duplicate Mark Sheet Fee', 'Reissue of lost/damaged mark sheet', 'Per Request', '300', '0')">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Delete" onclick="confirmDelete('Additional Fee', 'Duplicate Mark Sheet Fee')">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 500;">Late Fee (Registration)</td>
+                  <td>After last date of registration</td>
+                  <td>Flat Rate</td>
+                  <td style="text-align: right; font-weight: 600;">₹200</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit" onclick="openEditAdditionalFeeModal('Late Fee (Registration)', 'After last date of registration', 'Flat Rate', '200', '0')">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Delete" onclick="confirmDelete('Additional Fee', 'Late Fee (Registration)')">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 500;">Certificate Issuance Fee</td>
+                  <td>Course completion certificate</td>
+                  <td>Per Certificate</td>
+                  <td style="text-align: right; font-weight: 600;">₹100</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit" onclick="openEditAdditionalFeeModal('Certificate Issuance Fee', 'Course completion certificate', 'Per Certificate', '100', '0')">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Delete" onclick="confirmDelete('Additional Fee', 'Certificate Issuance Fee')">
+                      <i data-feather="trash-2" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    </main>
+
+  </div> <!-- End main-with-sidebar -->
+
+  <!-- Add Regular Fee Modal -->
+  <div id="addRegularFeeModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: white; border-radius: 8px; padding: 24px; width: 600px; max-height: 90vh; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h2 style="font-size: 18px; font-weight: 600; margin: 0;">Add Regular Exam Fee</h2>
+        <button onclick="closeAddRegularFeeModal()" style="background: none; border: none; cursor: pointer; color: #6B7280; padding: 4px;">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+
+      <form onsubmit="saveRegularFee(event)">
+        <div class="form-group">
+          <label class="form-label required">Program</label>
+          <input type="text" class="form-input" placeholder="e.g., B.Tech - Computer Science" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label required">Level</label>
+          <select class="form-select" required>
+            <option value="">-- Select Level --</option>
+            <option value="UG">UG (Under Graduate)</option>
+            <option value="PG">PG (Post Graduate)</option>
+            <option value="Diploma">Diploma</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label required">Year</label>
+          <select class="form-select" required>
+            <option value="">-- Select Year --</option>
+            <option value="All Years">All Years</option>
+            <option value="1st Year">1st Year</option>
+            <option value="2nd Year">2nd Year</option>
+            <option value="3rd Year">3rd Year</option>
+            <option value="4th Year">4th Year</option>
+            <option value="2nd-4th Year">2nd-4th Year</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label required">Semester</label>
+          <select class="form-select" required>
+            <option value="">-- Select Semester --</option>
+            <option value="All Semesters">All Semesters</option>
+            <option value="Sem 1">Sem 1</option>
+            <option value="Sem 2">Sem 2</option>
+            <option value="Sem 3">Sem 3</option>
+            <option value="Sem 4">Sem 4</option>
+            <option value="Sem 5">Sem 5</option>
+            <option value="Sem 6">Sem 6</option>
+            <option value="Sem 7">Sem 7</option>
+            <option value="Sem 8">Sem 8</option>
+            <option value="Sem 1 & 2">Sem 1 & 2</option>
+          </select>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label class="form-label required">Base Fee (₹)</label>
+            <input type="number" class="form-input" placeholder="e.g., 1000" min="0" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label required">Processing Fee (₹)</label>
+            <input type="number" class="form-input" placeholder="e.g., 200" min="0" required />
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 24px;">
+          <button type="button" class="btn btn-secondary" onclick="closeAddRegularFeeModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Add Fee</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Regular Fee Modal -->
+  <div id="editRegularFeeModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: white; border-radius: 8px; padding: 24px; width: 600px; max-height: 90vh; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h2 style="font-size: 18px; font-weight: 600; margin: 0;">Edit Regular Exam Fee</h2>
+        <button onclick="closeEditRegularFeeModal()" style="background: none; border: none; cursor: pointer; color: #6B7280; padding: 4px;">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+
+      <form onsubmit="updateRegularFee(event)">
+        <div class="form-group">
+          <label class="form-label required">Program</label>
+          <input type="text" id="editRegularProgram" class="form-input" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label required">Level</label>
+          <select id="editRegularLevel" class="form-select" required>
+            <option value="UG">UG (Under Graduate)</option>
+            <option value="PG">PG (Post Graduate)</option>
+            <option value="Diploma">Diploma</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label required">Year</label>
+          <select id="editRegularYear" class="form-select" required>
+            <option value="All Years">All Years</option>
+            <option value="1st Year">1st Year</option>
+            <option value="2nd Year">2nd Year</option>
+            <option value="3rd Year">3rd Year</option>
+            <option value="4th Year">4th Year</option>
+            <option value="2nd-4th Year">2nd-4th Year</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label required">Semester</label>
+          <select id="editRegularSemester" class="form-select" required>
+            <option value="All Semesters">All Semesters</option>
+            <option value="Sem 1">Sem 1</option>
+            <option value="Sem 2">Sem 2</option>
+            <option value="Sem 3">Sem 3</option>
+            <option value="Sem 4">Sem 4</option>
+            <option value="Sem 5">Sem 5</option>
+            <option value="Sem 6">Sem 6</option>
+            <option value="Sem 7">Sem 7</option>
+            <option value="Sem 8">Sem 8</option>
+            <option value="Sem 1 & 2">Sem 1 & 2</option>
+          </select>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label class="form-label required">Base Fee (₹)</label>
+            <input type="number" id="editRegularBaseFee" class="form-input" min="0" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label required">Processing Fee (₹)</label>
+            <input type="number" id="editRegularProcessingFee" class="form-input" min="0" required />
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 24px;">
+          <button type="button" class="btn btn-secondary" onclick="closeEditRegularFeeModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Update Fee</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Additional Fee Modal -->
+  <div id="addAdditionalFeeModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: white; border-radius: 8px; padding: 24px; width: 600px; max-height: 90vh; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h2 style="font-size: 18px; font-weight: 600; margin: 0;">Add Additional Fee Type</h2>
+        <button onclick="closeAddAdditionalFeeModal()" style="background: none; border: none; cursor: pointer; color: #6B7280; padding: 4px;">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+
+      <form onsubmit="saveAdditionalFee(event)">
+        <div class="form-group">
+          <label class="form-label required">Fee Type</label>
+          <select class="form-select" required>
+            <option value="">-- Select Fee Type --</option>
+            <option value="Supplementary Exam Fee">Supplementary Exam Fee</option>
+            <option value="Revaluation Fee">Revaluation Fee</option>
+            <option value="Retotaling Fee">Retotaling Fee</option>
+            <option value="Duplicate Mark Sheet Fee">Duplicate Mark Sheet Fee</option>
+            <option value="Late Fee (Registration)">Late Fee (Registration)</option>
+            <option value="Certificate Issuance Fee">Certificate Issuance Fee</option>
+            <option value="Other">Other (Custom Fee Type)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label required">Description</label>
+          <textarea class="form-input" rows="2" placeholder="Describe this fee type" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label required">Calculation Method</label>
+          <select class="form-select" required>
+            <option value="">-- Select Method --</option>
+            <option value="Per Subject">Per Subject</option>
+            <option value="Per Request">Per Request</option>
+            <option value="Per Certificate">Per Certificate</option>
+            <option value="Flat Rate">Flat Rate</option>
+          </select>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label class="form-label required">Base Amount (₹)</label>
+            <input type="number" class="form-input" placeholder="e.g., 500" min="0" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Processing Fee (₹)</label>
+            <input type="number" class="form-input" placeholder="e.g., 100 (optional)" min="0" />
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 24px;">
+          <button type="button" class="btn btn-secondary" onclick="closeAddAdditionalFeeModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Add Fee</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Additional Fee Modal -->
+  <div id="editAdditionalFeeModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: white; border-radius: 8px; padding: 24px; width: 600px; max-height: 90vh; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h2 style="font-size: 18px; font-weight: 600; margin: 0;">Edit Additional Fee Type</h2>
+        <button onclick="closeEditAdditionalFeeModal()" style="background: none; border: none; cursor: pointer; color: #6B7280; padding: 4px;">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+
+      <form onsubmit="updateAdditionalFee(event)">
+        <div class="form-group">
+          <label class="form-label required">Fee Type</label>
+          <input type="text" id="editAdditionalFeeType" class="form-input" readonly style="background: #F3F4F6;" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label required">Description</label>
+          <textarea id="editAdditionalDescription" class="form-input" rows="2" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label required">Calculation Method</label>
+          <select id="editAdditionalMethod" class="form-select" required>
+            <option value="Per Subject">Per Subject</option>
+            <option value="Per Request">Per Request</option>
+            <option value="Per Certificate">Per Certificate</option>
+            <option value="Flat Rate">Flat Rate</option>
+          </select>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label class="form-label required">Base Amount (₹)</label>
+            <input type="number" id="editAdditionalBaseAmount" class="form-input" min="0" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Processing Fee (₹)</label>
+            <input type="number" id="editAdditionalProcessingFee" class="form-input" min="0" />
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 24px;">
+          <button type="button" class="btn btn-secondary" onclick="closeEditAdditionalFeeModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Update Fee</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div id="deleteModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: white; border-radius: 8px; padding: 24px; width: 480px;">
+      <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px;">
+        <div style="width: 40px; height: 40px; border-radius: 50%; background: #FEE2E2; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <i data-feather="alert-circle" style="width: 20px; height: 20px; color: #DC2626;"></i>
+        </div>
+        <div>
+          <h3 style="font-size: 16px; font-weight: 600; margin: 0 0 8px 0;">Delete Fee Entry</h3>
+          <p id="deleteMessage" style="font-size: 14px; color: #6B7280; margin: 0;">Are you sure you want to delete this fee entry?</p>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 24px;">
+        <button type="button" class="btn btn-secondary" onclick="closeDeleteModal()">Cancel</button>
+        <button type="button" class="btn btn-danger" onclick="performDelete()">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    // Initialize feather icons
+    feather.replace();
+
+    // Add Regular Fee Modal functions
+    function openAddRegularFeeModal() {
+      document.getElementById('addRegularFeeModal').style.display = 'flex';
+      setTimeout(() => feather.replace(), 0);
+    }
+
+    function closeAddRegularFeeModal() {
+      document.getElementById('addRegularFeeModal').style.display = 'none';
+    }
+
+    function saveRegularFee(event) {
+      event.preventDefault();
+      console.log('Saving regular fee...');
+      alert('Regular exam fee added successfully!');
+      closeAddRegularFeeModal();
+    }
+
+    // Edit Regular Fee Modal functions
+    function openEditRegularFeeModal(program, level, year, semester, baseFee, processingFee) {
+      document.getElementById('editRegularProgram').value = program;
+      document.getElementById('editRegularLevel').value = level;
+      document.getElementById('editRegularYear').value = year;
+      document.getElementById('editRegularSemester').value = semester;
+      document.getElementById('editRegularBaseFee').value = baseFee;
+      document.getElementById('editRegularProcessingFee').value = processingFee;
+      document.getElementById('editRegularFeeModal').style.display = 'flex';
+      setTimeout(() => feather.replace(), 0);
+    }
+
+    function closeEditRegularFeeModal() {
+      document.getElementById('editRegularFeeModal').style.display = 'none';
+    }
+
+    function updateRegularFee(event) {
+      event.preventDefault();
+      console.log('Updating regular fee...');
+      alert('Regular exam fee updated successfully!');
+      closeEditRegularFeeModal();
+    }
+
+    // Add Additional Fee Modal functions
+    function openAddAdditionalFeeModal() {
+      document.getElementById('addAdditionalFeeModal').style.display = 'flex';
+      setTimeout(() => feather.replace(), 0);
+    }
+
+    function closeAddAdditionalFeeModal() {
+      document.getElementById('addAdditionalFeeModal').style.display = 'none';
+    }
+
+    function saveAdditionalFee(event) {
+      event.preventDefault();
+      console.log('Saving additional fee...');
+      alert('Additional fee type added successfully!');
+      closeAddAdditionalFeeModal();
+    }
+
+    // Edit Additional Fee Modal functions
+    function openEditAdditionalFeeModal(feeType, description, method, baseAmount, processingFee) {
+      document.getElementById('editAdditionalFeeType').value = feeType;
+      document.getElementById('editAdditionalDescription').value = description;
+      document.getElementById('editAdditionalMethod').value = method;
+      document.getElementById('editAdditionalBaseAmount').value = baseAmount;
+      document.getElementById('editAdditionalProcessingFee').value = processingFee;
+      document.getElementById('editAdditionalFeeModal').style.display = 'flex';
+      setTimeout(() => feather.replace(), 0);
+    }
+
+    function closeEditAdditionalFeeModal() {
+      document.getElementById('editAdditionalFeeModal').style.display = 'none';
+    }
+
+    function updateAdditionalFee(event) {
+      event.preventDefault();
+      console.log('Updating additional fee...');
+      alert('Additional fee type updated successfully!');
+      closeEditAdditionalFeeModal();
+    }
+
+    // Delete Confirmation Modal functions
+    let deleteType = '';
+    let deleteName = '';
+
+    function confirmDelete(type, name) {
+      deleteType = type;
+      deleteName = name;
+      document.getElementById('deleteMessage').textContent =
+        `Are you sure you want to delete "${name}"? This action cannot be undone.`;
+      document.getElementById('deleteModal').style.display = 'flex';
+      setTimeout(() => feather.replace(), 0);
+    }
+
+    function closeDeleteModal() {
+      document.getElementById('deleteModal').style.display = 'none';
+    }
+
+    function performDelete() {
+      console.log(`Deleting ${deleteType}: ${deleteName}`);
+      alert(`${deleteType} "${deleteName}" has been deleted successfully.`);
+      closeDeleteModal();
+    }
+  </script>
+</body>
+</html>

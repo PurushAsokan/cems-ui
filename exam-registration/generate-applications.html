@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generate Applications - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <!-- Module Dropdown -->
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Exam Registration
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px; max-height: 500px; overflow-y: auto;">
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Semester Exam Registration</div>
+        <a href="generate-applications.html" class="dropdown-item active">B.1 Generate Applications</a>
+        <a href="fee-calculation.html" class="dropdown-item">B.2 Registration Processing</a>
+        <a href="reports.html" class="dropdown-item">B.7 Reports</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <!-- Search -->
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search by ERN or Name..." />
+      </div>
+
+      <!-- Notifications -->
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <!-- Settings -->
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <!-- User Menu -->
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">EC</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Exam Controller</div>
+            <div style="font-size: 11px; color: #6B7280;">CTRL-001</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Exam Registration</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Generate Applications</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export to Excel
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container with Sidebar -->
+  <div class="main-with-sidebar">
+    <aside class="module-sidebar">
+      <div class="module-sidebar-header">
+        <i data-feather="layout"></i>
+        <h3>All Modules</h3>
+      </div>
+
+      <nav class="module-nav" style="overflow-y: auto; max-height: calc(100vh - 200px);">
+        <!-- Dashboard Link -->
+        <a href="../dashboard.html" class="module-nav-item">
+          <i data-feather="home" style="width: 18px; height: 18px;"></i>
+          <span class="step-label">Dashboard</span>
+        </a>
+
+        <!-- SYSTEM SETUP Section -->
+        <div class="module-section-header">System Setup</div>
+
+        <!-- Master Data Module -->
+        <div>
+          <a href="../master-data/degree-subject-setup.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('masterData')" aria-expanded="false" title="Master Data">
+            <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+              <i data-feather="database" style="width: 18px; height: 18px;"></i>
+              <span class="step-label">Master Data</span>
+            </div>
+            <i data-feather="chevron-down" id="masterData-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+          </a>
+          <div id="masterData-pages" class="module-pages" style="display: none;">
+            <a href="../master-data/degree-subject-setup.html" class="module-nav-item module-pages-item">
+              <span class="step-number">1</span>
+              <span class="step-label">Degree & Subject Setup</span>
+            </a>
+            <a href="../master-data/program-subject-mapping.html" class="module-nav-item module-pages-item">
+              <span class="step-number">2</span>
+              <span class="step-label">Program-Subject Mapping</span>
+            </a>
+            <a href="../master-data/fee-structure.html" class="module-nav-item module-pages-item">
+              <span class="step-number">3</span>
+              <span class="step-label">Fee Structure</span>
+            </a>
+            <a href="../master-data/grading-system.html" class="module-nav-item module-pages-item">
+              <span class="step-number">4</span>
+              <span class="step-label">Grading System</span>
+            </a>
+            <a href="../master-data/user-management.html" class="module-nav-item module-pages-item">
+              <span class="step-number">5</span>
+              <span class="step-label">User Management</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- PRE-EXAMINATION Section -->
+        <div class="module-section-header">Pre-Examination</div>
+
+        <!-- Exam Registration Module - EXPANDED -->
+        <div>
+          <a href="data-entry.html" class="module-nav-item module-parent active" onclick="event.preventDefault(); toggleModule('examReg')" title="Exam Registration">
+            <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+              <i data-feather="user-plus" style="width: 18px; height: 18px;"></i>
+              <span class="step-label">Exam Registration</span>
+            </div>
+            <i data-feather="chevron-down" id="examReg-chevron" style="width: 16px; height: 16px; transform: rotate(180deg); transition: transform 0.2s;"></i>
+          </a>
+          <div id="examReg-pages" class="module-pages" style="display: block;">
+
+            <!-- Sub-Topic A: Student Master & ERN -->
+            <div class="module-sub-section">Student Master & ERN</div>
+            <a href="data-entry.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.1</span>
+              <span class="step-label">Student Master Entry</span>
+            </a>
+            <a href="verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.2</span>
+              <span class="step-label">Document Verification</span>
+            </a>
+            <a href="ern-generation.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.3</span>
+              <span class="step-label">ERN Generation (Batch)</span>
+            </a>
+            <a href="ern-approval.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.4</span>
+              <span class="step-label">Approval & Master Record</span>
+            </a>
+            <a href="student-master-list.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.5</span>
+              <span class="step-label">Student Master List</span>
+            </a>
+
+            <!-- Sub-Topic B: Semester Exam Registration -->
+            <div class="module-sub-section">Semester Exam Registration</div>
+            <a href="generate-applications.html" class="module-nav-item module-pages-item active">
+              <span class="step-number">B.1</span>
+              <span class="step-label">Generate Applications</span>
+            </a>
+            <a href="fee-calculation.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.2</span>
+              <span class="step-label">Fee Calculation &amp; Verification</span>
+            </a>
+            <a href="reports.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.7</span>
+              <span class="step-label">Reports</span>
+            </a>
+
+            <!-- Sub-Topic C: Supplementary Registration -->
+            <div class="module-sub-section">Supplementary Registration</div>
+            <a href="supplementary-registration.html" class="module-nav-item module-pages-item">
+              <span class="step-number">C.1</span>
+              <span class="step-label">Supplementary Registration</span>
+            </a>
+            <a href="supplementary-verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">C.2</span>
+              <span class="step-label">Supplementary Verification</span>
+            </a>
+            <a href="supplementary-list.html" class="module-nav-item module-pages-item">
+              <span class="step-number">C.3</span>
+              <span class="step-label">Supplementary List</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Other modules collapsed -->
+        <div>
+          <a href="../exam-scheduling/timetable.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('examScheduling')" title="Exam Scheduling">
+            <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+              <i data-feather="calendar" style="width: 18px; height: 18px;"></i>
+              <span class="step-label">Exam Scheduling</span>
+            </div>
+            <i data-feather="chevron-down" id="examScheduling-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+          </a>
+          <div id="examScheduling-pages" class="module-pages" style="display: none;"></div>
+        </div>
+      </nav>
+
+      <button class="sidebar-toggle" title="Toggle Sidebar (Ctrl+B)">
+        <i data-feather="chevrons-left"></i>
+      </button>
+    </aside>
+
+    <!-- Main Container -->
+    <main class="main-container main-container-with-sidebar">
+      <div class="page-container">
+
+        <!-- Alert Section -->
+        <div class="alert alert-info">
+          <i data-feather="info" style="width: 20px; height: 20px;"></i>
+          <div>
+            <strong>Semester Exam Registration:</strong> Generate exam applications for students. Applications will include current semester subjects and any arrear subjects from previous semesters.
+          </div>
+        </div>
+
+        <!-- Filter Section -->
+        <div class="section">
+          <div class="section-header">
+            <h2 class="section-title">Select Exam Session & Students</h2>
+          </div>
+          <div class="section-body">
+
+            <!-- Exam Session Selection -->
+            <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 20px; margin-bottom: 24px;">
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+
+                <div class="form-group">
+                  <label class="form-label required">Academic Year</label>
+                  <select class="form-select">
+                    <option value="">-- Select --</option>
+                    <option value="2024-2025" selected>2024-2025</option>
+                    <option value="2023-2024">2023-2024</option>
+                    <option value="2022-2023">2022-2023</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label required">Exam Session</label>
+                  <select class="form-select">
+                    <option value="">-- Select --</option>
+                    <option value="sem1-nov-2024" selected>Semester 1 - Nov 2024</option>
+                    <option value="sem2-may-2025">Semester 2 - May 2025</option>
+                  </select>
+                  <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Odd/Even semester</div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label required">Exam Type</label>
+                  <select class="form-select">
+                    <option value="regular" selected>Regular</option>
+                    <option value="reappear">Reappear Only</option>
+                  </select>
+                  <div class="text-xs" style="color: #6B7280; margin-top: 4px;">Regular includes arrears</div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Student Filters -->
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: end;">
+
+              <div class="form-group">
+                <label class="form-label required">Program</label>
+                <select class="form-select">
+                  <option value="">-- Select --</option>
+                  <option value="BE-CSE" selected>B.E. - CSE</option>
+                  <option value="BE-ECE">B.E. - ECE</option>
+                  <option value="BE-MECH">B.E. - Mech</option>
+                  <option value="BE-EEE">B.E. - EEE</option>
+                  <option value="BE-CIVIL">B.E. - Civil</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label required">Department</label>
+                <select class="form-select">
+                  <option value="">-- Select --</option>
+                  <option value="CSE" selected>Computer Science</option>
+                  <option value="ECE">Electronics</option>
+                  <option value="MECH">Mechanical</option>
+                  <option value="EEE">Electrical</option>
+                  <option value="CIVIL">Civil</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label required">Current Year</label>
+                <select class="form-select">
+                  <option value="">-- Select --</option>
+                  <option value="I" selected>I Year</option>
+                  <option value="II">II Year</option>
+                  <option value="III">III Year</option>
+                  <option value="IV">IV Year</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Section</label>
+                <select class="form-select">
+                  <option value="">All Sections</option>
+                  <option value="A" selected>Section A</option>
+                  <option value="B">Section B</option>
+                  <option value="C">Section C</option>
+                </select>
+              </div>
+
+            </div>
+
+            <!-- Search Button -->
+            <div style="margin-top: 16px;">
+              <button class="btn btn-primary">
+                <i data-feather="search" style="width: 16px; height: 16px;"></i>
+                Load Students
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Summary Statistics -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;">
+
+          <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 16px;">
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Students</div>
+            <div style="font-size: 32px; font-weight: 600; color: #2563EB; margin-bottom: 4px;">65</div>
+            <div class="text-xs" style="color: #6B7280;">I Year CSE - Section A</div>
+          </div>
+
+          <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 16px;">
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Students with Arrears</div>
+            <div style="font-size: 32px; font-weight: 600; color: #F59E0B; margin-bottom: 4px;">12</div>
+            <div class="text-xs" style="color: #6B7280;">18.5% of total</div>
+          </div>
+
+          <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 16px;">
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Avg Subjects/Student</div>
+            <div style="font-size: 32px; font-weight: 600; color: #111827; margin-bottom: 4px;">6.8</div>
+            <div class="text-xs" style="color: #6B7280;">Including arrears</div>
+          </div>
+
+          <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 16px;">
+            <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Applications Status</div>
+            <div style="font-size: 32px; font-weight: 600; color: #6B7280; margin-bottom: 4px;">0</div>
+            <div class="text-xs" style="color: #6B7280;">Not yet generated</div>
+          </div>
+
+        </div>
+
+        <!-- Student List -->
+        <div class="section">
+          <div class="section-header">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <h2 class="section-title">Students & Subject Details</h2>
+              <span class="status status-approved">
+                <span class="status-dot"></span>
+                65 Students Loaded
+              </span>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn btn-sm btn-secondary" onclick="previewApplications()">
+                <i data-feather="eye" style="width: 16px; height: 16px;"></i>
+                Preview Applications
+              </button>
+            </div>
+          </div>
+          <div class="section-body">
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 40px;">
+                      <input type="checkbox" id="selectAll" />
+                    </th>
+                    <th style="width: 70px;">Photo</th>
+                    <th>ERN</th>
+                    <th>Student Name</th>
+                    <th>Year</th>
+                    <th>Section</th>
+                    <th style="text-align: center;">Current Sem<br/>Subjects</th>
+                    <th style="text-align: center;">Arrear<br/>Subjects</th>
+                    <th style="text-align: center;">Total<br/>Subjects</th>
+                    <th>Application No.</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <!-- Student 1 - No Arrears -->
+                  <tr>
+                    <td><input type="checkbox" checked /></td>
+                    <td>
+                      <div style="width: 48px; height: 48px; border-radius: 4px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 16px;">
+                        AK
+                      </div>
+                    </td>
+                    <td><strong style="color: #2563EB; font-family: monospace; font-size: 13px;">2024-CSE-1000</strong></td>
+                    <td><strong>Aarav Kumar</strong></td>
+                    <td>I Year</td>
+                    <td>A</td>
+                    <td style="text-align: center;">
+                      <a href="#" onclick="viewSubjects('2024-CSE-1000', 'current'); return false;"
+                         style="font-weight: 600; color: #2563EB; text-decoration: none; cursor: pointer; border-bottom: 1px dashed #2563EB;"
+                         title="Click to view current semester subjects">
+                        6
+                      </a>
+                    </td>
+                    <td style="text-align: center;"><span style="color: #9CA3AF;">—</span></td>
+                    <td style="text-align: center;"><strong>6</strong></td>
+                    <td><span style="color: #9CA3AF; font-size: 13px;">Not Generated</span></td>
+                  </tr>
+
+                  <!-- Student 2 - With Arrears -->
+                  <tr>
+                    <td><input type="checkbox" checked /></td>
+                    <td>
+                      <div style="width: 48px; height: 48px; border-radius: 4px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 16px;">
+                        BS
+                      </div>
+                    </td>
+                    <td><strong style="color: #2563EB; font-family: monospace; font-size: 13px;">2024-CSE-1001</strong></td>
+                    <td><strong>Bhavya Sharma</strong></td>
+                    <td>I Year</td>
+                    <td>A</td>
+                    <td style="text-align: center;">
+                      <a href="#" onclick="viewSubjects('2024-CSE-1001', 'current'); return false;"
+                         style="font-weight: 600; color: #2563EB; text-decoration: none; cursor: pointer; border-bottom: 1px dashed #2563EB;"
+                         title="Click to view current semester subjects">
+                        6
+                      </a>
+                    </td>
+                    <td style="text-align: center;">
+                      <a href="#" onclick="viewSubjects('2024-CSE-1001', 'arrear'); return false;"
+                         style="font-weight: 600; color: #F59E0B; background: #FEF3C7; padding: 4px 10px; border-radius: 4px; text-decoration: none; cursor: pointer !important; display: inline-block; transition: all 0.2s ease;"
+                         onmouseover="this.style.background='#FDE68A'; this.style.transform='scale(1.05)'"
+                         onmouseout="this.style.background='#FEF3C7'; this.style.transform='scale(1)'"
+                         title="Click to view arrear subjects">
+                        2
+                      </a>
+                    </td>
+                    <td style="text-align: center;"><strong>8</strong></td>
+                    <td><span style="color: #9CA3AF; font-size: 13px;">Not Generated</span></td>
+                  </tr>
+
+                  <!-- Student 3 - No Arrears -->
+                  <tr>
+                    <td><input type="checkbox" checked /></td>
+                    <td>
+                      <div style="width: 48px; height: 48px; border-radius: 4px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 16px;">
+                        CR
+                      </div>
+                    </td>
+                    <td><strong style="color: #2563EB; font-family: monospace; font-size: 13px;">2024-CSE-1002</strong></td>
+                    <td><strong>Chetan Reddy</strong></td>
+                    <td>I Year</td>
+                    <td>A</td>
+                    <td style="text-align: center;">
+                      <a href="#" onclick="viewSubjects('2024-CSE-1002', 'current'); return false;"
+                         style="font-weight: 600; color: #2563EB; text-decoration: none; cursor: pointer; border-bottom: 1px dashed #2563EB;"
+                         title="Click to view current semester subjects">
+                        6
+                      </a>
+                    </td>
+                    <td style="text-align: center;"><span style="color: #9CA3AF;">—</span></td>
+                    <td style="text-align: center;"><strong>6</strong></td>
+                    <td><span style="color: #9CA3AF; font-size: 13px;">Not Generated</span></td>
+                  </tr>
+
+                  <!-- Student 4 - With Arrears -->
+                  <tr>
+                    <td><input type="checkbox" checked /></td>
+                    <td>
+                      <div style="width: 48px; height: 48px; border-radius: 4px; background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 16px;">
+                        DP
+                      </div>
+                    </td>
+                    <td><strong style="color: #2563EB; font-family: monospace; font-size: 13px;">2024-CSE-1003</strong></td>
+                    <td><strong>Divya Patel</strong></td>
+                    <td>I Year</td>
+                    <td>A</td>
+                    <td style="text-align: center;">
+                      <a href="#" onclick="viewSubjects('2024-CSE-1003', 'current'); return false;"
+                         style="font-weight: 600; color: #2563EB; text-decoration: none; cursor: pointer; border-bottom: 1px dashed #2563EB;"
+                         title="Click to view current semester subjects">
+                        6
+                      </a>
+                    </td>
+                    <td style="text-align: center;">
+                      <a href="#" onclick="viewSubjects('2024-CSE-1003', 'arrear'); return false;"
+                         style="font-weight: 600; color: #F59E0B; background: #FEF3C7; padding: 4px 10px; border-radius: 4px; text-decoration: none; cursor: pointer !important; display: inline-block; transition: all 0.2s ease;"
+                         onmouseover="this.style.background='#FDE68A'; this.style.transform='scale(1.05)'"
+                         onmouseout="this.style.background='#FEF3C7'; this.style.transform='scale(1)'"
+                         title="Click to view arrear subjects">
+                        1
+                      </a>
+                    </td>
+                    <td style="text-align: center;"><strong>7</strong></td>
+                    <td><span style="color: #9CA3AF; font-size: 13px;">Not Generated</span></td>
+                  </tr>
+
+                  <!-- Student 5 - No Arrears -->
+                  <tr>
+                    <td><input type="checkbox" checked /></td>
+                    <td>
+                      <div style="width: 48px; height: 48px; border-radius: 4px; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 16px;">
+                        EG
+                      </div>
+                    </td>
+                    <td><strong style="color: #2563EB; font-family: monospace; font-size: 13px;">2024-CSE-1004</strong></td>
+                    <td><strong>Esha Gupta</strong></td>
+                    <td>I Year</td>
+                    <td>A</td>
+                    <td style="text-align: center;">
+                      <a href="#" onclick="viewSubjects('2024-CSE-1004', 'current'); return false;"
+                         style="font-weight: 600; color: #2563EB; text-decoration: none; cursor: pointer; border-bottom: 1px dashed #2563EB;"
+                         title="Click to view current semester subjects">
+                        6
+                      </a>
+                    </td>
+                    <td style="text-align: center;"><span style="color: #9CA3AF;">—</span></td>
+                    <td style="text-align: center;"><strong>6</strong></td>
+                    <td><span style="color: #9CA3AF; font-size: 13px;">Not Generated</span></td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Generate Applications Action -->
+        <div style="margin-top: 24px; padding: 20px; background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 8px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-size: 16px; font-weight: 600; color: #111827; margin-bottom: 8px;">Ready to Generate Applications</div>
+              <div class="text-xs" style="color: #6B7280; line-height: 1.6;">
+                <strong>65 students</strong> selected • <strong>53 students</strong> with 6 subjects • <strong>12 students</strong> with arrears<br/>
+                Applications will be auto-numbered and ready for fee calculation (B.2)
+              </div>
+            </div>
+            <div style="display: flex; gap: 12px;">
+              <button class="btn btn-secondary" style="padding: 12px 24px;">
+                <i data-feather="x" style="width: 16px; height: 16px;"></i>
+                Cancel
+              </button>
+              <button class="btn btn-primary" style="padding: 12px 24px;" onclick="generateApplications()">
+                <i data-feather="check-circle" style="width: 16px; height: 16px;"></i>
+                Generate Applications
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Subject Details Modal -->
+  <div id="subjectModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+    <div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; padding: 24px;">
+      <div class="modal-content" style="max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; background: white; border-radius: 8px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);">
+      <div class="modal-header">
+        <h2 class="modal-title">Subject Details - Bhavya Sharma (2024-CSE-1001)</h2>
+        <button class="btn btn-icon btn-ghost" onclick="closeSubjectModal()">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Current Semester Subjects -->
+        <div class="section" id="currentSubjectsSection">
+          <div class="section-header">
+            <h3 class="section-title">Current Semester Subjects (Semester 1 - Nov 2024)</h3>
+            <span class="status status-approved">
+              <span class="status-dot"></span>
+              6 Subjects
+            </span>
+          </div>
+          <div class="section-body">
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 120px;">Subject Code</th>
+                    <th>Subject Name</th>
+                    <th style="width: 100px; text-align: center;">Credits</th>
+                    <th style="width: 120px;">Type</th>
+                    <th style="width: 80px; text-align: center;">Include</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>CSE101</strong></td>
+                    <td>Programming in C</td>
+                    <td style="text-align: center;">4</td>
+                    <td>Theory</td>
+                    <td style="text-align: center;"><input type="checkbox" checked disabled /></td>
+                  </tr>
+                  <tr>
+                    <td><strong>CSE102</strong></td>
+                    <td>Programming in C Lab</td>
+                    <td style="text-align: center;">2</td>
+                    <td>Practical</td>
+                    <td style="text-align: center;"><input type="checkbox" checked disabled /></td>
+                  </tr>
+                  <tr>
+                    <td><strong>MAT101</strong></td>
+                    <td>Engineering Mathematics I</td>
+                    <td style="text-align: center;">4</td>
+                    <td>Theory</td>
+                    <td style="text-align: center;"><input type="checkbox" checked disabled /></td>
+                  </tr>
+                  <tr>
+                    <td><strong>PHY101</strong></td>
+                    <td>Engineering Physics</td>
+                    <td style="text-align: center;">3</td>
+                    <td>Theory</td>
+                    <td style="text-align: center;"><input type="checkbox" checked disabled /></td>
+                  </tr>
+                  <tr>
+                    <td><strong>CHE101</strong></td>
+                    <td>Engineering Chemistry</td>
+                    <td style="text-align: center;">3</td>
+                    <td>Theory</td>
+                    <td style="text-align: center;"><input type="checkbox" checked disabled /></td>
+                  </tr>
+                  <tr>
+                    <td><strong>ENG101</strong></td>
+                    <td>Technical English</td>
+                    <td style="text-align: center;">2</td>
+                    <td>Theory</td>
+                    <td style="text-align: center;"><input type="checkbox" checked disabled /></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arrear Subjects -->
+        <div class="section" id="arrearSubjectsSection">
+          <div class="section-header">
+            <h3 class="section-title">Arrear Subjects (Failed in Previous Semesters)</h3>
+            <span style="background: #FEF3C7; border: 1px solid #FDE68A; padding: 4px 12px; border-radius: 16px; font-size: 13px; font-weight: 600; color: #F59E0B;">
+              2 Arrears
+            </span>
+          </div>
+          <div class="section-body">
+            <div class="alert alert-warning" style="margin-bottom: 16px;">
+              <i data-feather="alert-circle" style="width: 20px; height: 20px;"></i>
+              <div>Arrear subjects will be included in the application and additional fees may apply.</div>
+            </div>
+
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 120px;">Subject Code</th>
+                    <th>Subject Name</th>
+                    <th style="width: 100px; text-align: center;">Credits</th>
+                    <th style="width: 120px;">Type</th>
+                    <th style="width: 150px;">Failed in Semester</th>
+                    <th style="width: 80px; text-align: center;">Include</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="background: #FEF3C7;">
+                    <td><strong style="color: #F59E0B;">MAT102</strong></td>
+                    <td><strong style="color: #F59E0B;">Engineering Mathematics II</strong></td>
+                    <td style="text-align: center;">4</td>
+                    <td>Theory</td>
+                    <td><span style="color: #DC2626; font-size: 13px;">Semester 2 - May 2024</span></td>
+                    <td style="text-align: center;"><input type="checkbox" checked disabled /></td>
+                  </tr>
+                  <tr style="background: #FEF3C7;">
+                    <td><strong style="color: #F59E0B;">PHY102</strong></td>
+                    <td><strong style="color: #F59E0B;">Engineering Physics Lab</strong></td>
+                    <td style="text-align: center;">2</td>
+                    <td>Practical</td>
+                    <td><span style="color: #DC2626; font-size: 13px;">Semester 2 - May 2024</span></td>
+                    <td style="text-align: center;"><input type="checkbox" checked disabled /></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Summary -->
+        <div style="padding: 16px; background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 6px; margin-top: 16px;">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; font-size: 14px;">
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Current Subjects</div>
+              <div style="font-weight: 600; color: #2563EB;">6 subjects</div>
+            </div>
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Arrear Subjects</div>
+              <div style="font-weight: 600; color: #F59E0B;">2 subjects</div>
+            </div>
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Subjects</div>
+              <div style="font-weight: 600; color: #111827;">8 subjects</div>
+            </div>
+            <div>
+              <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Credits</div>
+              <div style="font-weight: 600; color: #111827;">24 credits</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeSubjectModal()">Close</button>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div id="successModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+    <div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; padding: 24px;">
+      <div class="modal-content" style="max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; background: white; border-radius: 8px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);">
+      <div class="modal-header">
+        <h2 class="modal-title">Applications Generated Successfully</h2>
+        <button class="btn btn-icon btn-ghost" onclick="closeSuccessModal()">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div style="text-align: center; padding: 24px;">
+          <div style="width: 80px; height: 80px; border-radius: 50%; background: #DCFCE7; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
+            <i data-feather="check-circle" style="width: 48px; height: 48px; color: #10B981;"></i>
+          </div>
+
+          <h3 style="font-size: 20px; font-weight: 600; color: #111827; margin-bottom: 12px;">65 Applications Generated</h3>
+          <p style="color: #6B7280; font-size: 14px; line-height: 1.6; margin-bottom: 24px;">
+            Exam applications have been generated for all selected students. Applications are now ready for fee calculation.
+          </p>
+
+          <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 20px; margin-bottom: 24px;">
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; text-align: left; font-size: 14px;">
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Application Range</div>
+                <div style="font-weight: 600; color: #111827; font-family: monospace;">APP-2024-SEM1-001 → 065</div>
+              </div>
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Students</div>
+                <div style="font-weight: 600; color: #111827;">65 students</div>
+              </div>
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Students with Arrears</div>
+                <div style="font-weight: 600; color: #F59E0B;">12 students</div>
+              </div>
+              <div>
+                <div class="text-xs" style="color: #6B7280; margin-bottom: 4px;">Total Arrear Subjects</div>
+                <div style="font-weight: 600; color: #F59E0B;">18 subjects</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="alert alert-info" style="text-align: left;">
+            <i data-feather="info" style="width: 20px; height: 20px;"></i>
+            <div>Applications are now ready for <strong>B.2 - Registration Processing</strong>. Proceed to calculate exam fees based on subject count and arrears.</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeSuccessModal()">Close</button>
+        <button class="btn btn-primary" onclick="window.location.href='fee-calculation.html'">
+          <i data-feather="arrow-right" style="width: 16px; height: 16px;"></i>
+          Proceed to Registration Processing (B.2)
+        </button>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+
+    // Subject Details Modal
+    function viewSubjects(ern, section) {
+      const modal = document.getElementById('subjectModal');
+      modal.style.display = 'block';
+      setTimeout(() => {
+        feather.replace();
+
+        // Scroll to the relevant section
+        if (section === 'arrear') {
+          const arrearSection = document.getElementById('arrearSubjectsSection');
+          if (arrearSection) {
+            arrearSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Add subtle highlight effect
+            arrearSection.style.transition = 'background-color 0.3s ease';
+            arrearSection.style.backgroundColor = '#FFFBEB';
+            setTimeout(() => {
+              arrearSection.style.backgroundColor = '';
+            }, 1500);
+          }
+        } else {
+          // Scroll to top for current subjects
+          const modalBody = document.querySelector('#subjectModal .modal-body');
+          if (modalBody) {
+            modalBody.scrollTop = 0;
+          }
+        }
+      }, 100);
+    }
+
+    function closeSubjectModal() {
+      document.getElementById('subjectModal').style.display = 'none';
+    }
+
+    // Generate Applications
+    function generateApplications() {
+      // In real implementation: API call to generate applications
+      document.getElementById('successModal').style.display = 'block';
+      setTimeout(() => feather.replace(), 100);
+    }
+
+    function closeSuccessModal() {
+      document.getElementById('successModal').style.display = 'none';
+      // Reload page to show generated applications
+      location.reload();
+    }
+
+    // Preview Applications
+    function previewApplications() {
+      alert('Preview functionality will show a report of all applications to be generated');
+    }
+
+    // Select All Checkboxes
+    document.getElementById('selectAll').addEventListener('change', function() {
+      const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = this.checked);
+    });
+
+    // Close modals on outside click
+    document.getElementById('subjectModal').addEventListener('click', function(e) {
+      if (e.target === this) closeSubjectModal();
+    });
+
+    document.getElementById('successModal').addEventListener('click', function(e) {
+      if (e.target === this) closeSuccessModal();
+    });
+  </script>
+
+</body>
+</html>

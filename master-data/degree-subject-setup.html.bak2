@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Degree & Subject Setup - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <!-- Module Dropdown -->
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Master Data
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <a href="degree-subject-setup.html" class="dropdown-item active">Degree & Subject Setup</a>
+        <a href="program-subject-mapping.html" class="dropdown-item">Program-Subject Mapping</a>
+        <a href="fee-structure.html" class="dropdown-item">Fee Structure</a>
+        <a href="grading-system.html" class="dropdown-item">Grading System</a>
+        <a href="user-management.html" class="dropdown-item">User Management</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">AD</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Admin</div>
+            <div style="font-size: 11px; color: #6B7280;">System Admin</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Master Data</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Degree & Subject Setup</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export Master Data
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container with Sidebar -->
+  <div class="main-with-sidebar">
+
+    <!-- Module Sidebar -->
+    <aside class="module-sidebar">
+      <div class="module-sidebar-header">
+        <i data-feather="layout"></i>
+        <h3>All Modules</h3>
+      </div>
+
+      <nav class="module-nav" style="overflow-y: auto; max-height: calc(100vh - 200px);">
+        <!-- Dashboard Link -->
+        <a href="../dashboard.html" class="module-nav-item">
+          <i data-feather="home" style="width: 18px; height: 18px;"></i>
+          <span class="step-label">Dashboard</span>
+        </a>
+
+        <!-- System Setup Section -->
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px;">System Setup</div>
+
+        <!-- Master Data Module - EXPANDED -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('masterData')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="database" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Master Data</span>
+          </div>
+          <i data-feather="chevron-down" id="masterData-chevron" style="width: 16px; height: 16px; transform: rotate(180deg); transition: transform 0.2s;"></i>
+        </div>
+        <div id="masterData-pages" class="module-pages" style="display: block;">
+          <a href="degree-subject-setup.html" class="module-nav-item active" style="padding-left: 40px; font-size: 13px;">Degree & Subject Setup</a>
+          <a href="program-subject-mapping.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Program-Subject Mapping</a>
+          <a href="fee-structure.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Fee Structure</a>
+          <a href="grading-system.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Grading System</a>
+          <a href="user-management.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">User Management</a>
+        </div>
+
+        <!-- Exam Workflow Section -->
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px;">Exam Workflow</div>
+
+        <!-- Exam Registration Module -->
+        <div>
+          <a href="../exam-registration/student-master-entry.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('examReg')" title="Exam Registration">
+            <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+              <i data-feather="user-plus" style="width: 18px; height: 18px;"></i>
+              <span class="step-label">Exam Registration</span>
+            </div>
+            <i data-feather="chevron-down" id="examReg-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+          </a>
+          <div id="examReg-pages" class="module-pages" style="display: none;">
+
+            <!-- Sub-Topic A: Student Master & ERN -->
+            <div class="module-sub-section">Student Master & ERN</div>
+            <a href="../exam-registration/student-master-entry.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.1</span>
+              <span class="step-label">Student Master Entry</span>
+            </a>
+            <a href="../exam-registration/document-verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.2</span>
+              <span class="step-label">Document Verification</span>
+            </a>
+            <a href="../exam-registration/ern-generation.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.3</span>
+              <span class="step-label">ERN Generation (Batch)</span>
+            </a>
+            <a href="../exam-registration/ern-approval.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.4</span>
+              <span class="step-label">Approval & Master Record</span>
+            </a>
+            <a href="../exam-registration/student-master-list.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.5</span>
+              <span class="step-label">Student Master List</span>
+            </a>
+
+            <!-- Sub-Topic B: Semester Exam Registration -->
+            <div class="module-sub-section">Semester Exam Registration</div>
+            <a href="../exam-registration/generate-applications.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.1</span>
+              <span class="step-label">Generate Applications</span>
+            </a>
+            <a href="../exam-registration/fee-calculation.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.2</span>
+              <span class="step-label">Fee Calculation</span>
+            </a>
+            <a href="../exam-registration/fee-verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.3</span>
+              <span class="step-label">Fee Verification</span>
+            </a>
+            <a href="../exam-registration/eligibility-verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.4</span>
+              <span class="step-label">Eligibility Verification</span>
+            </a>
+            <a href="../exam-registration/final-approval.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.5</span>
+              <span class="step-label">Final Approval</span>
+            </a>
+            <a href="../exam-registration/registered-students.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.6</span>
+              <span class="step-label">Registered Students</span>
+            </a>
+            <a href="../exam-registration/reports.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.7</span>
+              <span class="step-label">Reports</span>
+            </a>
+
+            <!-- Sub-Topic C: Supplementary Registration -->
+            <div class="module-sub-section">Supplementary Registration</div>
+            <a href="../exam-registration/supplementary-registration.html" class="module-nav-item module-pages-item">
+              <span class="step-number">C.1</span>
+              <span class="step-label">Supplementary Registration</span>
+            </a>
+            <a href="../exam-registration/supplementary-verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">C.2</span>
+              <span class="step-label">Supplementary Verification</span>
+            </a>
+            <a href="../exam-registration/supplementary-list.html" class="module-nav-item module-pages-item">
+              <span class="step-number">C.3</span>
+              <span class="step-label">Supplementary List</span>
+            </a>
+          </div>
+        </div>
+          <i data-feather="chevron-down" id="examReg-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="examReg-pages" class="module-pages" style="display: none;">
+          <a href="../exam-registration/data-entry.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Data Entry</a>
+          <a href="../exam-registration/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../exam-registration/approval.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Approval</a>
+            <a href="../exam-registration/ern-generation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">ERN Generation</a>
+          <a href="../exam-registration/fee-verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Fee Verification</a>
+          
+          <a href="../exam-registration/freeze.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Freeze Applications</a>
+          <a href="../exam-registration/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+          <a href="../exam-registration/audit-log.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Audit Log</a>
+        </div>
+
+        <!-- Exam Scheduling Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('examScheduling')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="calendar" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Exam Scheduling</span>
+          </div>
+          <i data-feather="chevron-down" id="examScheduling-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="examScheduling-pages" class="module-pages" style="display: none;">
+          <a href="../exam-scheduling/course-setup.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Course Setup</a>
+          <a href="../exam-scheduling/timetable.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Timetable</a>
+          <a href="../exam-scheduling/freeze.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Freeze Timetable</a>
+          <a href="../exam-scheduling/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Internal Assessment Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('internalAssessment')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="clipboard" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Internal Assessment</span>
+          </div>
+          <i data-feather="chevron-down" id="internalAssessment-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="internalAssessment-pages" class="module-pages" style="display: none;">
+          <a href="../internal-assessment/marks-entry.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Marks Entry</a>
+          <a href="../internal-assessment/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../internal-assessment/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Hall Ticket Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('hallTicket')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="credit-card" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Hall Ticket</span>
+          </div>
+          <i data-feather="chevron-down" id="hallTicket-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="hallTicket-pages" class="module-pages" style="display: none;">
+          <a href="../hall-ticket/generation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Generation</a>
+          <a href="../hall-ticket/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../hall-ticket/seating-plan.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Seating Plan</a>
+          <a href="../hall-ticket/distribution.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Distribution</a>
+          <a href="../hall-ticket/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Conduct of Exam Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('conductExam')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="check-square" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Conduct of Exam</span>
+          </div>
+          <i data-feather="chevron-down" id="conductExam-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="conductExam-pages" class="module-pages" style="display: none;">
+          <a href="../conduct-exam/attendance.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Attendance</a>
+          <a href="../conduct-exam/answer-sheet.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Answer Sheet Handling</a>
+          <a href="../conduct-exam/batch-prep.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Batch Preparation</a>
+          <a href="../conduct-exam/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Evaluation & Results Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('evaluation')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="edit" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Evaluation & Results</span>
+          </div>
+          <i data-feather="chevron-down" id="evaluation-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="evaluation-pages" class="module-pages" style="display: none;">
+          <a href="../evaluation-results/marks-entry.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Marks Entry</a>
+          <a href="../evaluation-results/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../evaluation-results/revaluation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Revaluation</a>
+          <a href="../evaluation-results/result-compilation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Result Compilation</a>
+          <a href="../evaluation-results/grading.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Grading</a>
+          <a href="../evaluation-results/cgpa-calculation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">CGPA Calculation</a>
+          <a href="../evaluation-results/freeze.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Freeze Results</a>
+          <a href="../evaluation-results/publish.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Publish Results</a>
+          <a href="../evaluation-results/detained-students.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Detained Students</a>
+          <a href="../evaluation-results/pass-fail.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Pass/Fail Analysis</a>
+          <a href="../evaluation-results/subject-wise.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Subject-wise Analysis</a>
+          <a href="../evaluation-results/statistical.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Statistical Reports</a>
+          <a href="../evaluation-results/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+          <a href="../evaluation-results/audit-log.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Audit Log</a>
+        </div>
+
+        <!-- Mark Sheet Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('markSheet')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="file-text" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Mark Sheet</span>
+          </div>
+          <i data-feather="chevron-down" id="markSheet-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="markSheet-pages" class="module-pages" style="display: none;">
+          <a href="../mark-sheet/generation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Generation</a>
+          <a href="../mark-sheet/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../mark-sheet/consolidated.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Consolidated Statement</a>
+          <a href="../mark-sheet/distribution.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Distribution</a>
+          <a href="../mark-sheet/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Certificates Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('certificates')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="award" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Certificates</span>
+          </div>
+          <i data-feather="chevron-down" id="certificates-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="certificates-pages" class="module-pages" style="display: none;">
+          <a href="../certificates/generation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Generation</a>
+          <a href="../certificates/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../certificates/distribution.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Distribution</a>
+          <a href="../certificates/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Student Section -->
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px;">Student Portal</div>
+
+        <!-- Student Portal Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('studentPortal')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="book-open" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Student Portal</span>
+          </div>
+          <i data-feather="chevron-down" id="studentPortal-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="studentPortal-pages" class="module-pages" style="display: none;">
+          <a href="../student-portal/timetable.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Exam Timetable</a>
+          <a href="../student-portal/results.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">View Results</a>
+          <a href="../student-portal/hall-ticket.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Download Hall Ticket</a>
+        </div>
+
+        <!-- Administration Section -->
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px;">Administration</div>
+
+        <!-- Access Control Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('accessControl')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="lock" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Access Control</span>
+          </div>
+          <i data-feather="chevron-down" id="accessControl-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="accessControl-pages" class="module-pages" style="display: none;">
+          <a href="../access-auth/login.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Login</a>
+          <a href="../access-auth/biometric.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Biometric Auth</a>
+          <a href="../access-auth/audit-log.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Audit Log</a>
+        </div>
+      </nav>
+
+      <button class="sidebar-toggle" title="Toggle Sidebar (Ctrl+B)">
+        <i data-feather="chevrons-left"></i>
+      </button>
+    </aside>
+
+    <!-- Main Container -->
+    <main class="main-container main-container-with-sidebar">
+      <div class="page-container">
+
+      <!-- Page Title -->
+      <div style="margin-bottom: 24px;">
+        <h1 class="page-title">Degree & Subject Setup</h1>
+        <div class="text-sm text-secondary" style="margin-top: 4px;">Manage degree programs and subject master catalog</div>
+      </div>
+
+      <!-- Tab Navigation -->
+      <div style="border-bottom: 1px solid #E5E7EB; margin-bottom: 24px;">
+        <div style="display: flex; gap: 24px;">
+          <button class="tab-button active" onclick="switchTab('degreePrograms')" id="tab-degreePrograms" style="border-bottom: 2px solid #2563EB; border-radius: 0; padding: 12px 0; color: #2563EB; font-weight: 600; background: none; border-top: none; border-left: none; border-right: none; cursor: pointer; font-size: 14px;">
+            Degree Programs
+          </button>
+          <button class="tab-button" onclick="switchTab('subjectMaster')" id="tab-subjectMaster" style="border-bottom: 2px solid transparent; border-radius: 0; padding: 12px 0; color: #6B7280; background: none; border-top: none; border-left: none; border-right: none; cursor: pointer; font-size: 14px;">
+            Subject Master
+          </button>
+        </div>
+      </div>
+
+      <!-- Section 1: Degree Programs List -->
+      <div class="section" id="degreeProgramsSection">
+        <div class="section-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Degree Programs</h2>
+            <span class="status status-approved">
+              <span class="status-dot"></span>
+              12 Programs
+            </span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <input type="search" class="form-input" placeholder="Search programs..." style="width: 250px;" />
+            <button class="btn btn-primary" onclick="openAddDegreeModal()">
+              <i data-feather="plus" style="width: 16px; height: 16px;"></i>
+              Add Degree Program
+            </button>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Program Code</th>
+                  <th>Program Name</th>
+                  <th>Level</th>
+                  <th>Department</th>
+                  <th style="text-align: center;">Duration (Years)</th>
+                  <th style="text-align: center;">Total Semesters</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">BTECH-CSE</td>
+                  <td>Bachelor of Technology - Computer Science</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      UG
+                    </span>
+                  </td>
+                  <td>Computer Science & Engineering</td>
+                  <td style="text-align: center;">4</td>
+                  <td style="text-align: center;">8</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit" onclick="openEditDegreeModal('BTECH-CSE', 'Bachelor of Technology - Computer Science', 'UG', 'Computer Science & Engineering', '4', '8')">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate" onclick="confirmDelete('Degree Program', 'BTECH-CSE')">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">BTECH-ECE</td>
+                  <td>Bachelor of Technology - Electronics</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      UG
+                    </span>
+                  </td>
+                  <td>Electronics & Communication</td>
+                  <td style="text-align: center;">4</td>
+                  <td style="text-align: center;">8</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit" onclick="openEditDegreeModal('BTECH-ECE', 'Bachelor of Technology - Electronics', 'UG', 'Electronics & Communication', '4', '8')">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate" onclick="confirmDelete('Degree Program', 'BTECH-ECE')">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">MTECH-CSE</td>
+                  <td>Master of Technology - Computer Science</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      PG
+                    </span>
+                  </td>
+                  <td>Computer Science & Engineering</td>
+                  <td style="text-align: center;">2</td>
+                  <td style="text-align: center;">4</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit" onclick="openEditDegreeModal('MTECH-CSE', 'Master of Technology - Computer Science', 'PG', 'Computer Science & Engineering', '2', '4')">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate" onclick="confirmDelete('Degree Program', 'MTECH-CSE')">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Subject Master -->
+      <div class="section" id="subjectMasterSection" style="display: none;">
+        <div class="section-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Subject Master Catalog</h2>
+            <span class="status status-approved">
+              <span class="status-dot"></span>
+              245 Subjects
+            </span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <select class="form-select" style="width: 150px;">
+              <option value="">All Types</option>
+              <option value="theory">Theory</option>
+              <option value="practical">Practical</option>
+              <option value="both">Both</option>
+            </select>
+            <input type="search" class="form-input" placeholder="Search subjects..." style="width: 250px;" />
+            <button class="btn btn-primary" onclick="openAddSubjectModal()">
+              <i data-feather="plus" style="width: 16px; height: 16px;"></i>
+              Add Subject
+            </button>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Subject Code</th>
+                  <th>Subject Name</th>
+                  <th>Type</th>
+                  <th>Subject Category</th>
+                  <th style="text-align: center;">Credits</th>
+                  <th style="text-align: center;">Exam Duration (Hrs)</th>
+                  <th style="text-align: center;">Max Marks</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">CS501</td>
+                  <td>Data Structures & Algorithms</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Theory
+                    </span>
+                  </td>
+                  <td>Core</td>
+                  <td style="text-align: center;">4</td>
+                  <td style="text-align: center;">3</td>
+                  <td style="text-align: center;">100</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit" onclick="openEditSubjectModal('CS501', 'Data Structures & Algorithms', 'Theory', 'Core', '4', '3', '100')">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate" onclick="confirmDelete('Subject', 'CS501')">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">CS502L</td>
+                  <td>Data Structures Lab</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Practical
+                    </span>
+                  </td>
+                  <td>Core</td>
+                  <td style="text-align: center;">2</td>
+                  <td style="text-align: center;">3</td>
+                  <td style="text-align: center;">50</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit" onclick="openEditSubjectModal('CS502L', 'Data Structures Lab', 'Practical', 'Core', '2', '3', '50')">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate" onclick="confirmDelete('Subject', 'CS502L')">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">EL201</td>
+                  <td>Business Communication</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Theory
+                    </span>
+                  </td>
+                  <td>Elective</td>
+                  <td style="text-align: center;">3</td>
+                  <td style="text-align: center;">3</td>
+                  <td style="text-align: center;">100</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit" onclick="openEditSubjectModal('EL201', 'Business Communication', 'Theory', 'Elective', '3', '3', '100')">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate" onclick="confirmDelete('Subject', 'EL201')">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    </main>
+
+  </div> <!-- End main-with-sidebar -->
+
+  <!-- Add Degree Modal -->
+  <div id="addDegreeModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: white; border-radius: 8px; padding: 24px; width: 600px; max-height: 90vh; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h2 style="font-size: 18px; font-weight: 600; margin: 0;">Add Degree Program</h2>
+        <button onclick="closeAddDegreeModal()" style="background: none; border: none; cursor: pointer; color: #6B7280; padding: 4px;">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+
+      <form onsubmit="saveDegreeProgram(event)">
+        <div class="form-group">
+          <label class="form-label required">Program Code</label>
+          <input type="text" class="form-input" placeholder="e.g., BTECH-CSE" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label required">Program Name</label>
+          <input type="text" class="form-input" placeholder="e.g., Bachelor of Technology - Computer Science" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label required">Level</label>
+          <select class="form-select" required>
+            <option value="">-- Select Level --</option>
+            <option value="UG">UG (Under Graduate)</option>
+            <option value="PG">PG (Post Graduate)</option>
+            <option value="Diploma">Diploma</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label required">Department</label>
+          <select class="form-select" required>
+            <option value="">-- Select Department --</option>
+            <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+            <option value="Electronics & Communication">Electronics & Communication</option>
+            <option value="Mechanical Engineering">Mechanical Engineering</option>
+            <option value="Civil Engineering">Civil Engineering</option>
+            <option value="Electrical Engineering">Electrical Engineering</option>
+          </select>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label class="form-label required">Duration (Years)</label>
+            <input type="number" class="form-input" placeholder="e.g., 4" min="1" max="6" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label required">Total Semesters</label>
+            <input type="number" class="form-input" placeholder="e.g., 8" min="2" max="12" required />
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 24px;">
+          <button type="button" class="btn btn-secondary" onclick="closeAddDegreeModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Add Program</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Degree Modal -->
+  <div id="editDegreeModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: white; border-radius: 8px; padding: 24px; width: 600px; max-height: 90vh; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h2 style="font-size: 18px; font-weight: 600; margin: 0;">Edit Degree Program</h2>
+        <button onclick="closeEditDegreeModal()" style="background: none; border: none; cursor: pointer; color: #6B7280; padding: 4px;">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+
+      <form onsubmit="updateDegreeProgram(event)">
+        <div class="form-group">
+          <label class="form-label required">Program Code</label>
+          <input type="text" id="editDegreeCode" class="form-input" readonly style="background: #F3F4F6;" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label required">Program Name</label>
+          <input type="text" id="editDegreeName" class="form-input" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label required">Level</label>
+          <select id="editDegreeLevel" class="form-select" required>
+            <option value="UG">UG (Under Graduate)</option>
+            <option value="PG">PG (Post Graduate)</option>
+            <option value="Diploma">Diploma</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label required">Department</label>
+          <select id="editDegreeDept" class="form-select" required>
+            <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+            <option value="Electronics & Communication">Electronics & Communication</option>
+            <option value="Mechanical Engineering">Mechanical Engineering</option>
+            <option value="Civil Engineering">Civil Engineering</option>
+            <option value="Electrical Engineering">Electrical Engineering</option>
+          </select>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label class="form-label required">Duration (Years)</label>
+            <input type="number" id="editDegreeDuration" class="form-input" min="1" max="6" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label required">Total Semesters</label>
+            <input type="number" id="editDegreeSemesters" class="form-input" min="2" max="12" required />
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 24px;">
+          <button type="button" class="btn btn-secondary" onclick="closeEditDegreeModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Update Program</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Subject Modal -->
+  <div id="addSubjectModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: white; border-radius: 8px; padding: 24px; width: 600px; max-height: 90vh; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h2 style="font-size: 18px; font-weight: 600; margin: 0;">Add Subject</h2>
+        <button onclick="closeAddSubjectModal()" style="background: none; border: none; cursor: pointer; color: #6B7280; padding: 4px;">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+
+      <form onsubmit="saveSubject(event)">
+        <div class="form-group">
+          <label class="form-label required">Subject Code</label>
+          <input type="text" class="form-input" placeholder="e.g., CS501" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label required">Subject Name</label>
+          <input type="text" class="form-input" placeholder="e.g., Data Structures & Algorithms" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label required">Type</label>
+          <select class="form-select" required>
+            <option value="">-- Select Type --</option>
+            <option value="Theory">Theory</option>
+            <option value="Practical">Practical</option>
+            <option value="Both">Both (Theory + Practical)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label required">Subject Category</label>
+          <select class="form-select" required>
+            <option value="">-- Select Category --</option>
+            <option value="Core">Core</option>
+            <option value="Elective">Elective</option>
+            <option value="Open Elective">Open Elective</option>
+            <option value="Mandatory">Mandatory</option>
+          </select>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label class="form-label required">Credits</label>
+            <input type="number" class="form-input" placeholder="e.g., 4" min="1" max="10" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label required">Exam Duration (Hrs)</label>
+            <input type="number" class="form-input" placeholder="e.g., 3" min="1" max="5" step="0.5" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label required">Max Marks</label>
+            <input type="number" class="form-input" placeholder="e.g., 100" min="50" max="200" required />
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 24px;">
+          <button type="button" class="btn btn-secondary" onclick="closeAddSubjectModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Add Subject</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Subject Modal -->
+  <div id="editSubjectModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: white; border-radius: 8px; padding: 24px; width: 600px; max-height: 90vh; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h2 style="font-size: 18px; font-weight: 600; margin: 0;">Edit Subject</h2>
+        <button onclick="closeEditSubjectModal()" style="background: none; border: none; cursor: pointer; color: #6B7280; padding: 4px;">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+
+      <form onsubmit="updateSubject(event)">
+        <div class="form-group">
+          <label class="form-label required">Subject Code</label>
+          <input type="text" id="editSubjectCode" class="form-input" readonly style="background: #F3F4F6;" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label required">Subject Name</label>
+          <input type="text" id="editSubjectName" class="form-input" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label required">Type</label>
+          <select id="editSubjectType" class="form-select" required>
+            <option value="Theory">Theory</option>
+            <option value="Practical">Practical</option>
+            <option value="Both">Both (Theory + Practical)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label required">Subject Category</label>
+          <select id="editSubjectCategory" class="form-select" required>
+            <option value="Core">Core</option>
+            <option value="Elective">Elective</option>
+            <option value="Open Elective">Open Elective</option>
+            <option value="Mandatory">Mandatory</option>
+          </select>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label class="form-label required">Credits</label>
+            <input type="number" id="editSubjectCredits" class="form-input" min="1" max="10" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label required">Exam Duration (Hrs)</label>
+            <input type="number" id="editSubjectDuration" class="form-input" min="1" max="5" step="0.5" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label required">Max Marks</label>
+            <input type="number" id="editSubjectMarks" class="form-input" min="50" max="200" required />
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 24px;">
+          <button type="button" class="btn btn-secondary" onclick="closeEditSubjectModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Update Subject</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div id="deleteModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: white; border-radius: 8px; padding: 24px; width: 480px;">
+      <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px;">
+        <div style="width: 40px; height: 40px; border-radius: 50%; background: #FEE2E2; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <i data-feather="alert-circle" style="width: 20px; height: 20px; color: #DC2626;"></i>
+        </div>
+        <div>
+          <h3 style="font-size: 16px; font-weight: 600; margin: 0 0 8px 0;">Deactivate Item</h3>
+          <p id="deleteMessage" style="font-size: 14px; color: #6B7280; margin: 0;">Are you sure you want to deactivate this item?</p>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 24px;">
+        <button type="button" class="btn btn-secondary" onclick="closeDeleteModal()">Cancel</button>
+        <button type="button" class="btn btn-danger" onclick="performDelete()">Deactivate</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    // Initialize feather icons
+    feather.replace();
+
+    // Tab switching functionality
+    function switchTab(tabName) {
+      // Hide all sections
+      document.getElementById('degreeProgramsSection').style.display = 'none';
+      document.getElementById('subjectMasterSection').style.display = 'none';
+
+      // Remove active class from all tabs
+      document.getElementById('tab-degreePrograms').classList.remove('active');
+      document.getElementById('tab-subjectMaster').classList.remove('active');
+      document.getElementById('tab-degreePrograms').style.borderBottomColor = 'transparent';
+      document.getElementById('tab-subjectMaster').style.borderBottomColor = 'transparent';
+      document.getElementById('tab-degreePrograms').style.color = '#6B7280';
+      document.getElementById('tab-subjectMaster').style.color = '#6B7280';
+
+      // Show selected section and activate tab
+      if (tabName === 'degreePrograms') {
+        document.getElementById('degreeProgramsSection').style.display = 'block';
+        document.getElementById('tab-degreePrograms').classList.add('active');
+        document.getElementById('tab-degreePrograms').style.borderBottomColor = '#2563EB';
+        document.getElementById('tab-degreePrograms').style.color = '#2563EB';
+        document.getElementById('tab-degreePrograms').style.fontWeight = '600';
+      } else if (tabName === 'subjectMaster') {
+        document.getElementById('subjectMasterSection').style.display = 'block';
+        document.getElementById('tab-subjectMaster').classList.add('active');
+        document.getElementById('tab-subjectMaster').style.borderBottomColor = '#2563EB';
+        document.getElementById('tab-subjectMaster').style.color = '#2563EB';
+        document.getElementById('tab-subjectMaster').style.fontWeight = '600';
+      }
+
+      // Re-initialize feather icons
+      setTimeout(() => feather.replace(), 0);
+    }
+
+    // Add Degree Modal functions
+    function openAddDegreeModal() {
+      document.getElementById('addDegreeModal').style.display = 'flex';
+      setTimeout(() => feather.replace(), 0);
+    }
+
+    function closeAddDegreeModal() {
+      document.getElementById('addDegreeModal').style.display = 'none';
+    }
+
+    function saveDegreeProgram(event) {
+      event.preventDefault();
+      console.log('Saving degree program...');
+      alert('Degree program added successfully!');
+      closeAddDegreeModal();
+      // In real application, make API call here
+    }
+
+    // Edit Degree Modal functions
+    function openEditDegreeModal(code, name, level, dept, duration, semesters) {
+      document.getElementById('editDegreeCode').value = code;
+      document.getElementById('editDegreeName').value = name;
+      document.getElementById('editDegreeLevel').value = level;
+      document.getElementById('editDegreeDept').value = dept;
+      document.getElementById('editDegreeDuration').value = duration;
+      document.getElementById('editDegreeSemesters').value = semesters;
+      document.getElementById('editDegreeModal').style.display = 'flex';
+      setTimeout(() => feather.replace(), 0);
+    }
+
+    function closeEditDegreeModal() {
+      document.getElementById('editDegreeModal').style.display = 'none';
+    }
+
+    function updateDegreeProgram(event) {
+      event.preventDefault();
+      console.log('Updating degree program...');
+      alert('Degree program updated successfully!');
+      closeEditDegreeModal();
+      // In real application, make API call here
+    }
+
+    // Add Subject Modal functions
+    function openAddSubjectModal() {
+      document.getElementById('addSubjectModal').style.display = 'flex';
+      setTimeout(() => feather.replace(), 0);
+    }
+
+    function closeAddSubjectModal() {
+      document.getElementById('addSubjectModal').style.display = 'none';
+    }
+
+    function saveSubject(event) {
+      event.preventDefault();
+      console.log('Saving subject...');
+      alert('Subject added successfully!');
+      closeAddSubjectModal();
+      // In real application, make API call here
+    }
+
+    // Edit Subject Modal functions
+    function openEditSubjectModal(code, name, type, category, credits, duration, marks) {
+      document.getElementById('editSubjectCode').value = code;
+      document.getElementById('editSubjectName').value = name;
+      document.getElementById('editSubjectType').value = type;
+      document.getElementById('editSubjectCategory').value = category;
+      document.getElementById('editSubjectCredits').value = credits;
+      document.getElementById('editSubjectDuration').value = duration;
+      document.getElementById('editSubjectMarks').value = marks;
+      document.getElementById('editSubjectModal').style.display = 'flex';
+      setTimeout(() => feather.replace(), 0);
+    }
+
+    function closeEditSubjectModal() {
+      document.getElementById('editSubjectModal').style.display = 'none';
+    }
+
+    function updateSubject(event) {
+      event.preventDefault();
+      console.log('Updating subject...');
+      alert('Subject updated successfully!');
+      closeEditSubjectModal();
+      // In real application, make API call here
+    }
+
+    // Delete Confirmation Modal functions
+    let deleteType = '';
+    let deleteCode = '';
+
+    function confirmDelete(type, code) {
+      deleteType = type;
+      deleteCode = code;
+      document.getElementById('deleteMessage').textContent =
+        `Are you sure you want to deactivate the ${type} "${code}"? This will mark it as inactive.`;
+      document.getElementById('deleteModal').style.display = 'flex';
+      setTimeout(() => feather.replace(), 0);
+    }
+
+    function closeDeleteModal() {
+      document.getElementById('deleteModal').style.display = 'none';
+    }
+
+    function performDelete() {
+      console.log(`Deactivating ${deleteType}: ${deleteCode}`);
+      alert(`${deleteType} "${deleteCode}" has been deactivated successfully.`);
+      closeDeleteModal();
+      // In real application, make API call here
+    }
+  </script>
+</body>
+</html>

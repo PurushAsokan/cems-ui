@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Degree & Subject Setup - CEMS</title>
+  <title>Degree Programs - CEMS</title>
   <link rel="stylesheet" href="../css/cems.css">
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 </head>
@@ -19,19 +19,15 @@
     <!-- Module Dropdown -->
     <div class="dropdown dropdown-left">
       <button class="btn btn-ghost dropdown-toggle">
-        Exam Scheduling
+        Master Data
         <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
       </button>
       <div class="dropdown-menu" style="width: 240px;">
-        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Regular Exams</div>
         <a href="degree-subject-setup.html" class="dropdown-item active">Degree & Subject Setup</a>
         <a href="program-subject-mapping.html" class="dropdown-item">Program-Subject Mapping</a>
-        <a href="timetable-entry.html" class="dropdown-item">Timetable Entry</a>
-        <a href="timetable-verification.html" class="dropdown-item">Timetable Verification</a>
-        <div class="dropdown-divider"></div>
-        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Supplementary Exams</div>
-        <a href="supplementary-timetable.html" class="dropdown-item">Supplementary Timetable</a>
-        <a href="supplementary-timetable-verification.html" class="dropdown-item">Supplementary Verification</a>
+        <a href="fee-structure.html" class="dropdown-item">Fee Structure</a>
+        <a href="grading-system.html" class="dropdown-item">Grading System</a>
+        <a href="user-management.html" class="dropdown-item">User Management</a>
       </div>
     </div>
 
@@ -72,9 +68,9 @@
     <div class="breadcrumb">
       <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
       <span class="breadcrumb-separator">›</span>
-      <span class="breadcrumb-item">Exam Scheduling</span>
+      <span class="breadcrumb-item">Master Data</span>
       <span class="breadcrumb-separator">›</span>
-      <span class="breadcrumb-item active">Degree & Subject Setup</span>
+      <span class="breadcrumb-item active">Degree Programs</span>
     </div>
     <div class="context-actions">
       <button class="btn btn-sm btn-secondary">
@@ -88,23 +84,55 @@
     </div>
   </div>
 
-  <!-- Main Container -->
-  <main class="main-container">
-    <div class="page-container">
+  <!-- Main Container with Sidebar -->
+  <div class="main-with-sidebar">
 
-      <!-- Tab Navigation -->
-      <div style="border-bottom: 1px solid #E5E7EB; margin-bottom: 24px;">
-        <div style="display: flex; gap: 24px;">
-          <button class="btn btn-ghost" style="border-bottom: 2px solid #2563EB; border-radius: 0; padding: 12px 0; color: #2563EB; font-weight: 600;">
-            Degree Programs
-          </button>
-          <button class="btn btn-ghost" style="border-bottom: 2px solid transparent; border-radius: 0; padding: 12px 0; color: #6B7280;">
-            Subject Master
-          </button>
-        </div>
+    <!-- Module Sidebar -->
+    <aside class="module-sidebar">
+      <div class="module-sidebar-header">
+        <i data-feather="database"></i>
+        <h3>Master Data</h3>
       </div>
 
-      <!-- Section 1: Degree Programs List -->
+      <nav class="module-nav">
+        <a href="degree-subject-setup.html" class="module-nav-item active">
+          <span class="step-number">1</span>
+          <span class="step-label">Degree & Subject Setup</span>
+        </a>
+        <a href="program-subject-mapping.html" class="module-nav-item">
+          <span class="step-number">2</span>
+          <span class="step-label">Program-Subject Mapping</span>
+        </a>
+        <a href="fee-structure.html" class="module-nav-item">
+          <span class="step-number">3</span>
+          <span class="step-label">Fee Structure</span>
+        </a>
+        <a href="grading-system.html" class="module-nav-item">
+          <span class="step-number">4</span>
+          <span class="step-label">Grading System</span>
+        </a>
+        <a href="user-management.html" class="module-nav-item">
+          <span class="step-number">5</span>
+          <span class="step-label">User Management</span>
+        </a>
+      </nav>
+
+      <button class="sidebar-toggle" title="Toggle Sidebar (Ctrl+B)">
+        <i data-feather="chevrons-left"></i>
+      </button>
+    </aside>
+
+    <!-- Main Container -->
+    <main class="main-container main-container-with-sidebar">
+      <div class="page-container">
+
+      <!-- Page Header -->
+      <div style="margin-bottom: 24px;">
+        <h1 class="page-title">Degree Programs</h1>
+        <div class="text-sm text-secondary" style="margin-top: 4px;">Configure degree programs and their structure</div>
+      </div>
+
+      <!-- Degree Programs List -->
       <div class="section">
         <div class="section-header">
           <div style="display: flex; align-items: center; gap: 12px;">
@@ -320,8 +348,7 @@
         </div>
       </div>
 
-      <!-- Section 2: Subject Master -->
-      <div class="section">
+    </div>
         <div class="section-header">
           <div style="display: flex; align-items: center; gap: 12px;">
             <h2 class="section-title">Subject Master Catalog</h2>
@@ -555,6 +582,8 @@
 
     </div>
   </main>
+
+  </div> <!-- End main-with-sidebar -->
 
   <!-- Add Degree Program Modal (Hidden by default) -->
   <div id="addDegreeModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">

@@ -41,7 +41,7 @@
         <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase;">Regular Registration</div>
         <a href="data-entry.html" class="dropdown-item active">Data Entry</a>
         <a href="verification.html" class="dropdown-item">Verification Queue</a>
-        <a href="fee-calculation.html" class="dropdown-item">Fee Calculation &amp; Verification</a>
+        <a href="fee-calculation.html" class="dropdown-item">Fee Calculation</a>
         <a href="ern-batch.html" class="dropdown-item">ERN Generation</a>
         <a href="registration-list.html" class="dropdown-item">Registration List</a>
         <a href="reports.html" class="dropdown-item">Reports</a>
@@ -162,7 +162,7 @@
               <span class="step-number">A.1</span>
               <span class="step-label">Student Master Entry</span>
             </a>
-            <a href="verification.html" class="module-nav-item module-pages-item">
+            <a href="document-verification.html" class="module-nav-item module-pages-item">
               <span class="step-number">A.2</span>
               <span class="step-label">Document Verification</span>
             </a>
@@ -187,7 +187,23 @@
             </a>
             <a href="fee-calculation.html" class="module-nav-item module-pages-item">
               <span class="step-number">B.2</span>
-              <span class="step-label">Fee Calculation &amp; Verification</span>
+              <span class="step-label">Fee Calculation</span>
+            </a>
+            <a href="fee-verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.3</span>
+              <span class="step-label">Fee Verification</span>
+            </a>
+            <a href="eligibility-verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.4</span>
+              <span class="step-label">Eligibility Verification</span>
+            </a>
+            <a href="final-approval.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.5</span>
+              <span class="step-label">Final Approval</span>
+            </a>
+            <a href="registered-students.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.6</span>
+              <span class="step-label">Registered Students</span>
             </a>
             <a href="reports.html" class="module-nav-item module-pages-item">
               <span class="step-number">B.7</span>
@@ -214,7 +230,7 @@
         <!-- Other modules collapsed by default -->
         <!-- Exam Scheduling -->
         <div>
-          <a href="../exam-scheduling/timetable.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('examScheduling')" title="Exam Scheduling">
+          <a href="../exam-scheduling/course-setup.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('examScheduling')" title="Exam Scheduling">
             <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
               <i data-feather="calendar" style="width: 18px; height: 18px;"></i>
               <span class="step-label">Exam Scheduling</span>
@@ -222,6 +238,10 @@
             <i data-feather="chevron-down" id="examScheduling-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
           </a>
           <div id="examScheduling-pages" class="module-pages" style="display: none;">
+            <a href="../exam-scheduling/course-setup.html" class="module-nav-item module-pages-item">
+              <span class="step-number">1</span>
+              <span class="step-label">Course Setup</span>
+            </a>
             <a href="../exam-scheduling/timetable.html" class="module-nav-item module-pages-item">
               <span class="step-number">2</span>
               <span class="step-label">Timetable</span>

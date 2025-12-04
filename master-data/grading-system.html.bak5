@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grading System Configuration - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <!-- Module Dropdown -->
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Master Data
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <a href="degree-subject-setup.html" class="dropdown-item">Degree & Subject Setup</a>
+        <a href="program-subject-mapping.html" class="dropdown-item">Program-Subject Mapping</a>
+        <a href="fee-structure.html" class="dropdown-item">Fee Structure</a>
+        <a href="grading-system.html" class="dropdown-item active">Grading System</a>
+        <a href="user-management.html" class="dropdown-item">User Management</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">DK</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Dr. Kumar</div>
+            <div style="font-size: 11px; color: #6B7280;">Exam Controller</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Master Data</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Grading System</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export Configuration
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+        Edit Grading Scale
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container with Sidebar -->
+  <div class="main-with-sidebar">
+    <aside class="module-sidebar">
+      <div class="module-sidebar-header">
+        <i data-feather="layout"></i>
+        <h3>All Modules</h3>
+      </div>
+
+      <nav class="module-nav" style="overflow-y: auto; max-height: calc(100vh - 200px);">
+        <!-- Dashboard Link -->
+        <a href="../dashboard.html" class="module-nav-item">
+          <i data-feather="home" style="width: 18px; height: 18px;"></i>
+          <span class="step-label">Dashboard</span>
+        </a>
+
+        <!-- SYSTEM SETUP Section -->
+        <div class="module-section-header">System Setup</div>
+
+        <!-- Master Data Module - EXPANDED -->
+        <div>
+          <a href="degree-subject-setup.html" class="module-nav-item module-parent active" onclick="event.preventDefault(); toggleModule('masterData')" title="Master Data">
+            <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+              <i data-feather="database" style="width: 18px; height: 18px;"></i>
+              <span class="step-label">Master Data</span>
+            </div>
+            <i data-feather="chevron-down" id="masterData-chevron" style="width: 16px; height: 16px; transform: rotate(180deg); transition: transform 0.2s;"></i>
+          </a>
+          <div id="masterData-pages" class="module-pages" style="display: block;">
+            <a href="degree-subject-setup.html" class="module-nav-item module-pages-item">
+              <span class="step-number">1</span>
+              <span class="step-label">Degree & Subject Setup</span>
+            </a>
+            <a href="program-subject-mapping.html" class="module-nav-item module-pages-item">
+              <span class="step-number">2</span>
+              <span class="step-label">Program-Subject Mapping</span>
+            </a>
+            <a href="fee-structure.html" class="module-nav-item module-pages-item">
+              <span class="step-number">3</span>
+              <span class="step-label">Fee Structure</span>
+            </a>
+            <a href="grading-system.html" class="module-nav-item module-pages-item active">
+              <span class="step-number">4</span>
+              <span class="step-label">Grading System</span>
+            </a>
+            <a href="user-management.html" class="module-nav-item module-pages-item">
+              <span class="step-number">5</span>
+              <span class="step-label">User Management</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- PRE-EXAMINATION Section -->
+        <div class="module-section-header">Pre-Examination</div>
+
+        <!-- Exam Registration Module -->
+        <div>
+          <a href="../exam-registration/data-entry.html" class="module-nav-item module-parent" onclick="event.preventDefault(); toggleModule('examReg')" title="Exam Registration">
+            <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+              <i data-feather="user-plus" style="width: 18px; height: 18px;"></i>
+              <span class="step-label">Exam Registration</span>
+            </div>
+            <i data-feather="chevron-down" id="examReg-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+          </a>
+          <div id="examReg-pages" class="module-pages" style="display: none;">
+
+            <!-- Sub-Topic A: Student Master & ERN -->
+            <div class="module-sub-section">Student Master & ERN</div>
+            <a href="../exam-registration/data-entry.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.1</span>
+              <span class="step-label">Student Master Entry</span>
+            </a>
+            <a href="../exam-registration/document-verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.2</span>
+              <span class="step-label">Document Verification</span>
+            </a>
+            <a href="../exam-registration/ern-generation.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.3</span>
+              <span class="step-label">ERN Generation (Batch)</span>
+            </a>
+            <a href="../exam-registration/ern-approval.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.4</span>
+              <span class="step-label">Approval & Master Record</span>
+            </a>
+            <a href="../exam-registration/student-master-list.html" class="module-nav-item module-pages-item">
+              <span class="step-number">A.5</span>
+              <span class="step-label">Student Master List</span>
+            </a>
+
+            <!-- Sub-Topic B: Semester Exam Registration -->
+            <div class="module-sub-section">Semester Exam Registration</div>
+            <a href="../exam-registration/generate-applications.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.1</span>
+              <span class="step-label">Generate Applications</span>
+            </a>
+            <a href="../exam-registration/fee-calculation.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.2</span>
+              <span class="step-label">Fee Calculation</span>
+            </a>
+            <a href="../exam-registration/fee-verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.3</span>
+              <span class="step-label">Fee Verification</span>
+            </a>
+            <a href="../exam-registration/eligibility-verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.4</span>
+              <span class="step-label">Eligibility Verification</span>
+            </a>
+            <a href="../exam-registration/final-approval.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.5</span>
+              <span class="step-label">Final Approval</span>
+            </a>
+            <a href="../exam-registration/registered-students.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.6</span>
+              <span class="step-label">Registered Students</span>
+            </a>
+            <a href="../exam-registration/reports.html" class="module-nav-item module-pages-item">
+              <span class="step-number">B.7</span>
+              <span class="step-label">Reports</span>
+            </a>
+
+            <!-- Sub-Topic C: Supplementary Registration -->
+            <div class="module-sub-section">Supplementary Registration</div>
+            <a href="../exam-registration/supplementary-registration.html" class="module-nav-item module-pages-item">
+              <span class="step-number">C.1</span>
+              <span class="step-label">Supplementary Registration</span>
+            </a>
+            <a href="../exam-registration/supplementary-verification.html" class="module-nav-item module-pages-item">
+              <span class="step-number">C.2</span>
+              <span class="step-label">Supplementary Verification</span>
+            </a>
+            <a href="../exam-registration/supplementary-list.html" class="module-nav-item module-pages-item">
+              <span class="step-number">C.3</span>
+              <span class="step-label">Supplementary List</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Exam Scheduling Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('examScheduling')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="calendar" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Exam Scheduling</span>
+          </div>
+          <i data-feather="chevron-down" id="examScheduling-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="examScheduling-pages" class="module-pages" style="display: none;">
+          <a href="../exam-scheduling/timetable.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Timetable</a>
+          <a href="../exam-scheduling/freeze.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Freeze Timetable</a>
+          <a href="../exam-scheduling/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Internal Assessment Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('internalAssessment')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="clipboard" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Internal Assessment</span>
+          </div>
+          <i data-feather="chevron-down" id="internalAssessment-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="internalAssessment-pages" class="module-pages" style="display: none;">
+          <a href="../internal-assessment/marks-entry.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Marks Entry</a>
+          <a href="../internal-assessment/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../internal-assessment/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Hall Ticket Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('hallTicket')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="credit-card" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Hall Ticket</span>
+          </div>
+          <i data-feather="chevron-down" id="hallTicket-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="hallTicket-pages" class="module-pages" style="display: none;">
+          <a href="../hall-ticket/generation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Generation</a>
+          <a href="../hall-ticket/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../hall-ticket/seating-plan.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Seating Plan</a>
+          <a href="../hall-ticket/distribution.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Distribution</a>
+          <a href="../hall-ticket/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Conduct of Exam Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('conductExam')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="check-square" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Conduct of Exam</span>
+          </div>
+          <i data-feather="chevron-down" id="conductExam-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="conductExam-pages" class="module-pages" style="display: none;">
+          <a href="../conduct-exam/attendance.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Attendance</a>
+          <a href="../conduct-exam/answer-sheet.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Answer Sheet Handling</a>
+          <a href="../conduct-exam/batch-prep.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Batch Preparation</a>
+          <a href="../conduct-exam/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Evaluation & Results Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('evaluation')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="edit" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Evaluation & Results</span>
+          </div>
+          <i data-feather="chevron-down" id="evaluation-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="evaluation-pages" class="module-pages" style="display: none;">
+          <a href="../evaluation-results/marks-entry.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Marks Entry</a>
+          <a href="../evaluation-results/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../evaluation-results/revaluation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Revaluation</a>
+          <a href="../evaluation-results/result-compilation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Result Compilation</a>
+          <a href="../evaluation-results/grading.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Grading</a>
+          <a href="../evaluation-results/cgpa-calculation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">CGPA Calculation</a>
+          <a href="../evaluation-results/freeze.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Freeze Results</a>
+          <a href="../evaluation-results/publish.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Publish Results</a>
+          <a href="../evaluation-results/detained-students.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Detained Students</a>
+          <a href="../evaluation-results/pass-fail.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Pass/Fail Analysis</a>
+          <a href="../evaluation-results/subject-wise.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Subject-wise Analysis</a>
+          <a href="../evaluation-results/statistical.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Statistical Reports</a>
+          <a href="../evaluation-results/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+          <a href="../evaluation-results/audit-log.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Audit Log</a>
+        </div>
+
+        <!-- Mark Sheet Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('markSheet')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="file-text" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Mark Sheet</span>
+          </div>
+          <i data-feather="chevron-down" id="markSheet-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="markSheet-pages" class="module-pages" style="display: none;">
+          <a href="../mark-sheet/generation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Generation</a>
+          <a href="../mark-sheet/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../mark-sheet/consolidated.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Consolidated Statement</a>
+          <a href="../mark-sheet/distribution.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Distribution</a>
+          <a href="../mark-sheet/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Certificates Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('certificates')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="award" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Certificates</span>
+          </div>
+          <i data-feather="chevron-down" id="certificates-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="certificates-pages" class="module-pages" style="display: none;">
+          <a href="../certificates/generation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Generation</a>
+          <a href="../certificates/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../certificates/distribution.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Distribution</a>
+          <a href="../certificates/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Student Section -->
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px;">Student Portal</div>
+
+        <!-- Student Portal Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('studentPortal')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="book-open" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Student Portal</span>
+          </div>
+          <i data-feather="chevron-down" id="studentPortal-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="studentPortal-pages" class="module-pages" style="display: none;">
+          <a href="../student-portal/timetable.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Exam Timetable</a>
+          <a href="../student-portal/results.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">View Results</a>
+          <a href="../student-portal/hall-ticket.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Download Hall Ticket</a>
+        </div>
+
+        <!-- Administration Section -->
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px;">Administration</div>
+
+        <!-- Access Control Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('accessControl')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="lock" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Access Control</span>
+          </div>
+          <i data-feather="chevron-down" id="accessControl-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="accessControl-pages" class="module-pages" style="display: none;">
+          <a href="../access-auth/login.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Login</a>
+          <a href="../access-auth/biometric.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Biometric Auth</a>
+          <a href="../access-auth/audit-log.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Audit Log</a>
+        </div>
+      </nav>
+
+      <button class="sidebar-toggle" title="Toggle Sidebar (Ctrl+B)">
+        <i data-feather="chevrons-left"></i>
+      </button>
+    </aside>
+    <div id="sidebar-container"></div>
+
+    <!-- Main Container -->
+    <main class="main-container main-container-with-sidebar">
+      <div class="page-container">
+
+      <!-- Page Title -->
+      <div style="margin-bottom: 24px;">
+        <h1 class="page-title">Grading System Configuration</h1>
+        <div class="text-sm text-secondary" style="margin-top: 4px;">Configure university grading scale, grade points, and classification rules</div>
+        <div class="text-xs" style="margin-top: 4px; color: #D97706;">
+          <i data-feather="shield" style="width: 14px; height: 14px; vertical-align: middle;"></i>
+          Access: Super Admin, Exam Controller Only
+        </div>
+      </div>
+
+      <!-- Warning Alert -->
+      <div class="alert alert-warning" style="margin-bottom: 24px;">
+        <i data-feather="alert-circle" style="width: 20px; height: 20px;"></i>
+        <div>
+          <div style="font-weight: 500; margin-bottom: 4px;">Important: University-Defined Grading System</div>
+          <div class="text-sm">This grading system is defined by the university. Changes should only be made after official notification from the university. All existing results will be recalculated if grade boundaries are modified.</div>
+        </div>
+      </div>
+
+      <!-- Current Grading Scale -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">University Grading Scale</h2>
+          <span class="text-xs text-secondary" style="margin-left: 8px;">Active from January 2024</span>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Grade</th>
+                  <th>Grade Description</th>
+                  <th>Marks Range</th>
+                  <th style="text-align: center;">Grade Point</th>
+                  <th>Result Status</th>
+                  <th style="text-align: center;">Color Code</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span style="font-size: 18px; font-weight: 600; color: #059669;">O</span></td>
+                  <td style="font-weight: 500;">Outstanding</td>
+                  <td>90 - 100</td>
+                  <td style="text-align: center; font-weight: 600;">10</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Pass</span></td>
+                  <td style="text-align: center;"><div style="width: 20px; height: 20px; background: #059669; border-radius: 4px; margin: auto;"></div></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span style="font-size: 18px; font-weight: 600; color: #10B981;">A+</span></td>
+                  <td style="font-weight: 500;">Excellent</td>
+                  <td>80 - 89</td>
+                  <td style="text-align: center; font-weight: 600;">9</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Pass</span></td>
+                  <td style="text-align: center;"><div style="width: 20px; height: 20px; background: #10B981; border-radius: 4px; margin: auto;"></div></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span style="font-size: 18px; font-weight: 600; color: #3B82F6;">A</span></td>
+                  <td style="font-weight: 500;">Very Good</td>
+                  <td>70 - 79</td>
+                  <td style="text-align: center; font-weight: 600;">8</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Pass</span></td>
+                  <td style="text-align: center;"><div style="width: 20px; height: 20px; background: #3B82F6; border-radius: 4px; margin: auto;"></div></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span style="font-size: 18px; font-weight: 600; color: #2563EB;">B+</span></td>
+                  <td style="font-weight: 500;">Good</td>
+                  <td>60 - 69</td>
+                  <td style="text-align: center; font-weight: 600;">7</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Pass</span></td>
+                  <td style="text-align: center;"><div style="width: 20px; height: 20px; background: #2563EB; border-radius: 4px; margin: auto;"></div></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span style="font-size: 18px; font-weight: 600; color: #F59E0B;">B</span></td>
+                  <td style="font-weight: 500;">Above Average</td>
+                  <td>50 - 59</td>
+                  <td style="text-align: center; font-weight: 600;">6</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Pass</span></td>
+                  <td style="text-align: center;"><div style="width: 20px; height: 20px; background: #F59E0B; border-radius: 4px; margin: auto;"></div></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span style="font-size: 18px; font-weight: 600; color: #D97706;">C</span></td>
+                  <td style="font-weight: 500;">Average (Pass)</td>
+                  <td>40 - 49</td>
+                  <td style="text-align: center; font-weight: 600;">5</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Pass</span></td>
+                  <td style="text-align: center;"><div style="width: 20px; height: 20px; background: #D97706; border-radius: 4px; margin: auto;"></div></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr style="background: #FEE2E2;">
+                  <td><span style="font-size: 18px; font-weight: 600; color: #DC2626;">F</span></td>
+                  <td style="font-weight: 500;">Fail</td>
+                  <td>0 - 39</td>
+                  <td style="text-align: center; font-weight: 600;">0</td>
+                  <td><span class="status status-rejected"><span class="status-dot"></span>Fail</span></td>
+                  <td style="text-align: center;"><div style="width: 20px; height: 20px; background: #DC2626; border-radius: 4px; margin: auto;"></div></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr style="background: #F8F9FA;">
+                  <td><span style="font-size: 18px; font-weight: 600; color: #6B7280;">AB</span></td>
+                  <td style="font-weight: 500;">Absent</td>
+                  <td>—</td>
+                  <td style="text-align: center; font-weight: 600;">0</td>
+                  <td><span class="status status-pending"><span class="status-dot"></span>Absent</span></td>
+                  <td style="text-align: center;"><div style="width: 20px; height: 20px; background: #9CA3AF; border-radius: 4px; margin: auto;"></div></td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- SGPA/CGPA Calculation Formula -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">SGPA / CGPA Calculation Formula</h2>
+        </div>
+        <div class="section-body">
+          <div style="background: #F8F9FA; border: 1px solid #E5E7EB; border-radius: 8px; padding: 24px;">
+            <div style="margin-bottom: 20px;">
+              <div style="font-size: 14px; font-weight: 600; color: #111827; margin-bottom: 8px;">Semester Grade Point Average (SGPA)</div>
+              <div style="background: white; padding: 16px; border-radius: 6px; border: 1px solid #E5E7EB; font-family: monospace; font-size: 14px; color: #2563EB;">
+                SGPA = Σ (Grade Point × Credits) / Σ Credits
+              </div>
+              <div class="text-xs text-secondary" style="margin-top: 8px;">
+                Sum of (Grade Point × Credits for each subject) divided by Total Credits
+              </div>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+              <div style="font-size: 14px; font-weight: 600; color: #111827; margin-bottom: 8px;">Cumulative Grade Point Average (CGPA)</div>
+              <div style="background: white; padding: 16px; border-radius: 6px; border: 1px solid #E5E7EB; font-family: monospace; font-size: 14px; color: #2563EB;">
+                CGPA = Σ (SGPA × Credits per Semester) / Σ Total Credits
+              </div>
+              <div class="text-xs text-secondary" style="margin-top: 8px;">
+                Weighted average of all semester SGPAs
+              </div>
+            </div>
+
+            <div>
+              <div style="font-size: 14px; font-weight: 600; color: #111827; margin-bottom: 8px;">Percentage Equivalent</div>
+              <div style="background: white; padding: 16px; border-radius: 6px; border: 1px solid #E5E7EB; font-family: monospace; font-size: 14px; color: #2563EB;">
+                Percentage = CGPA × 10
+              </div>
+              <div class="text-xs text-secondary" style="margin-top: 8px;">
+                Example: CGPA 8.5 = 85%
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Degree Classification Rules -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Degree Classification Rules</h2>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Classification</th>
+                  <th>CGPA Range</th>
+                  <th>Percentage Range</th>
+                  <th>Additional Requirements</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight: 600; color: #059669;">First Class with Distinction</td>
+                  <td>7.5 - 10.0</td>
+                  <td>75% - 100%</td>
+                  <td>No arrears, No supplementary attempts</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 600; color: #2563EB;">First Class</td>
+                  <td>6.0 - 7.49</td>
+                  <td>60% - 74.9%</td>
+                  <td>—</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 600; color: #F59E0B;">Second Class</td>
+                  <td>5.0 - 5.99</td>
+                  <td>50% - 59.9%</td>
+                  <td>—</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 600; color: #D97706;">Pass Class</td>
+                  <td>4.0 - 4.99</td>
+                  <td>40% - 49.9%</td>
+                  <td>All subjects passed (including supplementary)</td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost"><i data-feather="edit" style="width: 16px; height: 16px;"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pass/Fail Criteria -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Pass/Fail Criteria</h2>
+        </div>
+        <div class="section-body">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;">
+
+            <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 20px;">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                <div style="width: 40px; height: 40px; background: #D1FAE5; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                  <i data-feather="check-circle" style="width: 20px; height: 20px; color: #059669;"></i>
+                </div>
+                <div style="font-size: 14px; font-weight: 600; color: #111827;">Pass Criteria (Subject)</div>
+              </div>
+              <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="padding: 8px 0; border-bottom: 1px solid #F8F9FA; font-size: 13px;">✓ Minimum 40% in CIA (Internal Assessment)</li>
+                <li style="padding: 8px 0; border-bottom: 1px solid #F8F9FA; font-size: 13px;">✓ Minimum 40% in ESE (End Semester Exam)</li>
+                <li style="padding: 8px 0; border-bottom: 1px solid #F8F9FA; font-size: 13px;">✓ Minimum 40% in Total (CIA + ESE)</li>
+                <li style="padding: 8px 0; font-size: 13px;">✓ Minimum 75% attendance</li>
+              </ul>
+            </div>
+
+            <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 20px;">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                <div style="width: 40px; height: 40px; background: #DBEAFE; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                  <i data-feather="award" style="width: 20px; height: 20px; color: #2563EB;"></i>
+                </div>
+                <div style="font-size: 14px; font-weight: 600; color: #111827;">Pass Criteria (Semester)</div>
+              </div>
+              <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="padding: 8px 0; border-bottom: 1px solid #F8F9FA; font-size: 13px;">✓ Pass in all registered subjects</li>
+                <li style="padding: 8px 0; border-bottom: 1px solid #F8F9FA; font-size: 13px;">✓ Minimum SGPA: 4.0</li>
+                <li style="padding: 8px 0; border-bottom: 1px solid #F8F9FA; font-size: 13px;">✓ Complete all lab/practical requirements</li>
+                <li style="padding: 8px 0; font-size: 13px;">✓ No pending arrears from previous semesters</li>
+              </ul>
+            </div>
+
+            <div style="background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 20px;">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                <div style="width: 40px; height: 40px; background: #FEE2E2; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                  <i data-feather="x-circle" style="width: 20px; height: 20px; color: #DC2626;"></i>
+                </div>
+                <div style="font-size: 14px; font-weight: 600; color: #111827;">Fail Scenarios</div>
+              </div>
+              <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="padding: 8px 0; border-bottom: 1px solid #F8F9FA; font-size: 13px;">✗ Less than 40% in CIA or ESE</li>
+                <li style="padding: 8px 0; border-bottom: 1px solid #F8F9FA; font-size: 13px;">✗ Less than 40% in Total marks</li>
+                <li style="padding: 8px 0; border-bottom: 1px solid #F8F9FA; font-size: 13px;">✗ Absent for exam (marked AB)</li>
+                <li style="padding: 8px 0; font-size: 13px;">✗ Less than 75% attendance (DT - Detained)</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Change History -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Grading System Change History</h2>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Effective Date</th>
+                  <th>Change Description</th>
+                  <th>Modified By</th>
+                  <th>University Circular Ref</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2024-01-01</td>
+                  <td>Current grading system (7-point scale: O to F)</td>
+                  <td>Dr. Kumar (Controller)</td>
+                  <td>UGC/2023/GRADE/Rev2</td>
+                  <td><span class="status status-approved"><span class="status-dot"></span>Active</span></td>
+                </tr>
+                <tr>
+                  <td>2022-06-01</td>
+                  <td>Previous system (10-point scale: A+ to F)</td>
+                  <td>Dr. Sharma (Former Controller)</td>
+                  <td>UGC/2022/GRADE/Rev1</td>
+                  <td><span class="status status-pending"><span class="status-dot"></span>Archived</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  </div> <!-- End main-with-sidebar -->
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+
+    // Load sidebar dynamically
+  </script>
+</body>
+</html>

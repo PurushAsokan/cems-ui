@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Degree Programs - CEMS</title>
+  <link rel="stylesheet" href="../css/cems.css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="../dashboard.html" class="topnav-logo">
+      <i data-feather="book-open" style="width: 24px; height: 24px;"></i>
+      <span>CEMS</span>
+    </a>
+
+    <!-- Module Dropdown -->
+    <div class="dropdown dropdown-left">
+      <button class="btn btn-ghost dropdown-toggle">
+        Master Data
+        <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+      </button>
+      <div class="dropdown-menu" style="width: 240px;">
+        <a href="degree-subject-setup.html" class="dropdown-item active">Degree & Subject Setup</a>
+        <a href="program-subject-mapping.html" class="dropdown-item">Program-Subject Mapping</a>
+        <a href="fee-structure.html" class="dropdown-item">Fee Structure</a>
+        <a href="grading-system.html" class="dropdown-item">Grading System</a>
+        <a href="user-management.html" class="dropdown-item">User Management</a>
+      </div>
+    </div>
+
+    <div class="topnav-actions">
+      <div class="topnav-search">
+        <input type="search" class="form-input" placeholder="Search (Ctrl+K)" />
+      </div>
+
+      <button class="btn btn-icon btn-ghost" title="Notifications">
+        <i data-feather="bell" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <button class="btn btn-icon btn-ghost" title="Settings">
+        <i data-feather="settings" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn btn-ghost dropdown-toggle" style="gap: 8px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563EB; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 600;">AD</div>
+          <div style="text-align: left; line-height: 1.2;">
+            <div style="font-size: 13px; font-weight: 500; color: #111827;">Admin</div>
+            <div style="font-size: 11px; color: #6B7280;">System Admin</div>
+          </div>
+          <i data-feather="chevron-down" style="width: 16px; height: 16px;"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="../access-auth/login.html" class="dropdown-item text-error">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Context Bar -->
+  <div class="context-bar">
+    <div class="breadcrumb">
+      <a href="../dashboard.html" class="breadcrumb-item">Dashboard</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item">Master Data</span>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-item active">Degree Programs</span>
+    </div>
+    <div class="context-actions">
+      <button class="btn btn-sm btn-secondary">
+        <i data-feather="download" style="width: 16px; height: 16px;"></i>
+        Export Master Data
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container with Sidebar -->
+  <div class="main-with-sidebar">
+
+    <aside class="module-sidebar">
+      <div class="module-sidebar-header">
+        <i data-feather="layout"></i>
+        <h3>All Modules</h3>
+      </div>
+
+      <nav class="module-nav" style="overflow-y: auto; max-height: calc(100vh - 200px);">
+        <!-- Dashboard Link -->
+        <a href="../dashboard.html" class="module-nav-item">
+          <i data-feather="home" style="width: 18px; height: 18px;"></i>
+          <span class="step-label">Dashboard</span>
+        </a>
+
+        <!-- System Setup Section -->
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px;">System Setup</div>
+
+        <!-- Master Data Module - EXPANDED -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('masterData')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="database" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Master Data</span>
+          </div>
+          <i data-feather="chevron-down" id="masterData-chevron" style="width: 16px; height: 16px; transform: rotate(180deg); transition: transform 0.2s;"></i>
+        </div>
+        <div id="masterData-pages" class="module-pages" style="display: block;">
+          <a href="degree-subject-setup.html" class="module-nav-item " style="padding-left: 40px; font-size: 13px;">Degree & Subject Setup</a>
+          <a href="program-subject-mapping.html" class="module-nav-item " style="padding-left: 40px; font-size: 13px;">Program-Subject Mapping</a>
+          <a href="fee-structure.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Fee Structure</a>
+          <a href="grading-system.html" class="module-nav-item " style="padding-left: 40px; font-size: 13px;">Grading System</a>
+          <a href="user-management.html" class="module-nav-item " style="padding-left: 40px; font-size: 13px;">User Management</a>
+        </div>
+
+        <!-- Exam Workflow Section -->
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px;">Exam Workflow</div>
+
+        <!-- Exam Registration Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('examReg')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="user-plus" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Exam Registration</span>
+          </div>
+          <i data-feather="chevron-down" id="examReg-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="examReg-pages" class="module-pages" style="display: none;">
+          <a href="../exam-registration/data-entry.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Data Entry</a>
+          <a href="../exam-registration/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../exam-registration/approval.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Approval</a>
+          <a href="../exam-registration/ern-batch.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">ERN Generation</a>
+          <a href="../exam-registration/fee-verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Fee Verification</a>
+          <a href="../exam-registration/ern-batch.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">ERN Batch</a>
+          <a href="../exam-registration/freeze.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Freeze Applications</a>
+          <a href="../exam-registration/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+          <a href="../exam-registration/audit-log.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Audit Log</a>
+        </div>
+
+        <!-- Exam Scheduling Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('examScheduling')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="calendar" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Exam Scheduling</span>
+          </div>
+          <i data-feather="chevron-down" id="examScheduling-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="examScheduling-pages" class="module-pages" style="display: none;">
+          <a href="../exam-scheduling/course-setup.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Course Setup</a>
+          <a href="../exam-scheduling/timetable.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Timetable</a>
+          <a href="../exam-scheduling/freeze.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Freeze Timetable</a>
+          <a href="../exam-scheduling/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Internal Assessment Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('internalAssessment')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="clipboard" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Internal Assessment</span>
+          </div>
+          <i data-feather="chevron-down" id="internalAssessment-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="internalAssessment-pages" class="module-pages" style="display: none;">
+          <a href="../internal-assessment/marks-entry.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Marks Entry</a>
+          <a href="../internal-assessment/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../internal-assessment/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Hall Ticket Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('hallTicket')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="credit-card" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Hall Ticket</span>
+          </div>
+          <i data-feather="chevron-down" id="hallTicket-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="hallTicket-pages" class="module-pages" style="display: none;">
+          <a href="../hall-ticket/generation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Generation</a>
+          <a href="../hall-ticket/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../hall-ticket/seating-plan.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Seating Plan</a>
+          <a href="../hall-ticket/distribution.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Distribution</a>
+          <a href="../hall-ticket/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Conduct of Exam Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('conductExam')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="check-square" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Conduct of Exam</span>
+          </div>
+          <i data-feather="chevron-down" id="conductExam-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="conductExam-pages" class="module-pages" style="display: none;">
+          <a href="../conduct-exam/attendance.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Attendance</a>
+          <a href="../conduct-exam/answer-sheet.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Answer Sheet Handling</a>
+          <a href="../conduct-exam/batch-prep.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Batch Preparation</a>
+          <a href="../conduct-exam/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Evaluation & Results Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('evaluation')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="edit" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Evaluation & Results</span>
+          </div>
+          <i data-feather="chevron-down" id="evaluation-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="evaluation-pages" class="module-pages" style="display: none;">
+          <a href="../evaluation-results/marks-entry.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Marks Entry</a>
+          <a href="../evaluation-results/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../evaluation-results/revaluation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Revaluation</a>
+          <a href="../evaluation-results/result-compilation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Result Compilation</a>
+          <a href="../evaluation-results/grading.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Grading</a>
+          <a href="../evaluation-results/cgpa-calculation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">CGPA Calculation</a>
+          <a href="../evaluation-results/freeze.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Freeze Results</a>
+          <a href="../evaluation-results/publish.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Publish Results</a>
+          <a href="../evaluation-results/detained-students.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Detained Students</a>
+          <a href="../evaluation-results/pass-fail.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Pass/Fail Analysis</a>
+          <a href="../evaluation-results/subject-wise.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Subject-wise Analysis</a>
+          <a href="../evaluation-results/statistical.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Statistical Reports</a>
+          <a href="../evaluation-results/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+          <a href="../evaluation-results/audit-log.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Audit Log</a>
+        </div>
+
+        <!-- Mark Sheet Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('markSheet')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="file-text" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Mark Sheet</span>
+          </div>
+          <i data-feather="chevron-down" id="markSheet-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="markSheet-pages" class="module-pages" style="display: none;">
+          <a href="../mark-sheet/generation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Generation</a>
+          <a href="../mark-sheet/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../mark-sheet/consolidated.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Consolidated Statement</a>
+          <a href="../mark-sheet/distribution.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Distribution</a>
+          <a href="../mark-sheet/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Certificates Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('certificates')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="award" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Certificates</span>
+          </div>
+          <i data-feather="chevron-down" id="certificates-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="certificates-pages" class="module-pages" style="display: none;">
+          <a href="../certificates/generation.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Generation</a>
+          <a href="../certificates/verification.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Verification</a>
+          <a href="../certificates/distribution.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Distribution</a>
+          <a href="../certificates/reports.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Reports</a>
+        </div>
+
+        <!-- Student Section -->
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px;">Student Portal</div>
+
+        <!-- Student Portal Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('studentPortal')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="book-open" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Student Portal</span>
+          </div>
+          <i data-feather="chevron-down" id="studentPortal-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="studentPortal-pages" class="module-pages" style="display: none;">
+          <a href="../student-portal/timetable.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Exam Timetable</a>
+          <a href="../student-portal/results.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">View Results</a>
+          <a href="../student-portal/hall-ticket.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Download Hall Ticket</a>
+        </div>
+
+        <!-- Administration Section -->
+        <div style="padding: 8px 12px; font-size: 11px; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px;">Administration</div>
+
+        <!-- Access Control Module -->
+        <div class="module-nav-item module-parent" onclick="toggleModule('accessControl')">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-feather="lock" style="width: 18px; height: 18px;"></i>
+            <span class="step-label">Access Control</span>
+          </div>
+          <i data-feather="chevron-down" id="accessControl-chevron" style="width: 16px; height: 16px; transition: transform 0.2s;"></i>
+        </div>
+        <div id="accessControl-pages" class="module-pages" style="display: none;">
+          <a href="../access-auth/login.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Login</a>
+          <a href="../access-auth/biometric.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Biometric Auth</a>
+          <a href="../access-auth/audit-log.html" class="module-nav-item" style="padding-left: 40px; font-size: 13px;">Audit Log</a>
+        </div>
+      </nav>
+
+      <button class="sidebar-toggle" title="Toggle Sidebar (Ctrl+B)">
+        <i data-feather="chevrons-left"></i>
+      </button>
+    </aside>
+
+    <!-- Main Container -->
+    <main class="main-container main-container-with-sidebar">
+      <div class="page-container">
+
+      <!-- Tab Navigation -->
+      <div style="border-bottom: 1px solid #E5E7EB; margin-bottom: 24px;">
+        <div style="display: flex; gap: 24px;">
+          <button class="tab-button active" data-tab="degreePrograms" style="border-bottom: 2px solid #2563EB; border-radius: 0; padding: 12px 0; color: #2563EB; font-weight: 600; background: none; border-top: none; border-left: none; border-right: none; cursor: pointer; font-size: 14px;">
+            Degree Programs
+          </button>
+          <button class="tab-button" data-tab="subjectMaster" style="border-bottom: 2px solid transparent; border-radius: 0; padding: 12px 0; color: #6B7280; background: none; border-top: none; border-left: none; border-right: none; cursor: pointer; font-size: 14px;">
+            Subject Master
+          </button>
+        </div>
+      </div>
+
+      <!-- Section 1: Degree Programs List -->
+      <div class="section" id="degreeProgramsSection">
+        <div class="section-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Degree Programs</h2>
+            <span class="status status-approved">
+              <span class="status-dot"></span>
+              12 Programs
+            </span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <input type="search" class="form-input" placeholder="Search programs..." style="width: 250px;" />
+            <button class="btn btn-primary" onclick="document.getElementById('addDegreeModal').style.display='flex'">
+              <i data-feather="plus" style="width: 16px; height: 16px;"></i>
+              Add Degree Program
+            </button>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Program Code</th>
+                  <th>Program Name</th>
+                  <th>Level</th>
+                  <th>Department</th>
+                  <th style="text-align: center;">Duration (Years)</th>
+                  <th style="text-align: center;">Total Semesters</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">BTECH-CSE</td>
+                  <td>Bachelor of Technology - Computer Science</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      UG
+                    </span>
+                  </td>
+                  <td>Computer Science & Engineering</td>
+                  <td style="text-align: center;">4</td>
+                  <td style="text-align: center;">8</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit" onclick="openEditModal('BTECH-CSE', 'Bachelor of Technology - Computer Science', 'UG', 'Computer Science & Engineering', '4', '8', 'Active')">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate" onclick="confirmDeactivate('Degree Program', 'BTECH-CSE', 'Bachelor of Technology - Computer Science')">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">BTECH-ECE</td>
+                  <td>Bachelor of Technology - Electronics</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      UG
+                    </span>
+                  </td>
+                  <td>Electronics & Communication</td>
+                  <td style="text-align: center;">4</td>
+                  <td style="text-align: center;">8</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit" onclick="openEditModal('BTECH-ECE', 'Bachelor of Technology - Electronics', 'UG', 'Electronics & Communication', '4', '8', 'Active')">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate" onclick="confirmDeactivate('Degree Program', 'BTECH-ECE', 'Bachelor of Technology - Electronics')">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">BTECH-MECH</td>
+                  <td>Bachelor of Technology - Mechanical</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      UG
+                    </span>
+                  </td>
+                  <td>Mechanical Engineering</td>
+                  <td style="text-align: center;">4</td>
+                  <td style="text-align: center;">8</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit" onclick="openEditModal('BTECH-MECH', 'Bachelor of Technology - Mechanical', 'UG', 'Mechanical Engineering', '4', '8', 'Active')">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate" onclick="confirmDeactivate('Degree Program', 'BTECH-MECH', 'Bachelor of Technology - Mechanical')">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">BTECH-CIVIL</td>
+                  <td>Bachelor of Technology - Civil</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      UG
+                    </span>
+                  </td>
+                  <td>Civil Engineering</td>
+                  <td style="text-align: center;">4</td>
+                  <td style="text-align: center;">8</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit" onclick="openEditModal('BTECH-CIVIL', 'Bachelor of Technology - Civil', 'UG', 'Civil Engineering', '4', '8', 'Active')">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate" onclick="confirmDeactivate('Degree Program', 'BTECH-CIVIL', 'Bachelor of Technology - Civil')">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">MTECH-CSE</td>
+                  <td>Master of Technology - Computer Science</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      PG
+                    </span>
+                  </td>
+                  <td>Computer Science & Engineering</td>
+                  <td style="text-align: center;">2</td>
+                  <td style="text-align: center;">4</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit" onclick="openEditModal('MTECH-CSE', 'Master of Technology - Computer Science', 'PG', 'Computer Science & Engineering', '2', '4', 'Active')">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate" onclick="confirmDeactivate('Degree Program', 'MTECH-CSE', 'Master of Technology - Computer Science')">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">MCA</td>
+                  <td>Master of Computer Applications</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      PG
+                    </span>
+                  </td>
+                  <td>Computer Applications</td>
+                  <td style="text-align: center;">2</td>
+                  <td style="text-align: center;">4</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit" onclick="openEditModal('MCA', 'Master of Computer Applications', 'PG', 'Computer Applications', '2', '4', 'Active')">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate" onclick="confirmDeactivate('Degree Program', 'MCA', 'Master of Computer Applications')">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Subject Master -->
+      <div class="section" id="subjectMasterSection" style="display: none;">
+        <div class="section-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title">Subject Master Catalog</h2>
+            <span class="status status-approved">
+              <span class="status-dot"></span>
+              245 Subjects
+            </span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <select class="form-select" style="width: 150px;">
+              <option value="">All Types</option>
+              <option value="theory">Theory</option>
+              <option value="practical">Practical</option>
+              <option value="both">Both</option>
+            </select>
+            <input type="search" class="form-input" placeholder="Search subjects..." style="width: 250px;" />
+            <button class="btn btn-primary">
+              <i data-feather="plus" style="width: 16px; height: 16px;"></i>
+              Add Subject
+            </button>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Subject Code</th>
+                  <th>Subject Name</th>
+                  <th>Type</th>
+                  <th>Subject Category</th>
+                  <th style="text-align: center;">Credits</th>
+                  <th style="text-align: center;">Exam Duration (Hrs)</th>
+                  <th style="text-align: center;">Max Marks</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">CS501</td>
+                  <td>Data Structures & Algorithms</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Theory
+                    </span>
+                  </td>
+                  <td>Core</td>
+                  <td style="text-align: center;">4</td>
+                  <td style="text-align: center;">3</td>
+                  <td style="text-align: center;">100</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate" onclick="confirmDeactivate('Subject', 'CS501', 'Data Structures & Algorithms')">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">CS502</td>
+                  <td>Database Management Systems</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Theory
+                    </span>
+                  </td>
+                  <td>Core</td>
+                  <td style="text-align: center;">4</td>
+                  <td style="text-align: center;">3</td>
+                  <td style="text-align: center;">100</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate" onclick="confirmDeactivate('Subject', 'CS502', 'Database Management Systems')">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">CS503L</td>
+                  <td>DBMS Lab</td>
+                  <td>
+                    <span class="status status-pending">
+                      <span class="status-dot"></span>
+                      Practical
+                    </span>
+                  </td>
+                  <td>Core</td>
+                  <td style="text-align: center;">2</td>
+                  <td style="text-align: center;">3</td>
+                  <td style="text-align: center;">50</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate" onclick="confirmDeactivate('Subject', 'CS503L', 'DBMS Lab')">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">CS504</td>
+                  <td>Operating Systems</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Theory
+                    </span>
+                  </td>
+                  <td>Core</td>
+                  <td style="text-align: center;">4</td>
+                  <td style="text-align: center;">3</td>
+                  <td style="text-align: center;">100</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate" onclick="confirmDeactivate('Subject', 'CS504', 'Operating Systems')">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">CS505</td>
+                  <td>Computer Networks</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Theory
+                    </span>
+                  </td>
+                  <td>Core</td>
+                  <td style="text-align: center;">4</td>
+                  <td style="text-align: center;">3</td>
+                  <td style="text-align: center;">100</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate" onclick="confirmDeactivate('Subject', 'CS505', 'Computer Networks')">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: monospace; font-weight: 500;">HS501</td>
+                  <td>Professional Ethics</td>
+                  <td>
+                    <span class="status status-approved">
+                      <span class="status-dot"></span>
+                      Theory
+                    </span>
+                  </td>
+                  <td>Open Elective</td>
+                  <td style="text-align: center;">3</td>
+                  <td style="text-align: center;">3</td>
+                  <td style="text-align: center;">100</td>
+                  <td>
+                    <span class="status status-verified">
+                      <span class="status-dot"></span>
+                      Active
+                    </span>
+                  </td>
+                  <td style="text-align: right;">
+                    <button class="btn btn-sm btn-ghost" title="Edit">
+                      <i data-feather="edit" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="View History">
+                      <i data-feather="clock" style="width: 16px; height: 16px;"></i>
+                    </button>
+                    <button class="btn btn-sm btn-ghost" title="Deactivate" onclick="confirmDeactivate('Subject', 'HS501', 'Professional Ethics')">
+                      <i data-feather="x-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  </div> <!-- End main-with-sidebar -->
+
+  <!-- Add Degree Program Modal (Hidden by default) -->
+  <div id="addDegreeModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: white; border-radius: 8px; padding: 24px; width: 600px; max-height: 90vh; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h3 style="font-size: 18px; font-weight: 600; color: #111827;">Add New Degree Program</h3>
+        <button class="btn btn-icon btn-ghost" onclick="document.getElementById('addDegreeModal').style.display='none'">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+
+      <div style="display: grid; gap: 16px;">
+        <div class="form-group">
+          <label class="form-label required">Program Code</label>
+          <input type="text" class="form-input" placeholder="e.g., BTECH-CSE" />
+        </div>
+        <div class="form-group">
+          <label class="form-label required">Program Name</label>
+          <input type="text" class="form-input" placeholder="e.g., Bachelor of Technology - Computer Science" />
+        </div>
+        <div class="form-group">
+          <label class="form-label required">Program Level</label>
+          <select class="form-select">
+            <option value="">-- Select Level --</option>
+            <option value="ug">Undergraduate (UG)</option>
+            <option value="pg">Postgraduate (PG)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label required">Department</label>
+          <select class="form-select">
+            <option value="">-- Select Department --</option>
+            <option value="cse">Computer Science & Engineering</option>
+            <option value="ece">Electronics & Communication</option>
+            <option value="mech">Mechanical Engineering</option>
+            <option value="civil">Civil Engineering</option>
+          </select>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label class="form-label required">Duration (Years)</label>
+            <input type="number" class="form-input" placeholder="4" min="1" max="6" />
+          </div>
+          <div class="form-group">
+            <label class="form-label required">Total Semesters</label>
+            <input type="number" class="form-input" placeholder="8" min="2" max="12" />
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: end; gap: 12px; margin-top: 24px; padding-top: 24px; border-top: 1px solid #E5E7EB;">
+        <button class="btn btn-secondary" onclick="document.getElementById('addDegreeModal').style.display='none'">Cancel</button>
+        <button class="btn btn-primary">Save Program</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Degree Program Modal (Hidden by default) -->
+  <div id="editDegreeModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: white; border-radius: 8px; padding: 24px; width: 600px; max-height: 90vh; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h3 style="font-size: 18px; font-weight: 600; color: #111827;">Edit Degree Program</h3>
+        <button class="btn btn-icon btn-ghost" onclick="document.getElementById('editDegreeModal').style.display='none'">
+          <i data-feather="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+
+      <div style="display: grid; gap: 16px;">
+        <div class="form-group">
+          <label class="form-label required">Program Code</label>
+          <input type="text" id="editProgramCode" class="form-input" placeholder="e.g., BTECH-CSE" />
+        </div>
+        <div class="form-group">
+          <label class="form-label required">Program Name</label>
+          <input type="text" id="editProgramName" class="form-input" placeholder="e.g., Bachelor of Technology - Computer Science" />
+        </div>
+        <div class="form-group">
+          <label class="form-label required">Program Level</label>
+          <select id="editProgramLevel" class="form-select">
+            <option value="">-- Select Level --</option>
+            <option value="UG">Undergraduate (UG)</option>
+            <option value="PG">Postgraduate (PG)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label required">Department</label>
+          <select id="editDepartment" class="form-select">
+            <option value="">-- Select Department --</option>
+            <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+            <option value="Electronics & Communication">Electronics & Communication</option>
+            <option value="Mechanical Engineering">Mechanical Engineering</option>
+            <option value="Civil Engineering">Civil Engineering</option>
+            <option value="Computer Applications">Computer Applications</option>
+          </select>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label class="form-label required">Duration (Years)</label>
+            <input type="number" id="editDuration" class="form-input" placeholder="4" min="1" max="6" />
+          </div>
+          <div class="form-group">
+            <label class="form-label required">Total Semesters</label>
+            <input type="number" id="editSemesters" class="form-input" placeholder="8" min="2" max="12" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label required">Status</label>
+          <select id="editStatus" class="form-select">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: end; gap: 12px; margin-top: 24px; padding-top: 24px; border-top: 1px solid #E5E7EB;">
+        <button class="btn btn-secondary" onclick="document.getElementById('editDegreeModal').style.display='none'">Cancel</button>
+        <button class="btn btn-primary">Update Program</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirmation Modal for Deactivate (Hidden by default) -->
+  <div id="confirmModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: white; border-radius: 8px; padding: 24px; width: 480px;">
+      <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px;">
+        <i data-feather="alert-circle" style="width: 24px; height: 24px; color: #F59E0B; flex-shrink: 0;"></i>
+        <div>
+          <h3 style="font-size: 16px; font-weight: 600; color: #111827; margin: 0 0 8px 0;">Confirm Deactivation</h3>
+          <p id="confirmMessage" style="font-size: 14px; color: #6B7280; margin: 0;">Are you sure you want to deactivate this item?</p>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: end; gap: 12px; margin-top: 24px;">
+        <button class="btn btn-secondary" onclick="document.getElementById('confirmModal').style.display='none'">Cancel</button>
+        <button class="btn btn-danger" onclick="performDeactivate()">Deactivate</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/cems.js"></script>
+  <script>
+    feather.replace();
+
+    // Load sidebar dynamically
+
+    // Tab switching functionality
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const degreeProgramsSection = document.getElementById('degreeProgramsSection');
+    const subjectMasterSection = document.getElementById('subjectMasterSection');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        tabButtons.forEach(btn => {
+          btn.classList.remove('active');
+          btn.style.borderBottom = '2px solid transparent';
+          btn.style.color = '#6B7280';
+          btn.style.fontWeight = 'normal';
+        });
+
+        // Add active class to clicked button
+        button.classList.add('active');
+        button.style.borderBottom = '2px solid #2563EB';
+        button.style.color = '#2563EB';
+        button.style.fontWeight = '600';
+
+        // Show/hide sections based on tab
+        const tab = button.getAttribute('data-tab');
+        if (tab === 'degreePrograms') {
+          degreeProgramsSection.style.display = 'block';
+          subjectMasterSection.style.display = 'none';
+        } else if (tab === 'subjectMaster') {
+          degreeProgramsSection.style.display = 'none';
+          subjectMasterSection.style.display = 'block';
+        }
+      });
+    });
+
+    // Function to open edit modal with program details
+    function openEditModal(code, name, level, department, duration, semesters, status) {
+      // Populate form fields with existing data
+      document.getElementById('editProgramCode').value = code;
+      document.getElementById('editProgramName').value = name;
+      document.getElementById('editProgramLevel').value = level;
+      document.getElementById('editDepartment').value = department;
+      document.getElementById('editDuration').value = duration;
+      document.getElementById('editSemesters').value = semesters;
+      document.getElementById('editStatus').value = status;
+
+      // Show modal
+      document.getElementById('editDegreeModal').style.display = 'flex';
+
+      // Re-initialize feather icons after modal opens
+      setTimeout(() => feather.replace(), 0);
+    }
+
+    // Variables to store deactivation details
+    let deactivationType = '';
+    let deactivationCode = '';
+    let deactivationName = '';
+
+    // Function to show confirmation modal for deactivation
+    function confirmDeactivate(type, code, name) {
+      deactivationType = type;
+      deactivationCode = code;
+      deactivationName = name;
+
+      // Update confirmation message
+      const message = `Are you sure you want to deactivate the ${type.toLowerCase()} <strong>"${code} - ${name}"</strong>? This action will mark it as inactive.`;
+      document.getElementById('confirmMessage').innerHTML = message;
+
+      // Show modal
+      document.getElementById('confirmModal').style.display = 'flex';
+
+      // Re-initialize feather icons after modal opens
+      setTimeout(() => feather.replace(), 0);
+    }
+
+    // Function to perform deactivation
+    function performDeactivate() {
+      // Here you would typically make an API call to deactivate the item
+      console.log(`Deactivating ${deactivationType}: ${deactivationCode} - ${deactivationName}`);
+
+      // Close the modal
+      document.getElementById('confirmModal').style.display = 'none';
+
+      // Show success message (you can implement a toast/alert here)
+      alert(`${deactivationType} "${deactivationCode}" has been deactivated successfully.`);
+
+      // In a real application, you would refresh the table or update the status
+    }
+  </script>
+</body>
+</html>
